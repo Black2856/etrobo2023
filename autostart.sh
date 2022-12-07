@@ -1,4 +1,4 @@
-CFILE='basename 'pwd''
+CFILE=$(basename pwd)
 
 git pull
 cd ../
