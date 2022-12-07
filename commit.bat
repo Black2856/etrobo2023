@@ -7,7 +7,7 @@ if "%~1"=="" (
 )
 cd /d %~dp0 && ^
 git add . && ^
-git commit -m '%comment%' && ^
+git commit -m %comment% && ^
 git push -f
 pause
 exit /b 0
