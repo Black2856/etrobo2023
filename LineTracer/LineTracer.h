@@ -12,7 +12,7 @@ extern "C" {
 #define STEERING_COEF     (0.2F) 
 
 /* 走行基準スピード */
-#define BASE_SPEED        (40) 
+#define BASE_SPEED        (1) 
 
 /* ライントレースエッジ切り替え */
 #define LEFT_EDGE         (-1) 
