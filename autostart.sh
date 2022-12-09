@@ -6,5 +6,7 @@ if [ "$1" != "-r" ]; then
 fi
 
 cd ../
+
+rm asp
 make img=$CFILE
 make start
