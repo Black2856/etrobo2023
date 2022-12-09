@@ -1,5 +1,6 @@
 @echo off
 setlocal
+
 if "%~1"=="" (
     set comment="%date%_%time%"
 ) else (
