@@ -1,7 +1,9 @@
 CFILE=$(basename $(pwd))
 
-git fetch origin main
-git reset --hard origin/main
+if [ "$1" != "-r" ]; then
+    git fetch origin main
+    git reset --hard origin/main
+fi
 
 cd ../
 make img=$CFILE
