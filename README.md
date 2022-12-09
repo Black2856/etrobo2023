@@ -35,7 +35,7 @@ et
 を入力するとworkspaceに移動できます
 
 ### コミット
-localで以下のコマンドを実行すると自動でadd,commit,pushを実行する(commit msgは現在日時)
+localで以下のコマンドを実行すると自動でmakefile.incを修正,add,commit,pushを実行する(commit msgは現在日時)
 ```bash
 commit.bat
 ```
