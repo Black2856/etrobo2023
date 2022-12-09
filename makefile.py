@@ -1,4 +1,8 @@
+#############################
 ### makefileのinclude自動生成
+### 作成者 : 船田 直輝
+#############################
+
 import os
 import glob
 import re
