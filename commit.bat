@@ -6,8 +6,8 @@ if "%~1"=="" (
     set comment="%~1"
 )
 cd /d %~dp0 && ^
-git add . && ^
-git commit -m %comment% && ^
+git add . & ^
+git commit -m %comment% & ^
 git push -f
 
 pause
