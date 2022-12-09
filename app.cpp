@@ -1,82 +1,39 @@
 #include "app.h"
-#include "util.h"
-
-#include "Motor.h"
 #include "Clock.h"
+#include "section_core.h"
+#include "sectionList.h"
 
 using namespace ev3api;
-// tag::walker_def[]
-class Walker {
-public:
-  Walker();
-  void run();
 
-private:
-  Motor leftWheel;
-  Motor rightWheel;
-  Clock clock;
+static bool iscrunexeTerminate = false;
+Clock clock;
+SectionCore *sectionCore = new SectionCore(SectionList::Section00);
 
-#ifndef MAKE_RASPIKE
-  const int8_t pwm = (Motor::PWM_MAX) / 6;
-#else
-  const int8_t pwm = 60;
-#endif
-  const uint32_t duration = 2000*1000;
+void *__dso_handle=0;
 
-protected:             // <1>
-  void forward(void);  // <2>
-  void back(void);     // <2>
-  void stop(void);     // <2>
-};
-// end::walker_def[]
-// tag::walker_impl_1[]
-Walker::Walker():
-  leftWheel(PORT_C), rightWheel(PORT_B) {
-}
-
-void Walker::forward(void) {  // <1>
-  msg_f("Forwarding...", 1);
-  leftWheel.setPWM(pwm);
-  rightWheel.setPWM(pwm);
-}
-
-void Walker::back(void) {  // <1>
-  msg_f("Backwarding...", 1);
-  leftWheel.setPWM(-pwm);
-  rightWheel.setPWM(-pwm);
-}
-
-void Walker::stop(void) {  // <1>
-  msg_f("Stopped.", 1);
-  leftWheel.stop();
-  rightWheel.stop();
-}
-// end::walker_impl_1[]
-// tag::walker_impl_2[]
-void Walker::run() {
-  init_f(__FILE__);
-  while(1) {
-    forward();             // <1>
-    clock.sleep(duration);
-    back();                // <1>
-    clock.sleep(duration);
-
-    // 左ボタンを長押し、それを捕捉する
-    if (ev3_button_is_pressed(LEFT_BUTTON)) {
-      break;
-    }
+void order_task(intptr_t exinf) {
+  if(iscrunexeTerminate == false){
+    iscrunexeTerminate = sectionCore->run();
+  }else{
+    wup_tsk(MAIN_TASK);
   }
-
-  stop();                // <1>
-  while(ev3_button_is_pressed(LEFT_BUTTON)) {
-    ;
-  }
-}
-// end::walker_impl_2[]
-// tag::main_task[]
-void main_task(intptr_t unused) {
-  Walker walker;
-  walker.run();
   ext_tsk();
 }
-// end::main_task[]
+
+void bluetooth_task(intptr_t exinf){
+  ext_tsk();
+}
+
+void main_task(intptr_t unused) {
+
+  sta_cyc(ORDER_CYC);
+  sta_cyc(BLUETOOTH_CYC);
+  
+  slp_tsk(); //iscrunexeTerminate = true まで待機
+
+  stp_cyc(ORDER_CYC);
+  stp_cyc(BLUETOOTH_CYC);
+
+  delete sectionCore;
+  ext_tsk();
+}
