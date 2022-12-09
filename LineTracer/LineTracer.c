@@ -37,6 +37,7 @@ static int16_t steering_amount_calculation(void){
 
     /* 目標輝度値とカラーセンサ値の差分を計算 */
     diff_brightness = (float32_t)(target_brightness - rgb_val.g);
+    printf("bright : %d", diff_brightness);
 
     /* ステアリング操舵量を計算 */
     steering_amount = (int16_t)(diff_brightness * STEERING_COEF);
