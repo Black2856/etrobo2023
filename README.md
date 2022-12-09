@@ -52,4 +52,3 @@ raspberrypiで以下のコマンドを実行すると自動でpull,build,start�
 ```bash
 sh autostart.sh
 ```
-※ラズパイ側で編集するとsh autostart,shのpullに失敗するかも
