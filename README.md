@@ -30,7 +30,7 @@ git config --global user.name "ユーザー名"
 ### ファイル移動
 ホームディレクトリから
 ```bash
-source et.sh
+et
 ```
 を入力するとworkspaceに移動できます
 
