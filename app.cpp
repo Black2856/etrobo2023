@@ -1,28 +1,82 @@
-#include "app.h" // <1>
-#include "Tracer.h" // <2>
-#include "Clock.h"  // <3>
+#include "app.h"
+#include "util.h"
+
+#include "Motor.h"
+#include "Clock.h"
+
 using namespace ev3api;
+// tag::walker_def[]
+class Walker {
+public:
+  Walker();
+  void run();
 
-Tracer tracer;  // <4>
-Clock clock;    // <5>
+private:
+  Motor leftWheel;
+  Motor rightWheel;
+  Clock clock;
 
-void tracer_task(intptr_t exinf) { // <1>
-  tracer.run(); // <2>
-  ext_tsk();
+#ifndef MAKE_RASPIKE
+  const int8_t pwm = (Motor::PWM_MAX) / 6;
+#else
+  const int8_t pwm = 60;
+#endif
+  const uint32_t duration = 2000*1000;
+
+protected:             // <1>
+  void forward(void);  // <2>
+  void back(void);     // <2>
+  void stop(void);     // <2>
+};
+// end::walker_def[]
+// tag::walker_impl_1[]
+Walker::Walker():
+  leftWheel(PORT_C), rightWheel(PORT_B) {
 }
 
-void main_task(intptr_t unused) { // <1>
-  const uint32_t duration = 100*1000; // <2>
+void Walker::forward(void) {  // <1>
+  msg_f("Forwarding...", 1);
+  leftWheel.setPWM(pwm);
+  rightWheel.setPWM(pwm);
+}
 
-  tracer.init(); // <3>
-  sta_cyc(TRACER_CYC); // <4>
-  
-  while (!ev3_button_is_pressed(LEFT_BUTTON)) { // <1>
-      clock.sleep(duration);   // <2>
+void Walker::back(void) {  // <1>
+  msg_f("Backwarding...", 1);
+  leftWheel.setPWM(-pwm);
+  rightWheel.setPWM(-pwm);
+}
+
+void Walker::stop(void) {  // <1>
+  msg_f("Stopped.", 1);
+  leftWheel.stop();
+  rightWheel.stop();
+}
+// end::walker_impl_1[]
+// tag::walker_impl_2[]
+void Walker::run() {
+  init_f(__FILE__);
+  while(1) {
+    forward();             // <1>
+    clock.sleep(duration);
+    back();                // <1>
+    clock.sleep(duration);
+
+    // 左ボタンを長押し、それを捕捉する
+    if (ev3_button_is_pressed(LEFT_BUTTON)) {
+      break;
+    }
   }
 
-  stp_cyc(TRACER_CYC); // <3>
-  tracer.terminate(); // <4>
-  ext_tsk(); // <5>
+  stop();                // <1>
+  while(ev3_button_is_pressed(LEFT_BUTTON)) {
+    ;
+  }
 }
-
+// end::walker_impl_2[]
+// tag::main_task[]
+void main_task(intptr_t unused) {
+  Walker walker;
+  walker.run();
+  ext_tsk();
+}
+// end::main_task[]
