@@ -1,4 +1,7 @@
 @echo off
+
+python makefile.py
+
 setlocal
 if "%~1"=="" (
     set comment="%date%_%time%"
