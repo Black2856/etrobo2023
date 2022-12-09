@@ -16,7 +16,6 @@ print(dirs)
 
 # ファイル抽出
 files = set([os.path.basename(x.replace('\\', '/')) for x in glob.glob('**/*', recursive=True) if pattern.search(x)])
-files.remove("app.c")
 print(files)
 
 mk_files = set([x.split(".")[0] for x in files])
