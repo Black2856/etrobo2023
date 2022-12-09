@@ -1,8 +1,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-//mk
-  
 /* 下記の項目は各ロボットに合わせて変えること */
 
 /* カラーセンサの輝度設定 */
