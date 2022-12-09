@@ -50,7 +50,6 @@ void Walker::stop(void) {  // <1>
 // end::walker_impl_1[]
 // tag::walker_impl_2[]
 void Walker::run() {
-  init_f(__FILE__);
   while(1) {
     forward();             // <1>
     clock.sleep(duration);
