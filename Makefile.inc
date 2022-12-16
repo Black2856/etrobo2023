@@ -1,6 +1,8 @@
 mkfile_path := $(dir $(lastword $(MAKEFILE_LIST)))
 
-APPL_COBJS +=\
+APPL_COBJS += \
+#<mk_files>
+#</mk_files>
 
 SRCLANG := c++
 
@@ -14,5 +16,9 @@ endif
 APPL_LIBS += -lm
 
 APPL_DIRS += \
+#<mk_dirs1>
+#</mk_dirs1>
 
 INCLUDES += \
+#<mk_dirs2>
+#</mk_dirs2>

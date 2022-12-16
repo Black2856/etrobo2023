@@ -48,8 +48,15 @@ commit.bat "コメント"
 ※編集する前にpullを忘れずに
 
 ### 実行
-raspberrypiで以下のコマンドを実行すると自動でpull,build,startを実行する
+raspberrypiで以下のコマンドを実行すると自動でmakefileとcfgの修正,pull,build,startを実行する
 ```bash
 sh autostart.sh
 ```
 raspberrypi側でも編集できますが、基本的にデバッグ用です
+
+makefileとapp.cfgの修正には
+```bash
+#<タグ名>
+#</タグ名>
+```
+を用いることでタグ内のテキストをディレクトリ構成に合わせて修正します
