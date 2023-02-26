@@ -17,8 +17,10 @@ APPL_LIBS += -lm
 
 APPL_DIRS += \
 #<mk_dirs1>
+    $(mkfile_path)ê›åv \
 #</mk_dirs1>
 
 INCLUDES += \
 #<mk_dirs2>
+    -I$(mkfile_path)ê›åv \
 #</mk_dirs2>
