@@ -2,6 +2,7 @@ mkfile_path := $(dir $(lastword $(MAKEFILE_LIST)))
 
 APPL_COBJS += \
 #<mk_files>
+    app.o \
 #</mk_files>
 
 SRCLANG := c++
@@ -17,22 +18,30 @@ APPL_LIBS += -lm
 
 APPL_DIRS += \
 #<mk_dirs1>
-    $(mkfile_path)unit/run \
-    $(mkfile_path)unit/judge \
-    $(mkfile_path)ê›åv \
-    $(mkfile_path)unit/calc \
+    $(mkfile_path)app/manage_train \
+    $(mkfile_path)app/recognize_image \
     $(mkfile_path)unit \
+    $(mkfile_path)app \
+    $(mkfile_path)unit/judge \
+    $(mkfile_path)unit/run \
     $(mkfile_path)unit/manage_scenario \
+    $(mkfile_path)app/manage_signal \
     $(mkfile_path)unit/device \
+    $(mkfile_path)unit/calc \
+    $(mkfile_path)app/search_route \
 #</mk_dirs1>
 
 INCLUDES += \
 #<mk_dirs2>
-    -I$(mkfile_path)unit/device \
-    -I$(mkfile_path)unit/judge \
-    -I$(mkfile_path)unit/run \
-    -I$(mkfile_path)unit \
+    -I$(mkfile_path)app \
     -I$(mkfile_path)unit/manage_scenario \
+    -I$(mkfile_path)unit/judge \
+    -I$(mkfile_path)app/manage_signal \
+    -I$(mkfile_path)app/search_route \
+    -I$(mkfile_path)unit \
+    -I$(mkfile_path)unit/run \
+    -I$(mkfile_path)unit/device \
     -I$(mkfile_path)unit/calc \
-    -I$(mkfile_path)ê›åv \
+    -I$(mkfile_path)app/manage_train \
+    -I$(mkfile_path)app/recognize_image \
 #</mk_dirs2>

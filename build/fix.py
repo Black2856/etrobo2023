@@ -23,7 +23,7 @@ dirs = [os.path.dirname(x.replace('\\', '/')) for x in glob.glob('**/*/', recurs
 files = set([os.path.basename(x.replace('\\', '/')) for x in glob.glob('**/*', recursive=True) if pattern_ext.search(x)])
 
 # 除外するファイル名
-pattern_file = re.compile(r'app|build')
+pattern_file = re.compile(r'build|設計')
 
 ##### タグ置換要素の作成
 mk_files0 = set([x.split(".")[0] for x in files])
