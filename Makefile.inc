@@ -17,10 +17,22 @@ APPL_LIBS += -lm
 
 APPL_DIRS += \
 #<mk_dirs1>
+    $(mkfile_path)unit/run \
+    $(mkfile_path)unit/judge \
     $(mkfile_path)ê›åv \
+    $(mkfile_path)unit/calc \
+    $(mkfile_path)unit \
+    $(mkfile_path)unit/manage_scenario \
+    $(mkfile_path)unit/device \
 #</mk_dirs1>
 
 INCLUDES += \
 #<mk_dirs2>
+    -I$(mkfile_path)unit/device \
+    -I$(mkfile_path)unit/judge \
+    -I$(mkfile_path)unit/run \
+    -I$(mkfile_path)unit \
+    -I$(mkfile_path)unit/manage_scenario \
+    -I$(mkfile_path)unit/calc \
     -I$(mkfile_path)ê›åv \
 #</mk_dirs2>
