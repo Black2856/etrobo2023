@@ -23,17 +23,25 @@ dirs = [os.path.dirname(x.replace('\\', '/')) for x in glob.glob('**/*/', recurs
 files = set([os.path.basename(x.replace('\\', '/')) for x in glob.glob('**/*', recursive=True) if pattern_ext.search(x)])
 
 # 除外するファイル名
-pattern_file = re.compile(r'build|設計')
+pattern_file = re.compile(r'app')
+# 除外するフォルダ名
+pattern_folder = re.compile(r'build|設計')
 
 ##### タグ置換要素の作成
 mk_files0 = set([x.split(".")[0] for x in files])
 mk_files = set(["    " + x + ".o \\" for x in mk_files0 if not(pattern_file.search(x))])
 
-mk_dirs1 = set(["    $(mkfile_path)" + x.split(".")[0] + " \\" for x in dirs if not(pattern_file.search(x))])
+mk_dirs1 = set(["    $(mkfile_path)" + x.split(".")[0] + " \\" for x in dirs if not(pattern_folder.search(x))])
 
-mk_dirs2 = set(["    -I$(mkfile_path)" + x.split(".")[0] + " \\" for x in dirs if not(pattern_file.search(x))])
+mk_dirs2 = set(["    -I$(mkfile_path)" + x.split(".")[0] + " \\" for x in dirs if not(pattern_folder.search(x))])
 
 att_mod = set(["ATT_MOD(\"" + x + ".o\");" for x in mk_files0 if not(pattern_file.search(x))])
+
+# 昇順に並び替え
+mk_files = sorted(list(mk_files))
+mk_dirs1 = sorted(list(mk_dirs1))
+mk_dirs2 = sorted(list(mk_dirs2))
+att_mod  = sorted(list(att_mod))
 
 dic = {
     'mk_files' : mk_files,
