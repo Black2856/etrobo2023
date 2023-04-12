@@ -2,6 +2,8 @@ mkfile_path := $(dir $(lastword $(MAKEFILE_LIST)))
 
 APPL_COBJS += \
 #<mk_files>
+    deviceInOut.o \
+    setting.o \
 #</mk_files>
 
 SRCLANG := c++
