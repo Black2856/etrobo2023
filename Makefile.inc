@@ -1,9 +1,10 @@
 mkfile_path := $(dir $(lastword $(MAKEFILE_LIST)))
 
-APPL_COBJS += \
+APPL_COBJS +=
+
 #<mk_files>
+APPL_CXXOBJS += \
     deviceInOut.o \
-    setting.o \
 #</mk_files>
 
 SRCLANG := c++
@@ -17,8 +18,8 @@ endif
 
 APPL_LIBS += -lm
 
-APPL_DIRS += \
 #<mk_dirs1>
+APPL_DIRS += \
     $(mkfile_path)app \
     $(mkfile_path)app/manage_signal \
     $(mkfile_path)app/manage_train \
@@ -32,8 +33,8 @@ APPL_DIRS += \
     $(mkfile_path)unit/run \
 #</mk_dirs1>
 
-INCLUDES += \
 #<mk_dirs2>
+INCLUDES += \
     -I$(mkfile_path)app \
     -I$(mkfile_path)app/manage_signal \
     -I$(mkfile_path)app/manage_train \
