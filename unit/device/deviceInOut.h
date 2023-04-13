@@ -13,10 +13,6 @@ public:
     // インスタンス取得
     static deviceInOut& getInstance();
 
-    // シングルトンであるため、コピーおよび代入演算子は禁止
-    deviceInOut(deviceInOut const&)    = delete;
-    void operator=(deviceInOut const&) = delete;
-
     // 各種インスタンス
     ev3api::SonarSensor sonarSensor;
     ev3api::TouchSensor touchSensor;
@@ -29,6 +25,10 @@ public:
 private:
     deviceInOut(); // プライベートコンストラクタ
     static deviceInOut* instance; // シングルトンオブジェクトへのポインタ
+
+    // コピーおよび代入演算子は禁止
+    deviceInOut(deviceInOut const&);
+    void operator=(deviceInOut const&);
 };
 
 #endif  // DEVICE_IN_OUT_H

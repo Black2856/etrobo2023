@@ -1,7 +1,7 @@
 #include "deviceInOut.h"
 #include "setting.h"
 
-deviceInOut* deviceInOut::instance = nullptr;
+deviceInOut* deviceInOut::instance = NULL;
 
 deviceInOut::deviceInOut():
     sonarSensor (SONAR_SENSOR),
