@@ -5,6 +5,7 @@ if [ "$1" != "-r" ]; then
     git reset --hard origin/main
 fi
 
+chmod 755 ./autostart.sh
 cd ../
 
 rm asp
