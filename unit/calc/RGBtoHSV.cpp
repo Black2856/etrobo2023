@@ -1,14 +1,28 @@
 #include "RGBtoHSV.h"
-#include <algorithm>
-#include <math.h>
 
 RGBtoHSV::RGBtoHSV():
     device(deviceInOut::getInstance()){}
 
 void RGBtoHSV::update() {
     device.colorSensor.getRawColor(rgb);
-    max = std::max(std::max(rgb.r, rgb.g), rgb.b);
-    min = std::min(std::min(rgb.r, rgb.g), rgb.b);
+
+// 最小値と最大値を計算
+    max = rgb.r
+    min = rgb.r
+
+    if(rgb.g > max) {
+        max = rgb.g
+    }
+    if(rgb.g < min) {
+        min = rgb.g
+    }
+
+    if(rgb.b > max) {
+        max = rgb.b
+    }
+    if(rgb.b < min) {
+        min = rgb.b
+    }
 
     hsv.h = getHue();
     hsv.s = getSaturation();
@@ -34,7 +48,11 @@ uint16_t RGBtoHSV::getHue() {
         tmp = 60 * ((rgb.r-rgb.g) / (max-min)) + 240;
     }
     // マイナス値になることもあるため、0～360の範囲に収める
-    return fmodf((tmp + 360), 360);
+    if (tmp < 0) {
+        return tmp + 360
+    } else {
+        return tmp
+    }
 }
 
 uint16_t RGBtoHSV::getSaturation() {
