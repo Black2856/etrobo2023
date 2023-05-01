@@ -7,21 +7,21 @@ void RGBtoHSV::update() {
     device.colorSensor.getRawColor(rgb);
 
 // 最小値と最大値を計算
-    max = rgb.r
-    min = rgb.r
+    max = rgb.r;
+    min = rgb.r;
 
     if(rgb.g > max) {
-        max = rgb.g
+        max = rgb.g;
     }
     if(rgb.g < min) {
-        min = rgb.g
+        min = rgb.g;
     }
 
     if(rgb.b > max) {
-        max = rgb.b
+        max = rgb.b;
     }
     if(rgb.b < min) {
-        min = rgb.b
+        min = rgb.b;
     }
 
     hsv.h = getHue();
@@ -49,9 +49,9 @@ uint16_t RGBtoHSV::getHue() {
     }
     // マイナス値になることもあるため、0～360の範囲に収める
     if (tmp < 0) {
-        return tmp + 360
+        return tmp + 360;
     } else {
-        return tmp
+        return tmp;
     }
 }
 
