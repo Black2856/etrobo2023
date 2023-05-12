@@ -4,6 +4,7 @@ APPL_COBJS +=
 
 #<mk_files>
 APPL_CXXOBJS += \
+    Localization.o \
     RGBtoHSV.o \
     deviceInOut.o \
 #</mk_files>
