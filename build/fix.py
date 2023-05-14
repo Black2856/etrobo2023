@@ -25,19 +25,33 @@ dirs = [os.path.dirname(x.replace('\\', '/')) for x in glob.glob('**/*/', recurs
 files = set([os.path.basename(x.replace('\\', '/')) for x in glob.glob('**/*', recursive=True) if pattern_ext.search(x)])
 
 # 除外するファイル名
-pattern_file = re.compile(r'app|setting')
+pattern_file = re.compile(r'app')
 # 除外するフォルダ名
 pattern_folder = re.compile(r'build|設計')
 
 ##### タグ置換要素の作成
-mk_files0 = set([x.split(".")[0] for x in files])
-mk_files = set(["    " + x + ".o \\" for x in mk_files0 if not(pattern_file.search(x))])
+# 拡張子前の名前が同じであるファイルをカウント
+file_count = {}
+for file in files:
+    file_name = file.split(".")[0]
+    if (file_name in file_count):
+        file_count[file_name] += 1
+    else:
+        file_count[file_name] = 1
 
-mk_dirs1 = set(["    $(mkfile_path)" + x.split(".")[0] + " \\" for x in dirs if not(pattern_folder.search(x))])
+# ファイル数が2以上であり除外ファイルでないファイル名
+mk_files0 = [key for key, value in file_count.items() if value >= 2 and not(pattern_file.search(key))]
 
-mk_dirs2 = set(["    -I$(mkfile_path)" + x.split(".")[0] + " \\" for x in dirs if not(pattern_folder.search(x))])
+mk_files = [f"    {x}.o \\" for x in mk_files0]
 
-att_mod = set(["ATT_MOD(\"" + x + ".o\");" for x in mk_files0 if not(pattern_file.search(x))])
+att_mod = [f"ATT_MOD(\"{x}.o\");" for x in mk_files0]
+
+# 除外フォルダでないフォルダ名
+mk_dirs0 = [x.split('.')[0] for x in dirs if not(pattern_folder.search(x))]
+
+mk_dirs1 = [f"    $(mkfile_path){x} \\" for x in mk_dirs0]
+
+mk_dirs2 = [f"    -I$(mkfile_path){x} \\" for x in mk_dirs0]
 
 # 昇順に並び替え
 mk_files = sorted(list(mk_files))

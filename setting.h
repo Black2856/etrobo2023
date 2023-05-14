@@ -11,7 +11,7 @@
 
 //デバイス設定
 #define TIRE_DIAMETER 100.0 // タイヤ直径（mm）
-#define TREAD 126.0 // 車体トレッド幅
+#define TREAD 126.0 // 車体トレッド幅（mm）
 
 
 #endif  // SETTINGS_H
