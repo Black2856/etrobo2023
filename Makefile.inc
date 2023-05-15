@@ -32,7 +32,7 @@ APPL_DIRS += \
     $(mkfile_path)unit/device \
     $(mkfile_path)unit/judge \
     $(mkfile_path)unit/manage_scenario \
-    $(mkfile_path)unit/run \
+    $(mkfile_path)unit/move \
 #</mk_dirs1>
 
 #<mk_dirs2>
@@ -47,5 +47,5 @@ INCLUDES += \
     -I$(mkfile_path)unit/device \
     -I$(mkfile_path)unit/judge \
     -I$(mkfile_path)unit/manage_scenario \
-    -I$(mkfile_path)unit/run \
+    -I$(mkfile_path)unit/move \
 #</mk_dirs2>
