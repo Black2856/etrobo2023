@@ -11,13 +11,15 @@ public:
     explicit Localization();
     /* 更新 */
     void update();
-    /* 走行距離を取得 */
+    /* 走行距離を取得（mm） */
     float getDistance();
-    /* 車体角度を取得 */
+    /* 車体角度を取得（deg） */
     float getDirection();
 
 private:
+    // 前回計算時から現在までの走行距離を計算
     float calcDistance();
+    // 前回計算時から現在までの角度変化を計算
     float calcDirection();
 
     deviceInOut& device;
