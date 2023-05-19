@@ -1,3 +1,11 @@
+/*
+ * クラス名:RGBtoHSV
+ * 作成日：2023/04/21
+ * 作成者:杉本
+ * 修正日:
+ * 修正者:
+ * ver:
+ */
 #ifndef RGB_TO_HSV_H
 #define RGB_TO_HSV_H
 

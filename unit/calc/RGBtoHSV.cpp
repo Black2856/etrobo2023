@@ -1,10 +1,18 @@
+/*
+ * クラス名:RGBtoHSV
+ * 作成日：2023/04/21
+ * 作成者:杉本
+ * 修正日:2023/05/19
+ * 修正者:杉本
+ * ver:1.1.0
+ */
 #include "RGBtoHSV.h"
 
 RGBtoHSV::RGBtoHSV():
     device(deviceInOut::getInstance()){}
 
 void RGBtoHSV::update() {
-    device.colorSensor.getRawColor(rgb);
+    rgb = device.color_getRawColor();
 
 // 最小値と最大値を計算
     max = rgb.r;

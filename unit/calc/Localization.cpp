@@ -1,3 +1,11 @@
+/*
+ * クラス名:Localization
+ * 作成日：2023/05/12
+ * 作成者:杉本
+ * 修正日:2023/05/19
+ * 修正者:杉本
+ * ver:1.1.0
+ */
 #include "Localization.h"
 #include "setting.h"
 
@@ -6,8 +14,8 @@ Localization::Localization():
         distance  = 0;
         direction = 0;
         //モータ角度の過去値に現在値を代入
-        pre_angleL = device.leftWheel.getCount();
-        pre_angleR = device.rightWheel.getCount();
+        pre_angleL = device.LWheel_getCount();
+        pre_angleR = device.RWheel_getCount();
     }
 
 /* 更新 */
@@ -28,9 +36,9 @@ float Localization::getDirection() {
 
 float Localization::calcDistance() {
     //左モータ回転角度の現在値
-    float cur_angleL = device.leftWheel.getCount();
+    float cur_angleL = device.LWheel_getCount();
     //右モータ回転角度の現在値
-    float cur_angleR = device.rightWheel.getCount();
+    float cur_angleR = device.RWheel_getCount();
 
     // 今回の走行距離L,R = ((円周率 * タイヤの直径) / 360) * (モータ角度過去値　- モータ角度現在値)
     distanceL = ((PI * TIRE_DIAMETER) / 360) * (cur_angleL - pre_angleL);  // 左モータ距離

@@ -1,3 +1,11 @@
+/*
+ * クラス名:Localization
+ * 作成日：2023/05/12
+ * 作成者:杉本
+ * 修正日:
+ * 修正者:
+ * ver:1.0.0
+ */
 #ifndef _LOCALIZATION_H_
 #define _LOCALIZATION_H_
 
