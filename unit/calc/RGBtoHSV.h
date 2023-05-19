@@ -9,7 +9,7 @@
 #ifndef RGB_TO_HSV_H
 #define RGB_TO_HSV_H
 
-#include "deviceInOut.h"
+#include "DeviceInOut.h"
 
 // h, 色相, 0 ~ 360
 // s, 彩度, 0 ~ 100
@@ -34,7 +34,7 @@ private:
     // 明度 0 ~ 100%
     uint16_t getValue();
 
-    deviceInOut& device;
+    DeviceInOut& device;
 
     rgb_raw_t rgb;
     hsv_t hsv;

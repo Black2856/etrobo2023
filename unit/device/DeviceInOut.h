@@ -1,5 +1,5 @@
 /*
- * クラス名:deviceInOut
+ * クラス名:DeviceInOut
  * 作成日：2023/04/12
  * 作成者:杉本
  * 修正日:2023/05/19
@@ -17,10 +17,10 @@
 #include "Motor.h"
 #include "Clock.h"
 
-class deviceInOut{ //deviceのSingleton管理クラス
+class DeviceInOut{ //deviceのSingleton管理クラス
 public:
     // インスタンス取得
-    static deviceInOut& getInstance();
+    static DeviceInOut& getInstance();
 
 // sonar
     int16_t     sonar_getDistance();
@@ -75,12 +75,12 @@ private:
     ev3api::Motor       rightWheel;
     ev3api::Clock       clock;
 
-    deviceInOut(); // プライベートコンストラクタ
-    static deviceInOut* instance; // シングルトンオブジェクトへのポインタ
+    DeviceInOut(); // プライベートコンストラクタ
+    static DeviceInOut* instance; // シングルトンオブジェクトへのポインタ
 
     // コピーおよび代入演算子は禁止
-    deviceInOut(deviceInOut const&);
-    void operator=(deviceInOut const&);
+    DeviceInOut(DeviceInOut const&);
+    void operator=(DeviceInOut const&);
 };
 
 #endif  // DEVICE_IN_OUT_H

@@ -9,7 +9,7 @@
 #include "RGBtoHSV.h"
 
 RGBtoHSV::RGBtoHSV():
-    device(deviceInOut::getInstance()){}
+    device(DeviceInOut::getInstance()){}
 
 void RGBtoHSV::update() {
     rgb = device.color_getRawColor();

@@ -10,7 +10,7 @@
 #include "setting.h"
 
 Localization::Localization():
-    device(deviceInOut::getInstance()) {
+    device(DeviceInOut::getInstance()) {
         distance  = 0;
         direction = 0;
         //モータ角度の過去値に現在値を代入

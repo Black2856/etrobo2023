@@ -9,7 +9,7 @@
 #ifndef _LOCALIZATION_H_
 #define _LOCALIZATION_H_
 
-#include "deviceInOut.h"
+#include "DeviceInOut.h"
 
 // 円周率
 #define PI 3.14159265358
@@ -30,7 +30,7 @@ private:
     // 前回計算時から現在までの角度変化を計算
     float calcDirection();
 
-    deviceInOut& device;
+    DeviceInOut& device;
 
     // 各タイヤの走行距離
     float distanceL, distanceR;
