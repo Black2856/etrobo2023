@@ -2,12 +2,14 @@
  * クラス名:Localization
  * 作成日：2023/05/12
  * 作成者:杉本
- * 修正日:2023/05/19
+ * 修正日:2023/05/22
  * 修正者:杉本
- * ver:1.1.0
+ * ver:1.2.0
  */
 #include "Localization.h"
 #include "setting.h"
+
+Localization* Localization::instance = NULL;
 
 Localization::Localization():
     device(DeviceInOut::getInstance()) {
@@ -17,6 +19,13 @@ Localization::Localization():
         pre_angleL = device.LWheel_getCount();
         pre_angleR = device.RWheel_getCount();
     }
+
+Localization& Localization::getInstance() {
+    if (!instance) {
+        instance = new Localization();
+    }
+    return *instance;
+}
 
 /* 更新 */
 void Localization::update() {

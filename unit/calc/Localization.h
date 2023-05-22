@@ -2,9 +2,9 @@
  * クラス名:Localization
  * 作成日：2023/05/12
  * 作成者:杉本
- * 修正日:
- * 修正者:
- * ver:1.0.0
+ * 修正日:2023/05/22
+ * 修正者:杉本
+ * ver:1.1.0
  */
 #ifndef _LOCALIZATION_H_
 #define _LOCALIZATION_H_
@@ -16,7 +16,9 @@
 
 class Localization {
 public:
-    explicit Localization();
+    // インスタンス取得
+    static Localization& getInstance();
+
     /* 更新 */
     void update();
     /* 走行距離を取得（mm） */
@@ -25,6 +27,14 @@ public:
     float getDirection();
 
 private:
+
+    Localization(); // プライベートコンストラクタ
+    static Localization* instance; // シングルトンオブジェクトへのポインタ
+
+    // コピーおよび代入演算子は禁止
+    Localization(Localization const&);
+    void operator=(Localization const&);
+
     // 前回計算時から現在までの走行距離を計算
     float calcDistance();
     // 前回計算時から現在までの角度変化を計算
