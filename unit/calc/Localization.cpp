@@ -2,9 +2,6 @@
  * クラス名:Localization
  * 作成日：2023/05/12
  * 作成者:杉本
- * 修正日:2023/05/22
- * 修正者:杉本
- * ver:1.2.0
  */
 #include "Localization.h"
 #include "setting.h"

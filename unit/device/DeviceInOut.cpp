@@ -2,9 +2,6 @@
  * クラス名:DeviceInOut
  * 作成日：2023/04/12
  * 作成者:杉本
- * 修正日:2023/05/19
- * 修正者:杉本
- * ver:2.0.0
  */
 #include "DeviceInOut.h"
 #include "setting.h"

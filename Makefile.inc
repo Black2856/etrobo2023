@@ -5,6 +5,7 @@ APPL_COBJS +=
 #<mk_files>
 APPL_CXXOBJS += \
     DeviceInOut.o \
+    JudgeNumerical.o \
     JudgeTime.o \
     Localization.o \
     RGBtoHSV.o \

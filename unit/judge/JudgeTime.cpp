@@ -2,9 +2,6 @@
  * クラス名:JudgeTime
  * 作成日：2023/05/19
  * 作成者:杉本
- * 修正日:
- * 修正者:
- * ver:1.0.0
  */
 #include "JudgeTime.h"
 
