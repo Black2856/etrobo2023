@@ -4,17 +4,17 @@
  * 作成者:杉本
  */
 #include "JudgeNumerical.h"
+#include <math.h>
 
 JudgeNumerical::JudgeNumerical():
-    mInterval(0),
-    mStartNumerical(0),
-    mTargetNumerical(0) {
+    mTarget(0),
+    mStartNumerical(0) {
 }
 
-bool JudgeNumerical::judge(float interval) {
+bool JudgeNumerical::judge(float target) {
     // 間隔がセットされていない場合
     if (!isStarted()) {
-        setInterval(interval);
+        setTarget(target);
         start();
     }
     // 目標値に達した場合
@@ -27,10 +27,10 @@ bool JudgeNumerical::judge(float interval) {
 
 /**
  * 間隔設定
- * @param interval 間隔
+ * @param target 間隔
  */
-void JudgeNumerical::setInterval(float interval) {
-    mInterval = interval;
+void JudgeNumerical::setTarget(float target) {
+    mTarget = target;
 }
 
 /**
@@ -38,7 +38,6 @@ void JudgeNumerical::setInterval(float interval) {
  */
 void JudgeNumerical::start() {
     mStartNumerical  = getValue();
-    mTargetNumerical = mStartNumerical + mInterval;
 }
 
 
@@ -47,7 +46,6 @@ void JudgeNumerical::start() {
  */
 void JudgeNumerical::stop() {
     mStartNumerical  = 0;
-    mTargetNumerical = 0;
 }
 
 /**
@@ -56,7 +54,8 @@ void JudgeNumerical::stop() {
  * @retval false 目標値に達していない
  */
 bool JudgeNumerical::isTargetReached() const {
-    return (getValue() >= mTargetNumerical) ? true : false;
+    float currentNumerical = getValue() - mStartNumerical;
+    return (fabsf(currentNumerical) >= mTarget) ? true : false;
 }
 
 

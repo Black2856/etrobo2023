@@ -10,21 +10,22 @@ class JudgeNumerical {
 public:
     JudgeNumerical();
 
-    bool judge(float interval);
+    bool judge(float target);
 
 protected:
     // 派生クラス毎に計測に使用する値を返却する
     virtual float getValue() const = 0;
+    virtual bool  isTargetReached() const;
 
-    void setInterval(float interval);
+private:
+
+    void setTarget(float target);
     void start();
     void stop();
-    bool isTargetReached() const;
     bool isStarted() const;
 
-    float mInterval;         // 間隔
-    float mStartNumerical;   // 計測開始時数値
-    float mTargetNumerical;  // 目標値
+    float mTarget;         // 目標値
+    float mStartNumerical; // 計測開始時数値
 };
 
 #endif  // _JUDGE_NUMERICAL_H_
