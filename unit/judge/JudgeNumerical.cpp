@@ -14,7 +14,7 @@ JudgeNumerical::JudgeNumerical():
 bool JudgeNumerical::judge(float interval) {
     // 間隔がセットされていない場合
     if (!isStarted()) {
-        setNumerical(interval);
+        setInterval(interval);
         start();
     }
     // 目標値に達した場合
@@ -29,19 +29,18 @@ bool JudgeNumerical::judge(float interval) {
  * 間隔設定
  * @param interval 間隔
  */
-void JudgeNumerical::setNumerical(float interval) {
+void JudgeNumerical::setInterval(float interval) {
     mInterval = interval;
 }
 
 /**
  * 計測開始
  */
-/*
 void JudgeNumerical::start() {
-    mStartNumerical  = 現在値;
+    mStartNumerical  = getValue();
     mTargetNumerical = mStartNumerical + mInterval;
 }
-*/
+
 
 /**
  * 計測停止
@@ -56,11 +55,10 @@ void JudgeNumerical::stop() {
  * @retval true  目標値に達した
  * @retval false 目標値に達していない
  */
-/*
 bool JudgeNumerical::isTargetReached() const {
-    return (現在値 >= mTargetNumerical) ? true : false;
+    return (getValue() >= mTargetNumerical) ? true : false;
 }
-*/
+
 
 /**
  * 計測開始したか否か

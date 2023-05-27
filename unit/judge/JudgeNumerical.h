@@ -12,13 +12,15 @@ public:
 
     bool judge(float interval);
 
-private:
+protected:
+    // 派生クラス毎に計測に使用する値を返却する
+    virtual float getValue() const = 0;
 
-            void setNumerical(float interval);
-    virtual void start() = 0;
-            void stop();
-    virtual bool isTargetReached() const = 0;
-            bool isStarted() const;
+    void setInterval(float interval);
+    void start();
+    void stop();
+    bool isTargetReached() const;
+    bool isStarted() const;
 
     float mInterval;         // 間隔
     float mStartNumerical;   // 計測開始時数値
