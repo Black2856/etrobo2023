@@ -8,30 +8,18 @@
 RGBtoHSV::RGBtoHSV():
     device(DeviceInOut::getInstance()){}
 
-void RGBtoHSV::update() {
-    rgb = device.color_getRawColor();
-
-// 最小値と最大値を計算
-    max = rgb.r;
-    min = rgb.r;
-
-    if(rgb.g > max) {
-        max = rgb.g;
-    }
-    if(rgb.g < min) {
-        min = rgb.g;
-    }
-
-    if(rgb.b > max) {
-        max = rgb.b;
-    }
-    if(rgb.b < min) {
-        min = rgb.b;
-    }
+void RGBtoHSV::update(hsv_t rgb) {
+    calcMaxMin(rgb);
 
     hsv.h = getHue();
     hsv.s = getSaturation();
     hsv.v = getValue();
+}
+
+void RGBtoHSV::update() {
+    rgb = device.color_getRawColor();
+
+    update(rgb);
 }
 
 uint16_t RGBtoHSV::getHue() {
@@ -70,4 +58,24 @@ uint16_t RGBtoHSV::getSaturation() {
 
 uint16_t RGBtoHSV::getValue() {
     return (max / 255) * 100;
+}
+
+void RGBtoHSV::calcMaxMin(rgb_raw_t rgb) {
+    // 最小値と最大値を計算
+    max = rgb.r;
+    min = rgb.r;
+
+    if(rgb.g > max) {
+        max = rgb.g;
+    }
+    if(rgb.g < min) {
+        min = rgb.g;
+    }
+
+    if(rgb.b > max) {
+        max = rgb.b;
+    }
+    if(rgb.b < min) {
+        min = rgb.b;
+    }
 }

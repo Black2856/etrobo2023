@@ -20,6 +20,7 @@ struct hsv_t {
 class RGBtoHSV {  // <1>
 public:
     explicit RGBtoHSV();
+    void update(rgb_raw_t rgb);
     void update();
     hsv_t getHSV();
 
@@ -30,6 +31,8 @@ private:
     uint16_t getSaturation();
     // 明度 0 ~ 100%
     uint16_t getValue();
+
+    void calcMaxMin(rgb_raw_t rgb);
 
     DeviceInOut& device;
 
