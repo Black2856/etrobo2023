@@ -10,6 +10,7 @@ APPL_CXXOBJS += \
     JudgeTime.o \
     Localization.o \
     RGBtoHSV.o \
+    util.o \
 #</mk_files>
 
 SRCLANG := c++
