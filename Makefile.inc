@@ -5,9 +5,7 @@ APPL_COBJS +=
 #<mk_files>
 APPL_CXXOBJS += \
     DeviceInOut.o \
-    Judge.o \
     JudgeAngle.o \
-    JudgeColor.o \
     JudgeMileage.o \
     JudgeNumerical.o \
     JudgeSonar.o \
