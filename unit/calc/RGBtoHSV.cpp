@@ -22,6 +22,10 @@ void RGBtoHSV::update() {
     update(rgb);
 }
 
+hsv_t RGBtoHSV::getHSV() {
+    return hsv;
+}
+
 uint16_t RGBtoHSV::getHue() {
     float tmp;
     // すべて同値だったら
