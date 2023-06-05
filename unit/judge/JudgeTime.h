@@ -3,8 +3,8 @@
  * 作成日：2023/05/19
  * 作成者:杉本
  */
-#ifndef _JUDGE_TIME_H_
-#define _JUDGE_TIME_H_
+#ifndef JUDGE_TIME_H
+#define JUDGE_TIME_H
 
 #include "JudgeNumerical.h"
 #include "DeviceInOut.h"
@@ -18,4 +18,4 @@ private:
     DeviceInOut& device;
 };
 
-#endif  // _JUDGE_TIME_H_
+#endif  // JUDGE_TIME_H

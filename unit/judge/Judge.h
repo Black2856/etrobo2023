@@ -1,10 +1,10 @@
 /*
- * クラス名:Localization
+ * クラス名:Judge
  * 作成日：2023/05/12
  * 作成者:杉本
  */
-#ifndef LOCALIZATION_H
-#define LOCALIZATION_H
+#ifndef JUDGE_H
+#define JUDGE_H
 
 #include "DeviceInOut.h"
 
@@ -49,4 +49,4 @@ private:
     float pre_angleL, pre_angleR;
 };
 
-#endif  // LOCALIZATION_H
+#endif  // JUDGE_H

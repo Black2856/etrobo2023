@@ -3,8 +3,8 @@
  * 作成日：2023/05/26
  * 作成者:杉本
  */
-#ifndef _JUDGE_NUMERICAL_H_
-#define _JUDGE_NUMERICAL_H_
+#ifndef JUDGE_NUMERICAL_H
+#define JUDGE_NUMERICAL_H
 
 class JudgeNumerical {
 public:
@@ -26,4 +26,4 @@ protected:
     float mStartNumerical; // 計測開始時数値
 };
 
-#endif  // _JUDGE_NUMERICAL_H_
+#endif  // JUDGE_NUMERICAL_H

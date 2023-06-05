@@ -9,7 +9,7 @@
 #define LEFT_WHEEL PORT_C
 #define RIGHT_WHEEL PORT_B
 
-//デバイス設定
+// デバイス設定
 #define TIRE_DIAMETER 100.0 // タイヤ直径（mm）
 #define TREAD 126.0 // 車体トレッド幅（mm）
 

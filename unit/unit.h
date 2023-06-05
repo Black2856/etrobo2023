@@ -8,6 +8,9 @@ namespace unit {
         BLACK,
     };
 
+    // h, 色相, 0 ~ 360
+    // s, 彩度, 0 ~ 100
+    // v, 明度, 0 ~ 100
     struct hsv_t {
         uint16_t h;
         uint16_t s;

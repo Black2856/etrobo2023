@@ -8,7 +8,7 @@
 RGBtoHSV::RGBtoHSV():
     device(DeviceInOut::getInstance()){}
 
-void RGBtoHSV::update(hsv_t rgb) {
+void RGBtoHSV::update(unit::hsv_t rgb) {
     calcMaxMin(rgb);
 
     hsv.h = getHue();
@@ -22,7 +22,7 @@ void RGBtoHSV::update() {
     update(rgb);
 }
 
-hsv_t RGBtoHSV::getHSV() {
+unit::hsv_t RGBtoHSV::getHSV() {
     return hsv;
 }
 

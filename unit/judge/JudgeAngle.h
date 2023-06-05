@@ -3,8 +3,8 @@
  * 作成日：2023/06/03
  * 作成者:杉本
  */
-#ifndef _JUDGE_ANGLE_H_
-#define _JUDGE_ANGLE_H_
+#ifndef JUDGE_ANGLE_H
+#define JUDGE_ANGLE_H
 
 #include "JudgeNumerical.h"
 #include "DeviceInOut.h"
@@ -19,4 +19,4 @@ private:
     DeviceInOut& device;
 };
 
-#endif  // _JUDGE_ANGLE_H_
+#endif  // JUDGE_ANGLE_H

@@ -3,8 +3,8 @@
  * 作成日：2023/05/28
  * 作成者:杉本
  */
-#ifndef _JUDGE_MILEAGE_H_
-#define _JUDGE_MILEAGE_H_
+#ifndef JUDGE_MILEAGE_H
+#define JUDGE_MILEAGE_H
 
 #include "JudgeNumerical.h"
 #include "Localization.h"
@@ -18,4 +18,4 @@ private:
     Localization& localization;
 };
 
-#endif  // _JUDGE_MILEAGE_H_
+#endif  // JUDGE_MILEAGE_H

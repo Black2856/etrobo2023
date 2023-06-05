@@ -5,12 +5,15 @@ APPL_COBJS +=
 #<mk_files>
 APPL_CXXOBJS += \
     DeviceInOut.o \
+    Judge.o \
+    JudgeAngle.o \
+    JudgeColor.o \
     JudgeMileage.o \
     JudgeNumerical.o \
+    JudgeSonar.o \
     JudgeTime.o \
     Localization.o \
     RGBtoHSV.o \
-    util.o \
 #</mk_files>
 
 SRCLANG := c++
