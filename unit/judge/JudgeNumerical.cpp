@@ -67,3 +67,10 @@ bool JudgeNumerical::isTargetReached() const {
 bool JudgeNumerical::isStarted() const {
     return (mStartNumerical == 0) ? false : true;
 }
+
+float JudgeNumerical::getTarget() const {
+    return mTarget;
+}
+float JudgeNumerical::getStartNumerical() const {
+    return mStartNumerical;
+}

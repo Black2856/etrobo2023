@@ -14,11 +14,11 @@ float JudgeSonar::getValue() const {
     return device.sonar_getDistance();
 }
 
-bool  JudgeAngle::isTargetReached() const {
+bool  JudgeSonar::isTargetReached() const {
     // 計測開始時より近い距離が目標の場合
-    if (mStartNumerical > mTarget) {
-        return (getValue() <= mTarget) ? true : false;
+    if (getStartNumerical() > getTarget()) {
+        return (getValue() <= getTarget()) ? true : false;
     } else {
-        return (getValue() >= mTarget) ? true : false;
+        return (getValue() >= getTarget()) ? true : false;
     }
 }

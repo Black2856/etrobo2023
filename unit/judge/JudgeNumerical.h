@@ -17,6 +17,10 @@ protected:
     virtual float getValue() const = 0;
     virtual bool  isTargetReached() const;
 
+    float getTarget() const;
+    float getStartNumerical() const;
+
+private:
     void setTarget(float target);
     void start();
     void stop();
