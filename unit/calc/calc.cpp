@@ -8,7 +8,7 @@
 calc* calc::instance = NULL;
 
 calc::calc():
-    localization(Localization.getInstance()) {
+    localization(Localization::getInstance()) {
     }
 
 calc& calc::getInstance() {

@@ -16,7 +16,7 @@ public:
     static calc& getInstance();
 
     // 各種インスタンス
-    Localization    localization;
+    Localization&   localization;
     RGBtoHSV        rgb2hsv;
     SpeedCorrection speedCorrection;
 
