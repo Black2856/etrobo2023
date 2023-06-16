@@ -14,6 +14,7 @@ APPL_CXXOBJS += \
     Localization.o \
     RGBtoHSV.o \
     SpeedCorrection.o \
+    calc.o \
 #</mk_files>
 
 SRCLANG := c++

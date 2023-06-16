@@ -31,7 +31,15 @@ float SpeedCorrection::calc() {
         return mTargetValue;
     }
     float progress = elapsed / mDuration;
-    return easeInOutQuad(progress);
+
+    switch (mEasing) {
+    case IN_OUT_QUAD:
+        return easeInOutQuad(progress);
+    default:
+        return easeInOutQuad(progress);
+    }
+
+    ;
 }
 
 
