@@ -1,19 +1,19 @@
 /*
- * クラス名:calc
+ * クラス名:Calc
  * 作成日：2023/06/07
  * 作成者:杉本
  */
-#include "calc.h"
+#include "Calc.h"
 
-calc* calc::instance = NULL;
+Calc* Calc::instance = NULL;
 
-calc::calc():
+Calc::Calc():
     localization(Localization::getInstance()) {
     }
 
-calc& calc::getInstance() {
+Calc& Calc::getInstance() {
     if (!instance) {
-        instance = new calc();
+        instance = new Calc();
     }
     return *instance;
 }

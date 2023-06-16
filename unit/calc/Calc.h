@@ -1,5 +1,5 @@
 /*
- * クラス名:calc
+ * クラス名:Calc
  * 作成日：2023/06/07
  * 作成者:杉本
  */
@@ -10,10 +10,10 @@
 #include "RGBtoHSV.h"
 #include "SpeedCorrection.h"
 
-class calc {
+class Calc {
 public:
     // インスタンス取得
-    static calc& getInstance();
+    static Calc& getInstance();
 
     // 各種インスタンス
     Localization&   localization;
@@ -22,12 +22,12 @@ public:
 
 private:
 
-    calc(); // プライベートコンストラクタ
-    static calc* instance; // シングルトンオブジェクトへのポインタ
+    Calc(); // プライベートコンストラクタ
+    static Calc* instance; // シングルトンオブジェクトへのポインタ
 
     // コピーおよび代入演算子は禁止
-    calc(calc const&);
-    void operator=(calc const&);
+    Calc(Calc const&);
+    void operator=(Calc const&);
 };
 
 #endif  // CALC_H
