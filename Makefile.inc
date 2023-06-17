@@ -4,6 +4,7 @@ APPL_COBJS +=
 
 #<mk_files>
 APPL_CXXOBJS += \
+    Calc.o \
     DeviceInOut.o \
     Judge.o \
     JudgeAngle.o \
@@ -14,7 +15,9 @@ APPL_CXXOBJS += \
     Localization.o \
     RGBtoHSV.o \
     SpeedCorrection.o \
-    calc.o \
+    manage_scenario.o \
+    manage_scene.o \
+    scene.o \
 #</mk_files>
 
 SRCLANG := c++
@@ -39,8 +42,8 @@ APPL_DIRS += \
     $(mkfile_path)unit/calc \
     $(mkfile_path)unit/device \
     $(mkfile_path)unit/judge \
-    $(mkfile_path)unit/manage_scenario \
     $(mkfile_path)unit/move \
+    $(mkfile_path)unit/scenario \
 #</mk_dirs1>
 
 #<mk_dirs2>
@@ -54,6 +57,6 @@ INCLUDES += \
     -I$(mkfile_path)unit/calc \
     -I$(mkfile_path)unit/device \
     -I$(mkfile_path)unit/judge \
-    -I$(mkfile_path)unit/manage_scenario \
     -I$(mkfile_path)unit/move \
+    -I$(mkfile_path)unit/scenario \
 #</mk_dirs2>
