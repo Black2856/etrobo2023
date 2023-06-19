@@ -5,12 +5,16 @@
 #ifndef MANAGE_SCENARIO_H
 #define MANAGE_SCENARIO_H
 
-class manage_scenario{
-public:
+#include "manage_scene.h"
 
+class Manage_scenario{
+public:
+    void add();
+    void update();
+    void execute();
 
 private:
-    uint16_t executeIdx    
+    uint16_t executeIdx;  
 
 };
 
