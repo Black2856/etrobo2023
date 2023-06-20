@@ -8,7 +8,8 @@
 
 JudgeNumerical::JudgeNumerical():
     mTarget(0),
-    mStartNumerical(0) {
+    mStartNumerical(0),
+    mStartFlg(false) {
 }
 
 bool JudgeNumerical::judge(float target) {
@@ -38,6 +39,7 @@ void JudgeNumerical::setTarget(float target) {
  */
 void JudgeNumerical::start() {
     mStartNumerical  = getValue();
+    mStartFlg = true;
 }
 
 
@@ -46,6 +48,7 @@ void JudgeNumerical::start() {
  */
 void JudgeNumerical::stop() {
     mStartNumerical  = 0;
+    mStartFlg = false;
 }
 
 /**
@@ -65,12 +68,13 @@ bool JudgeNumerical::isTargetReached() const {
  * @retval false 計測開始していない
  */
 bool JudgeNumerical::isStarted() const {
-    return (mStartNumerical == 0) ? false : true;
+    return mStartFlg;
 }
 
 float JudgeNumerical::getTarget() const {
     return mTarget;
 }
+
 float JudgeNumerical::getStartNumerical() const {
     return mStartNumerical;
 }

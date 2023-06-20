@@ -28,6 +28,7 @@ private:
 
     float mTarget;         // 目標値
     float mStartNumerical; // 計測開始時数値
+    bool  mStartFlg
 };
 
 #endif  // JUDGE_NUMERICAL_H
