@@ -1,6 +1,6 @@
 /*
  * クラス名:Localization
- * 作成日：2023/05/12
+ * 作成日:2023/05/12
  * 作成者:杉本
  */
 #ifndef LOCALIZATION_H

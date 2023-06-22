@@ -1,6 +1,6 @@
 /*
  * クラス名:JudgeTime
- * 作成日：2023/05/28
+ * 作成日:2023/05/28
  * 作成者:杉本
  */
 #ifndef JUDGE_MILEAGE_H

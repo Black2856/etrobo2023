@@ -1,6 +1,6 @@
 /*
  * クラス名:JudgeNumerical
- * 作成日：2023/05/19
+ * 作成日:2023/05/19
  * 作成者:杉本
  */
 #include "JudgeNumerical.h"

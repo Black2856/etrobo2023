@@ -1,6 +1,6 @@
 /*
  * クラス名:SpeedCorrection
- * 作成日：2023/06/14
+ * 作成日:2023/06/14
  * 作成者:杉本
  */
 #ifndef SPEED_CORRECTION_H
