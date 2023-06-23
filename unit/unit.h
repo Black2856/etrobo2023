@@ -24,13 +24,13 @@ namespace unit {
     };
     
     struct sensor_t {
-        int         left_wheel_count;
-        int         right_wheel_count;
-        int         sonar_distance;
+        int32_t     left_wheel_count;
+        int32_t     right_wheel_count;
+        int16_t     sonar_distance;
         bool        touch_pressed;
-        int         gyro_angle;
+        int16_t     gyro_angle;
         rgb_raw_t   rgb;
-        int         clock_time;
+        uint64_t    clock_time;
         int         battery_current;
         int         battery_voltage;
     };
