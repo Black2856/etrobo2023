@@ -42,6 +42,5 @@ namespace unit {
         bool color;
         bool left_wheel;
         bool right_wheel;
-    };
-    
+    };    
 }

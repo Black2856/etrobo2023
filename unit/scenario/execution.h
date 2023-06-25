@@ -5,7 +5,7 @@
 #ifndef EXECUTION_H
 #define EXECUTION_H
 
-enum Execution {
+enum class Execution {
     CALL_SCENARIO = 1,
     TRACE = 2,
     STOP = 3,

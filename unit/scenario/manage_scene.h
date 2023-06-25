@@ -6,16 +6,19 @@
 #define MANAGE_SCENE_H
 
 #include "scene.h"
-#include <initializer_list>
+#include "arg_info.h"
+#include "execution.h"
+#include <vector>
+#include <functional>
 
 class Manage_scene{
 public:
-    Manage_scene(const std::string scenarioName);
+    Manage_scene(std::string scenarioName);
 
-    void makeCALL_SCENARIO();
-    void makeTRACE();
+    void makeCALL_SCENARIO(std::string arg1);
+    void makeTRACE(std::function<bool(Judge j)> transitionCondition, float arg1, float arg2, float arg3, float arg4);
     void makeSTOP();
-    void makeMANUAL();
+    void makeMANUAL(std::function<bool(Judge j)> transitionCondition, float arg1, float arg2);
 
 private:
     std::string scenarioName;

@@ -5,22 +5,24 @@
 #ifndef SCENE_H
 #define SCENE_H
 
+#include "Judge.h"
 #include "execution.h"
+#include "arg_info.h"
 #include <vector>
 #include <functional>
 
 class Scene{
 public:
-    void addFloatArg(const float floatArg);
-    void addStringArg(const std::string strArg);
-    void getArg(const uint8_t idxArg) const;
+    Scene(Execution execution, arg_info_t argInfo, std::function<bool(Judge j)> transitionCondition);
+    Scene(Execution execution, arg_info_t argInfo);
+
+    arg_info_t getArgInfo() const;
+    Execution getExecution() const;
+    bool judgement(const Judge j) const;
 
 private:
-    std::vector<float> floatArgs;
-    std::vector<std::string> strArgs;
-    //要素ごとにどちらの型を使用するかを決定する。0:floatArgs, 1:strArgs
-    std::vector<uint8_t> idxArgs;
-    std::function<void()> transitionCondition;
+    arg_info_t argInfo;
+    std::function<bool(const Judge j)> transitionCondition;
     Execution execution;
 };
 
