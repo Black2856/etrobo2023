@@ -1,3 +1,8 @@
+#ifndef UNIT_H
+#define UNIT_H
+
+#include "ev3api.h"
+
 namespace unit {
     enum color_t {
         RED,
@@ -44,3 +49,5 @@ namespace unit {
         bool right_wheel;
     };    
 }
+
+#endif // UNIT_H
