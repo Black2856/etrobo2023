@@ -23,3 +23,6 @@ Execution Scene::getExecution() const{
     return execution;
 }
 
+bool Scene::judgement(const Judge j) const{
+    return true
+}

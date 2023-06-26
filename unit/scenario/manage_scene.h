@@ -19,7 +19,9 @@ public:
     void makeTRACE(std::function<bool(Judge j)> transitionCondition, float arg1, float arg2, float arg3, float arg4);
     void makeSTOP();
     void makeMANUAL(std::function<bool(Judge j)> transitionCondition, float arg1, float arg2);
-
+    
+    std::string getName();
+    std::vector<Scene> getScenes();
 private:
     std::string scenarioName;
     std::vector<Scene> scenario;

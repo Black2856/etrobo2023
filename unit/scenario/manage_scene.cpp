@@ -2,9 +2,6 @@
  * 作成日:2023/06/25
  * 作成者:船田
  */
-#ifndef MANAGE_SCENE_H
-#define MANAGE_SCENE_H
-
 #include "manage_scene.h"
 
 Manage_scene::Manage_scene(std::string scenarioName){
@@ -16,7 +13,7 @@ void Manage_scene::makeCALL_SCENARIO(std::string arg1){
     argInfo.addStrArg(arg1);
     
     Scene scene(Execution::CALL_SCENARIO, argInfo, transitionCondition);
-    scenario.push_back();
+    scenario.push_back(scene);
 }
 
 void Manage_scene::makeTRACE(std::function<bool(Judge j)> transitionCondition, float arg1, float arg2, float arg3, float arg4){
@@ -46,4 +43,10 @@ void Manage_scene::makeMANUAL(std::function<bool(Judge j)> transitionCondition, 
     scenario.push_back(scene);
 }
 
-#endif
+std::string getName(){
+    return this->scenarioName;
+}
+
+std::vector<Scene> getScenes(){
+    return this->scenario;
+}

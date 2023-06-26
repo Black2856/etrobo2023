@@ -12,9 +12,12 @@ APPL_CXXOBJS += \
     JudgeNumerical.o \
     JudgeSonar.o \
     JudgeTime.o \
+    LineTrace.o \
     Localization.o \
+    PIDControl.o \
     RGBtoHSV.o \
     SpeedCorrection.o \
+    arg_info.o \
     manage_scenario.o \
     manage_scene.o \
     scene.o \
