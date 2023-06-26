@@ -43,15 +43,15 @@ bool Manage_scenario::execute(){
 
     //終端かどうか
     if(this->compileScene.max_size() - 1 < this->executeIdx){
-        return true //終了
+        return true; //終了
     }else{
-        return false
+        return false;
     }
 }
 
-void addScene(const Manage_scene& manageScene){
+void Manage_scenario::addScene(const Manage_scene& manageScene){
     vector<Scene> scenes = manageScene.getScenes(); //scene配列の取得
-    for(const Scene& x : this->scenes){
+    for(Scene& x : this->scenes){
         if(x.getExecution == Execution::CALL_SCENARIO){ //実行がCALL_SCENARIOの場合再帰呼び出し
             arg_info_t args = x.getArgInfo();
             Manage_scene& ms = findScenario(args.strArgs[0]);
@@ -62,11 +62,11 @@ void addScene(const Manage_scene& manageScene){
     }
 }
 
-Manage_scene& findScenario(const std::string name){
-    for(const Manage_scene& x : this->scenarioList){
+Manage_scene& Manage_scenario::findScenario(const std::string name){
+    for(Manage_scene& x : this->scenarioList){
         if(x.getName() == name){
             return x;
         }
     }
-    return NULL;
+    printf("見つかりませんでした。");
 }

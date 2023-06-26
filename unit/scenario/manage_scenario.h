@@ -9,7 +9,8 @@
 #include "scene.h"
 #include "execution.h"
 #include "arg_info.h"
-#include <vector.h>
+#include <vector>
+#include <string>
 
 class Manage_scenario{
 public:
@@ -18,8 +19,8 @@ public:
     bool execute(); //return : sceneのIdxが最後かどうか
 
 private:
-    vector<Scene&> compileScene;
-    vector<Manage_scene> scenarioList;
+    std::vector<Scene&> compileScene;
+    std::vector<Manage_scene> scenarioList;
     uint16_t executeIdx = 0;
     
     void addScene(const Manage_scene& manageScene); //１つシーン管理クラスをコンパイルする

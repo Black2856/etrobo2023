@@ -13,12 +13,12 @@ void arg_info_t::addStrArg(const std::string arg){
     this->argIdx.push_back(1);
 }
 
-vector<int> arg_info_t::getArgIdx() const{
-    return this->argIdx
+std::vector<int> arg_info_t::getArgIdx() const{
+    return this->argIdx;
 }
-vector<float> arg_info_t::getFloatArg() const{
-    return this->floatArgs
+std::vector<float> arg_info_t::getFloatArg() const{
+    return this->floatArgs;
 }
-vector<std::string> arg_info_t::getStrArg() const{
-    return this->strArgs
+std::vector<std::string> arg_info_t::getStrArg() const{
+    return this->strArgs;
 }

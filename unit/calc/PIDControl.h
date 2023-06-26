@@ -1,8 +1,8 @@
 /*
- * クラス名:PIDControl
- * 作成日:2023/06/26
- * 作成者:松尾
- */
+クラス名:PIDControl
+作成日:2023/06/26
+作成者:松尾
+*/
 #ifndef PID_CONTROL_H
 #define PID_CONTROL_H
 
@@ -19,6 +19,6 @@ private:
     float mTarget;
     float mIntegral;
     float mDiff_prev;
-}
+};
 
 #endif  // PID_CONTROL_H

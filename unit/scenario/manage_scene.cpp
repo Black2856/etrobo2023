@@ -12,7 +12,7 @@ void Manage_scene::makeCALL_SCENARIO(std::string arg1){
     arg_info_t argInfo;
     argInfo.addStrArg(arg1);
     
-    Scene scene(Execution::CALL_SCENARIO, argInfo, transitionCondition);
+    Scene scene(Execution::CALL_SCENARIO, argInfo);
     scenario.push_back(scene);
 }
 
@@ -43,10 +43,10 @@ void Manage_scene::makeMANUAL(std::function<bool(Judge j)> transitionCondition, 
     scenario.push_back(scene);
 }
 
-std::string getName(){
+std::string Manage_scene::getName(){
     return this->scenarioName;
 }
 
-std::vector<Scene> getScenes(){
+std::vector<Scene> Manage_scene::getScenes(){
     return this->scenario;
 }
