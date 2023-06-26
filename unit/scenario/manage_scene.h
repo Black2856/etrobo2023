@@ -23,6 +23,6 @@ public:
 private:
     std::string scenarioName;
     std::vector<Scene> scenario;
-}
+};
 
 #endif
