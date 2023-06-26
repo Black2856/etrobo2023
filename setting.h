@@ -13,6 +13,5 @@
 #define TIRE_DIAMETER 100.0 // タイヤ直径（mm）
 #define TREAD 126.0 // 車体トレッド幅（mm）
 #define CAMERA_NUMBER 0 // カメラデバイス番号（通常は0）を指定する
-
-
+#define CYCLE 10 // 処理周期(msec)
 #endif  // SETTINGS_H
