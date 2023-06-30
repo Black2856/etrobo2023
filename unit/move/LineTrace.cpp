@@ -10,9 +10,9 @@ LineTrace::LineTrace():
     mPID({0,0,0}){}
 
 void LineTrace::Trace(int pwm){
-
     // TARGETをとりあえず18とする
     float gain=pidControl.calc(device.color_getBrightness(), 18);
+    
     device.LWheel_setPWM(pwm-gain);
     device.RWheel_setPWM(pwm+gain);
 }
