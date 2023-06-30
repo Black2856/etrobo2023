@@ -1,13 +1,13 @@
 /*
- * クラス名:PIDControl
- * 作成日:2023/06/26
- * 作成者:松尾
- */
+クラス名:PIDControl
+作成日:2023/06/26
+作成者:松尾
+*/
 #include "PIDControl.h"
 #include "setting.h"
 
 PIDControl::PIDControl():
-    mPID([0,0,0]),
+    mPID({0,0,0}),
     mCurrent(0),
     mTarget(0),
     mIntegral(0),
@@ -30,5 +30,4 @@ float PIDControl::calc(float current,float target){
 
     // 計算した操作量を返却
     return diff * mPID.p + mIntegral * mPID.i + ddt * mPID.d;
-    
 }

@@ -9,7 +9,9 @@
 #include "scene.h"
 #include "execution.h"
 #include "arg_info.h"
-#include <vector.h>
+#include "Judge.h"
+#include <vector>
+#include <string>
 
 class Manage_scenario{
 public:
@@ -18,12 +20,13 @@ public:
     bool execute(); //return : sceneのIdxが最後かどうか
 
 private:
-    vector<Scene&> compileScene;
-    vector<Manage_scene> scenarioList;
+    Judge judge;
+    std::vector<Scene> compileScene;
+    std::vector<Manage_scene> scenarioList;
     uint16_t executeIdx = 0;
     
-    void addScene(const Manage_scene& manageScene); //１つシーン管理クラスをコンパイルする
-    Manage_scene& findScenario(const std::string name); //シーン管理クラスから特定の名前のシナリオを取得する
+    void addScene(Manage_scene& manageScene); //１つシーン管理クラスをコンパイルする
+    Manage_scene* findScenario(const std::string name); //シーン管理クラスから特定の名前のシナリオを取得する
 };
 
 #endif

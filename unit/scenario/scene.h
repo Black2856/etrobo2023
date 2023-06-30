@@ -13,16 +13,16 @@
 
 class Scene{
 public:
-    Scene(Execution execution, arg_info_t argInfo, std::function<bool(Judge j)> transitionCondition);
+    Scene(Execution execution, arg_info_t argInfo, std::function<bool(const Judge& j)> transitionCondition);
     Scene(Execution execution, arg_info_t argInfo);
 
     arg_info_t getArgInfo() const;
     Execution getExecution() const;
-    bool judgement(const Judge j) const;
+    bool judgement(const Judge& j) const;
 
 private:
     arg_info_t argInfo;
-    std::function<bool(const Judge j)> transitionCondition;
+    std::function<bool(const Judge& j)> transitionCondition;
     Execution execution;
 };
 

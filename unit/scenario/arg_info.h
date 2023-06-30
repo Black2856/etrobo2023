@@ -7,6 +7,7 @@
 
 #include "execution.h"
 #include <vector>
+#include <string>
 
 class arg_info_t{
 private:
@@ -18,9 +19,9 @@ public:
     void addFloatArg(const float arg);
     void addStrArg(const std::string arg);
 
-    vector<int> getArgIdx() const;
-    vector<float> getFloatArg() const;
-    vector<std::string> getStrArg() const;
-}
+    std::vector<int> getArgIdx() const;
+    std::vector<float> getFloatArg() const;
+    std::vector<std::string> getStrArg() const;
+};
 
 #endif

@@ -4,15 +4,15 @@
  */
 #include "scene.h"
 
-Scene::Scene(Execution execution, arg_info_t argInfo, std::function<bool(Judge j)> transitionCondition){
+Scene::Scene(Execution execution, arg_info_t argInfo, std::function<bool(const Judge& j)> transitionCondition){
     this->transitionCondition = transitionCondition;
     this->argInfo = argInfo;
-    this->execution = execution
+    this->execution = execution;
 }
 
 Scene::Scene(Execution execution, arg_info_t argInfo){
     this->argInfo = argInfo;
-    this->execution = execution
+    this->execution = execution;
 }
 
 arg_info_t Scene::getArgInfo() const{
@@ -23,6 +23,7 @@ Execution Scene::getExecution() const{
     return execution;
 }
 
-bool Scene::judgement(const Judge j) const{
-    return true
+bool Scene::judgement(const Judge& j) const{
+    //判定未記述
+    return true;
 }

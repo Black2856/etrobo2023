@@ -10,15 +10,16 @@
 #include "execution.h"
 #include <vector>
 #include <functional>
+#include <string>
 
 class Manage_scene{
 public:
     Manage_scene(std::string scenarioName);
 
     void makeCALL_SCENARIO(std::string arg1);
-    void makeTRACE(std::function<bool(Judge j)> transitionCondition, float arg1, float arg2, float arg3, float arg4);
+    void makeTRACE(std::function<bool(const Judge& j)> transitionCondition, float arg1, float arg2, float arg3, float arg4);
     void makeSTOP();
-    void makeMANUAL(std::function<bool(Judge j)> transitionCondition, float arg1, float arg2);
+    void makeMANUAL(std::function<bool(const Judge& j)> transitionCondition, float arg1, float arg2);
     
     std::string getName();
     std::vector<Scene> getScenes();
