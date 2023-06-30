@@ -15,9 +15,9 @@ public:
     LineTrace();
     void Trace(int pwm);
 private:
-    unit::pid_t mPID;
-    PIDControl pidControl;
     DeviceInOut& device;
+    PIDControl pidControl;
+    unit::pid_t mPID;
 };
 
 #endif  // LINE_TRACE_H
