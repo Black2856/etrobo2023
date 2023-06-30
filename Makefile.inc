@@ -63,3 +63,6 @@ INCLUDES += \
     -I$(mkfile_path)unit/move \
     -I$(mkfile_path)unit/scenario \
 #</mk_dirs2>
+
+CXXFLAGS += -fno-threadsafe-statics
+#COPTS += -DMAKE_EV3 -std=c++14 -std=c++1y

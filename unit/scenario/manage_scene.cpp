@@ -16,7 +16,7 @@ void Manage_scene::makeCALL_SCENARIO(std::string arg1){
     scenario.push_back(scene);
 }
 
-void Manage_scene::makeTRACE(std::function<bool(Judge j)> transitionCondition, float arg1, float arg2, float arg3, float arg4){
+void Manage_scene::makeTRACE(std::function<bool(const Judge& j)> transitionCondition, float arg1, float arg2, float arg3, float arg4){
     arg_info_t argInfo;
     argInfo.addFloatArg(arg1);
     argInfo.addFloatArg(arg2);
@@ -34,7 +34,7 @@ void Manage_scene::makeSTOP(){
     scenario.push_back(scene);
 }
 
-void Manage_scene::makeMANUAL(std::function<bool(Judge j)> transitionCondition, float arg1, float arg2){
+void Manage_scene::makeMANUAL(std::function<bool(const Judge& j)> transitionCondition, float arg1, float arg2){
     arg_info_t argInfo;
     argInfo.addFloatArg(arg1);
     argInfo.addFloatArg(arg2);
