@@ -1,7 +1,6 @@
 @echo off
 
-python ./build/fix.py ./Makefile.inc
-python ./build/fix.py ./app.cfg
+call build/fix.bat
 
 setlocal
 if "%~1"=="" (
