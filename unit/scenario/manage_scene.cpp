@@ -4,11 +4,11 @@
  */
 #include "manage_scene.h"
 
-Manage_scene::Manage_scene(std::string scenarioName){
+Manage_scene::Manage_scene(char* scenarioName){
     this->scenarioName = scenarioName;
 }
 
-void Manage_scene::makeCALL_SCENARIO(std::string arg1){
+void Manage_scene::makeCALL_SCENARIO(char* arg1){
     arg_info_t argInfo;
     argInfo.addStrArg(arg1);
     
@@ -43,10 +43,10 @@ void Manage_scene::makeMANUAL(std::function<bool(const Judge& j)> transitionCond
     scenario.push_back(scene);
 }
 
-std::string Manage_scene::getName(){
+char* Manage_scene::getName(){
     return this->scenarioName;
 }
 
-std::vector<Scene> Manage_scene::getScenes(){
+std::list<Scene> Manage_scene::getScenes(){
     return this->scenario;
 }

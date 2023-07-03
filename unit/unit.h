@@ -2,6 +2,7 @@
 #define UNIT_H
 
 #include "ev3api.h"
+#include <list>
 
 namespace unit {
     enum color_t {
@@ -47,7 +48,15 @@ namespace unit {
         bool color;
         bool left_wheel;
         bool right_wheel;
-    };    
+    };
+
+    //unit::getElementAt(list<any>, idx); listの要素idxを取り出す
+    template<typename T>
+    T getElementAt(const std::list<T>& myList, size_t index) {
+        auto it = myList.begin();
+        std::advance(it, index);
+        return *it;
+    }
 }
 
 #endif // UNIT_H

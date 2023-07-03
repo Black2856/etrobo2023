@@ -1,3 +1,4 @@
+
 mkfile_path := $(dir $(lastword $(MAKEFILE_LIST)))
 
 APPL_COBJS +=
@@ -64,5 +65,5 @@ INCLUDES += \
     -I$(mkfile_path)unit/scenario \
 #</mk_dirs2>
 
-CXXFLAGS += -fno-threadsafe-statics
+CXXFLAGS = -O3 -o prog -rdynamic -D_GNU_SOURCE -fno-threadsafe-statics
 #COPTS += -DMAKE_EV3 -std=c++14 -std=c++1y

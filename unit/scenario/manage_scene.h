@@ -8,24 +8,24 @@
 #include "scene.h"
 #include "arg_info.h"
 #include "execution.h"
-#include <vector>
+#include <list>
 #include <functional>
 #include <string>
 
 class Manage_scene{
 public:
-    Manage_scene(std::string scenarioName);
+    Manage_scene(char* scenarioName);
 
-    void makeCALL_SCENARIO(std::string arg1);
+    void makeCALL_SCENARIO(char* arg1);
     void makeTRACE(std::function<bool(const Judge& j)> transitionCondition, float arg1, float arg2, float arg3, float arg4);
     void makeSTOP();
     void makeMANUAL(std::function<bool(const Judge& j)> transitionCondition, float arg1, float arg2);
     
-    std::string getName();
-    std::vector<Scene> getScenes();
+    char* getName();
+    std::list<Scene> getScenes();
 private:
-    std::string scenarioName;
-    std::vector<Scene> scenario;
+    char* scenarioName;
+    std::list<Scene> scenario;
 };
 
 #endif
