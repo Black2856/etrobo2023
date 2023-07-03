@@ -2,8 +2,11 @@
 
 #include "Motor.h"
 #include "Clock.h"
-
+#include <vector>
+#include "arg_info.h"
 using namespace ev3api;
+
+
 // tag::walker_def[]
 class Walker {
 public:
@@ -50,6 +53,12 @@ void Walker::stop(void) {  // <1>
 // end::walker_impl_1[]
 // tag::walker_impl_2[]
 void Walker::run() {
+  arg_info_t args;
+  args.addFloatArg(5);
+  std::vector<int>* copy;
+  std::vector<int> a;
+  copy = args.getArgIdx();
+  a = *copy;
   while(1) {
     forward();             // <1>
     clock.sleep(duration);
