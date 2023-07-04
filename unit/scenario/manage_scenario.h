@@ -10,8 +10,8 @@
 #include "execution.h"
 #include "arg_info.h"
 #include "Judge.h"
-#include <vector>
-#include <string>
+#include "unit.h"
+#include <list>
 
 class Manage_scenario{
 public:
@@ -21,12 +21,12 @@ public:
 
 private:
     Judge judge;
-    std::vector<Scene> compileScene;
-    std::vector<Manage_scene> scenarioList;
+    std::list<Scene> compileScene;
+    std::list<Manage_scene> scenarioList;
     uint16_t executeIdx = 0;
     
     void addScene(Manage_scene& manageScene); //１つシーン管理クラスをコンパイルする
-    Manage_scene* findScenario(const std::string name); //シーン管理クラスから特定の名前のシナリオを取得する
+    Manage_scene* findScenario(const char* name); //シーン管理クラスから特定の名前のシナリオを取得する
 };
 
 #endif

@@ -52,7 +52,7 @@ namespace unit {
 
     //unit::getElementAt(list<any>, idx); listの要素idxを取り出す
     template<typename T>
-    T getElementAt(const std::list<T>& myList, size_t index) {
+    T getList(const std::list<T>& myList, size_t index) {
         auto it = myList.begin();
         std::advance(it, index);
         return *it;

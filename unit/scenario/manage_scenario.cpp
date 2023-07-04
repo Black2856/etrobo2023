@@ -16,17 +16,18 @@ void Manage_scenario::update(){
     if(ms != nullptr){
         this->addScene(*ms);
     }else{
-        throw std::runtime_error("Error:mainが存在しません");
+        printf("error at Manage_scenario::update() : mainが存在しません");
     }
 }
 
 bool Manage_scenario::execute(){
-    Execution execution = this->compileScene[this->executeIdx].getExecution();
+    //Execution execution = this->compileScene[this->executeIdx].getExecution();
+    Execution execution = unit::getList(this->compileScene, this->executeIdx).getExecution();
 
     //各動作による呼び出し処理
     switch(execution){
         case Execution::CALL_SCENARIO:
-            throw std::runtime_error("この実行は選択されません");
+            printf("error at Manage_scenario::execute() : CALL_SCENARIOが到達");
             break;
         case Execution::MANUAL:
             break;
@@ -37,7 +38,8 @@ bool Manage_scenario::execute(){
     }
 
     //遷移条件
-    if(true == this->compileScene[this->executeIdx].judgement(this->judge)){
+    //if(true == this->compileScene[this->executeIdx].judgement(this->judge)){
+    if(true == unit::getList(this->compileScene, this->executeIdx).judgement(this->judge)){
         this->executeIdx ++;
     }
 
@@ -50,12 +52,12 @@ bool Manage_scenario::execute(){
 }
 
 void Manage_scenario::addScene(Manage_scene& manageScene){
-    const std::vector<Scene> scenes = manageScene.getScenes(); // scene配列の取得
+    const std::list<Scene> scenes = manageScene.getScenes(); // scene配列の取得
     for(const Scene& x : scenes){
         if(x.getExecution() == Execution::CALL_SCENARIO){ // 実行がCALL_SCENARIOの場合再帰呼び出し
             arg_info_t args = x.getArgInfo();
-            std::vector<std::string> name = args.getStrArg();
-            Manage_scene* ms = findScenario(name[0]);
+            std::list<char*> name = args.getStrArgs();
+            Manage_scene* ms = findScenario(unit::getList(name, 0));
             addScene(*ms); // CALL_SCENARIOのsceneの名前でシナリオを検索したものを追加する
         }else{
             this->compileScene.push_back(x);
@@ -63,7 +65,7 @@ void Manage_scenario::addScene(Manage_scene& manageScene){
     }
 }
 
-Manage_scene* Manage_scenario::findScenario(const std::string name){
+Manage_scene* Manage_scenario::findScenario(const char* name){
     for(Manage_scene& x : this->scenarioList){
         if(x.getName() == name){
             Manage_scene* ptr = new Manage_scene(x);
@@ -71,5 +73,5 @@ Manage_scene* Manage_scenario::findScenario(const std::string name){
         }
     }
     return nullptr;
-    throw std::runtime_error("findScenario error!!");
+    printf("error at Manage_scenario::findScenario() : findScenarioの不明エラー");
 }

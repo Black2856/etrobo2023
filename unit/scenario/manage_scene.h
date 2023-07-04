@@ -10,7 +10,6 @@
 #include "execution.h"
 #include <list>
 #include <functional>
-#include <string>
 
 class Manage_scene{
 public:
