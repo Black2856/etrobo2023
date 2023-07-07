@@ -4,7 +4,7 @@
  */
 #include "manage_scene.h"
 
-Manage_scene::Manage_scene(char* scenarioName){
+Manage_scene::Manage_scene(const char* scenarioName){
     this->scenarioName = scenarioName;
 }
 
@@ -43,7 +43,7 @@ void Manage_scene::makeMANUAL(std::function<bool(const Judge& j)> transitionCond
     scenario.push_back(scene);
 }
 
-char* Manage_scene::getName(){
+const char* Manage_scene::getName(){
     return this->scenarioName;
 }
 

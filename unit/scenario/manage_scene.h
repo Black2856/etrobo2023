@@ -13,17 +13,17 @@
 
 class Manage_scene{
 public:
-    Manage_scene(char* scenarioName);
+    Manage_scene(const char* scenarioName);
 
     void makeCALL_SCENARIO(char* arg1);
     void makeTRACE(std::function<bool(const Judge& j)> transitionCondition, float arg1, float arg2, float arg3, float arg4);
     void makeSTOP();
     void makeMANUAL(std::function<bool(const Judge& j)> transitionCondition, float arg1, float arg2);
     
-    char* getName();
+    const char* getName();
     std::list<Scene> getScenes();
 private:
-    char* scenarioName;
+    const char* scenarioName;
     std::list<Scene> scenario;
 };
 
