@@ -15,7 +15,7 @@ void Manage_scenario::update(){
     Manage_scene* ms = findScenario("main");
     if(ms != nullptr){
         this->addScene(*ms);
-        printf("*シナリオ管理:コンパイル完了*\n")
+        printf("*シナリオ管理:コンパイル完了*\n");
     }else{
         printf("error at Manage_scenario::update() : mainが存在しません");
     }
