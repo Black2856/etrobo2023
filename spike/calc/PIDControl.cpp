@@ -29,5 +29,5 @@ float PIDControl::calc(float current,float target){
     mDiff_prev = diff;
 
     // 計算した操作量を返却
-    return diff * mPID.p + mIntegral * mPID.i + ddt * mPID.d;
+    return diff * mPID.kp + mIntegral * mPID.ki + ddt * mPID.kd;
 }

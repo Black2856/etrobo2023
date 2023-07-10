@@ -46,7 +46,7 @@ bool Manage_scenario::execute(){
     }
 
     //遷移条件
-    if(true == nowScene.judgement(this->judge)){
+    if(true == false){
         this->executeIdx ++;
         printf("*遷移 => %d*\n", this->executeIdx);
     }

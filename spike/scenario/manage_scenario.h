@@ -24,12 +24,6 @@ public:
     bool execute(); //return : sceneのIdxが最後かどうか
 
 private:
-    JudgeMileage mileage;
-    JudgeSonar sonar;
-    JudgeTime time;
-    JudgeAngle angle;
-    unit::judge judge = {&mileage, &sonar, &time, &angle};
-
     std::list<Scene> compileScene;
     std::list<Manage_scene> scenarioList;
     uint16_t executeIdx = 0;

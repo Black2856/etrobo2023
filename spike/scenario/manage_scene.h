@@ -17,33 +17,9 @@ public:
     Manage_scene(char* scenarioName);
 
     void makeCALL_SCENARIO(char* arg1);
-    template <typename F>
-    void makeTRACE(F transitionCondition, float arg1, float arg2, float arg3, float arg4){
-        arg_info_t argInfo;
-        argInfo.addFloatArg(arg1);
-        argInfo.addFloatArg(arg2);
-        argInfo.addFloatArg(arg3);
-        argInfo.addFloatArg(arg4);
-
-        Scene scene(Execution::TRACE, argInfo, transitionCondition);
-        scenario.push_back(scene);
-    };
+    void makeTRACE(int transitionCondition, float arg1, float arg2, float arg3, float arg4);
     void makeSTOP();
-    template <typename F>
-    void makeMANUAL(F transitionCondition, float arg1, float arg2){
-        arg_info_t argInfo;
-        argInfo.addFloatArg(arg1);
-        argInfo.addFloatArg(arg2);
-
-        //Scene scene(Execution::CALL_SCENARIO, argInfo);
-        //scenario.push_back(scene);
-    };
-    template <typename F>
-    void test(F a){
-        printf("a");
-        unit::judge u;
-        a(u);
-    };
+    void makeMANUAL(int transitionCondition, float arg1, float arg2);
 
     char* getName();
     std::list<Scene> getScenes();

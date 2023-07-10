@@ -4,21 +4,25 @@
  */
 #include "scene.h"
 
+Scene::Scene(Execution execution, arg_info_t argInfo, int transitionCondition){
+    this->argInfo = argInfo;
+    this->execution = execution;
+    this->transitionCondition = transitionCondition;
+};
+
 Scene::Scene(Execution execution, arg_info_t argInfo){
     this->argInfo = argInfo;
     this->execution = execution;
 }
 
 arg_info_t Scene::getArgInfo() const{
-    return argInfo;
+    return this->argInfo;
 }
 
 Execution Scene::getExecution() const{
-    return execution;
+    return this->execution;
 }
 
-bool Scene::judgement(unit::judge j) const{
-    //判定未記述
-    return false;
-    //this->transitionCondition.tc(j)
+int Scene::getTransitionCondition() const{
+    return this->transitionCondition;
 }

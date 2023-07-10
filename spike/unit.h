@@ -9,13 +9,6 @@
 #include <list>
 
 namespace unit {
-    struct judge {
-        JudgeMileage* mileage;
-        JudgeSonar* sonar;
-        JudgeTime* time;
-        JudgeAngle* angle;
-    };
-
     enum color_t {
         RED,
         BLUE,
