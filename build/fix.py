@@ -25,7 +25,7 @@ dirs = [os.path.dirname(x.replace('\\', '/')) for x in glob.glob('**/*/', recurs
 files = set([os.path.basename(x.replace('\\', '/')) for x in glob.glob('**/*', recursive=True) if pattern_ext.search(x)])
 
 # 除外するファイル名
-pattern_file = re.compile(r'app')
+pattern_file = re.compile(r'app|RearCamera|Net')
 # 除外するフォルダ名
 pattern_folder = re.compile(r'build|設計')
 
