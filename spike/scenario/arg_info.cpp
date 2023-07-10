@@ -17,10 +17,10 @@ std::list<int> arg_info_t::getArgIdx(){
     return this->argIdx;
 }
 
-std::list<float> arg_info_t::getFloatArgs(){
-    return this->floatArgs;
+float arg_info_t::getFloatArg(int idx){
+    return unit::getList(this->floatArgs, idx);
 }
 
-std::list<char*> arg_info_t::getStrArgs(){
-    return this->strArgs;
+char* arg_info_t::getStrArg(int idx){
+    return unit::getList(this->strArgs, idx);
 }

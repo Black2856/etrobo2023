@@ -6,13 +6,15 @@
 #include "LineTrace.h"
 
 LineTrace::LineTrace():
-    device(DeviceInOut::getInstance()),
-    mPID({0,0,0}){}
+    device(DeviceInOut::getInstance()){
+        this->cal = {0, 0, 0};
+    }
 
-void LineTrace::Trace(int pwm){
+void LineTrace::Trace(int pwm, float kp, float ki, float kd){
+    this->cal = {10, 20, 15}; //記録パッケージからキャリブレーションを読み込む予定
+    this->pidControl.setPID({kp, ki, kd});
 
-    // TARGETをとりあえず18とする
-    float gain=pidControl.calc(device.color_getBrightness(), 18);
-    device.LWheel_setPWM(pwm-gain);
-    device.RWheel_setPWM(pwm+gain);
+    float gain = pidControl.calc(device.color_getBrightness(), cal.avg);
+    device.LWheel_setPWM(pwm - gain);
+    device.RWheel_setPWM(pwm + gain);
 }

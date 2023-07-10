@@ -8,21 +8,28 @@
 #include "Judge.h"
 #include "execution.h"
 #include "arg_info.h"
+#include "unit.h"
 #include <vector>
 #include <functional>
 
 class Scene{
 public:
-    Scene(Execution execution, arg_info_t argInfo, std::function<bool(const Judge& j)> transitionCondition);
+    template<typename F>
+    Scene(Execution execution, arg_info_t argInfo, F transitionCondition){
+        unit::judge a;
+        this->argInfo = argInfo;
+        this->execution = execution;
+
+    };
     Scene(Execution execution, arg_info_t argInfo);
 
     arg_info_t getArgInfo() const;
     Execution getExecution() const;
-    bool judgement(const Judge& j) const;
+    bool judgement(unit::judge j) const;
 
 private:
     arg_info_t argInfo;
-    std::function<bool(const Judge& j)> transitionCondition;
+    std::function<bool(unit::judge)> transitionCondition;
     Execution execution;
 };
 

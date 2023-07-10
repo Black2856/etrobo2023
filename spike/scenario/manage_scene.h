@@ -8,22 +8,47 @@
 #include "scene.h"
 #include "arg_info.h"
 #include "execution.h"
+#include "unit.h"
 #include <list>
 #include <functional>
 
 class Manage_scene{
 public:
-    Manage_scene(const char* scenarioName);
+    Manage_scene(char* scenarioName);
 
     void makeCALL_SCENARIO(char* arg1);
-    void makeTRACE(std::function<bool(const Judge& j)> transitionCondition, float arg1, float arg2, float arg3, float arg4);
+    template <typename F>
+    void makeTRACE(F transitionCondition, float arg1, float arg2, float arg3, float arg4){
+        arg_info_t argInfo;
+        argInfo.addFloatArg(arg1);
+        argInfo.addFloatArg(arg2);
+        argInfo.addFloatArg(arg3);
+        argInfo.addFloatArg(arg4);
+
+        Scene scene(Execution::TRACE, argInfo, transitionCondition);
+        scenario.push_back(scene);
+    };
     void makeSTOP();
-    void makeMANUAL(std::function<bool(const Judge& j)> transitionCondition, float arg1, float arg2);
-    
-    const char* getName();
+    template <typename F>
+    void makeMANUAL(F transitionCondition, float arg1, float arg2){
+        arg_info_t argInfo;
+        argInfo.addFloatArg(arg1);
+        argInfo.addFloatArg(arg2);
+
+        //Scene scene(Execution::CALL_SCENARIO, argInfo);
+        //scenario.push_back(scene);
+    };
+    template <typename F>
+    void test(F a){
+        printf("a");
+        unit::judge u;
+        a(u);
+    };
+
+    char* getName();
     std::list<Scene> getScenes();
 private:
-    const char* scenarioName;
+    char* scenarioName;
     std::list<Scene> scenario;
 };
 

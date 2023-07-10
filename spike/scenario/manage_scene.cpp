@@ -4,7 +4,7 @@
  */
 #include "manage_scene.h"
 
-Manage_scene::Manage_scene(const char* scenarioName){
+Manage_scene::Manage_scene(char* scenarioName){
     this->scenarioName = scenarioName;
 }
 
@@ -16,17 +16,6 @@ void Manage_scene::makeCALL_SCENARIO(char* arg1){
     scenario.push_back(scene);
 }
 
-void Manage_scene::makeTRACE(std::function<bool(const Judge& j)> transitionCondition, float arg1, float arg2, float arg3, float arg4){
-    arg_info_t argInfo;
-    argInfo.addFloatArg(arg1);
-    argInfo.addFloatArg(arg2);
-    argInfo.addFloatArg(arg3);
-    argInfo.addFloatArg(arg4);
-
-    Scene scene(Execution::TRACE, argInfo, transitionCondition);
-    scenario.push_back(scene);
-}
-
 void Manage_scene::makeSTOP(){
     arg_info_t argInfo;
 
@@ -34,16 +23,7 @@ void Manage_scene::makeSTOP(){
     scenario.push_back(scene);
 }
 
-void Manage_scene::makeMANUAL(std::function<bool(const Judge& j)> transitionCondition, float arg1, float arg2){
-    arg_info_t argInfo;
-    argInfo.addFloatArg(arg1);
-    argInfo.addFloatArg(arg2);
-
-    Scene scene(Execution::CALL_SCENARIO, argInfo);
-    scenario.push_back(scene);
-}
-
-const char* Manage_scene::getName(){
+char* Manage_scene::getName(){
     return this->scenarioName;
 }
 

@@ -2,9 +2,20 @@
 #define UNIT_H
 
 #include "ev3api.h"
+#include "JudgeMileage.h"
+#include "JudgeSonar.h"
+#include "JudgeTime.h"
+#include "JudgeAngle.h"
 #include <list>
 
 namespace unit {
+    struct judge {
+        JudgeMileage* mileage;
+        JudgeSonar* sonar;
+        JudgeTime* time;
+        JudgeAngle* angle;
+    };
+
     enum color_t {
         RED,
         BLUE,
@@ -24,9 +35,9 @@ namespace unit {
     };
 
     struct pid_t {
-        float p;
-        float i;
-        float d;
+        float kp;
+        float ki;
+        float kd;
     };
     
     struct sensor_t {
@@ -48,6 +59,12 @@ namespace unit {
         bool color;
         bool left_wheel;
         bool right_wheel;
+    };
+
+    struct calibration {
+        int max;
+        int min;
+        int avg;
     };
 
     //unit::getElementAt(list<any>, idx); listの要素idxを取り出す

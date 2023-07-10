@@ -6,6 +6,7 @@
 #define ARG_INFO_H
 
 #include "execution.h"
+#include "unit.h"
 #include <list>
 
 class arg_info_t{
@@ -14,13 +15,14 @@ private:
     std::list<int> argIdx;
     std::list<float> floatArgs;
     std::list<char*> strArgs;
+
 public:
     void addFloatArg(float arg);
     void addStrArg(char* arg);
 
     std::list<int> getArgIdx();
-    std::list<float> getFloatArgs();
-    std::list<char*> getStrArgs();
+    float getFloatArg(int idx);
+    char* getStrArg(int idx);
 };
 
 #endif

@@ -1,79 +1,57 @@
 #include "app.h"
 
+#include "setting.h"
 #include "Motor.h"
 #include "Clock.h"
 #include "arg_info.h"
+#include "manage_scenario.h"
+#include "manage_scene.h"
+#include "Judge.h"
+#include "unit.h"
+#include <functional>
+#include <memory>
+
 using namespace ev3api;
 
-
-// tag::walker_def[]
 class Walker {
 public:
-  Walker();
   void run();
-
+  
+  JudgeMileage mileage;
+  JudgeSonar sonar;
+  JudgeTime time;
+  JudgeAngle angle;
+  unit::judge j = {&mileage, &sonar, &time, &angle};
+  std::function<int(int)> b;
 private:
-  Motor leftWheel;
-  Motor rightWheel;
   Clock clock;
-
-#ifndef MAKE_RASPIKE
-  const int8_t pwm = (Motor::PWM_MAX) / 6;
-#else
-  const int8_t pwm = 60;
-#endif
-  const uint32_t duration = 2000*1000;
-
-protected:             // <1>
-  void forward(void);  // <2>
-  void back(void);     // <2>
-  void stop(void);     // <2>
 };
-// end::walker_def[]
-// tag::walker_impl_1[]
-Walker::Walker():
-  leftWheel(PORT_C), rightWheel(PORT_B) {
-}
 
-void Walker::forward(void) {  // <1>
-  leftWheel.setPWM(pwm);
-  rightWheel.setPWM(pwm);
-}
-
-void Walker::back(void) {  // <1>
-  leftWheel.setPWM(-pwm);
-  rightWheel.setPWM(-pwm);
-}
-
-void Walker::stop(void) {  // <1>
-  leftWheel.stop();
-  rightWheel.stop();
-}
-// end::walker_impl_1[]
-// tag::walker_impl_2[]
 void Walker::run() {
-  while(1) {
-    forward();             // <1>
-    clock.sleep(duration);
-    back();                // <1>
-    clock.sleep(duration);
+  
+  TC_convert<bool (*)(unit::judge)> tc([](unit::judge j) {return false;});
+  TC_convert<bool (*)(unit::judge)> aa = tc;
+  aa.judge(j);
 
-    // 左ボタンを長押し、それを捕捉する
-    if (ev3_button_is_pressed(LEFT_BUTTON)) {
+  bool result;
+  Manage_scenario manage_scenario; //シナリオ管理のインスタンス
+  Manage_scene main("main"); //シーン管理のインスタンス(シナリオ名は"main")
+  main.makeTRACE([](unit::judge j) {return false;}, 20, -0.7, 0, 0.3); //シーンの作成
+  manage_scenario.add(main); //シナリオ管理に作成したシナリオを追加
+  manage_scenario.update(); //シナリオのコンパイルを行う
+
+  while(1) {
+    result = manage_scenario.execute(); //シナリオの実行　全ての遷移が終わるとtrueが返る
+    clock.sleep(CYCLE);
+
+    if (result == true) {
       break;
     }
   }
-
-  stop();                // <1>
-  while(ev3_button_is_pressed(LEFT_BUTTON)) {
-    ;
-  }
 }
-// end::walker_impl_2[]
-// tag::main_task[]
+
 void main_task(intptr_t unused) {
   Walker walker;
   walker.run();
   ext_tsk();
 }
-// end::main_task[]

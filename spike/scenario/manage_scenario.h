@@ -11,6 +11,10 @@
 #include "arg_info.h"
 #include "Judge.h"
 #include "unit.h"
+
+#include "LineTrace.h"
+
+#include <cstring>
 #include <list>
 
 class Manage_scenario{
@@ -20,11 +24,18 @@ public:
     bool execute(); //return : sceneのIdxが最後かどうか
 
 private:
-    Judge judge;
+    JudgeMileage mileage;
+    JudgeSonar sonar;
+    JudgeTime time;
+    JudgeAngle angle;
+    unit::judge judge = {&mileage, &sonar, &time, &angle};
+
     std::list<Scene> compileScene;
     std::list<Manage_scene> scenarioList;
     uint16_t executeIdx = 0;
-    
+    //動作のインスタンス
+    LineTrace lineTrace;
+
     void addScene(Manage_scene& manageScene); //１つシーン管理クラスをコンパイルする
     Manage_scene* findScenario(const char* name); //シーン管理クラスから特定の名前のシナリオを取得する
 };

@@ -65,5 +65,4 @@ INCLUDES += \
     -I$(mkfile_path)spike/scenario \
 #</mk_dirs2>
 
-CXXFLAGS = -O3 -o prog -rdynamic -D_GNU_SOURCE -fno-threadsafe-statics
-#COPTS += -DMAKE_EV3 -std=c++14 -std=c++1y
+COPTS += -DMAKE_EV3 -std=c++14 -std=c++1y

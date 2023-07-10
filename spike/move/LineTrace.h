@@ -13,11 +13,11 @@
 class LineTrace {
 public:
     LineTrace();
-    void Trace(int pwm);
+    void Trace(int pwm, float kp, float ki, float kd);
 private:
     DeviceInOut& device;
     PIDControl pidControl;
-    unit::pid_t mPID;
+    unit::calibration cal;
 };
 
 #endif  // LINE_TRACE_H
