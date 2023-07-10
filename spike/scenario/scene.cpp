@@ -4,10 +4,10 @@
  */
 #include "scene.h"
 
-Scene::Scene(Execution execution, arg_info_t argInfo, int transitionCondition){
+Scene::Scene(Execution execution, arg_info_t argInfo, int stateTransition){
     this->argInfo = argInfo;
     this->execution = execution;
-    this->transitionCondition = transitionCondition;
+    this->stateTransition = stateTransition;
 };
 
 Scene::Scene(Execution execution, arg_info_t argInfo){
@@ -23,6 +23,6 @@ Execution Scene::getExecution() const{
     return this->execution;
 }
 
-int Scene::getTransitionCondition() const{
-    return this->transitionCondition;
+int Scene::getStateTransition() const{
+    return this->stateTransition;
 }

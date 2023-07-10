@@ -17,9 +17,9 @@ public:
     Manage_scene(char* scenarioName);
 
     void makeCALL_SCENARIO(char* arg1);
-    void makeTRACE(int transitionCondition, float arg1, float arg2, float arg3, float arg4);
+    void makeTRACE(int stateTransition, float arg1, float arg2, float arg3, float arg4);
     void makeSTOP();
-    void makeMANUAL(int transitionCondition, float arg1, float arg2);
+    void makeMANUAL(int stateTransition, float arg1, float arg2);
 
     char* getName();
     std::list<Scene> getScenes();

@@ -2,13 +2,10 @@
 #define UNIT_H
 
 #include "ev3api.h"
-#include "JudgeMileage.h"
-#include "JudgeSonar.h"
-#include "JudgeTime.h"
-#include "JudgeAngle.h"
 #include <list>
 
 namespace unit {
+
     enum color_t {
         RED,
         BLUE,

@@ -10,6 +10,7 @@
 #include "execution.h"
 #include "arg_info.h"
 #include "Judge.h"
+#include "state_transition.h"
 #include "unit.h"
 
 #include "LineTrace.h"
@@ -24,6 +25,7 @@ public:
     bool execute(); //return : sceneのIdxが最後かどうか
 
 private:
+    StateTransition stateTransition;
     std::list<Scene> compileScene;
     std::list<Manage_scene> scenarioList;
     uint16_t executeIdx = 0;

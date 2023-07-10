@@ -11,16 +11,16 @@
 
 class Scene{
 public:
-    Scene(Execution execution, arg_info_t argInfo, int transitionCondition);
+    Scene(Execution execution, arg_info_t argInfo, int stateTransition);
     Scene(Execution execution, arg_info_t argInfo);
 
     arg_info_t getArgInfo() const;
     Execution getExecution() const;
-    int getTransitionCondition() const;
+    int getStateTransition() const;
 
 private:
     arg_info_t argInfo;
-    int transitionCondition;
+    int stateTransition;
     Execution execution;
 };
 

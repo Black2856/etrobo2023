@@ -22,6 +22,7 @@ APPL_CXXOBJS += \
     manage_scenario.o \
     manage_scene.o \
     scene.o \
+    state_transition.o \
 #</mk_files>
 
 SRCLANG := c++
@@ -42,6 +43,11 @@ APPL_DIRS += \
     $(mkfile_path)PC/manage_train \
     $(mkfile_path)PC/recognize_image \
     $(mkfile_path)PC/search_route \
+    $(mkfile_path)app \
+    $(mkfile_path)app/manage_signal \
+    $(mkfile_path)app/manage_train \
+    $(mkfile_path)app/recognize_image \
+    $(mkfile_path)app/search_route \
     $(mkfile_path)spike \
     $(mkfile_path)spike/calc \
     $(mkfile_path)spike/device \
@@ -57,6 +63,11 @@ INCLUDES += \
     -I$(mkfile_path)PC/manage_train \
     -I$(mkfile_path)PC/recognize_image \
     -I$(mkfile_path)PC/search_route \
+    -I$(mkfile_path)app \
+    -I$(mkfile_path)app/manage_signal \
+    -I$(mkfile_path)app/manage_train \
+    -I$(mkfile_path)app/recognize_image \
+    -I$(mkfile_path)app/search_route \
     -I$(mkfile_path)spike \
     -I$(mkfile_path)spike/calc \
     -I$(mkfile_path)spike/device \

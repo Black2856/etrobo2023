@@ -24,7 +24,9 @@ void Walker::run() {
   bool result;
   Manage_scenario manage_scenario; //シナリオ管理のインスタンス
   Manage_scene main("main"); //シーン管理のインスタンス(シナリオ名は"main")
-  main.makeTRACE(1, 20, -0.7, 0, 0.3); //シーンの作成
+  main.makeTRACE(1, 50, -1.0, 0, 0.3); //シーンの作成
+  main.makeTRACE(0, 10, -0.7, 0, 0.3); //シーンの作成
+  main.makeTRACE(2, 25, -0.7, 0, 0.3); //シーンの作成
   manage_scenario.add(main); //シナリオ管理に作成したシナリオを追加
   manage_scenario.update(); //シナリオのコンパイルを行う
 

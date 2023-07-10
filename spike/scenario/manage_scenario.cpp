@@ -15,6 +15,7 @@ void Manage_scenario::update(){
     Manage_scene* ms = findScenario("main");
     if(ms != nullptr){
         this->addScene(*ms);
+        printf("*シナリオ管理:コンパイル完了*\n")
     }else{
         printf("error at Manage_scenario::update() : mainが存在しません");
     }
@@ -44,13 +45,13 @@ bool Manage_scenario::execute(){
             lineTrace.Trace(argInfo.getFloatArg(0), argInfo.getFloatArg(1), argInfo.getFloatArg(2), argInfo.getFloatArg(3));
             break;
     }
-
+    
     //遷移条件
-    if(true == false){
+    if(true == stateTransition.judge(nowScene.getStateTransition())){
         this->executeIdx ++;
         printf("*遷移 => %d*\n", this->executeIdx);
     }
-    
+
     //終端かどうか
     if(this->compileScene.size()-1 < this->executeIdx){
         printf("*終了*\n");
