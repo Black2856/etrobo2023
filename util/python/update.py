@@ -30,7 +30,7 @@ def process(file_path):
     # 除外するファイル名
     pattern_file = re.compile(r'app|RearCamera|Net')
     # 除外するフォルダ名
-    pattern_folder = re.compile(r'build|設計')
+    pattern_folder = re.compile(r'unit|設計')
 
     ##### タグ置換要素の作成
     # 拡張子前の名前が同じであるファイルをカウント
