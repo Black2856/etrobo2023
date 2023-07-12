@@ -43,17 +43,16 @@ APPL_DIRS += \
     $(mkfile_path)PC/manage_train \
     $(mkfile_path)PC/recognize_image \
     $(mkfile_path)PC/search_route \
-    $(mkfile_path)app \
-    $(mkfile_path)app/manage_signal \
-    $(mkfile_path)app/manage_train \
-    $(mkfile_path)app/recognize_image \
-    $(mkfile_path)app/search_route \
     $(mkfile_path)spike \
     $(mkfile_path)spike/calc \
     $(mkfile_path)spike/device \
     $(mkfile_path)spike/judge \
     $(mkfile_path)spike/move \
     $(mkfile_path)spike/scenario \
+    $(mkfile_path)util \
+    $(mkfile_path)util/compile \
+    $(mkfile_path)util/fix \
+    $(mkfile_path)util/scenario \
 #</mk_dirs1>
 
 #<mk_dirs2>
@@ -63,17 +62,16 @@ INCLUDES += \
     -I$(mkfile_path)PC/manage_train \
     -I$(mkfile_path)PC/recognize_image \
     -I$(mkfile_path)PC/search_route \
-    -I$(mkfile_path)app \
-    -I$(mkfile_path)app/manage_signal \
-    -I$(mkfile_path)app/manage_train \
-    -I$(mkfile_path)app/recognize_image \
-    -I$(mkfile_path)app/search_route \
     -I$(mkfile_path)spike \
     -I$(mkfile_path)spike/calc \
     -I$(mkfile_path)spike/device \
     -I$(mkfile_path)spike/judge \
     -I$(mkfile_path)spike/move \
     -I$(mkfile_path)spike/scenario \
+    -I$(mkfile_path)util \
+    -I$(mkfile_path)util/compile \
+    -I$(mkfile_path)util/fix \
+    -I$(mkfile_path)util/scenario \
 #</mk_dirs2>
 
 COPTS += -DMAKE_EV3 -std=c++14 -std=c++1y

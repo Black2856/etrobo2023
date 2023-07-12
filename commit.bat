@@ -1,14 +1,17 @@
 @echo off
-
-call build/fix.bat
-
 setlocal
+
+cd /d %~dp0
+
+python util/fix/fix.py ./Makefile.inc
+python util/fix/fix.py ./app.cfg
+
 if "%~1"=="" (
     set comment="%date%_%time%"
 ) else (
     set comment="%~1"
 )
-cd /d %~dp0 && ^
+
 git add . & ^
 git commit -m %comment% & ^
 git push -f
