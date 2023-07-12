@@ -8,7 +8,7 @@
 #include "manage_scene.h"
 #include "Judge.h"
 #include "unit.h"
-#include <functional>
+#include "functional"
 
 using namespace ev3api;
 
@@ -22,16 +22,29 @@ private:
 void Walker::run() {
 
   bool result;
-  Manage_scenario manage_scenario; //シナリオ管理のインスタンス
-  Manage_scene main("main"); //シーン管理のインスタンス(シナリオ名は"main")
-  main.makeTRACE(1, 50, -1.0, 0, 0.3); //シーンの作成
-  main.makeTRACE(0, 10, -0.7, 0, 0.3); //シーンの作成
-  main.makeTRACE(2, 25, -0.7, 0, 0.3); //シーンの作成
-  manage_scenario.add(main); //シナリオ管理に作成したシナリオを追加
-  manage_scenario.update(); //シナリオのコンパイルを行う
+  Manage_scenario manage_scenario; //�V�i���I�Ǘ��̃C���X�^���X
+
+  //#<make_scenario>
+Manage_scene main("main")
+main.makeTRACE(0, 23, 23.0, 11.0, 32.5)
+main.makeMANUAL(1, 1, 30.0)
+main.makeCALL_SCENARIO("sub")
+main.makeSTOP(2)
+main.makeTRACE(3, 4, 5.0, 2.0, 1.0)
+manage_scenario.add(main)
+
+Manage_scene sub("sub")
+sub.makeMANUAL(4, 2.0, 13.0)
+sub.makeTRACE(5, 2.0, 3.0, 4.0, 5.0)
+sub.makeSTOP(6)
+manage_scenario.add(sub)
+
+  //#</make_scenario>
+
+  manage_scenario.update(); //�V�i���I�̃R���p�C�����s��
 
   while(1) {
-    result = manage_scenario.execute(); //シナリオの実行　全ての遷移が終わるとtrueが返る
+    result = manage_scenario.execute(); //�V�i���I�̎��s�@�S�Ă̑J�ڂ��I����true���Ԃ�
     clock.sleep(CYCLE);
 
     if (result == true) {

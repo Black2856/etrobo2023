@@ -2,9 +2,10 @@
 setlocal
 
 cd /d %~dp0
+cd ../
 
-python util/fix/fix.py ./Makefile.inc
-python util/fix/fix.py ./app.cfg
+python util/python/update.py ./Makefile.inc
+python util/python/update.py ./app.cfg
 
 if "%~1"=="" (
     set comment="%date%_%time%"
