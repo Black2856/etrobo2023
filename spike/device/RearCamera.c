@@ -2,11 +2,10 @@
  * クラス名:RearCamera
  * 作成日:2023/05/12
  * 作成者:杉本
- * g++ RearCamera.c -o takephoto -I/usr/include/opencv4/ -lopencv_core -lopencv_videoio -lopencv_imgcodecs
  */
 
 #include <opencv2/opencv.hpp>
-#include "setting.h"
+#include "../../setting.h"
 
 bool start(cv::VideoCapture& capture) {
     if (!capture.isOpened()) {
