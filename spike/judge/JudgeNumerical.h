@@ -10,7 +10,7 @@ class JudgeNumerical {
 public:
     JudgeNumerical();
 
-    bool judge(float target);
+    bool j(float target);
 
 protected:
     // 派生クラス毎に計測に使用する値を返却する

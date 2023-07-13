@@ -8,7 +8,7 @@ void arg_info_t::addFloatArg(float arg){
     this->floatArgs.push_back(arg);
     this->argIdx.push_back(0);
 }
-void arg_info_t::addStrArg(char* arg){
+void arg_info_t::addStrArg(const char* arg){
     this->strArgs.push_back(arg);
     this->argIdx.push_back(1);
 }
@@ -21,6 +21,6 @@ float arg_info_t::getFloatArg(int idx){
     return unit::getList(this->floatArgs, idx);
 }
 
-char* arg_info_t::getStrArg(int idx){
+const char* arg_info_t::getStrArg(int idx){
     return unit::getList(this->strArgs, idx);
 }

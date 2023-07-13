@@ -36,7 +36,7 @@ def showMakeCode(scenarioDF, codeB):
     manageScenario = 'manage_scenario'
 
     codeA = []
-    codeA.append(f'{className} {title}("{title}")')
+    codeA.append(f'{className} {title}("{title}");')
 
     #遷移条件の生成
     scList = scenarioDF['遷移条件'].dropna()
@@ -63,10 +63,10 @@ def showMakeCode(scenarioDF, codeB):
 
     #構文の生成
     for i, row in scenarioDF.iterrows():
-        string = f'{title}.make{row["動作"]}({stringArgs[i]})'
+        string = f'{title}.make{row["動作"]}({stringArgs[i]});'
         codeA.append(string)
 
-    codeA.append(f'{manageScenario}.add({title})')
+    codeA.append(f'{manageScenario}.add({title});')
 
     return codeA, codeB
 

@@ -17,10 +17,10 @@ public:
     static Judge& getInstance();
 
     // 各種インスタンス
-    JudgeAngle   judgeAngle;
-    JudgeMileage judgeMileage;
-    JudgeSonar   judgeSonar;
-    JudgeTime    judgeTime;
+    JudgeAngle   angle;
+    JudgeMileage mileage;
+    JudgeSonar   sonar;
+    JudgeTime    time;
 
 private:
 

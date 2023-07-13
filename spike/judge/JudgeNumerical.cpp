@@ -12,7 +12,7 @@ JudgeNumerical::JudgeNumerical():
     mStartFlg(false) {
 }
 
-bool JudgeNumerical::judge(float target) {
+bool JudgeNumerical::j(float target) {
     // 間隔がセットされていない場合
     if (!isStarted()) {
         setTarget(target);

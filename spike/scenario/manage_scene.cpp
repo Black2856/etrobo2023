@@ -4,7 +4,7 @@
  */
 #include "manage_scene.h"
 
-Manage_scene::Manage_scene(char* scenarioName){
+Manage_scene::Manage_scene(const char* scenarioName){
     this->scenarioName = scenarioName;
 }
 
@@ -19,7 +19,7 @@ void Manage_scene::makeTRACE(int stateTransition, float arg1, float arg2, float 
     scenario.push_back(scene);
 };
 
-void Manage_scene::makeCALL_SCENARIO(char* arg1){
+void Manage_scene::makeCALL_SCENARIO(const char* arg1){
     arg_info_t argInfo;
     argInfo.addStrArg(arg1);
     
@@ -27,10 +27,10 @@ void Manage_scene::makeCALL_SCENARIO(char* arg1){
     scenario.push_back(scene);
 }
 
-void Manage_scene::makeSTOP(){
+void Manage_scene::makeSTOP(int stateTransition){
     arg_info_t argInfo;
 
-    Scene scene(Execution::CALL_SCENARIO, argInfo);
+    Scene scene(Execution::STOP, argInfo, stateTransition);
     scenario.push_back(scene);
 }
 
@@ -39,11 +39,11 @@ void Manage_scene::makeMANUAL(int stateTransition, float arg1, float arg2){
     argInfo.addFloatArg(arg1);
     argInfo.addFloatArg(arg2);
 
-    Scene scene(Execution::CALL_SCENARIO, argInfo, stateTransition);
+    Scene scene(Execution::MANUAL, argInfo, stateTransition);
     scenario.push_back(scene);
 };
 
-char* Manage_scene::getName(){
+const char* Manage_scene::getName(){
     return this->scenarioName;
 }
 

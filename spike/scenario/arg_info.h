@@ -14,15 +14,15 @@ private:
     //要素ごとにどちらの型を使用するかを決定する。0:floatArgs, 1:strArgs
     std::list<int> argIdx;
     std::list<float> floatArgs;
-    std::list<char*> strArgs;
+    std::list<const char*> strArgs;
 
 public:
     void addFloatArg(float arg);
-    void addStrArg(char* arg);
+    void addStrArg(const char* arg);
 
     std::list<int> getArgIdx();
     float getFloatArg(int idx);
-    char* getStrArg(int idx);
+    const char* getStrArg(int idx);
 };
 
 #endif

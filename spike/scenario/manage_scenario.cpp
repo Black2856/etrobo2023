@@ -12,6 +12,7 @@ void Manage_scenario::add(Manage_scene manageScene){
 void Manage_scenario::update(){
     this->compileScene.clear();
     //mainシーン管理を追加
+
     Manage_scene* ms = findScenario("main");
     if(ms != nullptr){
         this->addScene(*ms);
@@ -66,7 +67,7 @@ void Manage_scenario::addScene(Manage_scene& manageScene){
     for(const Scene& x : scenes){
         if(x.getExecution() == Execution::CALL_SCENARIO){ // 実行がCALL_SCENARIOの場合再帰呼び出し
             arg_info_t args = x.getArgInfo();
-            char* name = args.getStrArg(0);
+            const char* name = args.getStrArg(0);
             Manage_scene* ms = findScenario(name);
             addScene(*ms); // CALL_SCENARIOのsceneの名前でシナリオを検索したものを追加する
         }else{
