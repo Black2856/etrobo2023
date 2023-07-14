@@ -10,12 +10,14 @@ import glob
 import re
 import sys
 
-from scenario_convert import deploy
+import scenario_convert
+
+expath = os.path.dirname(os.path.abspath(__file__)) #update.pyの場所
 
 def process(file_path):
-
-    #etrobo2023にcdを変更
-    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    #etroboのディレクトリに移動する
+    stackDir = os.getcwd()
+    os.chdir(expath)
     os.chdir("../../")
 
     # 抽出する拡張子
@@ -57,7 +59,7 @@ def process(file_path):
     mk_dirs2 = [f"    -I$(mkfile_path){x} \\" for x in mk_dirs0]
 
     # シナリオ、シーンの生成
-    mk_scenario, func_list = deploy("./util/scenario/scenario.xlsm")
+    mk_scenario, func_list = scenario_convert.deploy("./util/scenario/scenario.xlsm")
 
     # 昇順に並び替え
     mk_files = sorted(list(mk_files))
@@ -133,6 +135,8 @@ def process(file_path):
     for x in text:
         f.write(x)
     f.close()
+
+    os.chdir(stackDir)
 
 # コマンドライン引数の受け取り [1]:ファイルパス
 if __name__ == "__main__":

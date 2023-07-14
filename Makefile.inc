@@ -54,6 +54,7 @@ APPL_DIRS += \
     $(mkfile_path)util/python \
     $(mkfile_path)util/python/__pycache__ \
     $(mkfile_path)util/scenario \
+    $(mkfile_path)util/scenario/__pycache__ \
 #</mk_dirs1>
 
 #<mk_dirs2>
@@ -74,6 +75,7 @@ INCLUDES += \
     -I$(mkfile_path)util/python \
     -I$(mkfile_path)util/python/__pycache__ \
     -I$(mkfile_path)util/scenario \
+    -I$(mkfile_path)util/scenario/__pycache__ \
 #</mk_dirs2>
 
 COPTS += -DMAKE_EV3 -std=c++14 -std=c++1y

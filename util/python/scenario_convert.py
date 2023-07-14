@@ -7,12 +7,16 @@ import os
 import pandas as pd
 import numpy as np
 
-def loadSheet(filePath, manageSheetName):
-    #etrobo2023にcdを変更
-    os.chdir(os.path.dirname(os.path.abspath(__file__)))
-    os.chdir("../../")
+expath = os.path.dirname(os.path.abspath(__file__))#scenario_convert.pyの場所
 
+def loadSheet(filePath, manageSheetName):
+    #etroboのディレクトリに移動する
+    stackDir = os.getcwd()
+    os.chdir(expath)
+    os.chdir("../../")
     xls = pd.ExcelFile(filePath)
+    os.chdir(stackDir)
+
     manageDF = pd.read_excel(xls, manageSheetName)
     scenarioDFs = [pd.read_excel(xls, i) for i in manageDF['シナリオ名']]
     return scenarioDFs
