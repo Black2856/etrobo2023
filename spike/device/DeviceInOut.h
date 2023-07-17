@@ -13,6 +13,7 @@
 #include "ColorSensor.h"
 #include "Motor.h"
 #include "Clock.h"
+#include <vector>
 
 class DeviceInOut{ //deviceのSingleton管理クラス
 public:
@@ -61,6 +62,13 @@ public:
     // ENTER_BUTTON = 4
     bool        button_isPressed(button_t button);
 
+// camera
+    // 撮影待機リストにファイルネームを追加
+    void        camera_addToQueue(const char* fileName);
+    // 撮影開始
+    bool        camera_takePhoto();
+    // リスト内の列数を返却
+    int         camera_getQueueSize();
 
 private:
     // 各種インスタンス
@@ -78,6 +86,8 @@ private:
     // コピーおよび代入演算子は禁止
     DeviceInOut(DeviceInOut const&);
     void operator=(DeviceInOut const&);
+
+    std::vector<const char*> imgNameQueue;
 };
 
 #endif  // DEVICE_IN_OUT_H

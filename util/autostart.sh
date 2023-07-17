@@ -1,3 +1,7 @@
+cd $(dirname "$0")
+
+cd ../
+
 CFILE=$(basename $(pwd))
 
 if [ "$1" != "-r" ]; then
@@ -5,7 +9,7 @@ if [ "$1" != "-r" ]; then
     git reset --hard origin/main
 fi
 
-cd ../../
+cd ../
 chmod -R 755 ./etrobo2023
 
 rm asp

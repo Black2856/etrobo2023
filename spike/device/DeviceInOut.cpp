@@ -5,6 +5,8 @@
  */
 #include "DeviceInOut.h"
 #include "setting.h"
+// 以下cameraに使用
+#include <cstdio>
 
 DeviceInOut* DeviceInOut::instance = NULL;
 
@@ -100,4 +102,45 @@ int DeviceInOut::battery_getVoltage() {
 /* button */
 bool DeviceInOut::button_isPressed(button_t button) {
     return ev3_button_is_pressed(button);
+}
+
+/* camera */
+void DeviceInOut::camera_addToQueue(const char* fileName) {
+    this->imgNameQueue.push_back(fileName);
+}
+
+bool DeviceInOut::camera_takePhoto() {
+    FILE *fp = fopen(IMG_QUEUE_PATH,"a");
+    if (fp == NULL) {
+		printf("撮影待機リストファイルを開けませんでした。\n");
+        return false;
+	}
+    printf("以下のファイル名で画像を撮影、保存します。\n");
+    for(auto name : imgNameQueue) {
+        fprintf(fp,"%s\n", name);
+        printf("%s\n", name);
+    }
+    imgNameQueue.clear();
+    fclose(fp);
+    return true;
+}
+
+int DeviceInOut::camera_getQueueSize() {
+    FILE* fp = std::fopen(IMG_QUEUE_PATH, "r");
+    if (fp == NULL) {
+		printf("撮影待機リストファイルを開けませんでした。\n");
+        return 0;
+	}
+
+    int lineCount = 0;
+    int ch;
+    while ((ch = std::fgetc(fp)) != EOF) {
+        if (ch == '\n') {
+            lineCount++;
+        }
+    }
+
+    std::fclose(fp);
+
+    return lineCount;
 }
