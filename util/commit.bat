@@ -2,6 +2,7 @@
 setlocal
 
 cd /d %~dp0
+cd ../
 
 python util/python/update.py ./Makefile.inc
 python util/python/update.py ./app.cfg
