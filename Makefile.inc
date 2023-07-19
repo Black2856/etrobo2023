@@ -16,6 +16,7 @@ APPL_CXXOBJS += \
     LineTrace.o \
     Localization.o \
     PIDControl.o \
+    PWMCalc.o \
     RGBtoHSV.o \
     SpeedCorrection.o \
     arg_info.o \
