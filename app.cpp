@@ -26,7 +26,7 @@ void Walker::run() {
   //#<make_scenario>
 Manage_scene main("main");
 main.makeTRACE(0, 25, -0.7, 0.0, 0.3);
-main.makeTRACE(1, 60, -1.2, 0.0, 0.7);
+main.makeTRACE(1, 50, -1.2, 0.0, 0.7);
 main.makeCALL_SCENARIO("sub");
 main.makeSTOP(2);
 manage_scenario.add(main);
