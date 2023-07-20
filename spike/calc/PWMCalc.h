@@ -15,10 +15,7 @@ public:
     void setPWM(int pwm, float time);
 
 private:
-    float duration;
-    int nowPWM;
     int beforePWM;
-    float changeTime;
 
     SpeedCorrection speedCorrection;
 };

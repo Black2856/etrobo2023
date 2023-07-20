@@ -22,46 +22,6 @@ void Manage_scenario::update(){
     }
 }
 
-bool Manage_scenario::execute(){
-    //終端かどうか
-    if(this->compileScene.size() - 1 < this->executeIdx){
-        return true; //終了
-    }
-
-    //Execution execution = this->compileScene[this->executeIdx].getExecution();
-    Scene nowScene = unit::getList(this->compileScene, this->executeIdx);
-    Execution execution = nowScene.getExecution();
-    arg_info_t argInfo = nowScene.getArgInfo();
-
-    //各動作による呼び出し処理
-    switch(execution){
-        case Execution::CALL_SCENARIO:
-            printf("error at Manage_scenario::execute() : CALL_SCENARIOが到達");
-            break;
-        case Execution::MANUAL:
-            break;
-        case Execution::STOP:
-            break;
-        case Execution::TRACE:
-            lineTrace.Trace(argInfo.getFloatArg(0), argInfo.getFloatArg(1), argInfo.getFloatArg(2), argInfo.getFloatArg(3));
-            break;
-    }
-    
-    //遷移条件
-    if(true == stateTransition.judge(nowScene.getStateTransition())){
-        this->executeIdx ++;
-        printf("*遷移 => %d*\n", this->executeIdx);
-    }
-
-    //終端かどうか
-    if(this->compileScene.size()-1 < this->executeIdx){
-        printf("*終了*\n");
-        return true; //終了
-    }else{
-        return false;
-    }
-}
-
 void Manage_scenario::addScene(Manage_scene& manageScene){
     const std::list<Scene> scenes = manageScene.getScenes(); // scene配列の取得
     for(const Scene& x : scenes){
@@ -84,4 +44,78 @@ Manage_scene* Manage_scenario::findScenario(const char* name){
         }
     }
     return nullptr;
+}
+
+bool Manage_scenario::execute(){
+    //終端かどうか
+    if(this->compileScene.size() - 1 < this->executeIdx){
+        return true; //終了
+    }
+
+    //Secne情報の取得
+    Scene nowScene = unit::getList(this->compileScene, this->executeIdx);
+    Execution execution = nowScene.getExecution();
+    arg_info_t argInfo = nowScene.getArgInfo();
+
+    //各動作による呼び出し処理
+    if(this->isFirst == true){
+        this->first(execution, argInfo);
+        this->isFirst = false;
+    }
+    this->intermediate(execution, argInfo);
+    
+    //遷移条件
+    if(true == stateTransition.judge(nowScene.getStateTransition())){
+        this->end(execution, argInfo);
+
+        this->isFirst = true;
+        this->executeIdx ++;
+        printf("*遷移 => %d*\n", this->executeIdx);
+    }
+
+    //終端かどうか
+    if(this->compileScene.size()-1 < this->executeIdx){
+        printf("*終了*\n");
+        return true; //終了
+    }else{
+        return false;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+void Manage_scenario::first(Execution execution, arg_info_t argInfo){
+    switch(execution){
+        case Execution::TRACE:
+            this->lineTrace.first(argInfo.getFloatArg(0), argInfo.getFloatArg(1), argInfo.getFloatArg(2), argInfo.getFloatArg(3));
+            break;
+        default:
+            break;
+    }
+}
+
+void Manage_scenario::intermediate(Execution execution, arg_info_t argInfo){
+    switch(execution){
+        case Execution::CALL_SCENARIO:
+            printf("error at Manage_scenario::execute() : CALL_SCENARIOが到達");
+            break;
+        case Execution::MANUAL:
+            break;
+        case Execution::STOP:
+            break;
+        case Execution::TRACE:
+            this->lineTrace.trace(argInfo.getFloatArg(0), argInfo.getFloatArg(1), argInfo.getFloatArg(2), argInfo.getFloatArg(3));
+            break;
+        default:
+            break;
+    }
+}
+
+void Manage_scenario::end(Execution execution, arg_info_t argInfo){
+    switch(execution){
+        case Execution::CALL_SCENARIO:
+            printf("error at Manage_scenario::execute() : CALL_SCENARIOが到達");
+            break;
+        default:
+            break;
+    }
 }

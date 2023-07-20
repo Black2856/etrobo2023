@@ -9,15 +9,18 @@
 #include "unit.h"
 #include "PIDControl.h"
 #include "DeviceInOut.h"
+#include "Calc.h"
 
 class LineTrace {
 public:
     LineTrace();
-    void Trace(int pwm, float kp, float ki, float kd);
+    void first(int pwm, float kp, float ki, float kd);
+    void trace(int pwm, float kp, float ki, float kd);
 private:
     DeviceInOut& device;
+    Calc& calc = Calc::getInstance();
     PIDControl pidControl;
-    unit::calibration cal;
+    unit::calibration calibration;
 };
 
 #endif  // LINE_TRACE_H

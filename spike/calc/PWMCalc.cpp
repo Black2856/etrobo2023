@@ -7,19 +7,15 @@
 #include "PWMCalc.h"
 
 PWMCalc::PWMCalc(){
-    this->nowPWM = 0;
     this->beforePWM = 0;
-    this->duration = 0.5;
 }
 
 int PWMCalc::changePWM(){
-    return this->speedCorrection.calc();
+    return int(this->speedCorrection.calc() + 0.5);
 }
 
 void PWMCalc::setPWM(int pwm, float time){
-    this->beforePWM = this->nowPWM;
-    this->nowPWM = pwm;
-    this->changeTime = time;
+    this->speedCorrection.init(this->beforePWM, pwm, time, easing_t::IN_OUT_QUAD);
 
-    this->speedCorrection.init(pwm, this->nowPWM, this->duration);
+    this->beforePWM = pwm;
 }

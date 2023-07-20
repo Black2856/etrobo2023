@@ -11,7 +11,7 @@ SpeedCorrection::SpeedCorrection():
     mTargetValue(0),
     mDuration(0),
     mInitialTime(0),
-    mEasing(IN_OUT_QUAD)
+    mEasing(easing_t::IN_OUT_QUAD)
     {}
 
 // 各値の初期化
@@ -19,35 +19,34 @@ void SpeedCorrection::init(float initialValue, float targetValue, float duration
     mInitialValue = initialValue;
     mTargetValue = targetValue;
     // secからusecに変換
-    mDuration = static_cast<uint64_t>(1000 * 1000 * duration);
-    mInitialTime = device.clock_now();
+    mDuration = int(duration * 1000);
+    mInitialTime = int(device.clock_now() / 1000);
     mEasing = easing;
 }
 
 float SpeedCorrection::calc() {
     // 経過時間
-    uint64_t elapsed = device.clock_now() - mInitialTime;
+    int elapsed = int(device.clock_now() / 1000 - mInitialTime);
     if (elapsed >= mDuration) {
         return mTargetValue;
     }
-    float progress = elapsed / mDuration;
+    float progress = float(elapsed) / float(mDuration);
 
     switch (mEasing) {
-    case IN_OUT_QUAD:
-        return easeInOutQuad(progress);
-    default:
-        return easeInOutQuad(progress);
-    }
-
-    ;
+        case easing_t::IN_OUT_QUAD:
+            return mInitialValue + easeInOutQuad(progress) * (mTargetValue - mInitialValue);
+        default:
+            return mInitialValue + easeInOutQuad(progress) * (mTargetValue - mInitialValue);
+    };
 }
 
-
 float SpeedCorrection::easeInOutQuad(float x) {
+    float ret;
     if (x < 0.5) {
-        return 2 * x * x;
+        ret = 2 * x * x;
     } else {
-        float t = -2 * x + 2;
-        return 1 - (t * t) / 2;
+        float t = -2.0 * x + 2.0;
+        ret = 1.0 - (t * t) / 2.0;
     }
+    return ret;
 }

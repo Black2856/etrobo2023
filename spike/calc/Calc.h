@@ -9,6 +9,7 @@
 #include "Localization.h"
 #include "RGBtoHSV.h"
 #include "SpeedCorrection.h"
+#include "PWMCalc.h"
 
 class Calc {
 public:
@@ -18,7 +19,7 @@ public:
     // 各種インスタンス
     Localization&   localization;
     RGBtoHSV        rgb2hsv;
-    SpeedCorrection speedCorrection;
+    PWMCalc         pwmCalc;
 
 private:
 

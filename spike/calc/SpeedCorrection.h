@@ -8,18 +8,16 @@
 
 #include "DeviceInOut.h"
 
+enum class easing_t {
+    IN_OUT_QUAD = 1
+};
+
 class SpeedCorrection {  // <1>
 public:
     SpeedCorrection();
 
-    enum easing_t {
-        IN_OUT_QUAD
-    };
-
-    void init(float initialValue, float targetValue, float duration, easing_t easing = IN_OUT_QUAD);
+    void init(float initialValue, float targetValue, float duration, easing_t easing);
     float calc();
-
-
 
 private:
     DeviceInOut& device;
@@ -28,9 +26,9 @@ private:
     // 目標値
     float mTargetValue;
     // 制御の継続時間
-    uint64_t mDuration;
+    int mDuration;
     // 制御開始時間
-    uint64_t mInitialTime;
+    int mInitialTime;
     // イージング関数種別
     easing_t mEasing;
 

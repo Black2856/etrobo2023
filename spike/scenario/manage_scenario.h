@@ -24,11 +24,17 @@ public:
     void update(); //scene管理クラス(シナリオデータ)から各シーンへのコンパイル
     bool execute(); //return : sceneのIdxが最後かどうか
 
+    void first(Execution execution, arg_info_t argInfo);
+    void intermediate(Execution execution, arg_info_t argInfo);
+    void end(Execution execution, arg_info_t argInfo);
+
 private:
     StateTransition stateTransition;
     std::list<Scene> compileScene;
     std::list<Manage_scene> scenarioList;
     uint16_t executeIdx = 0;
+    bool isFirst = true;
+    
     //動作のインスタンス
     LineTrace lineTrace;
 
