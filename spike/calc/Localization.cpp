@@ -32,13 +32,13 @@ void Localization::update() {
 
 /* 走行距離を取得（mm） */
 float Localization::getDistance() {
-    this->update();
+    this->update(); //同時期のタスクで記録パッケージに存在したらそこから取得
     return distance;
 }
 
 /* 車体角度を取得（deg） */
 float Localization::getDirection() {
-    this->update();
+    this->update(); //同時期のタスクで記録パッケージに存在したらそこから取得
     return direction;
 }
 

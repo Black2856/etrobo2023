@@ -23,6 +23,10 @@ public:
     /* 車体角度を取得（deg） */
     float getDirection();
 
+    /* タイヤ間の回転角度差を取得 */
+
+    /* タイヤ間の回転角度差をリセットする */
+
 private:
 
     Localization(); // プライベートコンストラクタ
