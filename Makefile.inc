@@ -21,6 +21,7 @@ APPL_CXXOBJS += \
     PWMCalc.o \
     RGBtoHSV.o \
     SpeedCorrection.o \
+    Stop.o \
     arg_info.o \
     manage_scenario.o \
     manage_scene.o \
