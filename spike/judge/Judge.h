@@ -10,6 +10,7 @@
 #include "JudgeMileage.h"
 #include "JudgeSonar.h"
 #include "JudgeTime.h"
+#include "JudgeReturn.h"
 #include "JudgeTouch.h"
 
 class Judge {
@@ -22,7 +23,7 @@ public:
     JudgeMileage mileage;
     JudgeSonar   sonar;
     JudgeTime    time;
-    JudgeTouch   touch;
+    JudgeReturn  ret;
 
 private:
 

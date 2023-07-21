@@ -11,8 +11,10 @@ APPL_CXXOBJS += \
     JudgeAngle.o \
     JudgeMileage.o \
     JudgeNumerical.o \
+    JudgeReturn.o \
     JudgeSonar.o \
     JudgeTime.o \
+    JudgeTouch.o \
     LineTrace.o \
     Localization.o \
     PIDControl.o \

@@ -62,8 +62,12 @@ bool Manage_scenario::execute(){
         this->first(execution, argInfo);
         this->isFirst = false;
     }
-    this->intermediate(execution, argInfo);
     
+    bool flag = this->intermediate(execution, argInfo);
+    //動作の返り値を判定に入れる
+    Judge& j = Judge::getInstance();
+    j.ret.setFlag(flag);
+
     //遷移条件
     if(true == stateTransition.judge(nowScene.getStateTransition())){
         this->end(execution, argInfo);
@@ -83,7 +87,7 @@ bool Manage_scenario::execute(){
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
-void Manage_scenario::first(Execution execution, arg_info_t argInfo){
+void Manage_scenario::first(Execution& execution, arg_info_t& argInfo){
     switch(execution){
         case Execution::TRACE:
             this->lineTrace.first(argInfo.getFloatArg(0), argInfo.getFloatArg(1), argInfo.getFloatArg(2), argInfo.getFloatArg(3));
@@ -93,7 +97,8 @@ void Manage_scenario::first(Execution execution, arg_info_t argInfo){
     }
 }
 
-void Manage_scenario::intermediate(Execution execution, arg_info_t argInfo){
+bool Manage_scenario::intermediate(Execution& execution, arg_info_t& argInfo){
+    bool flag = false;
     switch(execution){
         case Execution::CALL_SCENARIO:
             printf("error at Manage_scenario::execute() : CALL_SCENARIOが到達");
@@ -108,13 +113,11 @@ void Manage_scenario::intermediate(Execution execution, arg_info_t argInfo){
         default:
             break;
     }
+    return flag;
 }
 
-void Manage_scenario::end(Execution execution, arg_info_t argInfo){
+void Manage_scenario::end(Execution& execution, arg_info_t& argInfo){
     switch(execution){
-        case Execution::CALL_SCENARIO:
-            printf("error at Manage_scenario::execute() : CALL_SCENARIOが到達");
-            break;
         default:
             break;
     }
