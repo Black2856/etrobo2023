@@ -9,6 +9,10 @@ JudgeTouch::JudgeTouch():
     device(DeviceInOut::getInstance()){
 }
 
-float JudgeTouch::getValue() const {
-    return device.touch_isPressed();
+bool JudgeTouch::j(bool flag){
+    return this->flag;
+}
+
+void JudgeTouch::setFlag(bool flag){
+    this->flag=device.touch_isPressed();
 }

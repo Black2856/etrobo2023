@@ -11,9 +11,11 @@
 class JudgeTouch {
 public:
     JudgeTouch();
+    bool j(bool flag);
+    void setFlag(bool flag);
 private:
-    float getValue() const override;
+    bool flag;
     DeviceInOut& device;
 };
 
-#endif  // JUDGE_ANGLE_H
+#endif  // JUDGE_TOUCH_H
