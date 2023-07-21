@@ -11,7 +11,7 @@ bool StateTransition::judge(int idx){
     FuncList funcList;
     std::function<bool(Judge& j)> func;
 
-    switch(idx):
+    switch(idx){
     //#<func_list>
         case 0: func = [](Judge& j) {return j.mileage.j(1000);}; break;
         case 1: func = [](Judge& j) {return (j.angle.j(90) and j.sonar.j(10));}; break;
@@ -22,5 +22,7 @@ bool StateTransition::judge(int idx){
         case 6: func = [](Judge& j) {return j.time.j(1500 * 1000);}; break;
     //#</func_list>
         default: return true;
+    }
+    
     return func(j);
 }
