@@ -15,6 +15,6 @@ if "%~1"=="" (
 
 git add . & ^
 git commit -m %comment% & ^
-git push -f
+git push
 
 exit /b 0
