@@ -24,9 +24,9 @@ public:
     void update(); //scene管理クラス(シナリオデータ)から各シーンへのコンパイル
     bool execute(); //return : sceneのIdxが最後かどうか
 
-    void first(Execution execution, arg_info_t argInfo);
-    void intermediate(Execution execution, arg_info_t argInfo);
-    void end(Execution execution, arg_info_t argInfo);
+    void first(Execution& execution, arg_info_t& argInfo); //シーン遷移時に動作させるプログラム
+    bool intermediate(Execution& execution, arg_info_t& argInfo); //シーン中に動作させるプログラム
+    void end(Execution& execution, arg_info_t& argInfo); //シーン終了時に動作させるプログラム
 
 private:
     StateTransition stateTransition;
