@@ -1,0 +1,6 @@
+### Python ###
+__pycache__/
+### C++ ###
+*.o
+### model ###
+*.lock
