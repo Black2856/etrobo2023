@@ -24,13 +24,14 @@ def loadSheet(filePath, manageSheetName):
 def showFunc(codeB):
     'カンマ追加'
     for i, itemi in enumerate(codeB):
-        if i == len(codeB) - 1:
-            codeB[i] = f'{codeB[i]}'
-        else:
-            codeB[i] = f'{codeB[i]},'
+        codeB[i] = f'        case {i}: {codeB[i]} break;'
+    #    if i == len(codeB) - 1:
+    #        codeB[i] = f'{codeB[i]}'
+    #    else:
+    #        codeB[i] = f'{codeB[i]}'
 
-    codeB.insert(0, f'std::function<bool(Judge& j)> list[{len(codeB)}] = {{')
-    codeB.append(f'}};')
+    #codeB.insert(0, f'std::function<bool(Judge& j)> list[{len(codeB)}] = {{')
+    #codeB.append(f'}};')
     return codeB
 
 def showMakeCode(scenarioDF, codeB):
@@ -45,7 +46,7 @@ def showMakeCode(scenarioDF, codeB):
     #遷移条件の生成
     scList = scenarioDF['遷移条件'].dropna()
     for i, itemi in enumerate(scList):
-        string = f'    [](Judge& j) {{return {itemi};}}'
+        string = f'func = [](Judge& j) {{return {itemi};}};'
         codeB.append(string)
 
     #引数に遷移条件を付与

@@ -24,6 +24,7 @@ public:
     JudgeSonar   sonar;
     JudgeTime    time;
     JudgeReturn  ret;
+    JudgeTouch   touch;
 
 private:
 

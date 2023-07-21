@@ -20,13 +20,12 @@ private:
 };
 
 void Walker::run() {
-  clock.sleep(1000 * 1000 * 30);
   bool result;
   Manage_scenario manage_scenario;
 
   //#<make_scenario>
 Manage_scene main("main");
-main.makeTRACE(0, 10, -0.7, 0.0, 0.3);
+main.makeSTOP(0);
 main.makeTRACE(1, 70, -1.4, 0.0, 0.7);
 main.makeTRACE(2, 40, -1.0, 0.0, 0.7);
 main.makeTRACE(3, 15, -0.7, 0.0, 0.4);

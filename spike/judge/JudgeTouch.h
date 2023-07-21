@@ -12,9 +12,7 @@ class JudgeTouch {
 public:
     JudgeTouch();
     bool j(bool flag);
-    void setFlag(bool flag);
 private:
-    bool flag;
     DeviceInOut& device;
 };
 

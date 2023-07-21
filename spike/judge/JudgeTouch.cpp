@@ -10,9 +10,5 @@ JudgeTouch::JudgeTouch():
 }
 
 bool JudgeTouch::j(bool flag){
-    return this->flag;
-}
-
-void JudgeTouch::setFlag(bool flag){
-    this->flag=device.touch_isPressed();
+    return device.touch_isPressed();
 }

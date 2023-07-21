@@ -6,9 +6,9 @@ sys.path.append("../python")
 from update import process
 
 def convert():
-    process('./spike/scenario/func_list.h')
+    process('./spike/scenario/state_transition.cpp')
     process('./app.cpp')
 
 if __name__ == "__main__":
-    process('./spike/scenario/func_list.h')
+    process('./spike/scenario/state_transition.cpp')
     process('./app.cpp')
