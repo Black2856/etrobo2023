@@ -5,8 +5,7 @@
  */
 #include "JudgeTouch.h"
 
-JudgeTime::JudgeTouch():
-    JudgeNumerical(),
+JudgeTouch::JudgeTouch():
     device(DeviceInOut::getInstance()){
 }
 

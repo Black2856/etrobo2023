@@ -6,10 +6,9 @@
 #ifndef JUDGE_TOUCH_H
 #define JUDGE_TOUCH_H
 
-#include "JudgeNumerical.h"
 #include "DeviceInOut.h"
 
-class JudgeTouch :public JudgeNumerical{
+class JudgeTouch {
 public:
     JudgeTouch();
 private:
