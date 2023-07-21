@@ -7,7 +7,6 @@
 
 #include "unit.h"
 #include "Judge.h"
-#include "func_list.h"
 #include <functional>
 
 class StateTransition{
