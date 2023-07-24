@@ -42,6 +42,19 @@ float Localization::getDirection() {
     return direction;
 }
 
+float Localization::getDifferenceCount() {
+    this->update();
+    float differenceL = this->distanceL - this->offsetL;
+    float differenceR = this->distanceR - this->offsetR;
+    return differenceL - differenceR;
+}
+
+void Localization::resetDifferenceCount() {
+    this->update();
+    this->offsetL =  this->distanceL;
+    this->offsetR =  this->distanceR;
+}
+
 float Localization::calcDistance() {
     //左モータ回転角度の現在値
     float cur_angleL = device.LWheel_getCount();

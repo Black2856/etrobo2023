@@ -24,8 +24,9 @@ public:
     float getDirection();
 
     /* タイヤ間の回転角度差を取得 */
-
+    float getDifferenceCount();
     /* タイヤ間の回転角度差をリセットする */
+    void resetDifferenceCount();
 
 private:
 
@@ -45,6 +46,8 @@ private:
 
     // 各タイヤの走行距離
     float distanceL, distanceR;
+    // 各タイヤのオフセット距離
+    float offsetL, offsetR;
     // 車体総走行距離
     float distance;
     // 車体角度

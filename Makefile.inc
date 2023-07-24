@@ -17,6 +17,7 @@ APPL_CXXOBJS += \
     JudgeTouch.o \
     LineTrace.o \
     Localization.o \
+    Manual.o \
     PIDControl.o \
     PWMCalc.o \
     RGBtoHSV.o \
