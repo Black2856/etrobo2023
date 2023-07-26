@@ -1,9 +1,9 @@
 /*
 クラス名:Calibration
 作成日:2023/7/26
-作成者:
+作成者:船田
 */
-#ifdef CALIBRATION_H
+#ifndef CALIBRATION_H
 #define CALIBRATION_H
 
 #include "Manual.h"

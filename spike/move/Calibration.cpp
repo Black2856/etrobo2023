@@ -1,7 +1,7 @@
 /*
 クラス名:Calibration
-作成日:
-作成者:
+作成日:2023/7/26
+作成者:船田
 */
 #include "Calibration.h"
 
@@ -11,7 +11,7 @@ Calibration::Calibration():
 
 
 bool Calibration::execute(float pwm){
-
+    return false;
 }
 
 void Calibration::getFase(){
