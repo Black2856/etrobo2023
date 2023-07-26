@@ -89,11 +89,14 @@ bool Manage_scenario::execute(){
 /////////////////////////////////////////////////////////////////////////////////////////
 void Manage_scenario::first(Execution& execution, arg_info_t& argInfo){
     switch(execution){
-        case Execution::TRACE:
-            this->lineTrace.first(argInfo.getFloatArg(0), argInfo.getFloatArg(1), argInfo.getFloatArg(2), argInfo.getFloatArg(3));
-            break;
         case Execution::STOP:
-            this->stop.first();
+            this->stop.first(argInfo.getFloatArg(0));
+            break;
+        case Execution::TRACE:
+            this->lineTrace.first(argInfo.getFloatArg(0), argInfo.getFloatArg(1), argInfo.getFloatArg(2), argInfo.getFloatArg(3), argInfo.getFloatArg(4));
+            break;
+        case Execution::MANUAL:
+            this->manual.first((RunType)int(argInfo.getFloatArg(0)), argInfo.getFloatArg(1), argInfo.getFloatArg(2));
             break;
         default:
             break;
@@ -106,10 +109,14 @@ bool Manage_scenario::intermediate(Execution& execution, arg_info_t& argInfo){
         case Execution::CALL_SCENARIO:
             printf("error at Manage_scenario::execute() : CALL_SCENARIOが到達");
             break;
+        case Execution::STOP:
+            flag = this->stop.execute(argInfo.getFloatArg(0));
+            break;
         case Execution::MANUAL:
+            this->manual.execute((RunType)int(argInfo.getFloatArg(0)), argInfo.getFloatArg(1), argInfo.getFloatArg(2));
             break;
         case Execution::TRACE:
-            this->lineTrace.trace(argInfo.getFloatArg(0), argInfo.getFloatArg(1), argInfo.getFloatArg(2), argInfo.getFloatArg(3));
+            this->lineTrace.trace(argInfo.getFloatArg(0), argInfo.getFloatArg(1), argInfo.getFloatArg(2), argInfo.getFloatArg(3), argInfo.getFloatArg(4));
             break;
         default:
             break;

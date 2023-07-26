@@ -15,6 +15,7 @@
 
 #include "LineTrace.h"
 #include "Stop.h"
+#include "Manual.h"
 
 #include <cstring>
 #include <list>
@@ -39,6 +40,7 @@ private:
     //動作のインスタンス
     LineTrace lineTrace;
     Stop stop;
+    Manual manual;
 
     void addScene(Manage_scene& manageScene); //１つシーン管理クラスをコンパイルする
     Manage_scene* findScenario(const char* name); //シーン管理クラスから特定の名前のシナリオを取得する

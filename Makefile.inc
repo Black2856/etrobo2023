@@ -6,6 +6,7 @@ APPL_COBJS +=
 #<mk_files>
 APPL_CXXOBJS += \
     Calc.o \
+    Calibration.o \
     DeviceInOut.o \
     Judge.o \
     JudgeAngle.o \
@@ -18,6 +19,7 @@ APPL_CXXOBJS += \
     LineTrace.o \
     Localization.o \
     Manual.o \
+    OnLineMove.o \
     PIDControl.o \
     PWMCalc.o \
     RGBtoHSV.o \

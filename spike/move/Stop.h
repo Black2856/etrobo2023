@@ -7,13 +7,16 @@
 #define LINE_TRACE_H
 
 #include "DeviceInOut.h"
+#include "Calc.h"
 
 class Stop {
 public:
     Stop();
-    void first();
+    void first(float pwmTransitionTime);
+    bool execute(float pwmTransitionTime);
 private:
     DeviceInOut& device;
+    Calc& calc = Calc::getInstance();
 };
 
 #endif  // LINE_TRACE_H

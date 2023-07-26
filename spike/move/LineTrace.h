@@ -14,8 +14,8 @@
 class LineTrace {
 public:
     LineTrace();
-    void first(int pwm, float kp, float ki, float kd);
-    void trace(int pwm, float kp, float ki, float kd);
+    void first(float pwm, float kp, float ki, float kd, float pwmTransitionTime);
+    void trace(float pwm, float kp, float ki, float kd, float pwmTransitionTime);
 private:
     DeviceInOut& device;
     Calc& calc = Calc::getInstance();

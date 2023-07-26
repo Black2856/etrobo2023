@@ -8,12 +8,13 @@ Manage_scene::Manage_scene(const char* scenarioName){
     this->scenarioName = scenarioName;
 }
 
-void Manage_scene::makeTRACE(int stateTransition, float arg1, float arg2, float arg3, float arg4){
+void Manage_scene::makeTRACE(int stateTransition, float arg1, float arg2, float arg3, float arg4, float arg5){
     arg_info_t argInfo;
     argInfo.addFloatArg(arg1);
     argInfo.addFloatArg(arg2);
     argInfo.addFloatArg(arg3);
     argInfo.addFloatArg(arg4);
+    argInfo.addFloatArg(arg5);
 
     Scene scene(Execution::TRACE, argInfo, stateTransition);
     scenario.push_back(scene);
@@ -27,17 +28,19 @@ void Manage_scene::makeCALL_SCENARIO(const char* arg1){
     scenario.push_back(scene);
 }
 
-void Manage_scene::makeSTOP(int stateTransition){
+void Manage_scene::makeSTOP(int stateTransition, float arg1){
     arg_info_t argInfo;
+    argInfo.addFloatArg(arg1);
 
     Scene scene(Execution::STOP, argInfo, stateTransition);
     scenario.push_back(scene);
 }
 
-void Manage_scene::makeMANUAL(int stateTransition, float arg1, float arg2){
+void Manage_scene::makeMANUAL(int stateTransition, float arg1, float arg2, float arg3){
     arg_info_t argInfo;
     argInfo.addFloatArg(arg1);
     argInfo.addFloatArg(arg2);
+    argInfo.addFloatArg(arg3);
 
     Scene scene(Execution::MANUAL, argInfo, stateTransition);
     scenario.push_back(scene);

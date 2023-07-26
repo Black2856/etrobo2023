@@ -10,17 +10,17 @@ LineTrace::LineTrace():
         this->calibration = {0, 0, 0};
     }
 
-void LineTrace::first(int pwm, float kp, float ki, float kd){
-    this->calc.pwmCalc.setPWM(pwm, 0.5);
+void LineTrace::first(float pwm, float kp, float ki, float kd, float pwmTransitionTime){
+    this->calc.pwmCalc.setPWM(pwm, pwmTransitionTime);
     this->pidControl.setPID({kp, ki, kd});
     this->calibration = {10, 20, 15}; //記録パッケージからキャリブレーションを読み込む予定
 }
 
-void LineTrace::trace(int pwm, float kp, float ki, float kd){
-    int correctionPWM = calc.pwmCalc.changePWM();
+void LineTrace::trace(float pwm, float kp, float ki, float kd, float pwmTransitionTime){
+    int correctionPWM = this->calc.pwmCalc.changePWM();
     //printf("%d\n", correctionPWM);
-    float gain = pidControl.calc(device.color_getBrightness(), calibration.avg);
+    float gain = this->pidControl.calc(device.color_getBrightness(), this->calibration.avg);
 
-    device.LWheel_setPWM(correctionPWM - int(gain + 0.5));
-    device.RWheel_setPWM(correctionPWM + int(gain + 0.5));
+    this->device.LWheel_setPWM(correctionPWM - int(gain + 0.5));
+    this->device.RWheel_setPWM(correctionPWM + int(gain + 0.5));
 }

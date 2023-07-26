@@ -7,17 +7,31 @@
 #define MANUAL_H
 
 #include "Calc.h"
+#include <cmath>
+
+enum class RunType {
+    STRAIGHT = 1,
+    CENTER_ROTATION = 2,
+    LEFT_WHEEL_ROTATION = 3,
+    RIGHT_WHEEL_ROTATION = 4
+};
 
 class Manual {
 public:
-    void execute();
-    void straight();
-    void centerRotation();
-    void wheelRotation();
+    Manual();
+    void first(RunType runType, float pwm, float pwmTransitionTime);
+    void execute(RunType runType, float pwm, float pwmTransitionTime);
 
 private:
+    void straight();
+    void centerRotation();
+    void wheelRotation(int wheel);
+
+    //基準の車体角度
+    float standardDirection;
+
     DeviceInOut& device;
     Calc& calc = Calc::getInstance();
-}
+};
 
 #endif  // MANUAL_H
