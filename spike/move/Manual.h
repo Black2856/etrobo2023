@@ -19,8 +19,10 @@ enum class RunType {
 class Manual {
 public:
     Manual();
+    void setPWM(float pwm, float pwmTransitionTime);
+
     void first(RunType runType, float pwm, float pwmTransitionTime);
-    void execute(RunType runType, float pwm, float pwmTransitionTime);
+    void execute();
 
 private:
     void straight();
@@ -29,6 +31,7 @@ private:
 
     //基準の車体角度
     float standardDirection;
+    RunType runType;
 
     DeviceInOut& device;
     Calc& calc = Calc::getInstance();

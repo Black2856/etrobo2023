@@ -13,7 +13,7 @@ void Stop::first(float pwmTransitionTime){
     this->calc.pwmCalc.setPWM(0, pwmTransitionTime);
 }
 
-bool Stop::execute(float pwmTransitionTime){ //pwmが0に達したらtrueを返す
+bool Stop::execute(){ //pwmが0に達したらtrueを返す
     int correctionPWM = this->calc.pwmCalc.changePWM();
     
     this->device.LWheel_setPWM(correctionPWM);

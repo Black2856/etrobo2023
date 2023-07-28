@@ -20,7 +20,7 @@ public:
 
 private:
     arg_info_t argInfo;
-    int stateTransition;
+    int stateTransition = -1;
     Execution execution;
 };
 

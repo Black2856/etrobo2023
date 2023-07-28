@@ -5,19 +5,24 @@
 */
 #include "Calibration.h"
 
-Calibration::Calibration():
-    device(DeviceInOut::getInstance()){
-        }
+Calibration::Calibration(){}
 
-
-bool Calibration::execute(float pwm){
-    return false;
+void Calibration::first(const char* command){
+    if(strcmp(command, "record")){
+        this->state = true;
+    }else if(strcmp(command, "stop")){
+        this->stop();
+        this->state = false;
+    }
 }
 
-void Calibration::getFase(){
-
+void Calibration::record(){
+    printf("record \n");
 }
 
-void Calibration::onLineFase(){
+void Calibration::stop(){
+}
 
+bool Calibration::getState(){
+    return this->state;
 }

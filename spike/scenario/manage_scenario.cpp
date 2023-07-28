@@ -57,6 +57,9 @@ bool Manage_scenario::execute(){
     Execution execution = nowScene.getExecution();
     arg_info_t argInfo = nowScene.getArgInfo();
 
+    //バックグラウンド動作の呼び出し処理
+    this->backGround();
+
     //各動作による呼び出し処理
     if(this->isFirst == true){
         this->first(execution, argInfo);
@@ -78,7 +81,7 @@ bool Manage_scenario::execute(){
     }
 
     //終端かどうか
-    if(this->compileScene.size()-1 < this->executeIdx){
+    if(this->compileScene.size() - 1 < this->executeIdx){
         printf("*終了*\n");
         return true; //終了
     }else{
@@ -87,6 +90,7 @@ bool Manage_scenario::execute(){
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
+//シーン遷移初回動作(1回のみ)
 void Manage_scenario::first(Execution& execution, arg_info_t& argInfo){
     switch(execution){
         case Execution::STOP:
@@ -98,11 +102,17 @@ void Manage_scenario::first(Execution& execution, arg_info_t& argInfo){
         case Execution::MANUAL:
             this->manual.first((RunType)int(argInfo.getFloatArg(0)), argInfo.getFloatArg(1), argInfo.getFloatArg(2));
             break;
+        case Execution::ON_LINE_MOVE:
+            this->onLineMove.first(argInfo.getFloatArg(1), argInfo.getFloatArg(2), argInfo.getFloatArg(3));
+            break;
+        case Execution::CALIBRATION:
+            this->calibration.first(argInfo.getStrArg(0));
+            break;
         default:
             break;
     }
 }
-
+//シーン動作(常時)
 bool Manage_scenario::intermediate(Execution& execution, arg_info_t& argInfo){
     bool flag = false;
     switch(execution){
@@ -110,23 +120,32 @@ bool Manage_scenario::intermediate(Execution& execution, arg_info_t& argInfo){
             printf("error at Manage_scenario::execute() : CALL_SCENARIOが到達");
             break;
         case Execution::STOP:
-            flag = this->stop.execute(argInfo.getFloatArg(0));
+            flag = this->stop.execute();
             break;
         case Execution::MANUAL:
-            this->manual.execute((RunType)int(argInfo.getFloatArg(0)), argInfo.getFloatArg(1), argInfo.getFloatArg(2));
+            this->manual.execute();
             break;
         case Execution::TRACE:
-            this->lineTrace.trace(argInfo.getFloatArg(0), argInfo.getFloatArg(1), argInfo.getFloatArg(2), argInfo.getFloatArg(3), argInfo.getFloatArg(4));
+            this->lineTrace.trace();
             break;
+        case Execution::ON_LINE_MOVE:
+            flag = this->onLineMove.execute(argInfo.getFloatArg(0));
         default:
             break;
     }
     return flag;
 }
-
+//シーン終了動作(1回のみ)
 void Manage_scenario::end(Execution& execution, arg_info_t& argInfo){
     switch(execution){
         default:
             break;
+    }
+}
+
+//バックグラウンド動作
+void Manage_scenario::backGround(){
+    if(this->calibration.getState() == true){
+        this->calibration.record();
     }
 }

@@ -10,15 +10,20 @@
 #include "OnLineMove.h"
 #include "Calc.h"
 #include "DeviceInOut.h"
+#include "PIDControl.h"
 
 class OnLineMove{
 public:
     OnLineMove();
+    void first(float p, float i, float d);
+    bool execute(float gain);
 private:
     DeviceInOut& device;
     Calc& calc = Calc::getInstance();
-    unit::calibration calibration;
     Manual manual;
+
+    PIDControl pidControl;
+    unit::calibration calibration;
 };
 
 #endif

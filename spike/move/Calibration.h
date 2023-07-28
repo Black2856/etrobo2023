@@ -10,17 +10,21 @@
 #include "OnLineMove.h"
 #include "Calc.h"
 #include "DeviceInOut.h"
+#include "unit.h"
 
+#include <string.h>
+
+//バックグラウンド動作
 class Calibration {
 public:
     Calibration();
-    bool execute(float pwm);
-    
-private:
-    void getFase();
-    void onLineFase();
+    void first(const char* command); //"record":記録の開始, "stop":停止してキャリブレーション値の上書き
+    void record();
+    void stop();
 
-    DeviceInOut& device;
+    bool getState();
+private:
+    bool state = false; //実行状態
     Calc& calc = Calc::getInstance();
     unit::calibration calibration;
     Manual manual;

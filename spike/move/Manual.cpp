@@ -10,14 +10,19 @@ Manual::Manual():
     device(DeviceInOut::getInstance()){
     }
 
-void Manual::first(RunType runType, float pwm, float pwmTransitionTime){
+void Manual::setPWM(float pwm, float pwmTransitionTime){
     this->calc.pwmCalc.setPWM(pwm, pwmTransitionTime);
+}
+
+void Manual::first(RunType runType, float pwm, float pwmTransitionTime){
+    this->runType = runType;
+    this->setPWM(pwm, pwmTransitionTime);
     this->calc.localization.resetDifferenceCount();
     this->standardDirection = this->calc.localization.getDirection();
 }
 
-void Manual::execute(RunType runType, float pwm, float pwmTransitionTime){
-    switch(runType){
+void Manual::execute(){
+    switch(this->runType){
         case RunType::STRAIGHT:
             this->straight();
             break;

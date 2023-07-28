@@ -9,7 +9,9 @@ enum class Execution {
     CALL_SCENARIO = 1,
     TRACE = 2,
     STOP = 3,
-    MANUAL = 4
+    MANUAL = 4,
+    ON_LINE_MOVE = 5,
+    CALIBRATION = 6
 };
 
 #endif

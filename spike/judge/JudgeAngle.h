@@ -8,6 +8,7 @@
 
 #include "JudgeNumerical.h"
 #include "DeviceInOut.h"
+#include "Calc.h"
 
 class JudgeAngle : public JudgeNumerical{
 public:
@@ -16,6 +17,8 @@ public:
 private:
     float getValue() const override;
     DeviceInOut& device;
+    Calc& calc = Calc::getInstance();
+    
 };
 
 #endif  // JUDGE_ANGLE_H

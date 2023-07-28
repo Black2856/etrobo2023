@@ -8,6 +8,11 @@ StateTransition::StateTransition(){
 }
 
 bool StateTransition::judge(int idx){
+    //If no condition is set
+    if(idx == -1){
+        return true;
+    }
+
     std::function<bool(Judge& j)> func;
 
     switch(idx){
@@ -18,7 +23,8 @@ bool StateTransition::judge(int idx){
         case 3: func = [](Judge& j) {return j.mileage.j(1500);}; break;
         case 4: func = [](Judge& j) {return j.time.j(1000 * 1000);}; break;
         case 5: func = [](Judge& j) {return j.time.j(3000 * 1000);}; break;
-        case 6: func = [](Judge& j) {return j.time.j(1500 * 1000);}; break;
+        case 6: func = [](Judge& j) {return j.angle.j(90);}; break;
+        case 7: func = [](Judge& j) {return j.time.j(1000 * 1000);}; break;
     //#</func_list>
         default: return true;
     }

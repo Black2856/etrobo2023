@@ -11,5 +11,6 @@ JudgeAngle::JudgeAngle():
 }
 
 float JudgeAngle::getValue() const {
-    return device.gyro_getAngle();
+    //return device.gyro_getAngle();
+    return this->calc.localization.getDirection();
 }

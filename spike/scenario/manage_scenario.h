@@ -16,6 +16,8 @@
 #include "LineTrace.h"
 #include "Stop.h"
 #include "Manual.h"
+#include "OnLineMove.h"
+#include "Calibration.h"
 
 #include <cstring>
 #include <list>
@@ -29,6 +31,7 @@ public:
     void first(Execution& execution, arg_info_t& argInfo); //シーン遷移時に動作させるプログラム
     bool intermediate(Execution& execution, arg_info_t& argInfo); //シーン中に動作させるプログラム
     void end(Execution& execution, arg_info_t& argInfo); //シーン終了時に動作させるプログラム
+    void backGround(); //同期的にバックグラウンドで動作させるプログラム(
 
 private:
     StateTransition stateTransition;
@@ -41,6 +44,8 @@ private:
     LineTrace lineTrace;
     Stop stop;
     Manual manual;
+    OnLineMove onLineMove;
+    Calibration calibration;
 
     void addScene(Manage_scene& manageScene); //１つシーン管理クラスをコンパイルする
     Manage_scene* findScenario(const char* name); //シーン管理クラスから特定の名前のシナリオを取得する

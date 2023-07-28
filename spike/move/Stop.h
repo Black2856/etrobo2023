@@ -13,7 +13,7 @@ class Stop {
 public:
     Stop();
     void first(float pwmTransitionTime);
-    bool execute(float pwmTransitionTime);
+    bool execute();
 private:
     DeviceInOut& device;
     Calc& calc = Calc::getInstance();

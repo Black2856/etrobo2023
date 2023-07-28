@@ -17,7 +17,7 @@ void Manage_scene::makeTRACE(int stateTransition, float arg1, float arg2, float 
     argInfo.addFloatArg(arg5);
 
     Scene scene(Execution::TRACE, argInfo, stateTransition);
-    scenario.push_back(scene);
+    this->scenario.push_back(scene);
 };
 
 void Manage_scene::makeCALL_SCENARIO(const char* arg1){
@@ -25,7 +25,7 @@ void Manage_scene::makeCALL_SCENARIO(const char* arg1){
     argInfo.addStrArg(arg1);
     
     Scene scene(Execution::CALL_SCENARIO, argInfo);
-    scenario.push_back(scene);
+    this->scenario.push_back(scene);
 }
 
 void Manage_scene::makeSTOP(int stateTransition, float arg1){
@@ -33,7 +33,7 @@ void Manage_scene::makeSTOP(int stateTransition, float arg1){
     argInfo.addFloatArg(arg1);
 
     Scene scene(Execution::STOP, argInfo, stateTransition);
-    scenario.push_back(scene);
+    this->scenario.push_back(scene);
 }
 
 void Manage_scene::makeMANUAL(int stateTransition, float arg1, float arg2, float arg3){
@@ -43,8 +43,26 @@ void Manage_scene::makeMANUAL(int stateTransition, float arg1, float arg2, float
     argInfo.addFloatArg(arg3);
 
     Scene scene(Execution::MANUAL, argInfo, stateTransition);
-    scenario.push_back(scene);
+    this->scenario.push_back(scene);
 };
+
+void Manage_scene::makeON_LINE_MOVE(int stateTransition, float arg1, float arg2, float arg3){
+    arg_info_t argInfo;
+    argInfo.addFloatArg(arg1);
+    argInfo.addFloatArg(arg2);
+    argInfo.addFloatArg(arg3);
+
+    Scene scene(Execution::ON_LINE_MOVE, argInfo, stateTransition);
+    this->scenario.push_back(scene);
+}
+
+void Manage_scene::makeCALIBRATION(const char* arg1){
+    arg_info_t argInfo;
+    argInfo.addStrArg(arg1);
+
+    Scene scene(Execution::CALIBRATION, argInfo);
+    this->scenario.push_back(scene);
+}
 
 const char* Manage_scene::getName(){
     return this->scenarioName;
