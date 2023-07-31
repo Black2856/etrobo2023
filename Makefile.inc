@@ -57,7 +57,6 @@ APPL_DIRS += \
     $(mkfile_path)spike/judge \
     $(mkfile_path)spike/move \
     $(mkfile_path)spike/scenario \
-    $(mkfile_path)youtube_Ø‚è”²‚« \
 #</mk_dirs1>
 
 #<mk_dirs2>
@@ -73,7 +72,6 @@ INCLUDES += \
     -I$(mkfile_path)spike/judge \
     -I$(mkfile_path)spike/move \
     -I$(mkfile_path)spike/scenario \
-    -I$(mkfile_path)youtube_Ø‚è”²‚« \
 #</mk_dirs2>
 
 COPTS += -DMAKE_EV3 -std=c++14 -std=c++1y
