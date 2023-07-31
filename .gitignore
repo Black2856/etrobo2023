@@ -2,5 +2,6 @@
 __pycache__/
 ### C++ ###
 *.o
+background_tasks
 ### model ###
 *.lock

@@ -117,8 +117,8 @@ bool DeviceInOut::camera_takePhoto() {
 	}
     printf("以下のファイル名で画像を撮影、保存します。\n");
     for(auto name : imgNameQueue) {
-        fprintf(fp,"%s\n", name);
-        printf("%s\n", name);
+        fprintf(fp,"%s.jpg\n", name);
+        printf("%s.jpg\n", name);
     }
     imgNameQueue.clear();
     fclose(fp);

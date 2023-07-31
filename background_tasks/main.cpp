@@ -7,7 +7,7 @@
 
 int main() {
     // 停止する時間（ミリ秒単位）
-    int millisecondsToSleep = 500; // 2秒
+    int millisecondsToSleep = 500; // 0.5秒
 
     RearCamera& camera = RearCamera::getInstance();
     FILE *fp;
@@ -34,10 +34,11 @@ int main() {
                 camera.savePhoto(buffer);
             }
         } else {
+            camera.stop();
             // ファイルを削除する
             std::remove(IMG_QUEUE_PATH);
         }
-        camera.stop();
+        
         // 一定時間停止する
         std::this_thread::sleep_for(std::chrono::milliseconds(millisecondsToSleep));
     }

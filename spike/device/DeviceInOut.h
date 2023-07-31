@@ -63,7 +63,7 @@ public:
     bool        button_isPressed(button_t button);
 
 // camera
-    // 撮影待機リストにファイルネームを追加
+    // 撮影待機リストにファイルネームを追加(拡張子は不要)
     void        camera_addToQueue(const char* fileName);
     // 撮影開始
     bool        camera_takePhoto();

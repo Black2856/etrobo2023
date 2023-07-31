@@ -25,6 +25,7 @@ APPL_CXXOBJS += \
     RGBtoHSV.o \
     SpeedCorrection.o \
     Stop.o \
+    TakePhoto.o \
     arg_info.o \
     manage_scenario.o \
     manage_scene.o \

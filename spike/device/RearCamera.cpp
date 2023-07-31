@@ -5,6 +5,7 @@
  */
 #include "RearCamera.h"
 #include "setting.h"
+#include <stdio.h>
 
 RearCamera* RearCamera::instance = NULL;
 

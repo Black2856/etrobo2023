@@ -9,6 +9,8 @@ if [ "$1" != "-r" ]; then
     git reset --hard origin/main
 fi
 
+make -C background_tasks
+
 cd ../
 chmod -R 755 ./etrobo2023
 
