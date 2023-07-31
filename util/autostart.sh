@@ -1,3 +1,5 @@
+set -e  # エラーチェックを有効化
+
 cd $(dirname "$0")
 
 cd ../
@@ -11,9 +13,19 @@ fi
 
 make -C background_tasks
 
+# background_tasksをバックグラウンドで実行
+./background_tasks/background_tasks &
+
 cd ../
 chmod -R 755 ./etrobo2023
 
-rm asp
+rm asp || true
 make img=$CFILE
-make start
+# etrobo2023をバックグラウンドで実行
+make start &
+
+# etrobo2023の終了を待つ
+wait $!
+
+# etrobo2023が終了した時点で、background_tasksも終了させる
+kill %1
