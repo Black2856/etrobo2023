@@ -13,6 +13,7 @@ public:
     JudgeReturn();
     bool j(bool flag);
     void setFlag(bool flag);
+    void reset();
 
 private:
     bool flag;

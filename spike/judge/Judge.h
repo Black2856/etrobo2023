@@ -17,6 +17,7 @@ class Judge {
 public:
     // インスタンス取得
     static Judge& getInstance();
+    void allReset(); //全ての計測をstopする
 
     // 各種インスタンス
     JudgeAngle   angle;
@@ -27,7 +28,6 @@ public:
     JudgeTouch   touch;
 
 private:
-
     Judge(); // プライベートコンストラクタ
     static Judge* instance; // シングルトンオブジェクトへのポインタ
 

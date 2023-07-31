@@ -16,3 +16,11 @@ Judge& Judge::getInstance() {
     }
     return *instance;
 }
+
+void Judge::allReset(){
+    this->angle.stop();
+    this->mileage.stop();
+    this->sonar.stop();
+    this->time.stop();
+    this->ret.reset();
+}

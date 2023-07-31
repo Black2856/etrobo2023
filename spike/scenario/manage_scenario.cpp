@@ -75,6 +75,8 @@ bool Manage_scenario::execute(){
     if(true == stateTransition.judge(nowScene.getStateTransition())){
         this->end(execution, argInfo);
 
+        j.allReset();
+        
         this->isFirst = true;
         this->executeIdx ++;
         printf("*遷移 => %d*\n", this->executeIdx);

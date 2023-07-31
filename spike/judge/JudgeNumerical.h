@@ -10,6 +10,7 @@ class JudgeNumerical {
 public:
     JudgeNumerical();
 
+    void stop();
     bool j(float target);
 
 protected:
@@ -23,7 +24,6 @@ protected:
 private:
     void setTarget(float target);
     void start();
-    void stop();
     bool isStarted() const;
 
     float mTarget;         // 目標値

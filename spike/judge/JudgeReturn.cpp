@@ -16,3 +16,7 @@ bool JudgeReturn::j(bool flag){
 void JudgeReturn::setFlag(bool flag){
     this->flag = flag;
 }
+
+void JudgeReturn::reset(){
+    this->flag = false;
+}

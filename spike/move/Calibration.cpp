@@ -17,7 +17,7 @@ void Calibration::first(const char* command){
 }
 
 void Calibration::record(){
-    printf("record \n");
+    //printf("record \n");
 }
 
 void Calibration::stop(){

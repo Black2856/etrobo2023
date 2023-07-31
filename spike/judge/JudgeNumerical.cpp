@@ -20,7 +20,7 @@ bool JudgeNumerical::j(float target) {
     }
     // 目標値に達した場合
     if (isTargetReached()) {
-        stop();
+        //stop();
         return true;
     }
     return false;
@@ -38,16 +38,15 @@ void JudgeNumerical::setTarget(float target) {
  * 計測開始
  */
 void JudgeNumerical::start() {
-    mStartNumerical  = getValue();
+    mStartNumerical = getValue();
     mStartFlg = true;
 }
-
 
 /**
  * 計測停止
  */
 void JudgeNumerical::stop() {
-    mStartNumerical  = 0;
+    mStartNumerical = 0;
     mStartFlg = false;
 }
 
@@ -56,11 +55,14 @@ void JudgeNumerical::stop() {
  * @retval true  目標値に達した
  * @retval false 目標値に達していない
  */
-bool JudgeNumerical::isTargetReached() const {
+bool JudgeNumerical::isTargetReached() const{
     float currentNumerical = getValue() - mStartNumerical;
-    return (fabsf(currentNumerical) >= mTarget) ? true : false;
+    if(mTarget >= 0){
+        return (currentNumerical >= mTarget) ? true : false;
+    }else if(mTarget < 0){
+        return (currentNumerical < mTarget) ? true : false;
+    }
 }
-
 
 /**
  * 計測開始したか否か

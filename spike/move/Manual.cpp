@@ -53,8 +53,8 @@ void Manual::straight(){
 void Manual::centerRotation(){
     int correctionPWM = this->calc.pwmCalc.changePWM();
 
-    this->device.LWheel_setPWM(-correctionPWM);
-    this->device.RWheel_setPWM(correctionPWM);
+    this->device.LWheel_setPWM(correctionPWM);
+    this->device.RWheel_setPWM(-correctionPWM);
 }
 
 void Manual::wheelRotation(int wheel){

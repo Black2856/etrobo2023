@@ -23,8 +23,7 @@ void LineTrace::first(float pwm, float kp, float ki, float kd, float pwmTransiti
 void LineTrace::trace(){
     int correctionPWM = this->calc.pwmCalc.changePWM();
     //printf("%d\n", correctionPWM);
-    float gain = this->pidControl.calc(device.color_getBrightness(), this->calibration.avg);
-
+    float gain = this->pidControl.calc(float(device.color_getBrightness()), this->calibration.avg);
     this->device.LWheel_setPWM(correctionPWM - int(gain + 0.5));
     this->device.RWheel_setPWM(correctionPWM + int(gain + 0.5));
 }

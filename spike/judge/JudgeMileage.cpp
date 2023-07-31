@@ -11,5 +11,5 @@ JudgeMileage::JudgeMileage():
 }
 
 float JudgeMileage::getValue() const {
-    return localization.getDistance();
+    return this->localization.getDistance();
 }
