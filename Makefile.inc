@@ -29,6 +29,7 @@ APPL_CXXOBJS += \
     arg_info.o \
     manage_scenario.o \
     manage_scene.o \
+    record.o \
     scene.o \
     state_transition.o \
 #</mk_files>
@@ -54,6 +55,7 @@ APPL_DIRS += \
     $(mkfile_path)spike \
     $(mkfile_path)spike/calc \
     $(mkfile_path)spike/device \
+    $(mkfile_path)spike/info \
     $(mkfile_path)spike/judge \
     $(mkfile_path)spike/move \
     $(mkfile_path)spike/scenario \
@@ -69,6 +71,7 @@ INCLUDES += \
     -I$(mkfile_path)spike \
     -I$(mkfile_path)spike/calc \
     -I$(mkfile_path)spike/device \
+    -I$(mkfile_path)spike/info \
     -I$(mkfile_path)spike/judge \
     -I$(mkfile_path)spike/move \
     -I$(mkfile_path)spike/scenario \

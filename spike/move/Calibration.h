@@ -6,7 +6,6 @@
 #ifndef CALIBRATION_H
 #define CALIBRATION_H
 
-#include "Manual.h"
 #include "OnLineMove.h"
 #include "Calc.h"
 #include "DeviceInOut.h"
@@ -20,14 +19,14 @@ public:
     Calibration();
     void first(const char* command); //"record":記録の開始, "stop":停止してキャリブレーション値の上書き
     void record();
-    void stop();
 
     bool getState();
 private:
+    void stop();
+
     bool state = false; //実行状態
     Calc& calc = Calc::getInstance();
     unit::calibration calibration;
-    Manual manual;
 };
 
 #endif
