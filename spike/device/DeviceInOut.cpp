@@ -28,17 +28,42 @@ DeviceInOut& DeviceInOut::getInstance() {
 /*** 以下各インスタンス関数定義 ***/
 /* sonar */
 int16_t DeviceInOut::sonar_getDistance() {
-    return sonarSensor.getDistance();
+    bool isExist;
+    int16_t value = record.sensorData.getSonarDistance(isExist);
+    if(isExist == false){
+        int16_t newValue = sonarSensor.getDistance();
+        this->record.sensorData.setSonarDistance(newValue);
+        return newValue;
+    }
+    //isExist == true
+    return value;
 }
 
 /* touch */
 bool DeviceInOut::touch_isPressed() {
-    return touchSensor.isPressed();
+    bool isExist;
+    bool value = record.sensorData.getTouchPressed(isExist);
+    if(isExist == false){
+        //printf("new");
+        bool newValue = touchSensor.isPressed();
+        this->record.sensorData.setTouchPressed(newValue);
+        return newValue;
+    }
+    //isExist == true
+    return value;
 }
 
 /* gyro */
 int16_t DeviceInOut::gyro_getAngle() {
-    return gyroSensor.getAngle();
+    bool isExist;
+    int16_t value = record.sensorData.getGyroAngle(isExist);
+    if(isExist == false){
+        int16_t newValue = gyroSensor.getAngle();
+        this->record.sensorData.setGyroAngle(newValue);
+        return newValue;
+    }
+    //isExist == true
+    return value;
 }
 
 void DeviceInOut::gyro_reset() {
@@ -47,17 +72,40 @@ void DeviceInOut::gyro_reset() {
 
 /* color */
 int8_t DeviceInOut::color_getBrightness() {
-    return colorSensor.getBrightness();
+    bool isExist;
+    int8_t value = record.sensorData.getBrightness(isExist);
+    if(isExist == false){
+        int8_t newValue = colorSensor.getBrightness();
+        this->record.sensorData.setBrightness(newValue);
+        return newValue;
+    }
+    //isExist == true
+    return value;
 }
 rgb_raw_t DeviceInOut::color_getRawColor() {
-    rgb_raw_t rgb;
-    colorSensor.getRawColor(rgb);
-    return rgb;
+    bool isExist;
+    rgb_raw_t value = record.sensorData.getRGB(isExist);
+    if(isExist == false){
+        rgb_raw_t newValue;
+        colorSensor.getRawColor(newValue);
+        this->record.sensorData.setRGB(newValue);
+        return newValue;
+    }
+    //isExist == true
+    return value;
 }
 
 /* LWheel */
 int32_t DeviceInOut::LWheel_getCount() {
-    return leftWheel.getCount();
+    bool isExist;
+    int32_t value = record.sensorData.getLeftWheelCount(isExist);
+    if(isExist == false){
+        int32_t newValue = leftWheel.getCount();
+        this->record.sensorData.setLeftWheelCount(newValue);
+        return newValue;
+    }
+    //isExist == true
+    return value;
 }
 void DeviceInOut::LWheel_setPWM(int pwm) {
     leftWheel.setPWM(pwm);
@@ -68,7 +116,15 @@ void DeviceInOut::LWheel_stop() {
 
 /* RWheel */
 int32_t DeviceInOut::RWheel_getCount() {
-    return rightWheel.getCount();
+    bool isExist;
+    int32_t value = record.sensorData.getRightWheelCount(isExist);
+    if(isExist == false){
+        int32_t newValue = rightWheel.getCount();
+        this->record.sensorData.setRightWheelCount(newValue);
+        return newValue;
+    }
+    //isExist == true
+    return value;
 }
 void DeviceInOut::RWheel_setPWM(int pwm) {
     rightWheel.setPWM(pwm);
@@ -82,7 +138,15 @@ void DeviceInOut::clock_reset() {
     clock.reset();
 }
 uint64_t DeviceInOut::clock_now() {
-    return clock.now();
+    bool isExist;
+    uint64_t value = record.sensorData.getClockTime(isExist);
+    if(isExist == false){
+        uint64_t newValue = clock.now();
+        this->record.sensorData.setClockTime(newValue);
+        return newValue;
+    }
+    //isExist == true
+    return value;
 }
 void DeviceInOut::clock_sleep(uint64_t duration) {
     clock.sleep(duration);
@@ -93,10 +157,26 @@ void DeviceInOut::clock_wait(uint64_t duration) {
 
 /* battery */
 int DeviceInOut::battery_getCurrent() {
-    return ev3_battery_current_mA();
+    bool isExist;
+    int value = record.sensorData.getBatteryCurrent(isExist);
+    if(isExist == false){
+        int newValue = ev3_battery_current_mA();
+        this->record.sensorData.setBatteryCurrent(newValue);
+        return newValue;
+    }
+    //isExist == true
+    return value;
 }
 int DeviceInOut::battery_getVoltage() {
-    return ev3_battery_voltage_mV();
+    bool isExist;
+    int value = record.sensorData.getBatteryVoltage(isExist);
+    if(isExist == false){
+        int newValue = ev3_battery_voltage_mV();
+        this->record.sensorData.setBatteryVoltage(newValue);
+        return newValue;
+    }
+    //isExist == true
+    return value;
 }
 
 /* button */

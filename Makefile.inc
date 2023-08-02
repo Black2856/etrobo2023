@@ -8,6 +8,7 @@ APPL_CXXOBJS += \
     Calc.o \
     Calibration.o \
     DeviceInOut.o \
+    GeneralData.o \
     Judge.o \
     JudgeAngle.o \
     JudgeMileage.o \
@@ -23,13 +24,14 @@ APPL_CXXOBJS += \
     PIDControl.o \
     PWMCalc.o \
     RGBtoHSV.o \
+    Record.o \
+    SensorData.o \
     SpeedCorrection.o \
     Stop.o \
     TakePhoto.o \
     arg_info.o \
     manage_scenario.o \
     manage_scene.o \
-    record.o \
     scene.o \
     state_transition.o \
 #</mk_files>

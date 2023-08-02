@@ -7,7 +7,9 @@
 #include "manage_scenario.h"
 #include "manage_scene.h"
 #include "Judge.h"
+#include "Record.h"
 #include "unit.h"
+
 #include "functional"
 
 using namespace ev3api;
@@ -20,6 +22,8 @@ private:
 };
 
 void Walker::run() {
+  Record& record = Record::getInstance();
+
   bool result;
   Manage_scenario manage_scenario;
 
@@ -49,6 +53,9 @@ manage_scenario.add(sub);
 
   while(1) {
     result = manage_scenario.execute();
+
+    record.appendSensorData();
+
     clock.sleep(CYCLE);
 
     if (result == true) {

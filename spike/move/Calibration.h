@@ -26,7 +26,7 @@ private:
 
     bool state = false; //実行状態
     Calc& calc = Calc::getInstance();
-    unit::calibration calibration;
+    unit::calibration_t calibration;
 };
 
 #endif

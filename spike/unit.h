@@ -29,18 +29,6 @@ namespace unit {
         float ki;
         float kd;
     };
-    
-    struct sensor_t {
-        int32_t     left_wheel_count;
-        int32_t     right_wheel_count;
-        int16_t     sonar_distance;
-        bool        touch_pressed;
-        int16_t     gyro_angle;
-        rgb_raw_t   rgb;
-        uint64_t    clock_time;
-        int         battery_current;
-        int         battery_voltage;
-    };
 
     struct normality_t {
         bool sonar;
@@ -51,7 +39,7 @@ namespace unit {
         bool right_wheel;
     };
 
-    struct calibration {
+    struct calibration_t {
         int max;
         int min;
         int avg;

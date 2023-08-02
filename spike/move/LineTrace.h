@@ -22,7 +22,7 @@ private:
     DeviceInOut& device;
     Calc& calc = Calc::getInstance();
     PIDControl pidControl;
-    unit::calibration calibration;
+    unit::calibration_t calibration;
 };
 
 #endif  // LINE_TRACE_H

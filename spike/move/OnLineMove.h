@@ -23,7 +23,7 @@ private:
     Manual manual;
 
     PIDControl pidControl;
-    unit::calibration calibration;
+    unit::calibration_t calibration;
 };
 
 #endif

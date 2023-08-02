@@ -13,6 +13,7 @@
 #include "ColorSensor.h"
 #include "Motor.h"
 #include "Clock.h"
+#include "Record.h"
 #include <vector>
 
 class DeviceInOut{ //deviceのSingleton管理クラス
@@ -79,6 +80,8 @@ private:
     ev3api::Motor       leftWheel;
     ev3api::Motor       rightWheel;
     ev3api::Clock       clock;
+
+    Record& record = Record::getInstance();
 
     DeviceInOut(); // プライベートコンストラクタ
     static DeviceInOut* instance; // シングルトンオブジェクトへのポインタ
