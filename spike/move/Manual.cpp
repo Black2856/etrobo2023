@@ -20,8 +20,8 @@ void Manual::first(RunType runType, float pwm, float pwmTransitionTime){
     this->runType = runType;
     this->setPWM(pwm, pwmTransitionTime);
     this->calc.localization.resetDifferenceCount();
-    //this->standardDirection = this->calc.localization.getDirection();
-    this->standardDirection = this->device.gyro_getAngle();
+    this->standardDirection1 = this->calc.localization.getDirection();
+    this->standardDirection2 = this->device.gyro_getAngle();
 }
 
 void Manual::execute(){
@@ -44,9 +44,10 @@ void Manual::execute(){
 void Manual::straight(){
     int correctionPWM = this->calc.pwmCalc.changePWM();
     //直進移動になるように補正する
-    //float differenceDirection = this->standardDirection - this->calc.localization.getDirection();
-    float differenceDirection = this->standardDirection - this->device.gyro_getAngle();
-    int gain = int(this->straightPID.calc(differenceDirection, 0));
+    float differenceDirection1 = this->standardDirection1 - this->calc.localization.getDirection();
+    float differenceDirection2 = this->standardDirection2 - this->device.gyro_getAngle();
+    printf("[%f, %f]●", differenceDirection1, differenceDirection2);
+    int gain = int(this->straightPID.calc((differenceDirection2 + differenceDirection1) / 2, 0));
     //int gain = int(differenceDirection * 2.3 + 0.5);
     this->device.LWheel_setPWM(correctionPWM + gain);
     this->device.RWheel_setPWM(correctionPWM - gain);
