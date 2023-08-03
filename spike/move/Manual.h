@@ -7,7 +7,8 @@
 #define MANUAL_H
 
 #include "Calc.h"
-#include <cmath>
+#include "PIDControl.h"
+#include "unit.h"
 
 enum class RunType {
     STRAIGHT = 1,
@@ -31,6 +32,7 @@ private:
 
     //基準の車体角度
     float standardDirection;
+    PIDControl straightPID;
     RunType runType;
 
     DeviceInOut& device;
