@@ -8,6 +8,7 @@
 
 #include "ev3api.h"
 #include "unit.h"
+#include <bitset>
 
 class SensorData {
 public:

@@ -44,7 +44,6 @@ bool DeviceInOut::touch_isPressed() {
     bool isExist;
     bool value = record.sensorData.getTouchPressed(isExist);
     if(isExist == false){
-        //printf("new");
         bool newValue = touchSensor.isPressed();
         this->record.sensorData.setTouchPressed(newValue);
         return newValue;

@@ -91,11 +91,8 @@ void        SensorData::setBatteryVoltage(int value){
 bool        SensorData::checkExist(int bit){
     int mask = ~(1 << bit);
     int maskBit = this->dataMask | mask;
-    printf("%d / %d \n",this->dataMask, maskBit);
-    bool isExist = (maskBit and 0b1111111111);
-    if(isExist == false){
-        printf("a");
-    }
+    //std::bitset<データ数>(maskBit) == 0bデータ数分のビット「1」
+    bool isExist = (std::bitset<10>(maskBit) == 0b1111111111);
     return isExist;
 }
 void        SensorData::addExist(int bit){
