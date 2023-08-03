@@ -44,7 +44,7 @@ void Manual::straight(){
     //float differenceCount = calc.localization.getDifferenceCount();
     float differenceDirection = this->standardDirection - this->calc.localization.getDirection();
     int gain = int(std::sqrt(differenceDirection) * 2.5 + 0.5);
-
+    printf("%d, ",gain);
     this->device.LWheel_setPWM(correctionPWM);
     this->device.RWheel_setPWM(correctionPWM);
 }

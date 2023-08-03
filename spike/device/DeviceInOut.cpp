@@ -107,7 +107,7 @@ int32_t DeviceInOut::LWheel_getCount() {
     return value;
 }
 void DeviceInOut::LWheel_setPWM(int pwm) {
-    leftWheel.setPWM(pwm);
+    leftWheel.setPWM(-pwm);
 }
 void DeviceInOut::LWheel_stop() {
     leftWheel.stop();
@@ -126,7 +126,7 @@ int32_t DeviceInOut::RWheel_getCount() {
     return value;
 }
 void DeviceInOut::RWheel_setPWM(int pwm) {
-    rightWheel.setPWM(pwm);
+    rightWheel.setPWM(-pwm);
 }
 void DeviceInOut::RWheel_stop() {
     rightWheel.stop();
