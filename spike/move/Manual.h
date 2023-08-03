@@ -32,7 +32,9 @@ private:
 
     //基準の車体角度
     float standardDirection;
+    float standardDistance;
     PIDControl straightPID;
+    PIDControl centerPID;
     RunType runType;
 
     DeviceInOut& device;

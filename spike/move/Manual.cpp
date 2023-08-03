@@ -8,8 +8,10 @@
 
 Manual::Manual():
     device(DeviceInOut::getInstance()){
-        unit::pid_t pid = {2.3, 2.2, 4.2};
-        this->straightPID.setPID(pid);
+        unit::pid_t pid1 = {2.3, 2.2, 4.2};
+        this->straightPID.setPID(pid1);
+        unit::pid_t pid2 = {2.3, 2.2, 4.2};
+        this->centerPID.setPID(pid2);
     }
 
 void Manual::setPWM(float pwm, float pwmTransitionTime){
@@ -21,6 +23,7 @@ void Manual::first(RunType runType, float pwm, float pwmTransitionTime){
     this->setPWM(pwm, pwmTransitionTime);
     this->calc.localization.resetDifferenceCount();
     this->standardDirection = this->calc.localization.getDirection();
+    this->standardDistance = this->calc.localization.getDistance();
 }
 
 void Manual::execute(){
@@ -46,15 +49,19 @@ void Manual::straight(){
     float differenceDirection = this->standardDirection - this->calc.localization.getDirection();
     int gain = int(this->straightPID.calc(differenceDirection, 0));
     //int gain = int(differenceDirection * 2.3 + 0.5);
+
     this->device.LWheel_setPWM(correctionPWM + gain);
     this->device.RWheel_setPWM(correctionPWM - gain);
 }
 
 void Manual::centerRotation(){
     int correctionPWM = this->calc.pwmCalc.changePWM();
+    //車体中心移動になるように補正する
+    float differenceDistance = this->standardDistance - this->calc.localization.getDistance();
+    int gain = int(this->straightPID.calc(differenceDistance, 0));
 
-    this->device.LWheel_setPWM(correctionPWM);
-    this->device.RWheel_setPWM(-correctionPWM);
+    this->device.LWheel_setPWM(correctionPWM + gain);
+    this->device.RWheel_setPWM(-(correctionPWM - gain));
 }
 
 void Manual::wheelRotation(int wheel){
