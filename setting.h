@@ -15,9 +15,13 @@
 #define TIRE_DIAMETER 100.0 // タイヤ直径（mm）
 
 #ifdef MAKE_SIM
-#define TREAD 150.0 // 車体トレッド幅（mm） spike = 126 EV3 = 150.0
+#define TREAD 150.0         // 車体トレッド幅（mm） spike = 126 EV3 = 150.0
+#define LEFT_WHEEL_POWER 1  //左車輪の出力量
+#define RIGHT_WHEEL_POWER 1 //右車輪の出力量
 #else  //SPIKE
 #define TREAD 126.0
+#define LEFT_WHEEL_POWER -0.9
+#define RIGHT_WHEEL_POWER -1
 #endif // MAKE_SIM
 
 #define CAMERA_NUMBER 0 // カメラデバイス番号（通常は0）を指定
