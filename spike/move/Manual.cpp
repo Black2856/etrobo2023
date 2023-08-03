@@ -40,14 +40,13 @@ void Manual::execute(){
 
 void Manual::straight(){
     int correctionPWM = this->calc.pwmCalc.changePWM();
-    printf("test");
     //直進移動になるように補正する
     //float differenceCount = calc.localization.getDifferenceCount();
     float differenceDirection = this->standardDirection - this->calc.localization.getDirection();
     int gain = int(std::sqrt(differenceDirection) * 2.5 + 0.5);
 
-    this->device.LWheel_setPWM(correctionPWM - gain);
-    this->device.RWheel_setPWM(correctionPWM + gain);
+    this->device.LWheel_setPWM(correctionPWM);
+    this->device.RWheel_setPWM(correctionPWM);
 }
 
 void Manual::centerRotation(){
