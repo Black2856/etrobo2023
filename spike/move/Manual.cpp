@@ -44,7 +44,6 @@ void Manual::straight(){
     int correctionPWM = this->calc.pwmCalc.changePWM();
     //直進移動になるように補正する
     float differenceDirection = this->standardDirection - this->calc.localization.getDirection();
-    printf("%f, ", differenceDirection);
     int gain = int(this->straightPID.calc(differenceDirection, 0));
     //int gain = int(differenceDirection * 2.3 + 0.5);
     this->device.LWheel_setPWM(correctionPWM + gain);
