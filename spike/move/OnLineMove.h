@@ -10,6 +10,7 @@
 #include "OnLineMove.h"
 #include "Calc.h"
 #include "DeviceInOut.h"
+#include "GeneralData.h"
 #include "PIDControl.h"
 
 class OnLineMove{
@@ -20,6 +21,7 @@ public:
 private:
     DeviceInOut& device;
     Calc& calc = Calc::getInstance();
+    GeneralData& generalData = GeneralData::getInstance();
     Manual manual;
 
     PIDControl pidControl;

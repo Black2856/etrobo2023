@@ -7,6 +7,10 @@
 
 GeneralData* GeneralData::instance = NULL;
 
+GeneralData::GeneralData(){
+
+}
+
 GeneralData& GeneralData::getInstance() {
     if (!instance) {
         instance = new GeneralData();

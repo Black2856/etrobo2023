@@ -29,23 +29,32 @@ void Walker::run() {
 
   //#<make_scenario>
 Manage_scene main("main");
-main.makeSTOP(0, 0);
-main.makeTRACE(1, 70, -1.4, 0.0, 0.7, 2.0);
-main.makeTRACE(2, 10, -1.0, 0.0, 0.7, 0.5);
-main.makeTRACE(3, 25, -0.7, 0.0, 0.4, 0.5);
-main.makeCALL_SCENARIO("sub");
-main.makeSTOP(4, 0.5);
+main.makeCALL_SCENARIO("calibration");
+main.makeCALL_SCENARIO("ready");
+main.makeCALL_SCENARIO("run");
 manage_scenario.add(main);
 
-Manage_scene sub("sub");
-sub.makeTRACE(5, 20, -0.7, 0.0, 0.3, 0.0);
-sub.makeMANUAL(6, 2, -10.0, 0.0);
-sub.makeSTOP(7, 0);
-sub.makeON_LINE_MOVE(8, 3, 0.4, 0.0, 0.3);
-sub.makeCALIBRATION("record");
-sub.makeSTOP(9, 0);
-sub.makeCALIBRATION("stop");
-manage_scenario.add(sub);
+Manage_scene calibration("calibration");
+calibration.makeMANUAL(0, 2, 10.0, 0.0);
+calibration.makeCALIBRATION("record");
+calibration.makeMANUAL(1, 2, -15.0, 0.0);
+calibration.makeSTOP(2, 0);
+calibration.makeCALIBRATION("stop");
+calibration.makeON_LINE_MOVE(3, 3, 0.4, 0.0, 0.3);
+calibration.makeSTOP(4, 0);
+manage_scenario.add(calibration);
+
+Manage_scene ready("ready");
+ready.makeSTOP(5, 0.0);
+manage_scenario.add(ready);
+
+Manage_scene run("run");
+run.makeTRACE(6, 50.0, 0.7, 0.0, 0.4, 1.0);
+run.makeTRACE(7, 10.0, 0.4, 0.0, 0.2, 1.0);
+run.makeSTOP(8, 1.0);
+run.makeMANUAL(9, 2.0, 15.0, 0.0);
+run.makeSTOP(10, 0.0);
+manage_scenario.add(run);
 
   //#</make_scenario>
 

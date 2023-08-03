@@ -9,24 +9,30 @@
 #include "OnLineMove.h"
 #include "Calc.h"
 #include "DeviceInOut.h"
+#include "Record.h"
+#include "GeneralData.h"
+#include "SensorData.h"
 #include "unit.h"
 
-#include <string.h>
+#include <cstring>
+#include <list>
 
 //バックグラウンド動作
 class Calibration {
 public:
     Calibration();
     void first(const char* command); //"record":記録の開始, "stop":停止してキャリブレーション値の上書き
-    void record();
+    void execute();
 
     bool getState();
 private:
     void stop();
 
     bool state = false; //実行状態
+    DeviceInOut& device;
+    Record& record = Record::getInstance();
     Calc& calc = Calc::getInstance();
-    unit::calibration_t calibration;
+    GeneralData& generalData = GeneralData::getInstance();
 };
 
 #endif

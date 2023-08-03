@@ -14,7 +14,7 @@ OnLineMove::OnLineMove():
 void OnLineMove::first(float kp, float ki, float kd){
     this->manual.first(RunType::CENTER_ROTATION, 0, 0);
     this->pidControl.setPID({kp, ki, kd});
-    this->calibration = {10, 20, 15}; //記録パッケージからキャリブレーションを読み込む予定
+    this->calibration = this->generalData.getCalibration(); //記録パッケージからキャリブレーションを読み込む予定
 }
 
 bool OnLineMove::execute(float gain){

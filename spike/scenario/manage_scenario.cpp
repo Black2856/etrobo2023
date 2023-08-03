@@ -148,6 +148,6 @@ void Manage_scenario::end(Execution& execution, arg_info_t& argInfo){
 //バックグラウンド動作
 void Manage_scenario::backGround(){
     if(this->calibration.getState() == true){
-        this->calibration.record();
+        this->calibration.execute();
     }
 }

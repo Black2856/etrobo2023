@@ -9,6 +9,7 @@
 #include "unit.h"
 #include "PIDControl.h"
 #include "DeviceInOut.h"
+#include "GeneralData.h"
 #include "Calc.h"
 
 class LineTrace {
@@ -21,8 +22,10 @@ public:
 private:
     DeviceInOut& device;
     Calc& calc = Calc::getInstance();
+    GeneralData& generalData = GeneralData::getInstance();
     PIDControl pidControl;
     unit::calibration_t calibration;
+    
 };
 
 #endif  // LINE_TRACE_H

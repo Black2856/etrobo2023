@@ -28,7 +28,7 @@ int Record::getRecordLimit(){
 }
 
 void Record::appendSensorData(){
-    this->sensorList.push_back(sensorData);
+    this->sensorList.push_front(sensorData);
     SensorData emptyData;
     this->sensorData = emptyData;
     if(int(this->sensorList.size()) > this->recordLimit){

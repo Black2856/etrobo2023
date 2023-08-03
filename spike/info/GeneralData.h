@@ -19,7 +19,7 @@ public:
 
 private:
     unit::calibration_t calibration;
-    list<int> runRoute; //恐らく型を変更する
+    std::list<int> runRoute; //恐らく型を変更する
 
     GeneralData(); // プライベートコンストラクタ
     static GeneralData* instance; // シングルトンオブジェクトへのポインタ
