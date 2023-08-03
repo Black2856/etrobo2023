@@ -47,7 +47,7 @@ void Manual::straight(){
     float differenceDirection1 = this->standardDirection1 - this->calc.localization.getDirection();
     float differenceDirection2 = -(this->standardDirection2 - this->device.gyro_getAngle());
     printf("[%f, %f]●", differenceDirection1, differenceDirection2);
-    int gain = int(this->straightPID.calc((differenceDirection2 + differenceDirection1) / 2, 0));
+    int gain = int(this->straightPID.calc(differenceDirection2, 0));
     //int gain = int(differenceDirection * 2.3 + 0.5);
     this->device.LWheel_setPWM(correctionPWM + gain);
     this->device.RWheel_setPWM(correctionPWM - gain);
