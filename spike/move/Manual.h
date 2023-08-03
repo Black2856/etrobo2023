@@ -31,8 +31,7 @@ private:
     void wheelRotation(int wheel);
 
     //基準の車体角度
-    float standardDirection1;
-    float standardDirection2;
+    float standardDirection;
     PIDControl straightPID;
     RunType runType;
 
