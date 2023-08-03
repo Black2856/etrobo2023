@@ -20,16 +20,18 @@ void OnLineMove::first(float kp, float ki, float kd){
 bool OnLineMove::execute(float gain){
     float operation = this->pidControl.calc(float(device.color_getBrightness()), this->calibration.avg) * gain;
     //PWMの制限
+    /*
     if(operation > 100){
         operation = 100;
     }else if(operation < -100){
         operation = -100;
     }
+    */
 
     this->manual.setPWM(operation, 0);
     this->manual.execute();
 
-    if((-1 <= operation) and (operation <= 1)){
+    if((-10 <= operation) and (operation <= 10)){
         return true;
     }
     return false;

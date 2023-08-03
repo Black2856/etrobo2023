@@ -13,7 +13,13 @@
 
 // spike設定
 #define TIRE_DIAMETER 100.0 // タイヤ直径（mm）
+
+#ifdef MAKE_SIM
 #define TREAD 150.0 // 車体トレッド幅（mm） spike = 126 EV3 = 150.0
+#else  //SPIKE
+#define TREAD 126.0
+#endif // MAKE_SIM
+
 #define CAMERA_NUMBER 0 // カメラデバイス番号（通常は0）を指定
 #define CYCLE 1000 * 10 // 処理周期(msec)
 #define IMG_PATH "img/" // 画像保存先path
