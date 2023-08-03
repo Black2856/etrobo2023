@@ -62,6 +62,7 @@ bool JudgeNumerical::isTargetReached() const{
     }else if(mTarget < 0){
         return (currentNumerical < mTarget) ? true : false;
     }
+    return true;
 }
 
 /**

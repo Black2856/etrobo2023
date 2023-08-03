@@ -21,7 +21,6 @@ void Calibration::first(const char* command){
 }
 
 void Calibration::execute(){
-    //printf("record \n");
     this->device.color_getBrightness();
 }
 
@@ -32,7 +31,6 @@ void Calibration::stop(){
         bool isExist;
         SensorData sensorData = this->record.getSensorData(i);
         int value = int(sensorData.getBrightness(isExist));
-        //printf("%d, ", value);
         if(isExist == true){
             brightnessList.push_back(value);
         }
