@@ -24,7 +24,7 @@ APPL_CXXOBJS += \
     PIDControl.o \
     PWMCalc.o \
     RGBtoHSV.o \
-    Record_a.o \
+    Record.o \
     SensorData.o \
     SpeedCorrection.o \
     Stop.o \
