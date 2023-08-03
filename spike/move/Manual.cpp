@@ -40,7 +40,7 @@ void Manual::execute(){
 
 void Manual::straight(){
     int correctionPWM = this->calc.pwmCalc.changePWM();
-
+    printf("test");
     //直進移動になるように補正する
     //float differenceCount = calc.localization.getDifferenceCount();
     float differenceDirection = this->standardDirection - this->calc.localization.getDirection();
