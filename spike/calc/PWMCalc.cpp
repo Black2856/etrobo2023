@@ -16,16 +16,16 @@ int PWMCalc::changePWM(){
 
     if(judgeValue.rate <= progThreshold){
         float rate = judgeValue.rate / progThreshold;
-        ret = int(this->speedCorrectionIn.calc(rate) + 0.5);
+        ret = int(this->speedCorrectionIn.calc(rate + 0.001) + 0.5);
     }else if(judgeValue.rate >= (1 - progThreshold)){
         float rate = (judgeValue.rate - (1 - progThreshold)) / progThreshold;
-        ret = int(this->speedCorrectionOut.calc(rate) + 0.5);
+        ret = int(this->speedCorrectionOut.calc(rate + 0.001) + 0.5);
     }
 
     //PWMの制限
-    if(ret > 40){
+    if((0 <= ret) || (ret < 40)){
         ret = 40;
-    }else if(ret < -40){
+    }else if((-40 < ret) || (ret <= 0)){
         ret = -40;
     }
 
