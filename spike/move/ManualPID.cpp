@@ -88,7 +88,7 @@ bool ManualPID::execute(){
     //遷移条件値:走行距離(mileage)
     float ManualPID::distance(){
         float diffDistance = this->standardDistance - calc.localization.getDistance();
-        return -this->pidControl.calc(diffDistance, this->transitionValue);
+        return this->pidControl.calc(diffDistance, -this->transitionValue);
     }
     
     //遷移条件値:車体角度(angle)
