@@ -30,7 +30,7 @@ bool OnLineMove::execute(){
     this->manual.setPWM(operation, 0);
     this->manual.execute();
 
-    if((-10 <= operation) and (operation <= 10)){
+    if((-20 <= operation) and (operation <= 20)){
         return true;
     }
     return false;
