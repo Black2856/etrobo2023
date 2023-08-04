@@ -9,29 +9,30 @@ SpeedCorrection::SpeedCorrection():
     device(DeviceInOut::getInstance()),
     mInitialValue(0),
     mTargetValue(0),
-    mDuration(0),
-    mInitialTime(0),
     mEasing(easing_t::IN_OUT_QUAD)
     {}
 
 // 各値の初期化
-void SpeedCorrection::init(float initialValue, float targetValue, float duration, easing_t easing) {
+void SpeedCorrection::init(float initialValue, float targetValue, easing_t easing) {
     mInitialValue = initialValue;
     mTargetValue = targetValue;
     // secからusecに変換
+    /*
     mDuration = int(duration * 1000);
     mInitialTime = int(device.clock_now() / 1000);
+    */
     mEasing = easing;
 }
 
-float SpeedCorrection::calc() {
+float SpeedCorrection::calc(float progress) {
     // 経過時間
+    /*
     int elapsed = int(device.clock_now() / 1000 - mInitialTime);
     if (elapsed >= mDuration) {
         return mTargetValue;
     }
     float progress = float(elapsed) / float(mDuration);
-
+    */
     switch (mEasing) {
         case easing_t::IN_OUT_QUAD:
             return mInitialValue + easeInOutQuad(progress) * (mTargetValue - mInitialValue);

@@ -11,22 +11,21 @@ OnLineMove::OnLineMove():
         this->calibration = {0, 0, 0};
     }
 
-void OnLineMove::first(float kp, float ki, float kd){
+void OnLineMove::first(int maxPWM, float kp, float ki, float kd){
+    this->maxPWM = maxPWM;
     this->manual.first(RunType::CENTER_ROTATION, 0, 0);
     this->pidControl.setPID({kp, ki, kd});
-    this->calibration = this->generalData.getCalibration(); //記録パッケージからキャリブレーションを読み込む予定
+    this->calibration = this->generalData.getCalibration();
 }
 
-bool OnLineMove::execute(float gain){
-    float operation = this->pidControl.calc(float(device.color_getBrightness()), this->calibration.avg) * gain;
+bool OnLineMove::execute(){
+    float operation = this->pidControl.calc(float(device.color_getBrightness()), this->calibration.avg);
     //PWMの制限
-    /*
-    if(operation > 100){
-        operation = 100;
-    }else if(operation < -100){
-        operation = -100;
+    if(operation > this->maxPWM){
+        operation = this->maxPWM;
+    }else if(operation < -this->maxPWM){
+        operation = -this->maxPWM;
     }
-    */
 
     this->manual.setPWM(operation, 0);
     this->manual.execute();

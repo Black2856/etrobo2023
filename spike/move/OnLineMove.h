@@ -16,14 +16,15 @@
 class OnLineMove{
 public:
     OnLineMove();
-    void first(float p, float i, float d);
-    bool execute(float gain);
+    void first(int maxPWM, float p, float i, float d);
+    bool execute();
 private:
     DeviceInOut& device;
     Calc& calc = Calc::getInstance();
     GeneralData& generalData = GeneralData::getInstance();
     Manual manual;
 
+    int maxPWM;
     PIDControl pidControl;
     unit::calibration_t calibration;
 };

@@ -29,6 +29,7 @@ void Walker::run() {
 
   //#<make_scenario>
 Manage_scene main("main");
+main.makeCALL_SCENARIO("test");
 main.makeCALL_SCENARIO("calibration");
 main.makeCALL_SCENARIO("ready");
 main.makeCALL_SCENARIO("run");
@@ -58,7 +59,7 @@ manage_scenario.add(run);
 
 Manage_scene test("test");
 test.makeSTOP(11, 0.0);
-test.makeMANUAL(12, 1.0, 40.0, 0.0);
+test.makeMANUAL(12, 1.0, 40.0, 0.3);
 test.makeSTOP(13, 0.0);
 manage_scenario.add(test);
 

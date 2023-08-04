@@ -105,7 +105,7 @@ void Manage_scenario::first(Execution& execution, arg_info_t& argInfo){
             this->manual.first((RunType)int(argInfo.getFloatArg(0)), argInfo.getFloatArg(1), argInfo.getFloatArg(2));
             break;
         case Execution::ON_LINE_MOVE:
-            this->onLineMove.first(argInfo.getFloatArg(1), argInfo.getFloatArg(2), argInfo.getFloatArg(3));
+            this->onLineMove.first(argInfo.getFloatArg(0), argInfo.getFloatArg(1), argInfo.getFloatArg(2), argInfo.getFloatArg(3));
             break;
         case Execution::CALIBRATION:
             this->calibration.first(argInfo.getStrArg(0));
@@ -131,7 +131,7 @@ bool Manage_scenario::intermediate(Execution& execution, arg_info_t& argInfo){
             this->lineTrace.trace();
             break;
         case Execution::ON_LINE_MOVE:
-            flag = this->onLineMove.execute(argInfo.getFloatArg(0));
+            flag = this->onLineMove.execute();
         default:
             break;
     }

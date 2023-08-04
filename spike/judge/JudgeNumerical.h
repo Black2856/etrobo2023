@@ -13,18 +13,20 @@ public:
     void stop();
     bool j(float target);
 
+    float getTarget() const;
+    float getPreviousValue() const;
+    bool isStarted() const;
+
 protected:
     // 派生クラス毎に計測に使用する値を返却する
     virtual float getValue() const = 0;
-    virtual bool  isTargetReached() const;
+    virtual bool  isTargetReached();
 
-    float getTarget() const;
     float getStartNumerical() const;
-
+    float previousValue;
 private:
     void setTarget(float target);
     void start();
-    bool isStarted() const;
 
     float mTarget;         // 目標値
     float mStartNumerical; // 計測開始時数値

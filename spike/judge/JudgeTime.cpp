@@ -11,5 +11,6 @@ JudgeTime::JudgeTime():
 }
 
 float JudgeTime::getValue() const {
+    
     return device.clock_now();
 }

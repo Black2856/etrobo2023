@@ -46,6 +46,7 @@ void JudgeNumerical::start() {
  * 計測停止
  */
 void JudgeNumerical::stop() {
+    this->previousValue = 0;
     mStartNumerical = 0;
     mStartFlg = false;
 }
@@ -55,14 +56,14 @@ void JudgeNumerical::stop() {
  * @retval true  目標値に達した
  * @retval false 目標値に達していない
  */
-bool JudgeNumerical::isTargetReached() const{
+bool JudgeNumerical::isTargetReached(){
     float currentNumerical = getValue() - mStartNumerical;
+    this->previousValue = currentNumerical;
     if(mTarget >= 0){
         return (currentNumerical >= mTarget) ? true : false;
-    }else if(mTarget < 0){
+    }else{ //mTarget < 0
         return (currentNumerical < mTarget) ? true : false;
     }
-    return true;
 }
 
 /**
@@ -72,6 +73,10 @@ bool JudgeNumerical::isTargetReached() const{
  */
 bool JudgeNumerical::isStarted() const {
     return mStartFlg;
+}
+
+float JudgeNumerical::getPreviousValue() const {
+    return this->previousValue;
 }
 
 float JudgeNumerical::getTarget() const {
