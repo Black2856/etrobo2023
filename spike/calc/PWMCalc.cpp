@@ -22,19 +22,13 @@ int PWMCalc::changePWM(){
         ret = int(this->speedCorrectionOut.calc(rate + 0.001) + 0.5);
     }
 
-    //PWMの制限
-    if((0 <= ret) || (ret < 40)){
-        ret = 40;
-    }else if((-40 < ret) || (ret <= 0)){
-        ret = -40;
-    }
-
     return ret;
 }
 
 //progThresholdが+の場合 前pwm => pwm => 前pwm の変化
 //progThresholdが-の場合 前pwm => pwm の変化
 void PWMCalc::setPWM(int pwm, float progThreshold){
+
     if(progThreshold >= 0){
         this->speedCorrectionOut.init(pwm, this->beforePWM, easing_t::IN_OUT_QUAD);
     }else{
@@ -44,4 +38,11 @@ void PWMCalc::setPWM(int pwm, float progThreshold){
         this->progThreshold = std::abs(progThreshold);
 
     this->beforePWM = pwm;
+
+    //PWMの制限
+    if((0 <= pwm) || (pwm < 40)){
+        this->beforePWM = 40;
+    }else if((-40 < pwm) || (pwm <= 0)){
+        this->beforePWM = -40;
+    }
 }
