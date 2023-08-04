@@ -59,7 +59,7 @@ manage_scenario.add(run);
 
 Manage_scene test("test");
 test.makeSTOP(11, 0.0);
-test.makeMANUAL(12, 1.0, 55.0, 0.3);
+test.makeMANUAL(12, 2.0, 55.0, 0.15);
 test.makeSTOP(13, 0.0);
 manage_scenario.add(test);
 
