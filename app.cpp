@@ -29,7 +29,7 @@ void Walker::run() {
 
   //#<make_scenario>
 Manage_scene main("main");
-main.makeCALL_SCENARIO("test");
+main.makeCALL_SCENARIO("ready");
 main.makeCALL_SCENARIO("calibration");
 main.makeCALL_SCENARIO("ready");
 main.makeCALL_SCENARIO("run");
@@ -61,11 +61,11 @@ manage_scenario.add(run);
 
 Manage_scene test("test");
 test.makeSTOP(13, 0.0);
-test.makeMANUAL_PID(14, 1.0, 40.0, 3000.0);
+test.makeMANUAL_PID(14, 1.0, 50.0, 3000.0);
 test.makeSTOP(15, 0.0);
-test.makeMANUAL_PID(16, 2.0, 40.0, 180.0);
+test.makeMANUAL_PID(16, 2.0, 50.0, 180.0);
 test.makeSTOP(17, 0.0);
-test.makeMANUAL_PID(18, 2.0, 40.0, -180.0);
+test.makeMANUAL_PID(18, 2.0, 50.0, -180.0);
 test.makeSTOP(19, 0.0);
 manage_scenario.add(test);
 
