@@ -20,7 +20,7 @@
 #define RIGHT_WHEEL_POWER 1.0 //右車輪の出力量
 #else  //SPIKE
 #define TREAD 126.0
-#define LEFT_WHEEL_POWER 1.0
+#define LEFT_WHEEL_POWER 0.93
 #define RIGHT_WHEEL_POWER 1.0
 #endif // MAKE_SIM
 
