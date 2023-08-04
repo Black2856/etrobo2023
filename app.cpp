@@ -42,7 +42,7 @@ calibration.makeCALIBRATION("record");
 calibration.makeMANUAL(2, 2, -50.0, 0.15);
 calibration.makeCALIBRATION("stop");
 calibration.makeSTOP(3, 0);
-calibration.makeON_LINE_MOVE(4, 60, 7.0, 0.1, 2.2);
+calibration.makeON_LINE_MOVE(4, 60, 2.5, 0.1, 2.2);
 calibration.makeSTOP(5, 0);
 manage_scenario.add(calibration);
 
@@ -51,8 +51,8 @@ ready.makeSTOP(6, 0.0);
 manage_scenario.add(ready);
 
 Manage_scene run("run");
-run.makeTRACE(7, 70.0, 0.4, 0.0, 0.3, 0.05);
-run.makeTRACE(8, 50.0, 0.4, 0.0, 0.2, 0.1);
+run.makeTRACE(7, 70.0, -0.4, 0.0, -0.3, 0.05);
+run.makeTRACE(8, 50.0, -0.4, 0.0, 0.2, 0.1);
 run.makeSTOP(9, 1.0);
 run.makeMANUAL(10, 2.0, 45.0, 0.0);
 run.makeSTOP(11, 0.0);
