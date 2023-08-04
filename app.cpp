@@ -29,19 +29,19 @@ void Walker::run() {
 
   //#<make_scenario>
 Manage_scene main("main");
-main.makeCALL_SCENARIO("test");
+main.makeCALL_SCENARIO("ready");
 main.makeCALL_SCENARIO("calibration");
 main.makeCALL_SCENARIO("ready");
 main.makeCALL_SCENARIO("run");
 manage_scenario.add(main);
 
 Manage_scene calibration("calibration");
-calibration.makeMANUAL(0, 2, 50.0, 0.0);
+calibration.makeMANUAL(0, 2, 50.0, 0.3);
 calibration.makeCALIBRATION("record");
-calibration.makeMANUAL(1, 2, -50.0, 0.0);
+calibration.makeMANUAL(1, 2, -50.0, 0.15);
 calibration.makeSTOP(2, 0);
 calibration.makeCALIBRATION("stop");
-calibration.makeON_LINE_MOVE(3, 10, 0.4, 0.0, 0.3);
+calibration.makeON_LINE_MOVE(3, 50, -0.4, 0.0, 0.3);
 calibration.makeSTOP(4, 0);
 manage_scenario.add(calibration);
 
