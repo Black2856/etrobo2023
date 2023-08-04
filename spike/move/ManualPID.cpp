@@ -96,9 +96,11 @@ bool ManualPID::execute(){
         float diffDirection = this->standardDirection - calc.localization.getDirection();
         return this->pidControl.calc(diffDirection, this->transitionValue);
     }
-    //遷移条件値:無し
+    //遷移条件値:操作向き
     float ManualPID::onLineMove(){
-        return this->pidControl.calc(float(device.color_getBrightness()), this->calibration.avg);
+        float operation = this->pidControl.calc(float(device.color_getBrightness()), this->calibration.avg)
+        this->transitionValue
+        return this->transitionValue * operation;
     }
 
     float ManualPID::max(float value, float max){

@@ -21,7 +21,8 @@ void Calibration::first(const char* command){
 }
 
 void Calibration::execute(){
-    this->device.color_getBrightness();
+    int a = this->device.color_getBrightness();
+    printf("%d, ", a);
 }
 
 void Calibration::stop(){
