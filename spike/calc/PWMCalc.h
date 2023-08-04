@@ -7,22 +7,17 @@
 #define PWM_CALC_H
 
 #include "SpeedCorrection.h"
-#include "JudgeData.h"
-#include <cmath>
 
 class PWMCalc{
 public:
     PWMCalc();
     int changePWM();
-    void setPWM(int pwm, float progThreshold);
+    void setPWM(int pwm, float time);
 
 private:
     int beforePWM;
-    float progThreshold;
-    SpeedCorrection speedCorrectionIn;
-    SpeedCorrection speedCorrectionOut;
 
-    JudgeData& judgeData = JudgeData::getInstance();
+    SpeedCorrection speedCorrection;
 };
 
 #endif //PWM_CALC_H

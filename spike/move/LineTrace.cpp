@@ -17,7 +17,7 @@ void LineTrace::setPWM(float pwm, float pwmTransitionTime){
 void LineTrace::first(float pwm, float kp, float ki, float kd, float pwmTransitionTime){
     this->setPWM(pwm, pwmTransitionTime);
     this->pidControl.setPID({kp, ki, kd});
-    this->calibration = this->generalData.getCalibration();
+    this->calibration = this->generalData.getCalibration(); //記録パッケージからキャリブレーションを読み込む予定
 }
 
 void LineTrace::trace(){

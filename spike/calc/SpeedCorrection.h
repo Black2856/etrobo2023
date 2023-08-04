@@ -16,8 +16,8 @@ class SpeedCorrection {  // <1>
 public:
     SpeedCorrection();
 
-    void init(float initialValue, float targetValue, easing_t easing);
-    float calc(float progRate); //progRate:進行度 0 ～ 1の判定で指定
+    void init(float initialValue, float targetValue, float duration, easing_t easing);
+    float calc();
 
 private:
     DeviceInOut& device;
@@ -25,12 +25,10 @@ private:
     float mInitialValue;
     // 目標値
     float mTargetValue;
-    /*
     // 制御の継続時間
     int mDuration;
     // 制御開始時間
     int mInitialTime;
-    */
     // イージング関数種別
     easing_t mEasing;
 

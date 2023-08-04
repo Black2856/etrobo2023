@@ -14,12 +14,12 @@ public:
     // インスタンス取得
     static GeneralData& getInstance();
 
-    unit::calibration_t getCalibration(); //キャリブレーション値の取得
+    unit::calibration_t getCalibration();
     void setCalibration(unit::calibration_t calibration);
 
 private:
     unit::calibration_t calibration;
-    std::list<int> runRoute; //メモ:恐らく型を変更する
+    std::list<int> runRoute; //恐らく型を変更する
 
     GeneralData(); // プライベートコンストラクタ
     static GeneralData* instance; // シングルトンオブジェクトへのポインタ

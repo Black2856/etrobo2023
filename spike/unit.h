@@ -6,7 +6,7 @@
 
 namespace unit {
 
-    enum class color_t {
+    enum color_t {
         RED,
         BLUE,
         YELLOW,
