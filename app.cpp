@@ -37,10 +37,10 @@ manage_scenario.add(main);
 
 Manage_scene calibration("calibration");
 calibration.makeSTOP(0, 0);
-calibration.makeMANUAL_PID(1, 2, 55.0, 90.0);
+calibration.makeMANUAL_PID(1, 2, 50.0, 90.0);
 calibration.makeSTOP(2, 0);
 calibration.makeCALIBRATION("record");
-calibration.makeMANUAL_PID(3, 2, 55.0, -540.0);
+calibration.makeMANUAL_PID(3, 2, 50.0, -540.0);
 calibration.makeCALIBRATION("stop");
 calibration.makeSTOP(4, 0);
 calibration.makeMANUAL_PID(5, 5, 50.0, 3.2);
@@ -52,7 +52,7 @@ ready.makeSTOP(7, 0.0);
 manage_scenario.add(ready);
 
 Manage_scene run("run");
-run.makeTRACE(8, 80.0, -0.5, 0.0, -0.4, 1.0);
+run.makeTRACE(8, 50.0, -0.4, 0.0, -0.25, 1.0);
 run.makeTRACE(9, 50.0, -0.4, 0.0, 0.2, 1.0);
 run.makeSTOP(10, 1.0);
 run.makeMANUAL(11, 2.0, 45.0, 0.0);
