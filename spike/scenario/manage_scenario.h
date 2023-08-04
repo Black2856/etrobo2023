@@ -16,7 +16,7 @@
 #include "LineTrace.h"
 #include "Stop.h"
 #include "Manual.h"
-#include "OnLineMove.h"
+#include "ManualPID.h"
 #include "Calibration.h"
 
 #include <cstring>
@@ -44,7 +44,7 @@ private:
     LineTrace lineTrace;
     Stop stop;
     Manual manual;
-    OnLineMove onLineMove;
+    ManualPID manualPID;
     Calibration calibration;
 
     void addScene(Manage_scene& manageScene); //１つシーン管理クラスをコンパイルする

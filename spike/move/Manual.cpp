@@ -8,9 +8,9 @@
 
 Manual::Manual():
     device(DeviceInOut::getInstance()){
-        unit::pid_t pid1 = {2.3, 2.2, 4.2};
+        unit::pid_t pid1 = {2.3, 0.022, 0.6};
         this->straightPID.setPID(pid1);
-        unit::pid_t pid2 = {2.3, 2.2, 4.2};
+        unit::pid_t pid2 = {2.3, 0.022, 0.6};
         this->centerPID.setPID(pid2);
     }
 
@@ -18,7 +18,7 @@ void Manual::setPWM(float pwm, float pwmTransitionTime){
     this->calc.pwmCalc.setPWM(pwm, pwmTransitionTime); 
 }
 
-void Manual::first(RunType runType, float pwm, float pwmTransitionTime){
+void Manual::first(manual::RunType runType, float pwm, float pwmTransitionTime){
     this->runType = runType;
     this->setPWM(pwm, pwmTransitionTime);
     this->calc.localization.resetDifferenceCount();
@@ -28,17 +28,20 @@ void Manual::first(RunType runType, float pwm, float pwmTransitionTime){
 
 void Manual::execute(){
     switch(this->runType){
-        case RunType::STRAIGHT:
+        case manual::RunType::STRAIGHT:
             this->straight();
             break;
-        case RunType::CENTER_ROTATION:
+        case manual::RunType::CENTER_ROTATION:
             this->centerRotation();
             break;
-        case RunType::LEFT_WHEEL_ROTATION:
+        case manual::RunType::LEFT_WHEEL_ROTATION:
             this->wheelRotation(0);
             break;
-        case RunType::RIGHT_WHEEL_ROTATION:
+        case manual::RunType::RIGHT_WHEEL_ROTATION:
             this->wheelRotation(1);
+            break;
+        default:
+            printf("error : incorrect type at Manual::execute");
             break;
     }
 }
@@ -59,6 +62,7 @@ void Manual::centerRotation(){
     //車体中心移動になるように補正する
     float differenceDistance = this->standardDistance - this->calc.localization.getDistance();
     int gain = int(this->straightPID.calc(differenceDistance, 0));
+    //printf("%d", gain);
 
     this->device.LWheel_setPWM(correctionPWM + gain);
     this->device.RWheel_setPWM(-(correctionPWM - gain));
@@ -73,5 +77,7 @@ void Manual::wheelRotation(int wheel){
     }else if(wheel == 1){ //右車輪を中心に回転
         this->device.LWheel_setPWM(correctionPWM);
         this->device.RWheel_setPWM(0);
+    }else{
+        printf("error : incorrect type at Manual::wheelRotation");
     }
 }

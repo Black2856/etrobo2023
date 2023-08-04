@@ -7,6 +7,7 @@
 #define PID_CONTROL_H
 
 #include "unit.h"
+#include "setting.h"
 
 class PIDControl {
 public:
@@ -19,6 +20,9 @@ private:
     float mTarget;
     float mIntegral;
     float mDiff_prev;
+
+    // タスク実行時間を算出(ms)
+    float dt = float(CYCLE) / (1000 * 1000);
 };
 
 #endif  // PID_CONTROL_H

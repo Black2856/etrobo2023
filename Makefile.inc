@@ -20,7 +20,7 @@ APPL_CXXOBJS += \
     LineTrace.o \
     Localization.o \
     Manual.o \
-    OnLineMove.o \
+    ManualPID.o \
     PIDControl.o \
     PWMCalc.o \
     RGBtoHSV.o \

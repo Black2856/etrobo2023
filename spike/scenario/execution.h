@@ -10,7 +10,7 @@ enum class Execution {
     TRACE = 2,
     STOP = 3,
     MANUAL = 4,
-    ON_LINE_MOVE = 5,
+    MANUAL_PID = 5,
     CALIBRATION = 6
 };
 

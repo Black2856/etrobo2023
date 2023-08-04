@@ -10,19 +10,21 @@
 #include "PIDControl.h"
 #include "unit.h"
 
-enum class RunType {
-    STRAIGHT = 1,
-    CENTER_ROTATION = 2,
-    LEFT_WHEEL_ROTATION = 3,
-    RIGHT_WHEEL_ROTATION = 4
-};
+namespace manual {
+    enum class RunType {
+        STRAIGHT = 1,
+        CENTER_ROTATION = 2,
+        LEFT_WHEEL_ROTATION = 3,
+        RIGHT_WHEEL_ROTATION = 4
+    };
+}
 
 class Manual {
 public:
     Manual();
     void setPWM(float pwm, float pwmTransitionTime);
 
-    void first(RunType runType, float pwm, float pwmTransitionTime);
+    void first(manual::RunType runType, float pwm, float pwmTransitionTime);
     void execute();
 
 private:
@@ -35,7 +37,7 @@ private:
     float standardDistance;
     PIDControl straightPID;
     PIDControl centerPID;
-    RunType runType;
+    manual::RunType runType;
 
     DeviceInOut& device;
     Calc& calc = Calc::getInstance();
