@@ -21,7 +21,7 @@
 #else  //SPIKE
 #define TREAD 126.0
 #define LEFT_WHEEL_POWER 1.0
-#define RIGHT_WHEEL_POWER 0.95
+#define RIGHT_WHEEL_POWER 1.0
 #endif // MAKE_SIM
 
 #define CAMERA_NUMBER 0 // カメラデバイス番号（通常は0）を指定
