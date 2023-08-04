@@ -22,6 +22,13 @@ int PWMCalc::changePWM(){
         ret = int(this->speedCorrectionOut.calc(rate) + 0.5);
     }
 
+    //PWMの制限
+    if(ret > 40){
+        ret = 40;
+    }else if(ret < -40){
+        ret = -40;
+    }
+
     return ret;
 }
 
