@@ -98,7 +98,7 @@ bool ManualPID::execute(){
     }
     //遷移条件値:操作向き
     float ManualPID::onLineMove(){
-        float operation = this->pidControl.calc(float(device.color_getBrightness()), this->calibration.avg)
+        float operation = this->pidControl.calc(float(device.color_getBrightness()), this->calibration.avg);
         return this->transitionValue * operation;
     }
 
