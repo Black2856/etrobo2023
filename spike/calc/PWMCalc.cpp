@@ -29,9 +29,9 @@ int PWMCalc::changePWM(){
 //progThresholdが-の場合 前pwm => pwm の変化
 void PWMCalc::setPWM(int pwm, float progThreshold){
     //PWMの制限
-    if((0 < pwm) && (pwm < 40)){
+    if((0 <= this->beforePWM) && (this->beforePWM < 40)){
         this->beforePWM = 40;
-    }else if((-40 < pwm) && (pwm < 0)){
+    }else if((-40 < this->beforePWM) && (this->beforePWM <= 0)){
         this->beforePWM = -40;
     }
 
