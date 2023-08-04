@@ -8,7 +8,7 @@
 
 Manual::Manual():
     device(DeviceInOut::getInstance()){
-        unit::pid_t pid1 = {2.3, 0.022, 0.8};
+        unit::pid_t pid1 = {2.3, 0.022, 0.05};
         this->straightPID.setPID(pid1);
         unit::pid_t pid2 = {2.3, 0.022, 0.15};
         this->centerPID.setPID(pid2);
@@ -61,7 +61,7 @@ void Manual::centerRotation(){
     int correctionPWM = this->calc.pwmCalc.changePWM();
     //車体中心移動になるように補正する
     float differenceDistance = this->standardDistance - this->calc.localization.getDistance();
-    int gain = int(this->straightPID.calc(differenceDistance, 0));
+    int gain = int(this->centerPID.calc(differenceDistance, 0));
     //printf("%d", gain);
 
     this->device.LWheel_setPWM(correctionPWM + gain);
