@@ -30,9 +30,17 @@ int PWMCalc::changePWM(){
 void PWMCalc::setPWM(int pwm, float progThreshold){
     //PWMの制限
     if((0 <= this->beforePWM) && (this->beforePWM < 40)){
-        this->beforePWM = 40;
+        if(pwm >= 0){
+            this->beforePWM = 40;
+        }else{
+            this->beforePWM = -40;
+        }
     }else if((-40 < this->beforePWM) && (this->beforePWM <= 0)){
-        this->beforePWM = -40;
+        if(pwm >= 0){
+            this->beforePWM = 40;
+        }else{
+            this->beforePWM = -40;
+        }
     }
 
     if(progThreshold >= 0){
