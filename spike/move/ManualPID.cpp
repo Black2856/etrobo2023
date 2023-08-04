@@ -16,7 +16,7 @@ void ManualPID::first(manualPID::RunType runType, float maxPWM, float transition
     this->runType = runType;
     this->maxPWM = std::abs(maxPWM);
     this->rotation = rotation;
-    this->pidControl.setPID({4.5, 0.001, 0.8});
+    this->pidControl.setPID({4.5, 0.001, 0.2});
     this->calibration = this->generalData.getCalibration();
 
     this->transitionValue = transitionValue;
