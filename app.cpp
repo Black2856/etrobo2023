@@ -42,7 +42,7 @@ calibration.makeCALIBRATION("record");
 calibration.makeMANUAL(2, 2, -50.0, 0.15);
 calibration.makeCALIBRATION("stop");
 calibration.makeSTOP(3, 0);
-calibration.makeON_LINE_MOVE(4, 60, 2.5, 0.1, 0.5);
+calibration.makeON_LINE_MOVE(4, 60, 7.0, 0.1, 2.2);
 calibration.makeSTOP(5, 0);
 manage_scenario.add(calibration);
 
