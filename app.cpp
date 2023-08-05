@@ -43,7 +43,7 @@ calibration.makeCALIBRATION("record");
 calibration.makeMANUAL_PID(3, 2, 50.0, 540.0);
 calibration.makeCALIBRATION("stop");
 calibration.makeSTOP(4, 0);
-calibration.makeMANUAL_PID(5, 5, 50.0, -1.0);
+calibration.makeMANUAL_PID(5, 5, 50.0, 1.0);
 calibration.makeSTOP(6, 0);
 manage_scenario.add(calibration);
 
