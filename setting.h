@@ -29,7 +29,7 @@
 #define IMG_PATH "img/" // 画像保存先path
 #define IMG_QUEUE_PATH "Queue.txt" // 撮影待機リスト
 #define IMG_FILENAME_LEN 5 // ファイルネームの最大長
-#define RECORD_LIMIT 500  // センサーデータの最大記録数  記録秒数 = CYCLE * RECORD_LIMIT
+#define RECORD_LIMIT 1000  // センサーデータの最大記録数  記録秒数 = CYCLE * RECORD_LIMIT
 
 // PC設定
 #define PC_IP_ADDRESS "" // 受信時IPアドレス
