@@ -52,7 +52,7 @@ ready.makeSTOP(7, 0.0);
 manage_scenario.add(ready);
 
 Manage_scene run("run");
-run.makeTRACE(8, 80.0, -0.4, 0.0, -0.15, 1.0);
+run.makeTRACE(8, 90.0, -0.4, 0.0, -0.35, 1.0);
 run.makeTRACE(9, 50.0, -1.0, 0.0, -0.4, 0.5);
 run.makeSTOP(10, 1.0);
 manage_scenario.add(run);
