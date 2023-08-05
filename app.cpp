@@ -56,7 +56,7 @@ manage_scenario.add(run);
 
 Manage_scene test("test");
 test.makeSTOP(11, 0.0);
-test.makeMANUAL_PID(12, 1.0, 97.0, 100.0);
+test.makeMANUAL_PID(12, 1.0, 95.0, 1000.0);
 test.makeSTOP(13, 0.0);
 manage_scenario.add(test);
 
