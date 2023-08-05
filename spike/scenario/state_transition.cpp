@@ -25,18 +25,15 @@ bool StateTransition::judge(int idx){
         case 5: func = [](Judge& j) {return j.ret.j(true) and j.time.j(2000 * 1000);}; break;
         case 6: func = [](Judge& j) {return j.time.j(100 * 1000);}; break;
         case 7: func = [](Judge& j) {return j.touch.j(true);}; break;
-        case 8: func = [](Judge& j) {return j.time.j(20000 * 1000);}; break;
-        case 9: func = [](Judge& j) {return j.time.j(3000 * 1000);}; break;
-        case 10: func = [](Judge& j) {return j.time.j(2000 * 1000);}; break;
-        case 11: func = [](Judge& j) {return j.angle.j(90);}; break;
-        case 12: func = [](Judge& j) {return j.time.j(1000 * 1000);}; break;
-        case 13: func = [](Judge& j) {return j.time.j(5000 * 1000);}; break;
-        case 14: func = [](Judge& j) {return j.ret.j(true) and j.time.j(20000 * 1000);}; break;
-        case 15: func = [](Judge& j) {return j.time.j(7000 * 1000);}; break;
-        case 16: func = [](Judge& j) {return j.ret.j(true) and j.time.j(20000 * 1000);}; break;
-        case 17: func = [](Judge& j) {return j.time.j(3000 * 1000);}; break;
-        case 18: func = [](Judge& j) {return j.ret.j(true) and j.time.j(20000 * 1000);}; break;
-        case 19: func = [](Judge& j) {return j.time.j(60000 * 1000);}; break;
+        case 8: func = [](Judge& j) {return j.mileage.j(2800 * 1000);}; break;
+        case 9: func = [](Judge& j) {return j.mileage.j(1000 * 1000);}; break;
+        case 10: func = [](Judge& j) {return j.time.j(5000 * 1000);}; break;
+        case 11: func = [](Judge& j) {return j.ret.j(true) and j.time.j(20000 * 1000);}; break;
+        case 12: func = [](Judge& j) {return j.time.j(7000 * 1000);}; break;
+        case 13: func = [](Judge& j) {return j.ret.j(true) and j.time.j(20000 * 1000);}; break;
+        case 14: func = [](Judge& j) {return j.time.j(3000 * 1000);}; break;
+        case 15: func = [](Judge& j) {return j.ret.j(true) and j.time.j(20000 * 1000);}; break;
+        case 16: func = [](Judge& j) {return j.time.j(60000 * 1000);}; break;
     //#</func_list>
         default: return true;
     }
