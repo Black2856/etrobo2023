@@ -16,16 +16,16 @@
 
 #ifdef MAKE_SIM
 #define TREAD 150.0         // 車体トレッド幅（mm） spike = 126 EV3 = 150.0
-#define LEFT_WHEEL_POWER 1  //左車輪の出力量
-#define RIGHT_WHEEL_POWER 1 //右車輪の出力量
+#define LEFT_WHEEL_POWER 1.0  //左車輪の出力量
+#define RIGHT_WHEEL_POWER 1.0 //右車輪の出力量
 #else  //SPIKE
 #define TREAD 126.0
-#define LEFT_WHEEL_POWER 0.96
-#define RIGHT_WHEEL_POWER 1
+#define LEFT_WHEEL_POWER 1.0
+#define RIGHT_WHEEL_POWER 1.0
 #endif // MAKE_SIM
 
 #define CAMERA_NUMBER 0 // カメラデバイス番号（通常は0）を指定
-#define CYCLE 1000 * 5 // 処理周期(msec)
+#define CYCLE 1000 * 10 // 処理周期(msec)
 #define IMG_QUEUE "Queue.txt" // 撮影待機リストファイル名
 #ifdef MAKE_SIM
     #define IMG_PATH "/home/iwasaki/etrobo/workspace/img/" // 画像保存先path

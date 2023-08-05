@@ -6,7 +6,6 @@
 #ifndef CALIBRATION_H
 #define CALIBRATION_H
 
-#include "OnLineMove.h"
 #include "Calc.h"
 #include "DeviceInOut.h"
 #include "Record.h"

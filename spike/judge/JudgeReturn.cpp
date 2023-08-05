@@ -10,7 +10,7 @@ JudgeReturn::JudgeReturn():
 }
 
 bool JudgeReturn::j(bool flag){
-    return (this->flag == flag);
+    return this->flag;
 }
 
 void JudgeReturn::setFlag(bool flag){

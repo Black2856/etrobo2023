@@ -4,7 +4,6 @@
 作成者:杉本
 */
 #include "TakePhoto.h"
-#include "setting.h"
 #include <stdio.h>
 
 TakePhoto::TakePhoto():
@@ -14,7 +13,7 @@ TakePhoto::TakePhoto():
 void TakePhoto::first(int num) {
     this->num = num;
     for(int i=0; i<this->num; i++) {
-        char fileName[IMG_FILENAME_LEN];
+        char fileName[5];
 
         sprintf(fileName, "%d", i);
         device.camera_addToQueue(fileName);

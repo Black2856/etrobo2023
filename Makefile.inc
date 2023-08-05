@@ -11,7 +11,6 @@ APPL_CXXOBJS += \
     GeneralData.o \
     Judge.o \
     JudgeAngle.o \
-    JudgeData.o \
     JudgeMileage.o \
     JudgeNumerical.o \
     JudgeReturn.o \
@@ -21,7 +20,7 @@ APPL_CXXOBJS += \
     LineTrace.o \
     Localization.o \
     Manual.o \
-    OnLineMove.o \
+    ManualPID.o \
     PIDControl.o \
     PWMCalc.o \
     RGBtoHSV.o \

@@ -46,14 +46,13 @@ void Manage_scene::makeMANUAL(int stateTransition, float arg1, float arg2, float
     this->scenario.push_back(scene);
 };
 
-void Manage_scene::makeON_LINE_MOVE(int stateTransition, float arg1, float arg2, float arg3, float arg4){
+void Manage_scene::makeMANUAL_PID(int stateTransition, float arg1, float arg2, float arg3){
     arg_info_t argInfo;
     argInfo.addFloatArg(arg1);
     argInfo.addFloatArg(arg2);
     argInfo.addFloatArg(arg3);
-    argInfo.addFloatArg(arg4);
 
-    Scene scene(Execution::ON_LINE_MOVE, argInfo, stateTransition);
+    Scene scene(Execution::MANUAL_PID, argInfo, stateTransition);
     this->scenario.push_back(scene);
 }
 

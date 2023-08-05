@@ -4,7 +4,6 @@
 作成者:松尾
 */
 #include "PIDControl.h"
-#include "setting.h"
 
 PIDControl::PIDControl():
     mPID({0,0,0}),
@@ -19,13 +18,12 @@ void PIDControl::setPID(unit::pid_t pid){
 }
 
 float PIDControl::calc(float current,float target){
-    // 偏差を計算
+    // 偏差を計算 p
     float diff = current - target;
-    // 偏差の累積地を更新
-    mIntegral += diff * 1 / CYCLE;
-    // 前回偏差との差を計算
-    float ddt = diff - mDiff_prev;
-    // 前回偏差を更新
+    // 偏差の累積地を更新 i
+    mIntegral += diff * this->dt;
+    // 前回偏差との差を計算と更新 d
+    float ddt = (diff - mDiff_prev) / this->dt;
     mDiff_prev = diff;
 
     // 計算した操作量を返却

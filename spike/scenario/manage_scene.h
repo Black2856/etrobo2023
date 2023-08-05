@@ -21,7 +21,7 @@ public:
     void makeTRACE(int stateTransition, float arg1, float arg2, float arg3, float arg4, float arg5);
     void makeSTOP(int stateTransition, float arg1);
     void makeMANUAL(int stateTransition, float arg1, float arg2, float arg3);
-    void makeON_LINE_MOVE(int stateTransition, float arg1, float arg2, float arg3, float arg4);
+    void makeMANUAL_PID(int stateTransition, float arg1, float arg2, float arg3);
     void makeCALIBRATION(const char* arg1);
 
     const char* getName();

@@ -15,7 +15,7 @@ public:
 
 private:
     float getValue() const override;
-    bool  isTargetReached() override;
+    bool  isTargetReached() const override;
     DeviceInOut& device;
 };
 
