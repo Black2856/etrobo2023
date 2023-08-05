@@ -47,7 +47,7 @@ void Calibration::stop(){
             calibration.min = x;
         }
     }
-    calibration.avg = int(calibration.max / calibration.min);
+    calibration.avg = int((calibration.max + calibration.min) / 2.0);
     //格納
     printf("平均:%d, 最大:%d, 最小:%d\n", calibration.avg, calibration.max, calibration.min);
     this->generalData.setCalibration(calibration);
