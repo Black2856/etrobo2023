@@ -15,6 +15,7 @@
 #include "Clock.h"
 #include "Record.h"
 #include <vector>
+#include <array>
 
 class DeviceInOut{ //deviceのSingleton管理クラス
 public:
@@ -90,7 +91,7 @@ private:
     DeviceInOut(DeviceInOut const&);
     void operator=(DeviceInOut const&);
 
-    std::vector<const char*> imgNameQueue;
+    std::vector<std::array<char, IMG_FILENAME_LEN>> imgNameQueue;
 };
 
 #endif  // DEVICE_IN_OUT_H

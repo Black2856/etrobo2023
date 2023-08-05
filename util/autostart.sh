@@ -13,10 +13,12 @@ fi
 
 make -C background_tasks
 
-# background_tasksをバックグラウンドで実行
-./background_tasks/background_tasks &
-
 cd ../
+
+mkdir -m 755 img || true
+# background_tasksをバックグラウンドで実行
+./$CFILE/background_tasks/background_tasks &
+
 chmod -R 755 ./etrobo2023
 
 rm asp || true

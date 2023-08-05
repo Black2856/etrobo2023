@@ -7,6 +7,7 @@
 #include "setting.h"
 // 以下cameraに使用
 #include <cstdio>
+#include <algorithm>
 
 DeviceInOut* DeviceInOut::instance = NULL;
 
@@ -185,19 +186,21 @@ bool DeviceInOut::button_isPressed(button_t button) {
 
 /* camera */
 void DeviceInOut::camera_addToQueue(const char* fileName) {
-    this->imgNameQueue.push_back(fileName);
+    std::array<char, IMG_FILENAME_LEN> arr;
+    std::copy_n(fileName, IMG_FILENAME_LEN, arr.begin());
+    this->imgNameQueue.push_back(arr);
 }
 
 bool DeviceInOut::camera_takePhoto() {
-    FILE *fp = fopen(IMG_QUEUE_PATH,"a");
+    FILE *fp = fopen(IMG_QUEUE,"a");
     if (fp == NULL) {
 		printf("撮影待機リストファイルを開けませんでした。\n");
         return false;
 	}
     printf("以下のファイル名で画像を撮影、保存します。\n");
-    for(auto name : imgNameQueue) {
-        fprintf(fp,"%s.jpg\n", name);
-        printf("%s.jpg\n", name);
+    for (size_t i = 0; i < this->imgNameQueue.size(); i++) {
+        fprintf(fp,"%s.jpg\n", this->imgNameQueue[i].data());
+        printf("%s.jpg\n", this->imgNameQueue[i].data());
     }
     imgNameQueue.clear();
     fclose(fp);
