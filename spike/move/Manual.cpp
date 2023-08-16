@@ -8,7 +8,7 @@
 
 Manual::Manual():
     device(DeviceInOut::getInstance()){
-        unit::pid_t pid1 = {2.3, 0.003, 0.20};
+        unit::pid_t pid1 = {2.0, 0.003, 1.4};
         this->straightPID.setPID(pid1);
         unit::pid_t pid2 = {2.3, 0.022, 0.15};
         this->centerPID.setPID(pid2);
@@ -52,9 +52,6 @@ void Manual::straight(){
     float differenceDirection = this->standardDirection - this->calc.localization.getDirection();
     int gain = int(this->straightPID.calc(differenceDirection, 0));
     //int gain = int(differenceDirection * 2.3 + 0.5);
-
-    int a = this->device.gyro_getAngle();
-    printf("%d, ", a);
 
     this->device.LWheel_setPWM(correctionPWM + gain);
     this->device.RWheel_setPWM(correctionPWM - gain);
