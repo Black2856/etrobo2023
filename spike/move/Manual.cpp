@@ -19,6 +19,7 @@ void Manual::setPWM(float pwm, float pwmTransitionTime){
 }
 
 void Manual::first(manual::RunType runType, float pwm, float pwmTransitionTime){
+    this->differenceDirection = 0;
     this->runType = runType;
     this->setPWM(pwm, pwmTransitionTime);
     this->calc.localization.resetDifferenceCount();
@@ -49,7 +50,7 @@ void Manual::execute(){
 void Manual::straight(){
     int correctionPWM = this->calc.pwmCalc.changePWM();
     //直進移動になるように補正する
-    float differenceDirection += this->standardDirection - this->calc.localization.getDirection();
+    this->differenceDirection += this->standardDirection - this->calc.localization.getDirection();
     printf("%f, ",differenceDirection);
     int gain = int(this->straightPID.calc(differenceDirection, 0));
     //int gain = int(differenceDirection * 2.3 + 0.5);
@@ -61,7 +62,7 @@ void Manual::straight(){
 void Manual::centerRotation(){
     int correctionPWM = this->calc.pwmCalc.changePWM();
     //車体中心移動になるように補正する
-    float differenceDistance = this->standardDistance - this->calc.localization.getDistance();
+    this->differenceDistance = this->standardDistance - this->calc.localization.getDistance();
     int gain = int(this->centerPID.calc(differenceDistance, 0));
     //printf("%d", gain);
 
