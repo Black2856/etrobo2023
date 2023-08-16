@@ -63,7 +63,7 @@ void Manual::centerRotation(){
     int correctionPWM = this->calc.pwmCalc.changePWM();
     //車体中心移動になるように補正する
     this->differenceDistance = this->standardDistance - this->calc.localization.getDistance();
-    int gain = int(this->centerPID.calc(differenceDistance, 0));
+    int gain = int(this->centerPID.calc(this->differenceDistance, 0));
     //printf("%d", gain);
 
     this->device.LWheel_setPWM(correctionPWM + gain);
