@@ -53,6 +53,9 @@ void Manual::straight(){
     int gain = int(this->straightPID.calc(differenceDirection, 0));
     //int gain = int(differenceDirection * 2.3 + 0.5);
 
+    int a = this->device.gyro_getAngle();
+    printf("%d, ", a);
+
     this->device.LWheel_setPWM(correctionPWM + gain);
     this->device.RWheel_setPWM(correctionPWM - gain);
 }
