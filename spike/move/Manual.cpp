@@ -8,7 +8,7 @@
 
 Manual::Manual():
     device(DeviceInOut::getInstance()){
-        unit::pid_t pid1 = {2.0, 0.003, 0.25};
+        unit::pid_t pid1 = {2.2, 0.003, 0.20};
         this->straightPID.setPID(pid1);
         unit::pid_t pid2 = {2.3, 0.022, 0.15};
         this->centerPID.setPID(pid2);
@@ -50,6 +50,7 @@ void Manual::straight(){
     int correctionPWM = this->calc.pwmCalc.changePWM();
     //直進移動になるように補正する
     float differenceDirection = this->standardDirection - this->calc.localization.getDirection();
+    printf("%f, ",differenceDirection);
     int gain = int(this->straightPID.calc(differenceDirection, 0));
     //int gain = int(differenceDirection * 2.3 + 0.5);
 
