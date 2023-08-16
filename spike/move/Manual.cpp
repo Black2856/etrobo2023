@@ -51,8 +51,8 @@ void Manual::straight(){
     int correctionPWM = this->calc.pwmCalc.changePWM();
     //直進移動になるように補正する
     this->differenceDirection += this->standardDirection - this->calc.localization.getDirection();
-    printf("%f, ",differenceDirection);
-    int gain = int(this->straightPID.calc(differenceDirection, 0));
+    printf("%f, ",this->differenceDirection);
+    int gain = int(this->straightPID.calc(this->differenceDirection, 0));
     //int gain = int(differenceDirection * 2.3 + 0.5);
 
     this->device.LWheel_setPWM(correctionPWM + gain);
@@ -62,8 +62,8 @@ void Manual::straight(){
 void Manual::centerRotation(){
     int correctionPWM = this->calc.pwmCalc.changePWM();
     //車体中心移動になるように補正する
-    this->differenceDistance = this->standardDistance - this->calc.localization.getDistance();
-    int gain = int(this->centerPID.calc(this->differenceDistance, 0));
+    float differenceDistance = this->standardDistance - this->calc.localization.getDistance();
+    int gain = int(this->centerPID.calc(differenceDistance, 0));
     //printf("%d", gain);
 
     this->device.LWheel_setPWM(correctionPWM + gain);
