@@ -22,7 +22,7 @@ void Manual::first(manual::RunType runType, float pwm, float pwmTransitionTime){
     float p = 0.35;
     float i = 0;
     float d = 0.45;
-    if(pwm <= 50 && pwm <= 100){
+    if(50 <= pwm && pwm <= 100){
         float p = 0.2 - 0.0045 * (pwm - 50);
         float i = 0 + 0.005 * (pwm - 50);
         float d = 0.3 - 0.00325 * (pwm - 50);
