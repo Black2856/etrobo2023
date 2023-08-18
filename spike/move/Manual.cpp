@@ -19,7 +19,6 @@ void Manual::setPWM(float pwm, float pwmTransitionTime){
 }
 
 void Manual::first(manual::RunType runType, float pwm, float pwmTransitionTime){
-    this->differenceDirection = 0;
     this->runType = runType;
     this->setPWM(pwm, pwmTransitionTime);
     this->calc.localization.resetDifferenceCount();
@@ -50,10 +49,20 @@ void Manual::execute(){
 void Manual::straight(){
     int correctionPWM = this->calc.pwmCalc.changePWM();
     //直進移動になるように補正する
-    this->differenceDirection += this->standardDirection - this->calc.localization.getDirection();
-    printf("%f, ",this->differenceDirection);
-    int gain = int(this->straightPID.calc(this->differenceDirection, 0));
+    float feedForward = -0.861 / 2;
+    float differenceDirection = this->standardDirection - this->calc.localization.getDirection();
+
+    printf("%f, ",differenceDirection);
+    float fix = this->straightPID.calc(differenceDirection, 0);
     //int gain = int(differenceDirection * 2.3 + 0.5);
+
+    //切り上げ
+    if(fix >= 0){
+        fix = (std::abs(fix) + 0.99);
+    }else{
+        fix = -(std::abs(fix) + 0.99);
+    }
+    int gain = int(fix);
 
     this->device.LWheel_setPWM(correctionPWM + gain);
     this->device.RWheel_setPWM(correctionPWM - gain);

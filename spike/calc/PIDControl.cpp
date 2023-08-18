@@ -22,6 +22,7 @@ float PIDControl::calc(float current,float target){
     float diff = current - target;
     // 偏差の累積地を更新 i
     mIntegral += diff * this->dt;
+    
     // 前回偏差との差を計算と更新 d
     float ddt = (diff - mDiff_prev) / this->dt;
     mDiff_prev = diff;
