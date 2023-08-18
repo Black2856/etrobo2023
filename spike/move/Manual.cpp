@@ -22,7 +22,7 @@ void Manual::first(manual::RunType runType, float pwm, float pwmTransitionTime){
     float p = 0.2 - 0.0045 * (pwm - 50);
     float i = 0 + 0.005 * (pwm - 50);
     float d = 0.3 - 0.00325 * (pwm - 50);
-    unit::pid_t pid1 = {0.2, 0.0, 0.3};
+    unit::pid_t pid1 = {p, i, d};
     this->straightPID.setPID(pid1);
 
     this->centerPID.resetPID();
