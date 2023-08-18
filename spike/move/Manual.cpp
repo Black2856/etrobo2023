@@ -21,8 +21,8 @@ void Manual::setPWM(float pwm, float pwmTransitionTime){
 }
 
 void Manual::first(manual::RunType runType, float pwm, float pwmTransitionTime){
-    this->straightPID.resetPID();
-    this->centerPID.resetPID();
+    //this->straightPID.resetPID();
+    //this->centerPID.resetPID();
     this->maeDistance = 0;
     this->Xmove = 0;
 

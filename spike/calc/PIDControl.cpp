@@ -15,7 +15,7 @@ PIDControl::PIDControl():
 
 void PIDControl::setPID(unit::pid_t pid){
     mPID = pid;
-    this->resetPID();
+    this->resetPID()
 }
 
 void PIDControl::resetPID(){
