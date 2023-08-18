@@ -19,9 +19,15 @@ void Manual::setPWM(float pwm, float pwmTransitionTime){
 }
 
 void Manual::first(manual::RunType runType, float pwm, float pwmTransitionTime){
-    float p = 0.2 - 0.0045 * (pwm - 50);
-    float i = 0 + 0.005 * (pwm - 50);
-    float d = 0.3 - 0.00325 * (pwm - 50);
+    if(pwm <= 50 && pwm <= 100){
+        float p = 0.2 - 0.0045 * (pwm - 50);
+        float i = 0 + 0.005 * (pwm - 50);
+        float d = 0.3 - 0.00325 * (pwm - 50);
+    }else{
+        float p = 0.35;
+        float i = 0;
+        float d = 0.45;
+    }
     unit::pid_t pid1 = {p, i, d};
     this->straightPID.setPID(pid1);
 
