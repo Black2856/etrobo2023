@@ -8,7 +8,7 @@
 
 Manual::Manual():
     device(DeviceInOut::getInstance()){
-        unit::pid_t pid1 = {0.2, 0.0, 0.3};
+        unit::pid_t pid1 = {2.0, 0.0, 0.15};
         this->straightPID.setPID(pid1);
         //pwm50 0.2, 0.0, 0.3
         //pwm90 0.07, 0.20, 0.12
@@ -62,7 +62,7 @@ void Manual::straight(){
     float deltaXmove = deltaDistance * std::sin(PI / 180 * differenceDirection);
     this->Xmove += deltaXmove;
 
-    this->fix = this->straightPID.calc((this->Xmove + differenceDirection * 3), 0);
+    this->fix = this->straightPID.calc((this->Xmove + differenceDirection), 0);
     //int gain = int(differenceDirection * 2.3 + 0.5);
 
     int gain = int(fix);
