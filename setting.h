@@ -11,6 +11,9 @@
 #define LEFT_WHEEL PORT_C
 #define RIGHT_WHEEL PORT_B
 
+//汎用
+#define PI 3.1415926535
+
 // spike設定
 #define TIRE_DIAMETER 100.0 // タイヤ直径（mm）
 
