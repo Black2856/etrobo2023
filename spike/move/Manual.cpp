@@ -8,8 +8,8 @@
 
 Manual::Manual():
     device(DeviceInOut::getInstance()){
-        unit::pid_t pid1 = {0.2, 0.05, 0.4};
-        //0.2, 0, 0.4
+        unit::pid_t pid1 = {0.2, 0.1, 0.34};
+        //pwm50 0.2, 0, 0.4
         //0.2, 0.001, 0.15
 
         //pwm90 0.07, 0.20, 0.12
