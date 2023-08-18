@@ -63,7 +63,7 @@ void Manual::straight(){
     float deltaXmove = deltaDistance * std::sin(PI / 180 * differenceDirection);
     this->Xmove += deltaXmove;
 
-    this->fix += this->straightPID.calc(this->Xmove, 0);
+    this->fix = this->straightPID.calc(this->Xmove, 0);
     //int gain = int(differenceDirection * 2.3 + 0.5);
 
     int gain = int(fix);
@@ -72,7 +72,7 @@ void Manual::straight(){
     this->device.LWheel_setPWM(correctionPWM + gain);
     this->device.RWheel_setPWM(correctionPWM - gain);
 
-    this->fix = this->fix - gain;
+    //this->fix = this->fix - gain;
 }
 
 void Manual::centerRotation(){
