@@ -9,6 +9,7 @@
 #include "Calc.h"
 #include "PIDControl.h"
 #include "unit.h"
+#include "setting.h"
 #include <cmath>
 
 namespace manual {
@@ -34,6 +35,9 @@ private:
     void wheelRotation(int wheel);
 
     //基準の車体角度
+    float maeDistance;
+    float Xmove;
+    float fix;
     float standardDirection;
     float standardDistance;
     PIDControl straightPID;

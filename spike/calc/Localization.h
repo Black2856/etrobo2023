@@ -8,9 +8,6 @@
 
 #include "DeviceInOut.h"
 
-// 円周率
-#define PI 3.14159265358
-
 class Localization {
 public:
     // インスタンス取得

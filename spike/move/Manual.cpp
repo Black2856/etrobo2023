@@ -8,7 +8,7 @@
 
 Manual::Manual():
     device(DeviceInOut::getInstance()){
-        unit::pid_t pid1 = {0.25, 0.02, 0.04};
+        unit::pid_t pid1 = {0.25, 0, 0.05};
         this->straightPID.setPID(pid1);
         unit::pid_t pid2 = {2.3, 0.022, 0.15};
         this->centerPID.setPID(pid2);
@@ -52,20 +52,21 @@ void Manual::straight(){
     float feedForward = -0.861 / 2;
     float differenceDirection = this->standardDirection - this->calc.localization.getDirection();
 
-    printf("%f, ",differenceDirection);
-    float fix = this->straightPID.calc(differenceDirection, 0);
+    float deltaDistance = this->calc.localization.getDistance() - this->maeDistance;
+    this->maeDistance = this->calc.localization.getDistance();
+    float deltaXmove = deltaDistance * std::sin(PI / 180 * differenceDirection);
+    this->Xmove += deltaXmove;
+
+    this->fix += this->straightPID.calc(this->Xmove, 0);
     //int gain = int(differenceDirection * 2.3 + 0.5);
 
-    //切り上げ
-    if(fix >= 0){
-        fix = (std::abs(fix) + 0.99);
-    }else{
-        fix = -(std::abs(fix) + 0.99);
-    }
     int gain = int(fix);
+    printf("%f, %f, %f\n",this->Xmove, differenceDirection, deltaDistance);
 
     this->device.LWheel_setPWM(correctionPWM + gain);
     this->device.RWheel_setPWM(correctionPWM - gain);
+
+    this->fix = this->fix - gain;
 }
 
 void Manual::centerRotation(){
