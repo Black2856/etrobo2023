@@ -8,7 +8,7 @@
 
 Manual::Manual():
     device(DeviceInOut::getInstance()){
-        unit::pid_t pid1 = {0.09, 0, 0.14};
+        unit::pid_t pid1 = {0.07, 0.35, 0.12};
         //0.2, 0, 0.4
         //0.2, 0.001, 0.15
         this->straightPID.setPID(pid1);
@@ -21,8 +21,8 @@ void Manual::setPWM(float pwm, float pwmTransitionTime){
 }
 
 void Manual::first(manual::RunType runType, float pwm, float pwmTransitionTime){
-    //this->straightPID.resetPID();
-    //this->centerPID.resetPID();
+    this->straightPID.resetPID();
+    this->centerPID.resetPID();
     this->maeDistance = 0;
     this->Xmove = 0;
 
