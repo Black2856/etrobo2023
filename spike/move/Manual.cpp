@@ -8,7 +8,7 @@
 
 Manual::Manual():
     device(DeviceInOut::getInstance()){
-        unit::pid_t pid1 = {0.15, 0, 0.25};
+        unit::pid_t pid1 = {0.4, 0.02, 1.25};
         this->straightPID.setPID(pid1);
         unit::pid_t pid2 = {2.3, 0.022, 0.15};
         this->centerPID.setPID(pid2);
@@ -60,7 +60,7 @@ void Manual::straight(){
     //int gain = int(differenceDirection * 2.3 + 0.5);
 
     int gain = int(fix);
-    printf("%f, %f, %f\n",this->Xmove, differenceDirection, deltaDistance);
+    printf("%f, ",this->Xmove);
 
     this->device.LWheel_setPWM(correctionPWM + gain);
     this->device.RWheel_setPWM(correctionPWM - gain);
