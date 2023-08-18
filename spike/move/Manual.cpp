@@ -8,7 +8,7 @@
 
 Manual::Manual():
     device(DeviceInOut::getInstance()){
-        unit::pid_t pid1 = {0.25, 0, 0.05};
+        unit::pid_t pid1 = {0.2, 0, 0.1};
         this->straightPID.setPID(pid1);
         unit::pid_t pid2 = {2.3, 0.022, 0.15};
         this->centerPID.setPID(pid2);
@@ -49,7 +49,6 @@ void Manual::execute(){
 void Manual::straight(){
     int correctionPWM = this->calc.pwmCalc.changePWM();
     //直進移動になるように補正する
-    float feedForward = -0.861 / 2;
     float differenceDirection = this->standardDirection - this->calc.localization.getDirection();
 
     float deltaDistance = this->calc.localization.getDistance() - this->maeDistance;
