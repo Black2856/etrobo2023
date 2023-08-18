@@ -20,6 +20,11 @@ void Manual::setPWM(float pwm, float pwmTransitionTime){
 }
 
 void Manual::first(manual::RunType runType, float pwm, float pwmTransitionTime){
+    this->straightPID.resetPID();
+    this->centerPID.resetPID();
+    this->maeDistance = 0;
+    this->Xmove = 0
+
     this->runType = runType;
     this->setPWM(pwm, pwmTransitionTime);
     this->calc.localization.resetDifferenceCount();

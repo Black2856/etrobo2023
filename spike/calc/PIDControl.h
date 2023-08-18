@@ -14,6 +14,7 @@ public:
     PIDControl();//pid
     float calc(float current, float target);
     void setPID(unit::pid_t pid);
+    void resetPID(); //PIDの計算情報をリセットする
 private:
     unit::pid_t mPID;
     float mCurrent;

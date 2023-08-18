@@ -15,6 +15,12 @@ PIDControl::PIDControl():
 
 void PIDControl::setPID(unit::pid_t pid){
     mPID = pid;
+    this->resetPID();
+}
+
+void PIDControl::resetPID(){
+    mIntegral = 0;
+    mDiff_prev = 0;
 }
 
 float PIDControl::calc(float current,float target){
