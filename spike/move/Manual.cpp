@@ -8,7 +8,7 @@
 
 Manual::Manual():
     device(DeviceInOut::getInstance()){
-        unit::pid_t pid1 = {0.2, 0, 0.1};
+        unit::pid_t pid1 = {0.15, 0, 0.25};
         this->straightPID.setPID(pid1);
         unit::pid_t pid2 = {2.3, 0.022, 0.15};
         this->centerPID.setPID(pid2);
