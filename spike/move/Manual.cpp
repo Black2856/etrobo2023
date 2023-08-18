@@ -8,6 +8,8 @@
 
 Manual::Manual():
     device(DeviceInOut::getInstance()){
+        this->straightPID.setPID(pid1);
+        unit::pid_t pid1 = {0.2, 0.0, 0.3};
         //pwm50 0.2, 0.0, 0.3
         //pwm90 0.07, 0.20, 0.12
         unit::pid_t pid2 = {2.3, 0.022, 0.15};
@@ -19,17 +21,6 @@ void Manual::setPWM(float pwm, float pwmTransitionTime){
 }
 
 void Manual::first(manual::RunType runType, float pwm, float pwmTransitionTime){
-    float p = 0.35;
-    float i = 0;
-    float d = 0.45;
-    if(50 <= pwm && pwm <= 100){
-        float p = 0.2 - 0.0045 * (pwm - 50);
-        float i = 0 + 0.005 * (pwm - 50);
-        float d = 0.3 - 0.00325 * (pwm - 50);
-    }
-    unit::pid_t pid1 = {p, i, d};
-    this->straightPID.setPID(pid1);
-
     this->centerPID.resetPID();
     this->maeDistance = 0;
     this->Xmove = 0;
