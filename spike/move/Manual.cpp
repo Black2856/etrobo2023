@@ -8,9 +8,10 @@
 
 Manual::Manual():
     device(DeviceInOut::getInstance()){
-        unit::pid_t pid1 = {0.03, 0, 0.02};
-        //0.2, 0.001, 0.15
+        unit::pid_t pid1 = {0.2, 0.0, 0.3};
         this->straightPID.setPID(pid1);
+        //pwm50 0.2, 0.0, 0.3
+        //pwm90 0.07, 0.20, 0.12
         unit::pid_t pid2 = {2.3, 0.022, 0.15};
         this->centerPID.setPID(pid2);
     }
@@ -20,6 +21,10 @@ void Manual::setPWM(float pwm, float pwmTransitionTime){
 }
 
 void Manual::first(manual::RunType runType, float pwm, float pwmTransitionTime){
+    this->centerPID.resetPID();
+    this->maeDistance = 0;
+    this->Xmove = 0;
+
     this->runType = runType;
     this->setPWM(pwm, pwmTransitionTime);
     this->calc.localization.resetDifferenceCount();
@@ -57,7 +62,7 @@ void Manual::straight(){
     float deltaXmove = deltaDistance * std::sin(PI / 180 * differenceDirection);
     this->Xmove += deltaXmove;
 
-    this->fix += this->straightPID.calc(this->Xmove, 0);
+    this->fix = this->straightPID.calc((this->Xmove), 0);
     //int gain = int(differenceDirection * 2.3 + 0.5);
 
     int gain = int(fix);
@@ -66,7 +71,7 @@ void Manual::straight(){
     this->device.LWheel_setPWM(correctionPWM + gain);
     this->device.RWheel_setPWM(correctionPWM - gain);
 
-    this->fix = this->fix - gain;
+    //this->fix = this->fix - gain;
 }
 
 void Manual::centerRotation(){
