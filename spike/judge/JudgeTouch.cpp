@@ -10,5 +10,5 @@ JudgeTouch::JudgeTouch():
 }
 
 bool JudgeTouch::j(bool flag){
-    return device.touch_isPressed();
+    return device.touch_isPressed() == flag;
 }

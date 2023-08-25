@@ -23,6 +23,7 @@ public:
     void makeMANUAL(int stateTransition, float arg1, float arg2, float arg3);
     void makeMANUAL_PID(int stateTransition, float arg1, float arg2, float arg3);
     void makeCALIBRATION(const char* arg1);
+    void makeTAKE_PHOTO(int stateTransition, float arg1);
 
     const char* getName();
     std::list<Scene> getScenes();

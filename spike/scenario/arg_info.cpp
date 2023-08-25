@@ -8,6 +8,7 @@ void arg_info_t::addFloatArg(float arg){
     this->floatArgs.push_back(arg);
     this->argIdx.push_back(0);
 }
+
 void arg_info_t::addStrArg(const char* arg){
     this->strArgs.push_back(arg);
     this->argIdx.push_back(1);

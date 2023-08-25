@@ -12,6 +12,8 @@
 #include "JudgeTime.h"
 #include "JudgeReturn.h"
 #include "JudgeTouch.h"
+#include "JudgeColor.h"
+#include "JudgeButton.h"
 
 class Judge {
 public:
@@ -26,6 +28,8 @@ public:
     JudgeTime    time;
     JudgeReturn  ret;
     JudgeTouch   touch;
+    JudgeButton  button;
+    JudgeColor   color;
 
 private:
     Judge(); // プライベートコンストラクタ

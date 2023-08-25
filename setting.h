@@ -14,17 +14,17 @@
 //汎用
 #define PI 3.1415926535
 
-// spike設定
-#define TIRE_DIAMETER 100.0 // タイヤ直径（mm）
-
+// 走行体設定
 #ifdef MAKE_SIM
-#define TREAD 150.0         // 車体トレッド幅（mm） spike = 126 EV3 = 150.0
-#define LEFT_WHEEL_POWER 1.0  //左車輪の出力量
-#define RIGHT_WHEEL_POWER 1.0 //右車輪の出力量
+    #define TREAD 150.0         // 車体トレッド幅（mm） spike = 126 EV3 = 150.0
+    #define LEFT_WHEEL_POWER 1.0  //左車輪の出力量
+    #define RIGHT_WHEEL_POWER 1.0 //右車輪の出力量
+    #define TIRE_DIAMETER 100.0 // タイヤ直径（mm）
 #else  //SPIKE
-#define TREAD 126.0
-#define LEFT_WHEEL_POWER 1.0
-#define RIGHT_WHEEL_POWER 1.0
+    #define TREAD 126.0
+    #define LEFT_WHEEL_POWER 1.0
+    #define RIGHT_WHEEL_POWER 1.0
+    #define TIRE_DIAMETER 100.0 // タイヤ直径（mm）
 #endif // MAKE_SIM
 
 #define CAMERA_NUMBER 0 // カメラデバイス番号（通常は0）を指定

@@ -64,6 +64,14 @@ void Manage_scene::makeCALIBRATION(const char* arg1){
     this->scenario.push_back(scene);
 }
 
+void Manage_scene::makeTAKE_PHOTO(int stateTransition, float arg1){
+    arg_info_t argInfo;
+    argInfo.addFloatArg(arg1);
+
+    Scene scene(Execution::TAKE_PHOTO, argInfo);
+    this->scenario.push_back(scene);
+}
+
 const char* Manage_scene::getName(){
     return this->scenarioName;
 }

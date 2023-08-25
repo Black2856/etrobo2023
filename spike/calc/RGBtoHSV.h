@@ -12,9 +12,9 @@
 class RGBtoHSV {  // <1>
 public:
     explicit RGBtoHSV();
-    void update(rgb_raw_t rgb);
-    void update();
-    unit::hsv_t getHSV();
+    void update(rgb_raw_t rgb); //rgb値を入力してhsvに変換
+    void update(); //センサからrgb値を取得してhsvに変換
+    unit::hsv_t getHSV(); //変換したhsv値を返す
 
 private:
     // 色相 0 ~ 360°

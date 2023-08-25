@@ -110,6 +110,9 @@ void Manage_scenario::first(Execution& execution, arg_info_t& argInfo){
         case Execution::CALIBRATION:
             this->calibration.first(argInfo.getStrArg(0));
             break;
+        case Execution::TAKE_PHOTO:
+            this->takePhoto.first(argInfo.getFloatArg(0));
+            break;
         default:
             break;
     }
@@ -132,6 +135,10 @@ bool Manage_scenario::intermediate(Execution& execution, arg_info_t& argInfo){
             break;
         case Execution::MANUAL_PID:
             flag = this->manualPID.execute();
+            break;
+        case Execution::TAKE_PHOTO:
+            flag = this->takePhoto.execute();
+            break;
         default:
             break;
     }

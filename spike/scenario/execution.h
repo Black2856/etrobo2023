@@ -11,7 +11,8 @@ enum class Execution {
     STOP = 3,
     MANUAL = 4,
     MANUAL_PID = 5,
-    CALIBRATION = 6
+    CALIBRATION = 6,
+    TAKE_PHOTO = 7
 };
 
 #endif

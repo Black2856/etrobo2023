@@ -18,6 +18,7 @@
 #include "Manual.h"
 #include "ManualPID.h"
 #include "Calibration.h"
+#include "TakePhoto.h"
 
 #include <cstring>
 #include <list>
@@ -46,6 +47,7 @@ private:
     Manual manual;
     ManualPID manualPID;
     Calibration calibration;
+    TakePhoto takePhoto;
 
     void addScene(Manage_scene& manageScene); //１つシーン管理クラスをコンパイルする
     Manage_scene* findScenario(const char* name); //シーン管理クラスから特定の名前のシナリオを取得する
