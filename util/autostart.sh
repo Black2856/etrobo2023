@@ -48,11 +48,7 @@ else
     rm asp || true
     make img=$CFILE
     # etrobo2023をバックグラウンドで実行
-    make start &
+    make start
 fi
 
-# etrobo2023の終了を待つ
-wait $!
-
-# etrobo2023が終了した時点で、background_tasksも終了させる
 kill %1

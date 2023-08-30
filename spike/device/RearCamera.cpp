@@ -30,9 +30,11 @@ bool RearCamera::start() {
 
         // カメラがオープンできなかった場合
         if (!capture.isOpened()) {
+            printf("カメラの起動に失敗しました。\n");
             return false;
         }
     }
+    printf("カメラの起動に成功しました。\n");
     return true;
 }
 
@@ -40,6 +42,7 @@ void RearCamera::stop() {
     if (capture.isOpened()) {
         // カメラを解放する
         capture.release();
+        printf("カメラを正常終了しました。。\n");
     }
 }
 
@@ -49,7 +52,7 @@ void RearCamera::takePhoto() {
 
 bool RearCamera::savePhoto(const char* fileName) {
     // 画像を保存する
-    char path[256];
+    char path[150];
     sprintf(path, IMG_PATH "%s", fileName);
     bool success = cv::imwrite(path, this->img);
   

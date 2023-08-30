@@ -12,7 +12,7 @@ TakePhoto::TakePhoto():
 
 void TakePhoto::first(int num) {
     this->num = num;
-    for(int i=0; i<this->num; i++) {
+    for(int i=1; i<=this->num; i++) {
         char fileName[5];
 
         sprintf(fileName, "%d", i);

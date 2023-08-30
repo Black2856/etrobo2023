@@ -199,8 +199,9 @@ bool DeviceInOut::camera_takePhoto() {
 	}
     printf("以下のファイル名で画像を撮影、保存します。\n");
     for (size_t i = 0; i < this->imgNameQueue.size(); i++) {
-        fprintf(fp,"%s.jpg\n", this->imgNameQueue[i].data());
-        printf("%s.jpg\n", this->imgNameQueue[i].data());
+        uint64_t time = clock_now();
+        fprintf(fp,"%s_%lu.png\n", this->imgNameQueue[i].data(), time);
+        printf("%s_%lu.png\n", this->imgNameQueue[i].data(), time);
     }
     imgNameQueue.clear();
     fclose(fp);
@@ -208,7 +209,7 @@ bool DeviceInOut::camera_takePhoto() {
 }
 
 int DeviceInOut::camera_getQueueSize() {
-    FILE* fp = std::fopen(IMG_QUEUE_PATH, "r");
+    FILE *fp = fopen(IMG_QUEUE, "r");
     if (fp == NULL) {
 		printf("撮影待機リストファイルを開けませんでした。\n");
         return 0;
@@ -216,13 +217,13 @@ int DeviceInOut::camera_getQueueSize() {
 
     int lineCount = 0;
     int ch;
-    while ((ch = std::fgetc(fp)) != EOF) {
+    while ((ch = fgetc(fp)) != EOF) {
         if (ch == '\n') {
             lineCount++;
         }
     }
 
-    std::fclose(fp);
+    fclose(fp);
 
     return lineCount;
 }
