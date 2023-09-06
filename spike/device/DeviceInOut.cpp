@@ -199,9 +199,9 @@ bool DeviceInOut::camera_takePhoto() {
 	}
     printf("以下のファイル名で画像を撮影、保存します。\n");
     for (size_t i = 0; i < this->imgNameQueue.size(); i++) {
-        uint64_t time = clock_now();
-        fprintf(fp,"%s_%lu.png\n", this->imgNameQueue[i].data(), time);
-        printf("%s_%lu.png\n", this->imgNameQueue[i].data(), time);
+        int time = clock_now();
+        fprintf(fp,"%s_%d.png\n", this->imgNameQueue[i].data(), time);
+        printf("%s_%d.png\n", this->imgNameQueue[i].data(), time);
     }
     imgNameQueue.clear();
     fclose(fp);
