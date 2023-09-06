@@ -21,7 +21,7 @@
     #define RIGHT_WHEEL_POWER 1.0 //右車輪の出力量
     #define TIRE_DIAMETER 100.0 // タイヤ直径（mm）
 #else  //SPIKE
-    #define TREAD 126.0
+    #define TREAD 125.0
     #define LEFT_WHEEL_POWER 1.0
     #define RIGHT_WHEEL_POWER 1.0
     #define TIRE_DIAMETER 100.0 // タイヤ直径（mm）
