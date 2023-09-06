@@ -35,7 +35,7 @@
     #define IMG_QUEUE_PATH "/home/iwasaki/etrobo/workspace/simdist/etrobo2023/__ev3rtfs/" IMG_QUEUE // 撮影待機リストファイル名
 #else
     #define IMG_PATH "/home/robo/work/RasPike/sdk/workspace/img/" // 画像保存先path
-    #define IMG_QUEUE_PATH "/home/robo/work/RasPike/sdk/workspace" IMG_QUEUE // 撮影待機リスト
+    #define IMG_QUEUE_PATH "/home/robo/work/RasPike/sdk/workspace/" IMG_QUEUE // 撮影待機リスト
 #endif
 #define IMG_FILENAME_LEN 5 // ファイルネームの最大長
 #define RECORD_LIMIT 1000  // センサーデータの最大記録数  記録秒数 = CYCLE * RECORD_LIMIT
