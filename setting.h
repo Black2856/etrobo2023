@@ -40,9 +40,8 @@
 #define IMG_FILENAME_LEN 5 // ファイルネームの最大長
 #define RECORD_LIMIT 1000  // センサーデータの最大記録数  記録秒数 = CYCLE * RECORD_LIMIT
 
-// PC設定
-#define PC_IP_ADDRESS "" // 受信時IPアドレス
-#define PC_PORT 80 // 受信時port番号
+// 通信設定
+#define PC_ADDRESS "" // 受信時アドレス
 
 
 #endif  // SETTINGS_H

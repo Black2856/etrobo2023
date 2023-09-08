@@ -1,13 +1,13 @@
 /*
  * クラス名:Net
- * 作成日:2023/05/12
+ * 作成日:2023/09/08
  * 作成者:杉本
  */
 #ifndef NET_H
 #define NET_H
 
 #include <opencv2/opencv.hpp>
-#include <netinet/in.h>
+#include <zmq.hpp>
 
 class Net{
 public:
@@ -28,10 +28,8 @@ private:
     Net(Net const&);
     void operator=(Net const&);
 
-    // ソケット情報
-    int clientSocket;
-    // サーバーのアドレスとポートの設定
-    sockaddr_in serverAddress{};
+    zmq::context_t context;
+    zmq::socket_t socket;
 };
 
 #endif // NET_H
