@@ -46,16 +46,16 @@ void RearCamera::stop() {
     }
 }
 
-void RearCamera::takePhoto() {
-    capture.read(this->img); // カメラからフレームを読み取る
-}
+cv::Mat RearCamera::takePhoto(const char* fileName) {
+    cv::Mat img;
+    capture.read(img); // カメラからフレームを読み取る
 
-bool RearCamera::savePhoto(const char* fileName) {
     // 画像を保存する
     char path[150];
     sprintf(path, IMG_PATH "%s", fileName);
-    bool success = cv::imwrite(path, this->img);
-  
-    // 保存に成功したかどうかを返す
-    return success;
+    if(!cv::imwrite(path, img)) {
+        printf("画像の保存に失敗しました。\n");
+    }
+
+    return img;
 }

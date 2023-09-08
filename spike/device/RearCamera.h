@@ -21,8 +21,7 @@ public:
     bool start();
     void stop();
     // 写真を撮影
-    void takePhoto();
-    bool savePhoto(const char* filePath);
+    cv::Mat takePhoto(const char* fileName);
 
 private:
 
@@ -36,9 +35,6 @@ private:
 
     // カメラオブジェクト
     cv::VideoCapture capture;
-
-    cv::Mat img;
-
 };
 
 #endif  // REARCAMERA_H

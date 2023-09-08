@@ -8,6 +8,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+Net* Net::instance = NULL;
+
 Net::Net() :
     context(1),
     socket(context, ZMQ_REQ) {}

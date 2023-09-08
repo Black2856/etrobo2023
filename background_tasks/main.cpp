@@ -5,6 +5,7 @@
 #include <chrono>
 #include <thread>
 #include <string>
+#include <opencv2/opencv.hpp>
 
 int main() {
     // 停止する時間（ミリ秒単位）
@@ -26,15 +27,15 @@ int main() {
         }
 
         std::string line;
-        while (std::getline(file, line)) { // ファイルから一行ずつ読み込む
-            camera.takePhoto();
-            // 現在時刻ミリ秒のファイル名で保存
-            camera.savePhoto(line);
+        // ファイルから一行ずつ読み込む
+        while (std::getline(file, line)) {
+            cv::Mat img = camera.takePhoto(line.c_str());
+            
         }
 
         camera.stop();
-
-        file.close(); // ファイルを閉じる
+        // ファイルを閉じる
+        file.close();
         // ファイルを削除する
         std::remove(IMG_QUEUE_PATH);
 
