@@ -33,7 +33,6 @@ class ParallelProcessing:
         """
         if self.__threadState == True:
             self.__threadState = False
-            self.t.join()
         elif self.__threadState == False:
             print("warning:stopThread() is already stop in ParallelProcessing")
 
@@ -53,9 +52,15 @@ class ParallelProcessing:
         並行処理時の動作
         """
         print("test")
+    @property
+    def threadState(self) -> bool:
+        """
+        平行処理を実行するかどうか
+        """
+        return self.__threadState
 
     @property
-    def threading(self) -> int:
+    def threading(self) -> bool:
         """
         平行処理の実行中かどうか
         """
@@ -74,22 +79,31 @@ class ParallelProcessing:
 
 if __name__ == "__main__":
     
-    class Example(ParallelProcessing):
+    class Example1(ParallelProcessing):
         def __init__(self):
             super().__init__()
             self.cycle = 500 #500msの周期で動作
             self.a = 0
-        
-        def manage(self):
-            self.startThread()
-            while True:
-                if self.a >= 10:
-                    self.stopThread()
-                    return
 
         def execute(self):
             self.a += 1
-            print(f'test : {self.a}')
+            print(f'test1 : {self.a}')
+            if self.a >= 10:
+                self.stopThread()
+
+    class Example2(ParallelProcessing):
+        def __init__(self):
+            super().__init__()
+            self.cycle = 250 #250msの周期で動作
+            self.a = 0
+
+        def execute(self):
+            self.a += 1
+            print(f'test2 : {self.a}')
+            if self.a >= 15:
+                self.stopThread()
     
-    example = Example()
-    example.manage()
+    example1 = Example1()
+    example2 = Example2()
+    example1.startThread()
+    example2.startThread()
