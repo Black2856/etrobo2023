@@ -13,6 +13,7 @@ class ParallelProcessing:
         """
         self.__cycle = 1
         self.__threadState = False
+        self.__isThreading = False
         self.t = threading.Thread(target=self.__ThreadProcess)
 
     def startThread(self):
@@ -20,23 +21,32 @@ class ParallelProcessing:
         並行処理プログラムの開始 \n
         実行関数はexecute()
         """
-        self.__threadState = True
-        self.t.start()
+        if self.__threadState == False:
+            self.__threadState = True
+            self.t.start()
+        elif self.__threadState == True:
+            print("warning:startThread() is already start in ParallelProcessing")
 
     def stopThread(self):
         """
         並行処理プログラムの停止
         """
-        self.__threadState = False
-        self.t.join()
+        if self.__threadState == True:
+            self.__threadState = False
+            self.t.join()
+        elif self.__threadState == False:
+            print("warning:stopThread() is already stop in ParallelProcessing")
 
     def __ThreadProcess(self):
         """
         並行処理時の基本処理
         """
         while self.__threadState == True:
+            self.__isThreading = True
             self.execute()
-            time.sleep(self.__cycle)
+            if self.__threadState == True:
+                time.sleep(self.__cycle)
+        self.__isThreading = False
 
     def execute(self):
         """
@@ -44,6 +54,12 @@ class ParallelProcessing:
         """
         print("test")
 
+    @property
+    def threading(self) -> int:
+        """
+        平行処理の実行中かどうか
+        """
+        return self.__isThreading
     @property
     def cycle(self) -> int:
         """
@@ -56,7 +72,6 @@ class ParallelProcessing:
 
 
 
-### 並行処理クラスの使用例
 if __name__ == "__main__":
     
     class Example(ParallelProcessing):
