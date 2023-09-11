@@ -7,6 +7,11 @@ import threading
 import time
 
 class ParallelProcessing:
+    """
+    平行処理を管理するクラス \n
+    実行間隔のcycleはexecute()関数の実行時間に応じて調整される。 \n
+    ただし実行時間 > cycleの場合は処理落ちとして扱われる。
+    """
     def __init__(self):
         """
         継承した場合はsuper().__init__()を必要とする
@@ -33,6 +38,7 @@ class ParallelProcessing:
         """
         if self.__threadState == True:
             self.__threadState = False
+            #self.t.join()
         elif self.__threadState == False:
             print("warning:stopThread() is already stop in ParallelProcessing")
 
@@ -41,10 +47,15 @@ class ParallelProcessing:
         並行処理時の基本処理
         """
         while self.__threadState == True:
+            self.__startTime = time.time()
             self.__isThreading = True
             self.execute()
+            self.__endTime = time.time()
             if self.__threadState == True:
-                time.sleep(self.__cycle)
+                waitTime = self.cycle - (self.__endTime - self.__startTime)
+                if waitTime < 0:
+                    waitTime = 0
+                time.sleep(waitTime)
         self.__isThreading = False
 
     def execute(self):
