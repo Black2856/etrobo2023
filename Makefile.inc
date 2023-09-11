@@ -32,8 +32,15 @@ APPL_CXXOBJS += \
     Stop.o \
     TakePhoto.o \
     arg_info.o \
+    aster.o \
+    block.o \
+    field.o \
+    fread.o \
+    fwrite.o \
+    grid.o \
     manage_scenario.o \
     manage_scene.o \
+    runbody.o \
     scene.o \
     state_transition.o \
 #</mk_files>
