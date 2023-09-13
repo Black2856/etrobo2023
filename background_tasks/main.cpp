@@ -1,4 +1,5 @@
 #include "RearCamera.h"
+#include "Signal.h"
 #include "setting.h"
 #include <fstream>
 #include <stdio.h>
@@ -12,6 +13,8 @@ int main() {
     int millisecondsToSleep = 500; // 0.5秒
 
     RearCamera& camera = RearCamera::getInstance();
+    Signal& net = Signal::getInstance();
+    
     while (true) {
         // 一定時間停止する
         std::this_thread::sleep_for(std::chrono::milliseconds(millisecondsToSleep));

@@ -41,7 +41,8 @@
 #define RECORD_LIMIT 1000  // センサーデータの最大記録数  記録秒数 = CYCLE * RECORD_LIMIT
 
 // 通信設定
-#define PC_ADDRESS "" // 受信時アドレス
+#define PC_IP_ADDRESS "" // 受信時アドレス
+#define PC_PORT 8080 // 受信時port番号
 
 
 #endif  // SETTINGS_H
