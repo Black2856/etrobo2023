@@ -17,6 +17,7 @@ public:
     bool connect_s();
     void close_s();
     bool sendImage(cv::Mat image);
+    bool sendString(const char* str);
 
 
 private:

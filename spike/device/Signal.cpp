@@ -68,3 +68,17 @@ bool Signal::sendImage(cv::Mat image) {
 
     return true;
 }
+
+bool Signal::sendString(const char* str) {
+    // 文字列の長さを送信
+    size_t strLength = strlen(str);
+    if (send(this->clientSocket, &strLength, sizeof(strLength), 0) == -1) {
+        return false;
+    }
+
+    // 文字列を送信
+    if (send(this->clientSocket, str.c_str(), strLength, 0) == -1) {
+        return false;
+    }
+    return true;
+}
