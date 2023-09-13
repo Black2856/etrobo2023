@@ -1,76 +1,70 @@
 /*
- * クラス名:Net
- * 作成日:2023/09/08
+ * クラス名:Signal
+ * 作成日:2023/05/12
  * 作成者:杉本
  */
-#include "Net.h"
+#include "Signal.h"
 #include "setting.h"
-#include <stdlib.h>
-#include <stdio.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+#include <vector>
 
-Net* Net::instance = NULL;
+Signal* Signal::instance = NULL;
 
-Net::Net() :
-    context(1),
-    socket(context, ZMQ_REQ) {}
+Signal::Signal():
+    clientSocket(socket(AF_INET, SOCK_STREAM, 0)) {
+        serverAddress.sin_family = AF_INET;
+        serverAddress.sin_addr.s_addr = inet_addr(PC_IP_ADDRESS);
+        serverAddress.sin_port = htons(PC_PORT);
+    }
 
-Net::~Net() {
-    close();
+Signal::~Signal() {
+    close_s();
 }
 
-Net& Net::getInstance() {
+Signal& Signal::getInstance() {
     if (!instance) {
-        instance = new Net();
+        instance = new Signal();
     }
     return *instance;
 }
 
-bool Net::open() {
-    // サーバーアドレスを設定して接続
-    try {
-        socket.connect(PC_ADDRESS);
-    } catch (const std::exception& e) {
-        printf(PC_ADDRESS "に接続できません。\n");
+bool Signal::connect_s() {
+    if (
+        connect(
+            this->clientSocket,
+            reinterpret_cast<sockaddr*>(&this->serverAddress),
+            sizeof(this->serverAddress)
+        ) == -1
+    ) {
+        close(this->clientSocket);
         return false;
     }
     return true;
 }
 
-bool Net::sendImage(cv::Mat image) {
-    // 画像情報を設定
-    int32_t imageInfo[] = [
-        static_cast<int32_t>(image.rows),
-        static_cast<int32_t>(image.cols),
-        static_cast<int32_t>(image.type())
-    ];
+void Signal::close_s() {
+    // ソケットを閉じる
+    close(this->clientSocket);
+}
 
-    // 画像情報を送信
-    for (int i = 0; i < 3; i++) {
-        zmq::message_t msg((void*)&imageInfo[i], sizeof(int32_t), NULL);
-        if(!socket.send(msg, ZMQ_SNDMORE)) {
-            printf("画像情報の送信に失敗しました。\n");
-            return false;
-        }
+bool Signal::sendImage(cv::Mat image) {
+    // 画像データを一時的に格納するバッファ
+    std::vector<uchar> buffer;
+    // フレームをバッファにエンコード
+    cv::imencode(".png", image, buffer);
+
+    // 画像データのサイズを先に送信
+    size_t bufferSize = buffer.size();
+    if (send(this->clientSocket, &bufferSize, sizeof(bufferSize), 0) == -1) {
+        return false;
     }
-
-    // 画像データを設定
-    void* imageData = malloc(image.total() * image.elemSize());
-    memcpy(imageData, image.data, image.total() * image.elemSize());
 
     // 画像データを送信
-    zmq::message_t msg2(imageData, imageInfo[0] * imageInfo[1] * imageInfo[2], my_free, NULL);
-    if(!socket.send(msg2)) {
-        printf("画像データの送信に失敗しました。\n");
-        // メモリを解放
-        free(imageData);
+    if (send(this->clientSocket, buffer.data(), buffer.size(), 0) == -1) {
         return false;
     }
-    // メモリを解放
-    free(imageData);
-    return true;
-}
 
-void Net::close() {
-    // ソケットを閉じる
-    socket.close();
+    return true;
 }

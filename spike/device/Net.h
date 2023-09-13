@@ -1,35 +1,37 @@
 /*
- * クラス名:Net
- * 作成日:2023/09/08
+ * クラス名:Signal
+ * 作成日:2023/05/12
  * 作成者:杉本
  */
-#ifndef NET_H
-#define NET_H
+#ifndef SIGNAL_H
+#define SIGNAL_H
 
 #include <opencv2/opencv.hpp>
-#include <zmq.hpp>
+#include <netinet/in.h>
 
-class Net{
+class Signal{
 public:
     // インスタンス取得
-    static Net& getInstance();
+    static Signal& getInstance();
 
-    bool open();
-    void close();
+    bool connect_s();
+    void close_s();
     bool sendImage(cv::Mat image);
 
 
 private:
-    Net(); // プライベートコンストラクタ
-    ~Net();
-    static Net* instance; // シングルトンオブジェクトへのポインタ
+    Signal(); // プライベートコンストラクタ
+    ~Signal();
+    static Signal* instance; // シングルトンオブジェクトへのポインタ
 
     // コピーおよび代入演算子は禁止
-    Net(Net const&);
-    void operator=(Net const&);
+    Signal(Signal const&);
+    void operator=(Signal const&);
 
-    zmq::context_t context;
-    zmq::socket_t socket;
+    // ソケット情報
+    int clientSocket;
+    // サーバーのアドレスとポートの設定
+    sockaddr_in serverAddress{};
 };
 
-#endif // NET_H
+#endif // SIGNAL_H
