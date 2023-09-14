@@ -29,7 +29,6 @@ class AStar {
 public:
     AStar(std::vector<std::vector<int>>& grid, int startX, int startY, int goalX, int goalY);
     std::vector<std::pair<int, int>> findPath();
-
 private:
     std::vector<std::vector<int>> grid;
     int startX, startY, goalX, goalY;
@@ -42,6 +41,8 @@ private:
 
 AStar::AStar(std::vector<std::vector<int>>& grid, int startX, int startY, int goalX, int goalY)
     : grid(grid), startX(startX), startY(startY), goalX(goalX), goalY(goalY), gridSize(grid.size()) {}
+
+    
 
 std::vector<std::pair<int, int>> AStar::findPath() {
     int startHash = startY * gridSize + startX;
@@ -94,10 +95,10 @@ std::vector<std::pair<int, int>> AStar::findPath() {
 }
 
 int main() {
-	//4*4の配列を定義して0で初期化
-	//0：空
-	//1：decoy
-	//2：treasure
+    //4*4の配列を定義して0で初期化
+    //0：空
+    //1：decoy
+    //2：treasure
     std::vector<std::vector<int>> grid = {
         {0, 0, 0, 0},
         {0, 0, 0, 0},
@@ -106,71 +107,61 @@ int main() {
     };
 
 
-	//座標の定義
-	int x = 0;
-	int y = 0;
+    //座標の定義
+    int x = 0;
+    int y = 0;
 
     //ゴール座標の定義
     int gx = 0;
     int gy = 0;
 
-	//ファイルを開く
-	std::ifstream inputFile("treasureBlockData.txt");
+    //ファイルを開く
+    std::ifstream inputFile("treasureBlockData.txt");
 
-	//ファイルが正常に開けたか確認
-	if (!inputFile.is_open()) {
-		std::cerr << "ファイルが開けませんでした" << std::endl;
-		return 1;
-	}
+    //ファイルが正常に開けたか確認
+    if (!inputFile.is_open()) {
+        std::cerr << "ファイルが開けませんでした" << std::endl;
+        return 1;
+    }
 
-	//ファイルからデータの読み込み
-	std::string line;
-	while (std::getline(inputFile, line)) {
-		if (line=="decoy") {
-			grid[y][x] = 1;
-		}
-		else if (line == "treasure") {
+    //ファイルからデータの読み込み
+    std::string line;
+    while (std::getline(inputFile, line)) {
+        if (line == "decoy") {
+            grid[y][x] = 1;
+        }
+        else if (line == "treasure") {
+            grid[y][x] = 2;
             gx = x;
             gy = y;
-		}
-		std::cout << line << std::endl;
-		if (x != 3) {
-			x++;
-		}
-		else {
-			x = 0;
-			y++;
-		}
-	}
+        }
+        std::cout << line << std::endl;
+        if (x != 3) {
+            x++;
+        }
+        else {
+            x = 0;
+            y++;
+        }
+    }
 
     //ファイルを閉じる
     inputFile.close();
 
-	//マスの表示
-	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 4; j++) {
-			printf("%2d", grid[i][j]);
-		}
-		printf("\n");
-	}
-
-	//Aスターアルゴリズム
-    int startX = 0;
-    int startY = 3;
-    int goalX = gx;
-    int goalY = gy;
-    
-    AStar astar(grid, startX, startY, goalX, goalY);
-    std::vector<std::pair<int, int>> path = astar.findPath();
-
-    if (!path.empty()) {
-        std::cout << "Path found:" << std::endl;
-        for (const auto& point : path) {
-            std::cout << "(" << point.second << ", " << point.first << ")" << std::endl;
+    //マスの表示
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            printf("%2d", grid[i][j]);
         }
+        printf("\n");
     }
-    else {
-        std::cout << "No path found." << std::endl;
+
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            if (grid[i][j] == 2) {
+                grid[i][j] = 0;
+            }
+        }
     }
 
     //新しいファイルを作成して開く
@@ -182,16 +173,79 @@ int main() {
         return 1;
     }
 
-    // ファイルにデータを書き込む
-    for (const auto& point : path) {
-        outputFile << "(" << point.second << ", " << point.first << ")" << std::endl;
-        //std::cout << "(" << point.second << ", " << point.first << ")" << std::endl;
+    
+
+    //Aスターアルゴリズム
+    //スタート(3,0)→トレジャーブロックまで
+    int startX = 0;
+    int startY = 3;
+    int goalX = gx;
+    int goalY = gy;
+
+    AStar astar(grid, startX, startY, goalX, goalY);
+    std::vector<std::pair<int, int>> path = astar.findPath();
+
+    //int a = 0;
+    if (!path.empty()) {
+        std::cout << "Path found:" << std::endl;
+        for (const auto& point : path) {
+            /*if (a == 0) {
+                a++;
+                continue;
+            }*/
+            std::cout << "(" << point.second << ", " << point.first << ")" << std::endl;
+            outputFile << "(" << point.second << ", " << point.first << ")" << std::endl;
+        }
     }
-    //outputFile << "これは新しいファイルに書き込まれたデータです。\n";
-    //outputFile << "別の行にもデータを書き込むことができます。\n";
+    else {
+        std::cout << "No path found." << std::endl;
+    }
 
     // ファイルを閉じる
     outputFile.close();
 
-	return 0;
-}	
+
+
+    // ファイルを上書きモードで開く
+    std::ofstream file("keiro.txt", std::ios::app);
+
+    if (!file.is_open()) {
+        std::cerr << "ファイルを作成・開けませんでした" << std::endl;
+        return 1;
+    }
+
+    //トレジャーブロック→ゴール(3,3)まで
+    int startX2 = gx;
+    int startY2 = gy;
+    int goalX2 = 3;
+    int goalY2 = 3;
+
+    AStar tore(grid, startX2, startY2, goalX2, goalY2);
+    std::vector<std::pair<int, int>> path2 = tore.findPath();
+
+    //最初はcontinueする
+    int a = 0;
+
+    if (!path2.empty()) {
+        std::cout << "Path found:" << std::endl;
+        for (const auto& point : path2) {
+            if (a == 0) {
+                a++;
+                continue;
+            }
+            std::cout << "(" << point.second << ", " << point.first << ")" << std::endl;
+            file << "(" << point.second << ", " << point.first << ")" << std::endl;
+        }
+    }
+    else {
+        std::cout << "No path found." << std::endl;
+    }
+
+
+    //ファイルを閉じる
+    file.close();
+
+    
+
+    return 0;
+}
