@@ -49,36 +49,28 @@ void Signal::close_s() {
     close(this->clientSocket);
 }
 
+bool Signal::sendItem(const void *buf, size_t len) {
+    // データのサイズを先に送信
+    if (send(this->clientSocket, &len, sizeof(len), 0) == -1) {
+        return false;
+    }
+
+    // データを送信
+    if (send(this->clientSocket, buf, len, 0) == -1) {
+        return false;
+    }
+    return true;
+}
+
 bool Signal::sendImage(cv::Mat image) {
     // 画像データを一時的に格納するバッファ
     std::vector<uchar> buffer;
     // フレームをバッファにエンコード
     cv::imencode(".png", image, buffer);
 
-    // 画像データのサイズを先に送信
-    size_t bufferSize = buffer.size();
-    if (send(this->clientSocket, &bufferSize, sizeof(bufferSize), 0) == -1) {
-        return false;
-    }
-
-    // 画像データを送信
-    if (send(this->clientSocket, buffer.data(), buffer.size(), 0) == -1) {
-        return false;
-    }
-
-    return true;
+    return sendItem(buffer.data(), buffer.size());
 }
 
 bool Signal::sendString(const char* str) {
-    // 文字列の長さを送信
-    size_t strLength = strlen(str);
-    if (send(this->clientSocket, &strLength, sizeof(strLength), 0) == -1) {
-        return false;
-    }
-
-    // 文字列を送信
-    if (send(this->clientSocket, str.c_str(), strLength, 0) == -1) {
-        return false;
-    }
-    return true;
+    return sendItem(str, strlen(str));
 }

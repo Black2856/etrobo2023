@@ -4,59 +4,82 @@ import numpy as np
 import socket
 import struct
 
-IP_ADDR = ""
+IP_ADDR = "127.0.0.10"
 PORT = 8080
 
-class BlockingServerBase:
+class Signal:
     def __init__(self):
-        self.__socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0)
-        self.__socket.settimeout(10)
+        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0)
+        self.socket.settimeout(120)
         self.close()
 
     def __del__(self):
         self.close()
 
         
-    def connect(self) -> None:
-        self.__socket.bind((IP_ADDR, PORT))
-        self.__socket.listen(1)
+    def connect(self) -> bool:
+        self.socket.bind((IP_ADDR, PORT))
+        self.socket.listen(5)
         print("Server started :", IP_ADDR)
+        return True
 
     def close(self) -> None:
         try:
-            self.__socket.shutdown(socket.SHUT_RDWR)
-            self.__socket.close()
+            self.socket.shutdown(socket.SHUT_RDWR)
+            self.socket.close()
         except:
             pass
         
-    def accept(self) -> None:
-        conn, _ = self.__socket.accept()
-
+    # 広範的データを受信する関数
+    def recvItem(self, conn):
         with conn:
-            print('Connected by', IP_ADDR)
+            # データのサイズを受信
             buffer_size = conn.recv(4)
             buffer_size = struct.unpack('I', buffer_size)[0]
-            # フレームデータを受信
+            # データを受信
             data = b''
             while len(data) < buffer_size:
                 packet = conn.recv(buffer_size - len(data))
                 if not packet:
                     break
                 data += packet
-            # 受信したデータをデコード
-            frame_data = np.frombuffer(data, dtype=np.uint8)
-            # データを画像に変換
-            frame = cv2.imdecode(frame_data, 1)
-            
-            # 文字列の長さを受信
-            str_size = conn.recv(4)
-            str_size = struct.unpack('I', str_size)[0]
+        
+        return data
+    
+    # 画像データを受信する関数
+    def recvImage(self, conn):
+        data = self.recvItem(conn)
+        # 受信したデータをデコード
+        frame_data = np.frombuffer(data, dtype=np.uint8)
+        # データを画像に変換
+        frame = cv2.imdecode(frame_data, 1)
+        return frame
+    
+    # 文字列データを受信する関数
+    def recvString(self, conn):
+        data = self.recvItem(conn)
+        # 受信したデータをデコード
+        st = data.decode('utf-8')
+        return st
+    
+    def accept(self):
+        conn, addr = self.socket.accept()
+        print('Connected by', addr)
+        return conn
+        
 
-            # 文字列を受信
-            received_str = conn.recv(str_size).decode('utf-8')
-            
-            # 画像を保存
-            cv2.imwrite(f'{received_str}', frame)
-
-        self.close()
-
+if __name__ == "__main__":
+    signal = Signal()
+    signal.connect()
+    conn = signal.accept()
+    print("通信成功")
+    """
+    
+    image  = signal.recvImage(conn)
+    string = signal.recvString(conn)
+    """
+    conn.close()
+    signal.close()
+        
+    # 画像を保存
+    #cv2.imwrite(f'{string}', image)

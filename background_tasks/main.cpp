@@ -41,7 +41,6 @@ int main() {
         file.close();
         // ファイルを削除する
         std::remove(IMG_QUEUE_PATH);
-
     }
         
     return 0;

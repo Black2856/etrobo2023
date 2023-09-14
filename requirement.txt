@@ -1,3 +1,2 @@
 sudo apt update
 sudo apt install libopencv-dev
-sudo apt install libzmq3-dev
