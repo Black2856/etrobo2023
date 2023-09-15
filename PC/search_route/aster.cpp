@@ -5,6 +5,7 @@
 #include <cmath>
 #include <vector>
 #include <unordered_map>
+#include <utility>
 
 class Node {
 public:
@@ -42,7 +43,7 @@ private:
 AStar::AStar(std::vector<std::vector<int>>& grid, int startX, int startY, int goalX, int goalY)
     : grid(grid), startX(startX), startY(startY), goalX(goalX), goalY(goalY), gridSize(grid.size()) {}
 
-    
+
 
 std::vector<std::pair<int, int>> AStar::findPath() {
     int startHash = startY * gridSize + startX;
@@ -173,7 +174,7 @@ int main() {
         return 1;
     }
 
-    
+
 
     //Aスターアルゴリズム
     //スタート(3,0)→トレジャーブロックまで
@@ -185,31 +186,220 @@ int main() {
     AStar astar(grid, startX, startY, goalX, goalY);
     std::vector<std::pair<int, int>> path = astar.findPath();
 
-    //int a = 0;
+    int a = 0;
+    //走交代の向き
+    //↑：0
+    //→：1
+    //↓：2
+    //←：3
+    int direction = 1;
+
+    //走交代の移動
+    //int wark;
+
+    std::vector<std::pair<int, int>> p = {
+            std::make_pair(0,3),
+    };
+
+    //添え字用変数
+    int tmp = 0;
+
     if (!path.empty()) {
+        //走行体の座標
+        int curentXX = 0;
+        int curentYY = 3;
+
+
+        /*int cux = 0;
+        int cuy = 3;*/
         std::cout << "Path found:" << std::endl;
+        //std::cout << curentYY << curentXX << std::endl;
+        
         for (const auto& point : path) {
             /*if (a == 0) {
                 a++;
                 continue;
             }*/
             std::cout << "(" << point.second << ", " << point.first << ")" << std::endl;
-            outputFile << "(" << point.second << ", " << point.first << ")" << std::endl;
+            if (point.second == (p[tmp].second - 1) && point.first == p[tmp].first && direction == 0) {
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 0 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else if (point.second == (p[tmp].second - 1) && point.first == p[tmp].first && direction == 1) {
+                direction = 0;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 2 << std::endl;
+                std::cout << 0 << std::endl;
+                outputFile << 2 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else if (point.second == (p[tmp].second - 1) && point.first == p[tmp].first && direction == 2) {
+                direction = 0;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 2 << std::endl;
+                std::cout << 2 << std::endl;
+                std::cout << 0 << std::endl;
+                outputFile << 2 << std::endl;
+                outputFile << 2 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else if (point.second == (p[tmp].second - 1) && point.first == p[tmp].first && direction == 3) {
+                direction = 0;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 1 << std::endl;
+                std::cout << 0 << std::endl;
+                outputFile << 1 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else if (point.second == (p[tmp].second) && point.first == (p[tmp].first + 1) && direction == 0) {
+                direction = 1;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 1 << std::endl;
+                std::cout << 0 << std::endl;
+                outputFile << 1 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else if (point.second == (p[tmp].second) && point.first == (p[tmp].first + 1) && direction == 1) {
+                direction = 1;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 0 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else if (point.second == (p[tmp].second) && point.first == (p[tmp].first + 1) && direction == 2) {
+                direction = 1;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 2 << std::endl;
+                std::cout << 0 << std::endl;
+                outputFile << 2 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else if (point.second == (p[tmp].second) && point.first == (p[tmp].first + 1) && direction == 3) {
+                direction = 1;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 1 << std::endl;
+                std::cout << 1 << std::endl;
+                std::cout << 0 << std::endl;
+                outputFile << 1 << std::endl;
+                outputFile << 1 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else if (point.second == (p[tmp].second + 1) && point.first == p[tmp].first && direction == 0) {
+                direction = 2;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 1 << std::endl;
+                std::cout << 1 << std::endl;
+                std::cout << 0 << std::endl;
+                outputFile << 1 << std::endl;
+                outputFile << 1 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else if (point.second == (p[tmp].second + 1) && point.first == p[tmp].first && direction == 1) {
+                direction = 2;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 1 << std::endl;
+                std::cout << 0 << std::endl;
+                outputFile << 1 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else if (point.second == (p[tmp].second + 1) && point.first == p[tmp].first && direction == 2) {
+                direction = 2;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 0 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else if (point.second == (p[tmp].second + 1) && point.first == p[tmp].first && direction == 3) {
+                direction = 2;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 2 << std::endl;
+                std::cout << 0 << std::endl;
+                outputFile << 2 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else if (point.second == p[tmp].second && point.first == (p[tmp].first - 1) && direction == 0) {
+                direction = 3;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 2 << std::endl;
+                std::cout << 0 << std::endl;
+                outputFile << 2 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else if (point.second == p[tmp].second && point.first == (p[tmp].first - 1) && direction == 1) {
+                direction = 3;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 2 << std::endl;
+                std::cout << 2 << std::endl;
+                std::cout << 0 << std::endl;
+                outputFile << 2 << std::endl;
+                outputFile << 2 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else if (point.second == p[tmp].second && point.first == (p[tmp].first - 1) && direction == 2) {
+                direction = 3;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 1 << std::endl;
+                std::cout << 0 << std::endl;
+                outputFile << 1 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+
+            else if (point.second == p[tmp].second && point.first == (p[tmp].first - 1) && direction == 3) {
+                direction = 3;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 0 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else {
+                //std::cout << "(" << curentYY << ", " << curentXX << ")" << std::endl;
+                std::cout << "ない"<< std::endl;
+                // std::cout << p.first << std::endl;
+                // printf("%d,%d\n", curentYY, curentXX);
+            }
+            // std::cout << p.first << std::endl;
+             //std::cout << p.first << std::endl;
+             //std::cout << point.first << std::endl;
+             //p.first = point.first;
+             //std::cout << p.first << std::endl;
         }
     }
     else {
         std::cout << "No path found." << std::endl;
     }
 
-    // ファイルを閉じる
-    outputFile.close();
 
-
-
-    // ファイルを上書きモードで開く
-    std::ofstream file("keiro.txt", std::ios::app);
-
-    if (!file.is_open()) {
+    if (!outputFile.is_open()) {
         std::cerr << "ファイルを作成・開けませんでした" << std::endl;
         return 1;
     }
@@ -224,7 +414,7 @@ int main() {
     std::vector<std::pair<int, int>> path2 = tore.findPath();
 
     //最初はcontinueする
-    int a = 0;
+    a = 0;
 
     if (!path2.empty()) {
         std::cout << "Path found:" << std::endl;
@@ -234,7 +424,216 @@ int main() {
                 continue;
             }
             std::cout << "(" << point.second << ", " << point.first << ")" << std::endl;
-            file << "(" << point.second << ", " << point.first << ")" << std::endl;
+            if (point.second == (p[tmp].second - 1) && point.first == p[tmp].first && direction == 0) {
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 0 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else if (point.second == (p[tmp].second - 1) && point.first == p[tmp].first && direction == 1) {
+                direction = 0;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 2 << std::endl;
+                std::cout << 0 << std::endl;
+                outputFile << 2 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else if (point.second == (p[tmp].second - 1) && point.first == p[tmp].first && direction == 2) {
+                direction = 0;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 2 << std::endl;
+                std::cout << 2 << std::endl;
+                std::cout << 0 << std::endl;
+                outputFile << 2 << std::endl;
+                outputFile << 2 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else if (point.second == (p[tmp].second - 1) && point.first == p[tmp].first && direction == 3) {
+                direction = 0;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 1 << std::endl;
+                std::cout << 0 << std::endl;
+                outputFile << 1 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else if (point.second == (p[tmp].second) && point.first == (p[tmp].first + 1) && direction == 0) {
+                direction = 1;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 1 << std::endl;
+                std::cout << 0 << std::endl;
+                outputFile << 1 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else if (point.second == (p[tmp].second) && point.first == (p[tmp].first + 1) && direction == 1) {
+                direction = 1;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 0 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else if (point.second == (p[tmp].second) && point.first == (p[tmp].first + 1) && direction == 2) {
+                direction = 1;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 2 << std::endl;
+                std::cout << 0 << std::endl;
+                outputFile << 2 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else if (point.second == (p[tmp].second) && point.first == (p[tmp].first + 1) && direction == 3) {
+                direction = 1;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 1 << std::endl;
+                std::cout << 1 << std::endl;
+                std::cout << 0 << std::endl;
+                outputFile << 1 << std::endl;
+                outputFile << 1 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else if (point.second == (p[tmp].second + 1) && point.first == p[tmp].first && direction == 0) {
+                direction = 2;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 1 << std::endl;
+                std::cout << 1 << std::endl;
+                std::cout << 0 << std::endl;
+                outputFile << 1 << std::endl;
+                outputFile << 1 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else if (point.second == (p[tmp].second + 1) && point.first == p[tmp].first && direction == 1) {
+                direction = 2;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 1 << std::endl;
+                std::cout << 0 << std::endl;
+                outputFile << 1 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else if (point.second == (p[tmp].second + 1) && point.first == p[tmp].first && direction == 2) {
+                direction = 2;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 0 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else if (point.second == (p[tmp].second + 1) && point.first == p[tmp].first && direction == 3) {
+                direction = 2;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 2 << std::endl;
+                std::cout << 0 << std::endl;
+                outputFile << 2 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else if (point.second == p[tmp].second && point.first == (p[tmp].first - 1) && direction == 0) {
+                direction = 3;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 2 << std::endl;
+                std::cout << 0 << std::endl;
+                outputFile << 2 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else if (point.second == p[tmp].second && point.first == (p[tmp].first - 1) && direction == 1) {
+                direction = 3;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 2 << std::endl;
+                std::cout << 2 << std::endl;
+                std::cout << 0 << std::endl;
+                outputFile << 2 << std::endl;
+                outputFile << 2 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else if (point.second == p[tmp].second && point.first == (p[tmp].first - 1) && direction == 2) {
+                direction = 3;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 1 << std::endl;
+                std::cout << 0 << std::endl;
+                outputFile << 1 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+
+            else if (point.second == p[tmp].second && point.first == (p[tmp].first - 1) && direction == 3) {
+                direction = 3;
+                p.push_back(std::make_pair(point.first, point.second));
+                tmp++;
+
+                std::cout << 0 << std::endl;
+                outputFile << 0 << std::endl;
+            }
+            else {
+                //std::cout << "(" << curentYY << ", " << curentXX << ")" << std::endl;
+                std::cout << "ない" << std::endl;
+                // std::cout << p.first << std::endl;
+                // printf("%d,%d\n", curentYY, curentXX);
+            }
+
+            if (point.second == 1 & point.first == 3 & direction  ==0 ) {
+                outputFile << 1 << std::endl;
+                std::cout << 1 << std::endl;
+            }
+            else if (point.second == 1 & point.first == 3 & direction == 2) {
+                outputFile << 2 << std::endl;
+                std::cout << 2 << std::endl;
+            }
+            else if (point.second == 1 & point.first == 3 & direction == 3) {
+                outputFile << 1 << std::endl;
+                outputFile << 1 << std::endl;
+                std::cout << 1 << std::endl;
+                std::cout << 1 << std::endl;
+            }
+            else if (point.second == 2 & point.first == 3 & direction == 0) {
+                outputFile << 1 << std::endl;
+                std::cout << 1 << std::endl;
+            }
+            else if (point.second == 2 & point.first == 3 & direction == 2) {
+                outputFile << 2 << std::endl;
+                std::cout << 2 << std::endl;
+            }
+            else if (point.second == 2 & point.first == 3 & direction == 3) {
+                outputFile << 1 << std::endl;
+                outputFile << 1 << std::endl;
+                std::cout << 1 << std::endl;
+                std::cout << 1 << std::endl;
+
+            }
+            else if (point.second == 3 & point.first == 3 & direction == 0) {
+                outputFile << 1 << std::endl;
+                std::cout << 1 << std::endl;
+            }
+            else if (point.second == 3 & point.first == 3 & direction == 2) {
+                outputFile << 2 << std::endl;
+                std::cout << 2 << std::endl;
+            }
+            else if (point.second == 3 & point.first == 3 & direction == 3) {
+                outputFile << 1 << std::endl;
+                outputFile << 1 << std::endl;
+                std::cout << 1 << std::endl;
+                std::cout << 1 << std::endl;
+            }
         }
     }
     else {
@@ -243,9 +642,9 @@ int main() {
 
 
     //ファイルを閉じる
-    file.close();
+    outputFile.close();
 
-    
+
 
     return 0;
 }
