@@ -20,7 +20,7 @@ class Signal:
     def connect(self) -> bool:
         self.socket.bind((IP_ADDR, PORT))
         self.socket.listen(5)
-        print("Server started :", IP_ADDR)
+        print("Server started : ", IP_ADDR, ":", PORT, sep='')
         return True
 
     def close(self) -> None:
