@@ -6,6 +6,8 @@
 #include <vector>
 #include <unordered_map>
 #include <utility>
+#include <algorithm>
+
 
 class Node {
 public:
