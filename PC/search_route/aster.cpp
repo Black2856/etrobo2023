@@ -214,7 +214,12 @@ int main() {
         int cuy = 3;*/
         std::cout << "Path found:" << std::endl;
         //std::cout << curentYY << curentXX << std::endl;
-        
+
+        outputFile << "0：直進" << std::endl;
+        outputFile << "1：その場右曲がり" << std::endl;
+        outputFile << "2：その場左曲がり" << std::endl;
+        outputFile << std::endl;
+
         for (const auto& point : path) {
             /*if (a == 0) {
                 a++;
@@ -383,7 +388,7 @@ int main() {
             }
             else {
                 //std::cout << "(" << curentYY << ", " << curentXX << ")" << std::endl;
-                std::cout << "ない"<< std::endl;
+                std::cout << "ない" << std::endl;
                 // std::cout << p.first << std::endl;
                 // printf("%d,%d\n", curentYY, curentXX);
             }
