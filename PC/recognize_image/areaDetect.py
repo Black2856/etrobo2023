@@ -277,17 +277,17 @@ class AreaDetect:
             ((37, 50, 25), (57, 100, 100))
         ]
         self.__greenRange = [ # Green H=150
-            ((120, 15, 10), (160, 100, 100))
+            ((120, 15, 20), (180, 100, 100))
         ]
         self.__blueRange = [ # blue H=207
             ((197, 50, 25), (217, 100, 100))
         ]
         self.__lineRange = [ #black
-            ((0, 0, 0), (360, 100, 15))
+            ((0, 0, 0), (360, 100, 25))
         ]
         #閾値サイズ
         #self.__sizeRange = (1000 * self.__imgSizeRate**2, 80000 * self.__imgSizeRate**2) #1000. 80000
-        self.__sizeRange = (100, 12800)
+        self.__sizeRange = (90, 12800)
 
         self.__rawImage = None
         self.__maskPoint = None

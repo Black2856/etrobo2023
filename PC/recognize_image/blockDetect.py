@@ -9,7 +9,7 @@ from treasureArea import BlockType
 class BlockDetect:
     def __init__(self):
         #閾値 (360°100°100°)
-        self.__decoyRange = [((187, 50, 25), (227, 100, 100))]
+        self.__decoyRange = [((187, 30, 25), (227, 100, 100))]
         self.__treasureRange = [
             ((330, 50, 25), (360, 100, 100)),
             ((0, 50, 25), (30, 100, 100))
