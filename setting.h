@@ -41,7 +41,7 @@
 #define RECORD_LIMIT 1000  // センサーデータの最大記録数  記録秒数 = CYCLE * RECORD_LIMIT
 
 // 通信設定
-#define PC_IP_ADDRESS "127.0.0.1" // 受信時アドレス
+#define PC_IP_ADDRESS "127.0.0.10" // 受信時アドレス
 #define PC_PORT 8080 // 受信時port番号
 
 

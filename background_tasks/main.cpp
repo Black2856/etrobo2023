@@ -36,7 +36,7 @@ int main() {
         // ファイルから一行ずつ読み込む
         while (std::getline(file, line)) {
             cv::Mat img = camera.takePhoto(line.c_str());
-            if(signal.sendImage(image)) {
+            if(signal.sendImage(img)) {
                 printf("Send Image\n");
             } else {
                 printf("Failed to send image\n");
