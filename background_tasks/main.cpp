@@ -35,13 +35,15 @@ int main() {
         std::string line;
         // ファイルから一行ずつ読み込む
         while (std::getline(file, line)) {
+            // 撮影
             cv::Mat img = camera.takePhoto(line.c_str());
+            // PCへ送信
             if(signal.sendImage(img)) {
                 printf("Send Image\n");
             } else {
                 printf("Failed to send image\n");
             }
-            // ファイル名送信処理
+            // ファイル名送信
 
 
             
