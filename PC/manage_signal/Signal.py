@@ -11,15 +11,15 @@ class Signal:
     def __init__(self):
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0)
         self.socket.settimeout(120)
-        self.close()
+        self.socket.setblocking(True)
 
     def __del__(self):
         self.close()
 
         
-    def connect(self) -> bool:
+    def open(self) -> bool:
         self.socket.bind((IP_ADDR, PORT))
-        self.socket.listen(5)
+        self.socket.listen(1)
         print("Server started : ", IP_ADDR, ":", PORT, sep='')
         return True
 
@@ -34,8 +34,11 @@ class Signal:
     def recvItem(self, conn):
         with conn:
             # データのサイズを受信
-            buffer_size = conn.recv(4)
-            buffer_size = struct.unpack('I', buffer_size)[0]
+            buffer_size = conn.recv(8)
+            # バイナリデータを数値に変換
+            buffer_size = struct.unpack('Q', buffer_size)[0]
+            print("len :", buffer_size)
+
             # データを受信
             data = b''
             while len(data) < buffer_size:
@@ -43,16 +46,20 @@ class Signal:
                 if not packet:
                     break
                 data += packet
-        
+
         return data
     
     # 画像データを受信する関数
     def recvImage(self, conn):
-        data = self.recvItem(conn)
+        # バイナリデータを受信
+        binary_data = self.recvItem(conn)
+
         # 受信したデータをデコード
-        frame_data = np.frombuffer(data, dtype=np.uint8)
+        frame_data = np.frombuffer(binary_data, dtype=np.uint8)
+
         # データを画像に変換
         frame = cv2.imdecode(frame_data, 1)
+
         return frame
     
     # 文字列データを受信する関数
@@ -70,14 +77,12 @@ class Signal:
 
 if __name__ == "__main__":
     signal = Signal()
-    signal.connect()
+    signal.open()
     conn = signal.accept()
-    print("通信成功")
-    """
-    
+
     image  = signal.recvImage(conn)
-    string = signal.recvString(conn)
-    """
+    #string = signal.recvString(conn)
+    
     conn.close()
     signal.close()
         

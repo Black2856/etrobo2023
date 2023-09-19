@@ -31,9 +31,9 @@ private:
     void operator=(Signal const&);
 
     // ソケット情報
-    int clientSocket;
+    int sock;
     // サーバーのアドレスとポートの設定
-    sockaddr_in serverAddress{};
+    struct sockaddr_in addr;
 };
 
 #endif // SIGNAL_H
