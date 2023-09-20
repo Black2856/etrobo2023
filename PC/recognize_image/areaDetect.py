@@ -270,17 +270,17 @@ class AreaDetect:
 
         #閾値 (360°100°100°)
         self.__redRange = [ # Red-ish colors H=7
-            ((357, 55, 50), (360, 100, 100)),
-            ((0, 55, 50), (17, 100, 100))   
+            ((347, 55, 50), (360, 100, 100)),
+            ((0, 55, 50), (27, 100, 100))   
         ]
         self.__yellowRange = [ # Yellow-ish colors H=47
-            ((37, 50, 25), (57, 100, 100))
+            ((30, 27, 25), (77, 100, 100))
         ]
         self.__greenRange = [ # Green H=150
             ((120, 15, 20), (180, 100, 100))
         ]
         self.__blueRange = [ # blue H=207
-            ((197, 50, 25), (217, 100, 100))
+            ((187, 50, 25), (237, 100, 100))
         ]
         self.__lineRange = [ #black
             ((0, 0, 0), (360, 100, 25))
@@ -353,17 +353,18 @@ class AreaDetect:
         """
         エリアの向きを特定する。
         ポイントの配列を[赤, 青, 緑, 黄]に変更する。
+        ポイントの配列を[青, 緑, 黄, 赤]に変更する。
         """
         # 探索
         newPoints = [None, None, None, None]
         for i, point in enumerate(areaPoints):
-            if self.__maskColorPoint['red'][point[1]][point[0]] == 1:
+            if self.__maskColorPoint['blue'][point[1]][point[0]] == 1:
                 newPoints[0] = point
-            elif self.__maskColorPoint['blue'][point[1]][point[0]] == 1:
-                newPoints[1] = point
             elif self.__maskColorPoint['green'][point[1]][point[0]] == 1:
-                newPoints[2] = point
+                newPoints[1] = point
             elif self.__maskColorPoint['yellow'][point[1]][point[0]] == 1:
+                newPoints[2] = point
+            elif self.__maskColorPoint['red'][point[1]][point[0]] == 1:
                 newPoints[3] = point
         return newPoints
     

@@ -2,6 +2,8 @@ from enum import Enum
 import os
 import re
 
+import matplotlib.pyplot as plt
+
 class BlockType(Enum):
     none = 0
     decoy = 1
@@ -27,14 +29,12 @@ class TreasureArea:
         self.__square = [[SquareInfo() for i in range(self.__size)] for j in range(self.__size)]
 
     def display(self):
-        areaText = []
         for i, x in enumerate(self.__square):
             print(end='[')
             for j, y in enumerate(x):
                 text = str(y.blockType)
                 text = re.search(r'\.(\w+)$', text)
                 text = text.group(1)
-                areaText
                 print(end=f'{text}, ')
             print(']')
         print('------------')

@@ -1,3 +1,5 @@
+from webCamera import WebCamera
+
 import numpy as np
 import cv2
 import time
@@ -7,12 +9,11 @@ from areaDetect import AreaDetect
 from blockDetect import BlockDetect
 from blockDetect import BlockType
 from treasureArea import TreasureArea
-from webCamera import WebCamera
 
 class TreasureAreaDetect(ParallelProcessing):
     def __init__(self, cycle:float):
         super().__init__()
-        self.__webCamera = WebCamera(0)
+        self.__webCamera = WebCamera(2, (792, 432))
         self.__treasureArea = TreasureArea()
         self.__areaDetect = AreaDetect()
         self.__blockDetect = BlockDetect()
