@@ -8,6 +8,7 @@
 
 #include <opencv2/opencv.hpp>
 #include <netinet/in.h>
+#include <string>
 
 class Signal{
 public:
@@ -16,9 +17,11 @@ public:
 
     bool connect_s();
     void close_s();
-    bool sendItem(const void *buf, size_t len);
     bool sendImage(cv::Mat image);
+    // 使用例
+    // sendString("Hello World");
     bool sendString(const char* str);
+    std::string recvString();
 
 
 private:
@@ -30,6 +33,9 @@ private:
     Signal(Signal const&);
     void operator=(Signal const&);
 
+    // 広範的データを送信する関数
+    bool sendItem(const void *buf, size_t len);
+    void dispBool(bool b);
     // ソケット情報
     int sock;
     // サーバーのアドレスとポートの設定
