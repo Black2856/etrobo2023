@@ -1,0 +1,8 @@
+①https://github.com/niXman/mingw-builds-binaries/releasesにアクセス
+②windows64bitのをダウンロード(https://github.com/niXman/mingw-builds-binaries/releases/download/13.1.0-rt_v11-rev1/x86_64-13.1.0-release-win32-seh-ucrt-rt_v11-rev1.7z)
+③7zipで展開する(展開場所はファイル名に日本語が含まれない場所)
+④展開したmingw64\binのパスをコピーして環境変数→システム環境変数のPathを選択→編集をクリック→新規→コピーしたパスを貼り付ける
+⑤貼り付けれたらすべてOKを押す
+⑥CMDで「gcc-v」と入力してパスが通れば完了
+
+⑦c++ファイルのあるパスでコンパイル(g++ -o aster aster.cpp)そして実行(./aster)
