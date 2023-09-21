@@ -38,17 +38,14 @@ int main() {
             // 撮影
             cv::Mat img = camera.takePhoto(line.c_str());
             // PCへ送信
-            if(signal.sendImage(img)) {
-                printf("Send Image\n");
-            } else {
+            if(!signal.sendImage(img)) {
                 printf("Failed to send image\n");
             }
             // ファイル名送信
-
-
-            
+            if(!signal.sendString(line.c_str())) {
+                printf("Failed to send file name\n");
+            }
         }
-
         camera.stop();
         // ファイルを閉じる
         file.close();
@@ -58,5 +55,4 @@ int main() {
 
     signal.close_s();
     return 0;
-   
 }
