@@ -2,6 +2,8 @@
 ### 並行処理クラス
 ### 作成者 : 船田 直輝
 #############################
+import os
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 import threading
 import time
