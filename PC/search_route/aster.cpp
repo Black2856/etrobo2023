@@ -1,3 +1,15 @@
+/*
+内容：ファイルを読み込んでasterアルゴリズムで最短経路を見つけてファイルに出力する
+ファイル出力：
+    0：直進
+    1：その場右曲がり
+    2：その場左曲がり
+ファイルの指定はコマンドライン引数を用いる(絶対パス)：
+    ./aster "読み込みファイル" "出力ファイル"
+ファイルが指定されていなかったり、読み込みファイル名が違ったとき：
+    return 1でプログラムを終了させる
+*/
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -7,6 +19,7 @@
 #include <unordered_map>
 #include <utility>
 #include <algorithm>
+#include <filesystem>
 
 
 class Node {
@@ -122,8 +135,11 @@ int main(int argc, char * argv[]) {
     int gx = 0;
     int gy = 0;
 
+    //コマンドライン引数から絶対パスを取得
+    const char * absolutePath=argv[1];
+
     //ファイルを開く
-    std::ifstream inputFile(argv[1]);
+    std::ifstream inputFile(absolutePath);
 
     //ファイルが正常に開けたか確認
     if (!inputFile.is_open()) {
@@ -171,12 +187,15 @@ int main(int argc, char * argv[]) {
         }
     }
 
+    //コマンドライン引数から絶対パスを取得
+    absolutePath=argv[2];
+
     //新しいファイルを作成して開く
-    std::ofstream outputFile(argv[2]);
+    std::ofstream outputFile(absolutePath);
 
     // ファイルが正常に開けたかを確認
     if (!outputFile.is_open()) {
-        std::cerr << "ファイルを作成・開けませんでした" << std::endl;
+        std::cerr << "NOTopenfile" << std::endl;
         return 1;
     }
 
