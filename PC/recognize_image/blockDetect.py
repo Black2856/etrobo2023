@@ -1,3 +1,6 @@
+import os
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
 import cv2
 import numpy as np
 from PIL import Image

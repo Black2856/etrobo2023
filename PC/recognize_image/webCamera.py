@@ -1,4 +1,5 @@
 import os
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 # カメラの読み込み高速化
 os.environ["OPENCV_VIDEOIO_MSMF_ENABLE_HW_TRANSFORMS"] = "0"
 

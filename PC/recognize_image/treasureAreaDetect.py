@@ -1,3 +1,6 @@
+import os
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
 from webCamera import WebCamera
 
 import numpy as np
@@ -11,18 +14,18 @@ from blockDetect import BlockType
 from treasureArea import TreasureArea
 
 class TreasureAreaDetect(ParallelProcessing):
-    def __init__(self, cycle:float):
+    def __init__(self, cycle:float, cameraDevice):
         super().__init__()
-        self.__webCamera = WebCamera(2, (792, 432))
+        self.__webCamera = WebCamera(cameraDevice, (792, 432))
         self.__treasureArea = TreasureArea()
         self.__areaDetect = AreaDetect()
         self.__blockDetect = BlockDetect()
         self.__areaPoints = [None]
-        self.__decisionTime = 30
+        self.__decisionTime = 20
         self.__time = 0
 
         ### 画像取得方法(video か camera)
-        self.__type = 'video'
+        self.__type = 'camera'
         
         if self.__type == 'video':
             self.__videoPath = './test2.mp4'
@@ -83,8 +86,8 @@ class TreasureAreaDetect(ParallelProcessing):
             warpImage, taBlock = self.__blockDetect.findBlock(rawImage, self.__areaPoints)
 
         ## ブロック配置の決定
-        if taBlock.count(BlockType.none) != 16:
-            taBlock.display()
+        #if taBlock.count(BlockType.none) != 16:
+        #    taBlock.display()
         # 一定時間同じ配置を認識したら決定する
         if taBlock.count(BlockType.decoy) == 2 and taBlock.count(BlockType.treasure) == 1:
             self.__time += 1
@@ -96,13 +99,17 @@ class TreasureAreaDetect(ParallelProcessing):
         return image
     
     def __decision(self, taBlock:TreasureArea):
-        print("ブロック配置の決定")
-        taBlock.output('./treasureBlockData.txt')
+        print("[ TreasureAreaDetect ]以下のブロック配置の決定がされました。")
+        taBlock.display()
+        taBlock.output('./')
         self.stopThread()
+
+    def changeCamera(self, id):
+        self.__webCamera = WebCamera(id, (792, 432))
 
 if __name__ == "__main__":
     dta = TreasureAreaDetect(100)
     dta.startThread()
-    time.sleep(60)
+    time.sleep(10)
     dta.stopThread()
     del dta

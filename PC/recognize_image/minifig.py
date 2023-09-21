@@ -1,3 +1,6 @@
+import os
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
@@ -5,7 +8,6 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator, load_img, i
 import matplotlib.pyplot as plt
 import random
 from sklearn.metrics import confusion_matrix
-import os
 import time
 import cv2
 from hashids import Hashids
@@ -17,7 +19,7 @@ class Minifig(ParallelProcessing):
     def __init__(self, cycle):
         super().__init__()
         self.__cycle = cycle
-        self.__model = keras.models.load_model("best_model_50epoch.h5")
+        self.__model = keras.models.load_model("./best_model_50epoch.h5")
         self.__label_name = ['0d', '135d', '180d', '225d', '270d', '315d', '45d', '90d']
         self.__minifigDataPath = './minifig_data/'
         self.__saveImagePath = './minifig_processed_data/'
@@ -28,12 +30,13 @@ class Minifig(ParallelProcessing):
     def execute(self):
         ret, image, name = self.__loadImage()
         if ret != False:
-            print('find')
+            print(f'[ minifig ]find minifig image')
             label = self.__predictImage(name)
             self.__saveLabel(label)
             self.__saveImage(image, name)
             self.__processCount += 1
-            print(f'{label}')
+            print(end=f'[ minifig ]predictLabel = ')
+            print(f'\'{label}\'')
 
     def __loadImage(self):
         contents = os.listdir(self.__minifigDataPath)
