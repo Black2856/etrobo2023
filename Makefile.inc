@@ -28,7 +28,6 @@ APPL_CXXOBJS += \
     RGBtoHSV.o \
     Record.o \
     SensorData.o \
-    Signal.o \
     SpeedCorrection.o \
     Stop.o \
     TakePhoto.o \
