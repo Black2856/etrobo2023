@@ -59,23 +59,31 @@ void Signal::close_s() {
     close(this->sock);
 }
 
+void Signal::dispBool(bool b) {
+    if(b) {
+        printf("  Succeed\n");
+    } else {
+        printf("  Failed\n");
+    }
+}
+
 bool Signal::sendItem(const void *buf, size_t len) {
-    printf("data : %p\n" , buf);
-    printf("len  : %ld\n", len);
+    printf("  len  : %ld\n", len);
 
-    // データのサイズを先に送信
-    if (send(this->sock, &len, sizeof(len), 0) == -1) {
-        return false;
+    // データのサイズ、実体を送信
+    if (
+        send(this->sock, &len, sizeof(len), 0) &&
+        send(this->sock, buf, len, 0)
+    ) {
+        dispBool(true);
+        return true;
     }
-
-    // データを送信
-    if (send(this->sock, buf, len, 0) == -1) {
-        return false;
-    }
-    return true;
+    dispBool(false);
+    return false;
 }
 
 bool Signal::sendImage(cv::Mat image) {
+    printf("Send Image\n");
     // 画像データを一時的に格納するバッファ
     std::vector<uchar> buffer;
     //PNGでの出力用パラメータ
@@ -84,14 +92,46 @@ bool Signal::sendImage(cv::Mat image) {
     param[1] = 3;//default(3)  0-9.
     // フレームをバッファにエンコード
     if(cv::imencode(".png", image, buffer, param)) {
-        printf("Encoding succeed\n");
+        printf("  Encoding succeed\n");
     } else {
-        printf("Encoding failed\n");
+        printf("  Encoding failed\n");
     }
 
     return sendItem(buffer.data(), buffer.size());
 }
 
 bool Signal::sendString(const char* str) {
+    printf("Send String\n");
+    printf("  data : %s\n", str);
     return sendItem(str, strlen(str));
+}
+
+std::string Signal::recvString() {
+    printf("Recv String\n");
+    // データのサイズを受信
+    int buffer_size;
+    int bytesRead;
+    bytesRead = recv(this->sock, &buffer_size, 8, 0);
+    if (bytesRead == -1) {
+        printf("Failed to recv string size\n");
+        dispBool(false);
+        return "";
+    }
+    printf("  len  : %d\n", buffer_size);
+    // データを受信
+    char buffer[buffer_size];
+    bytesRead = recv(this->sock, buffer, sizeof(buffer), 0);
+    if (bytesRead == -1) {
+        printf("Failed to recv string\n");
+        dispBool(false);
+        return "";
+    }
+
+    // 文字列に変換
+    buffer[bytesRead] = '\0';
+    // stringに変換
+    std::string text(buffer);
+    printf("  data : %s\n", text.c_str());
+    dispBool(true);
+    return text;
 }
