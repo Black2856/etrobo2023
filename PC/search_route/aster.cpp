@@ -97,7 +97,11 @@ std::vector<std::pair<int, int>> AStar::findPath() {
     return std::vector<std::pair<int, int>>();
 }
 
-int main() {
+int main(int argc, char * argv[]) {
+    if(argc !=3){
+        std::cerr << "NOT two path read write"<<std::endl;
+        return 1;
+    }
     //4*4の配列を定義して0で初期化
     //0：空
     //1：decoy
@@ -119,7 +123,7 @@ int main() {
     int gy = 0;
 
     //ファイルを開く
-    std::ifstream inputFile("treasureBlockData.txt");
+    std::ifstream inputFile(argv[1]);
 
     //ファイルが正常に開けたか確認
     if (!inputFile.is_open()) {
@@ -168,7 +172,7 @@ int main() {
     }
 
     //新しいファイルを作成して開く
-    std::ofstream outputFile("keiro.txt");
+    std::ofstream outputFile(argv[2]);
 
     // ファイルが正常に開けたかを確認
     if (!outputFile.is_open()) {
@@ -184,6 +188,14 @@ int main() {
     int startY = 3;
     int goalX = gx;
     int goalY = gy;
+
+    if(grid[3][0]==1){
+        grid[3][0]=0;
+        goalX=startX;
+        goalY=startY;
+    }
+    printf("start:%d,%d",goalY,goalX);
+
 
     AStar astar(grid, startX, startY, goalX, goalY);
     std::vector<std::pair<int, int>> path = astar.findPath();
@@ -217,10 +229,10 @@ int main() {
         std::cout << "Path found:" << std::endl;
         //std::cout << curentYY << curentXX << std::endl;
 
-        outputFile << "0：直進" << std::endl;
-        outputFile << "1：その場右曲がり" << std::endl;
-        outputFile << "2：その場左曲がり" << std::endl;
-        outputFile << std::endl;
+        //outputFile << "0：直進" << std::endl;
+        //outputFile << "1：その場右曲がり" << std::endl;
+        //outputFile << "2：その場左曲がり" << std::endl;
+        //outputFile << std::endl;
 
         for (const auto& point : path) {
             /*if (a == 0) {
@@ -412,10 +424,20 @@ int main() {
     }
 
     //トレジャーブロック→ゴール(3,3)まで
-    int startX2 = gx;
-    int startY2 = gy;
+    int startX2 = goalX;
+    int startY2 = goalY;
     int goalX2 = 3;
     int goalY2 = 3;
+
+    if(grid[1][3]!=1){
+        goalX2=3;
+        goalY2=1;
+    }else if(grid[2][3]!=1){
+        goalX2=3;
+        goalY2=2;
+    }
+
+    //printf("goal=%d,%d",goalY2,goalX2);
 
     AStar tore(grid, startX2, startY2, goalX2, goalY2);
     std::vector<std::pair<int, int>> path2 = tore.findPath();
