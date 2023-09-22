@@ -52,19 +52,21 @@ ready.makeSTOP(7, 0.0);
 manage_scenario.add(ready);
 
 Manage_scene run("run");
-run.makeTRACE(8, 90.0, -0.065, 0.0, -0.07, 1.0);
-run.makeTRACE(9, 50.0, -0.65, 0.0, -0.2, 0.4);
-run.makeSTOP(10, 1.0);
+run.makeTRACE(8, 90.0, -0.055, 0.0, -0.07, 1.0);
+run.makeTRACE(9, 65.0, -0.55, 0.0, -0.23, 0.4);
+run.makeTRACE(10, 90.0, -0.055, 0.0, -0.07, 1.0);
+run.makeTRACE(11, 65.0, -0.55, 0.0, -0.23, 0.4);
+run.makeSTOP(12, 1.0);
 manage_scenario.add(run);
 
 Manage_scene zero4("zero4");
-zero4.makeSTOP(11, 0.0);
-zero4.makeMANUAL_PID(12, 1.0, 90.0, 4000.0);
 zero4.makeSTOP(13, 0.0);
+zero4.makeMANUAL_PID(14, 1.0, 90.0, 4000.0);
+zero4.makeSTOP(15, 0.0);
 manage_scenario.add(zero4);
 
 Manage_scene test("test");
-test.makeSTOP(14, 0.0);
+test.makeSTOP(16, 0.0);
 manage_scenario.add(test);
 
     //#</make_scenario>
