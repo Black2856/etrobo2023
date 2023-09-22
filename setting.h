@@ -26,7 +26,7 @@
     #define LEFT_WHEEL_POWER 1.0
     #define RIGHT_WHEEL_POWER 1.0
     #define TIRE_DIAMETER 100.0 // タイヤ直径（mm）
-    #define FRICTIONAL 0.75
+    #define FRICTIONAL 0.915
 #endif // MAKE_SIM
 
 #define CAMERA_NUMBER 0 // カメラデバイス番号（通常は0）を指定
