@@ -26,10 +26,10 @@ simFLG=0
 #    done
 #fi
 
-if [ $fetchFLG == 1 ]; then
-    git fetch origin main
-    git reset --hard origin/main
-fi
+#if [ $fetchFLG == 1 ]; then
+git fetch origin main
+git reset --hard origin/main
+#fi
 
 make -C background_tasks
 
