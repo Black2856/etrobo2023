@@ -30,7 +30,7 @@
 #endif // MAKE_SIM
 
 #define CAMERA_NUMBER 0 // カメラデバイス番号（通常は0）を指定
-#define CYCLE 1000 * 10 // 処理周期(msec)
+#define CYCLE 1000 * 10 // 処理周期(usec)
 #define IMG_QUEUE "Queue.txt" // 撮影待機リストファイル名
 #ifdef MAKE_SIM
     #define IMG_PATH "/home/iwasaki/etrobo/workspace/img/" // 画像保存先path
@@ -44,7 +44,10 @@
 
 // 通信設定
 #define PC_IP_ADDRESS "10.17.7.111" // 受信時アドレス
-#define PC_PORT 8080 // 受信時port番号
+#define RECV_PORT 8081 // 受信用port番号
+#define SEND_PORT 8080 // 送信用port番号
 #define RECV_PATH "" // 受信ファイル保存先path
+#define RECV_CYCLE 500 // 受信周期（ミリ秒単位）
+#define SEND_CYCLE 500 // 送信周期（ミリ秒単位）
 
 #endif  // SETTINGS_H

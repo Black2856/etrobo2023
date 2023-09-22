@@ -12,9 +12,7 @@
 #include <errno.h>
 #include <fstream>
 
-Signal* Signal::instance = NULL;
-
-Signal::Signal():
+Signal::Signal(int pcPort):
     sock(socket(AF_INET, SOCK_STREAM, 0)) {
         if (sock == -1) {
             printf("socket error\n");
@@ -24,18 +22,12 @@ Signal::Signal():
         // サーバーのIPアドレスとポートの情報を設定
         addr.sin_family = AF_INET;
         addr.sin_addr.s_addr = inet_addr(PC_IP_ADDRESS);
-        addr.sin_port = htons((unsigned short)PC_PORT);
+        addr.sin_port = htons((unsigned short)pcPort);
+        this->pcPort = pcPort;
     }
 
 Signal::~Signal() {
     close_s();
-}
-
-Signal& Signal::getInstance() {
-    if (!instance) {
-        instance = new Signal();
-    }
-    return *instance;
 }
 
 bool Signal::connect_s() {
@@ -51,7 +43,7 @@ bool Signal::connect_s() {
         printf("connect error\n");
         return false;
     }
-    printf("Finish connect!\n");
+    printf("Connected by ('" PC_IP_ADDRESS "', %d)\n", this->pcPort);
     return true;
 }
 
@@ -103,13 +95,11 @@ bool Signal::sendImage(cv::Mat image, const char* fileName) {
 }
 
 bool Signal::sendString(const char* str) {
-    printf("Send String\n");
-    printf("  data : %s\n", str);
+    printf("  name : %s\n", str);
     return sendItem(str, strlen(str));
 }
 
 std::string Signal::recvString() {
-    printf("Recv String\n");
     // データのサイズを受信
     int buffer_size;
     int bytesRead;
@@ -139,6 +129,7 @@ std::string Signal::recvString() {
 }
 
 bool Signal::recvFile() {
+    printf("Recv File\n");
     // ファイルを受信
     std::string content = recvString();
     // ファイル名を受信
