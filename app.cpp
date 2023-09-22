@@ -30,9 +30,24 @@ void Main::run() {
     //#<make_scenario>
 Manage_scene main("main");
 main.makeCALL_SCENARIO("ready");
-main.makeCALL_SCENARIO("calibration");
-main.makeCALL_SCENARIO("ready");
-main.makeCALL_SCENARIO("run");
+main.makeCALL_SCENARIO("turn");
+main.makeCALL_SCENARIO("turn");
+main.makeCALL_SCENARIO("turn");
+main.makeCALL_SCENARIO("turn");
+main.makeCALL_SCENARIO("turn");
+main.makeCALL_SCENARIO("turn");
+main.makeCALL_SCENARIO("turn");
+main.makeCALL_SCENARIO("turn");
+main.makeCALL_SCENARIO("turn");
+main.makeCALL_SCENARIO("turn");
+main.makeCALL_SCENARIO("turn");
+main.makeCALL_SCENARIO("turn");
+main.makeCALL_SCENARIO("turn");
+main.makeCALL_SCENARIO("turn");
+main.makeCALL_SCENARIO("turn");
+main.makeCALL_SCENARIO("turn");
+main.makeCALL_SCENARIO("turn");
+main.makeCALL_SCENARIO("turn");
 manage_scenario.add(main);
 
 Manage_scene calibration("calibration");
@@ -56,18 +71,17 @@ run.makeTRACE(8, 90.0, -0.055, 0.0, -0.07, 0.5);
 run.makeTRACE(9, 65.0, -0.8, 0.0, -0.3, 0.4);
 run.makeTRACE(10, 90.0, -0.055, 0.0, -0.07, 0.5);
 run.makeTRACE(11, 65.0, -0.8, 0.0, -0.3, 0.4);
-run.makeMANUAL(12, 1.0, 60.0, 0.5);
-run.makeSTOP(13, 1.0);
+run.makeSTOP(12, 1.0);
 manage_scenario.add(run);
 
 Manage_scene zero4("zero4");
-zero4.makeSTOP(14, 0.0);
-zero4.makeMANUAL_PID(15, 1.0, 90.0, 4000.0);
-zero4.makeSTOP(16, 0.0);
+zero4.makeSTOP(13, 0.0);
+zero4.makeMANUAL_PID(14, 1.0, 90.0, 4000.0);
+zero4.makeSTOP(15, 0.0);
 manage_scenario.add(zero4);
 
 Manage_scene test("test");
-test.makeSTOP(17, 0.0);
+test.makeSTOP(16, 0.0);
 manage_scenario.add(test);
 
     //#</make_scenario>
