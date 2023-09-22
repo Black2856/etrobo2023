@@ -136,6 +136,7 @@ bool Signal::recvFile() {
     std::string fileName = recvString();
     char path[150];
     sprintf(path, RECV_PATH "%s", fileName.c_str());
+    // ファイルを保存
     std::ofstream file(path);
     if (!file.is_open()) {
         printf("File not published");

@@ -75,8 +75,6 @@ int main() {
     
     recvThread.join();
     sendThread.join();
-    
-    
 
     recvSignal.close_s();
     sendSignal.close_s();
