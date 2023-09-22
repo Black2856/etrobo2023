@@ -17,7 +17,7 @@ unit::color_t JudgeColor::getColor(){
     unit::hsv_t hsv = this->rgb2hsv.getHSV();
 
     // テスト表示
-    printf("<%d, %d, %d>", hsv.h, hsv.s, hsv.v);
+    //printf("<%d, %d, %d>", hsv.h, hsv.s, hsv.v);
     
     if((0 <= hsv.h && hsv.h <= 360) && (5 <= hsv.s && hsv.s <= 60) && (0 <= hsv.v && hsv.v <= 30)){
         return unit::color_t::BLACK;

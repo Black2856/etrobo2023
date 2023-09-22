@@ -29,7 +29,9 @@ void Main::run() {
 
     //#<make_scenario>
 Manage_scene main("main");
-main.makeCALL_SCENARIO("test");
+main.makeCALL_SCENARIO("calibration");
+main.makeCALL_SCENARIO("ready");
+main.makeCALL_SCENARIO("run");
 manage_scenario.add(main);
 
 Manage_scene calibration("calibration");
