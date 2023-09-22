@@ -15,39 +15,64 @@ elif(SIZE_LEN == 8):
     FORMAT = "Q"
 
 class Signal:
+    """
+    Signalクラスは、ソケット通信を使用して画像、文字列、ファイルの送受信を行うためのクラスです。
+    """
     def __init__(self):
-        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0)
-        self.conn = None
-        self.socket.settimeout(120)
-        self.socket.setblocking(True)
+        """
+        Signalクラスのコンストラクタメソッド。
+        ソケットを初期化し、タイムアウトとブロッキングを設定します。
+        """
+        self.__socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0)
+        self.__conn = None
+        self.__socket.settimeout(120)
+        self.__socket.setblocking(True)
 
     def __del__(self):
+        """
+        Signalクラスのデストラクタメソッド。
+        インスタンスが破棄される際にソケットをクローズします。
+        """
         self.close()
 
         
     def open(self) -> bool:
+        """
+        サーバーとしてソケットをオープンし、クライアントからの接続を待ちます。
+
+        Returns:
+            bool: ソケットのオープンに成功した場合はTrue、それ以外はFalseを返します。
+        """
         try:
-            self.socket.bind((IP_ADDR, PORT))
-            self.socket.listen(1)
+            self.__socket.bind((IP_ADDR, PORT))
+            self.__socket.listen(1)
             print("Server started : ", IP_ADDR, ":", PORT, sep='')
-            self.conn, addr = self.socket.accept()
+            self.__conn, addr = self.__socket.accept()
             print('Connected by', addr)
             return True
         except:
             return False
 
     def close(self) -> None:
+        """
+        ソケットをクローズし、リソースを解放します。
+        """
         try:
-            self.conn.close()
-            self.socket.shutdown(socket.SHUT_RDWR)
-            self.socket.close()
+            self.__conn.close()
+            self.__socket.shutdown(socket.SHUT_RDWR)
+            self.__socket.close()
         except:
             pass
         
-    # 広範的データを受信する関数
     def __recvItem(self):
+        """
+        広範的なデータを受信する内部メソッド。
+
+        Returns:
+            bytes: 受信したバイナリデータを返します。
+        """
         # データのサイズを受信
-        buffer_size = self.conn.recv(SIZE_LEN)
+        buffer_size = self.__conn.recv(SIZE_LEN)
         print("  data size :", buffer_size)
         # バイナリデータを数値に変換
         buffer_size = struct.unpack(FORMAT, buffer_size)[0]
@@ -56,7 +81,7 @@ class Signal:
         # データを受信
         data = b''
         while len(data) < buffer_size:
-            packet = self.conn.recv(buffer_size - len(data))
+            packet = self.__conn.recv(buffer_size - len(data))
             if not packet:
                 break
             data += packet
@@ -66,6 +91,12 @@ class Signal:
     
     # 画像データを受信する関数
     def recvImage(self) -> (np.ndarray, str):
+        """
+        画像データを受信し、画像とファイル名を返します。
+
+        Returns:
+            tuple: 受信した画像データ（NumPy配列）とファイル名のタプルを返します。
+        """
         print("Recv Image")
         # バイナリデータを受信
         binary_data = self.__recvItem()
@@ -80,6 +111,12 @@ class Signal:
     
     # 文字列データを受信する関数
     def recvString(self) -> str:
+        """
+        文字列データを受信し、デコードして文字列を返します。
+
+        Returns:
+            str: 受信した文字列データを返します。
+        """
         print("Recv String")
         data = self.__recvItem()
         # 受信したデータをデコード
@@ -87,18 +124,34 @@ class Signal:
         return st
 
     # 文字列を送信する関数
-    def sendString(self, text) -> None:
+    def sendString(self, text:str) -> None:
+        """
+        文字列データを送信します。
+
+        Args:
+            text (str): 送信する文字列データ。
+        """
         print("Send String")
         data = text.encode('utf-8')
         size = struct.pack(FORMAT, len(data))
         print("  len       :", len(data))
         print("  data      :", data[:20])
         
-        self.conn.sendall(size)
-        self.conn.sendall(data)
+        self.__conn.sendall(size)
+        self.__conn.sendall(data)
         print("  Succeed")
 
     def sendFile(self, filePath:str) -> bool:
+        """
+        テキストファイルを送信します。
+        ※テキストファイルはutf-8でエンコードしたものに限ります。
+
+        Args:
+            filePath (str): 送信するファイルのパス。
+
+        Returns:
+            bool: ファイルの送信に成功した場合はTrue、それ以外はFalseを返します。
+        """
         print("Send File")
         try:
             # ファイルを読み込みモードでオープン
