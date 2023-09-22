@@ -87,6 +87,7 @@ manage_scenario.add(test);
 Manage_scene turn("turn");
 turn.makeMANUAL_PID(17, 2.0, 60.0, -90.0);
 turn.makeMANUAL(18, 1.0, 60.0, 0.0);
+turn.makeSTOP(19, 0.0);
 manage_scenario.add(turn);
 
     //#</make_scenario>
