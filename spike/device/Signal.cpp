@@ -139,7 +139,7 @@ bool Signal::recvFile() {
     // ファイルを保存
     std::ofstream file(path);
     if (!file.is_open()) {
-        printf("File not published");
+        printf("File not published\n");
         return false;
     }
     file << content.c_str();
