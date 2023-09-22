@@ -99,6 +99,7 @@ rgb_raw_t DeviceInOut::color_getRawColor() {
 int32_t DeviceInOut::LWheel_getCount() {
     bool isExist;
     int32_t value = record.sensorData.getLeftWheelCount(isExist);
+    value = int32_t(value * FRICTIONAL);
     if(isExist == false){
         int32_t newValue = leftWheel.getCount();
         this->record.sensorData.setLeftWheelCount(newValue);
@@ -118,6 +119,7 @@ void DeviceInOut::LWheel_stop() {
 int32_t DeviceInOut::RWheel_getCount() {
     bool isExist;
     int32_t value = record.sensorData.getRightWheelCount(isExist);
+    value = int32_t(value * FRICTIONAL);
     if(isExist == false){
         int32_t newValue = rightWheel.getCount();
         this->record.sensorData.setRightWheelCount(newValue);
