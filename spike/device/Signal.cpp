@@ -10,6 +10,7 @@
 #include <unistd.h>
 #include <vector>
 #include <errno.h>
+#include <fstream>
 
 Signal* Signal::instance = NULL;
 
@@ -82,7 +83,7 @@ bool Signal::sendItem(const void *buf, size_t len) {
     return false;
 }
 
-bool Signal::sendImage(cv::Mat image) {
+bool Signal::sendImage(cv::Mat image, const char* fileName) {
     printf("Send Image\n");
     // 画像データを一時的に格納するバッファ
     std::vector<uchar> buffer;
@@ -96,8 +97,9 @@ bool Signal::sendImage(cv::Mat image) {
     } else {
         printf("  Encoding failed\n");
     }
+    // 画像、ファイル名送信
+    return (sendItem(buffer.data(), buffer.size()) && sendString(fileName));
 
-    return sendItem(buffer.data(), buffer.size());
 }
 
 bool Signal::sendString(const char* str) {
@@ -134,4 +136,21 @@ std::string Signal::recvString() {
     printf("  data : %s\n", text.c_str());
     dispBool(true);
     return text;
+}
+
+bool Signal::recvFile() {
+    // ファイルを受信
+    std::string content = recvString();
+    // ファイル名を受信
+    std::string fileName = recvString();
+    char path[150];
+    sprintf(path, RECV_PATH "%s", fileName.c_str());
+    std::ofstream file(path);
+    if (!file.is_open()) {
+        printf("File not published");
+        return false;
+    }
+    file << content.c_str();
+    file.close();
+    return true;
 }

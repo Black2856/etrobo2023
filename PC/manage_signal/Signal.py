@@ -1,3 +1,4 @@
+import os
 import cv2
 import numpy as np
 import socket
@@ -5,6 +6,7 @@ import struct
 
 IP_ADDR = "0.0.0.0"
 PORT = 8080
+IMG_PATH = "" # 画像保存先path
 # 環境差調整用定数
 SIZE_LEN = 8
 if(SIZE_LEN == 4):
@@ -43,7 +45,7 @@ class Signal:
             pass
         
     # 広範的データを受信する関数
-    def recvItem(self):
+    def __recvItem(self):
         # データのサイズを受信
         buffer_size = self.conn.recv(SIZE_LEN)
         print("  data size :", buffer_size)
@@ -63,21 +65,23 @@ class Signal:
         return data
     
     # 画像データを受信する関数
-    def recvImage(self) -> np.ndarray:
+    def recvImage(self) -> (np.ndarray, str):
         print("Recv Image")
         # バイナリデータを受信
-        binary_data = self.recvItem()
+        binary_data = self.__recvItem()
         # 受信したデータをデコード
         frame_data = np.frombuffer(binary_data, dtype=np.uint8)
 
         # データを画像に変換
         frame = cv2.imdecode(frame_data, 1)
-        return frame
+        # ファイル名受信
+        text  = self.recvString()
+        return (frame, text)
     
     # 文字列データを受信する関数
     def recvString(self) -> str:
         print("Recv String")
-        data = self.recvItem()
+        data = self.__recvItem()
         # 受信したデータをデコード
         st = data.decode('utf-8')
         return st
@@ -93,15 +97,36 @@ class Signal:
         self.conn.sendall(size)
         self.conn.sendall(data)
         print("  Succeed")
-        
+
+    def sendFile(self, filePath:str) -> bool:
+        print("Send File")
+        try:
+            # ファイルを読み込みモードでオープン
+            with open(filePath, 'r') as file:
+                # ファイルからデータを読み込み
+                file_contents = file.read()
+                
+                # ファイルの内容を表示
+                print("File contents:")
+                print(file_contents)
+        except FileNotFoundError:
+            print(f"{filePath} が見つかりません")
+            return False
+        except IOError:
+            print("ファイルの読み込みエラーが発生しました")
+            return False
+        self.sendString(file_contents)
+        self.sendString(os.path.basename(filePath))
+        return True
+
 
 if __name__ == "__main__":
     signal = Signal()
     signal.open()
 
-    img = signal.recvImage()
-    string = signal.recvString()
-    signal.sendString("hello")
+    img, string = signal.recvImage()
+    #string = signal.recvString()
+    signal.sendFile("requirements.txt")
 
     signal.close()
         

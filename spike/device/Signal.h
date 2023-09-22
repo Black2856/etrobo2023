@@ -17,11 +17,13 @@ public:
 
     bool connect_s();
     void close_s();
-    bool sendImage(cv::Mat image);
+    bool sendImage(cv::Mat image, const char* fileName);
     // 使用例
     // sendString("Hello World");
     bool sendString(const char* str);
+    // 失敗時 "" を返却
     std::string recvString();
+    bool recvFile();
 
 
 private:
