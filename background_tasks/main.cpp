@@ -8,6 +8,12 @@
 #include <string>
 #include <opencv2/opencv.hpp>
 
+// ../spike/device/RearCamera.h
+RearCamera& camera = RearCamera::getInstance();
+// ../spike/device/Signal.h
+Signal recvSignal(RECV_PORT);
+Signal sendSignal(SEND_PORT);
+
 bool takePhoto(RearCamera& camera, Signal& signal) {
     // ファイルを開く
     std::ifstream file(IMG_QUEUE_PATH);
@@ -36,24 +42,43 @@ bool takePhoto(RearCamera& camera, Signal& signal) {
     return true;
 }
 
-int main() {
-    // 停止する時間（ミリ秒単位）
-    int millisecondsToSleep = 500; // 0.5秒
-
-    // ../spike/device/RearCamera.h
-    RearCamera& camera = RearCamera::getInstance();
-    // ../spike/device/Signal.h
-    Signal& signal = Signal::getInstance();
-    // 接続開始
-    printf("Connect Start\n");
-    signal.connect_s();
-
-    while (true) {
+void recv_m() {
+    // 10回受信したら終了
+    for(int i = 0; i < 10; ++i) {
+        recvSignal.recvFile();
         // 一定時間停止する
-        std::this_thread::sleep_for(std::chrono::milliseconds(millisecondsToSleep));
-        takePhoto(camera, signal);
+        std::this_thread::sleep_for(std::chrono::milliseconds(RECV_CYCLE));
     }
+}
 
-    signal.close_s();
+void send_m() {
+    // 10枚撮影したら終了
+    int i = 0;
+    while(i < 10) {
+        if(takePhoto(camera, sendSignal)) {
+            i += 1;
+        }
+        // 一定時間停止する
+        std::this_thread::sleep_for(std::chrono::milliseconds(SEND_CYCLE));
+    }
+}
+
+int main() {
+    // 接続開始
+    printf("Connect recv\n");
+    recvSignal.connect_s();
+    printf("Connect send\n");
+    sendSignal.connect_s();
+
+    std::thread recvThread(recv_m);
+    std::thread sendThread(send_m);
+    
+    recvThread.join();
+    sendThread.join();
+    
+    
+
+    recvSignal.close_s();
+    sendSignal.close_s();
     return 0;
 }

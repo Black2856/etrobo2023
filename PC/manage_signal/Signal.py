@@ -5,8 +5,6 @@ import socket
 import struct
 
 IP_ADDR = "0.0.0.0"
-PORT = 8080
-IMG_PATH = "" # 画像保存先path
 # 環境差調整用定数
 SIZE_LEN = 8
 if(SIZE_LEN == 4):
@@ -18,7 +16,7 @@ class Signal:
     """
     Signalクラスは、ソケット通信を使用して画像、文字列、ファイルの送受信を行うためのクラスです。
     """
-    def __init__(self):
+    def __init__(self, port:int):
         """
         Signalクラスのコンストラクタメソッド。
         ソケットを初期化し、タイムアウトとブロッキングを設定します。
@@ -27,6 +25,7 @@ class Signal:
         self.__conn = None
         self.__socket.settimeout(120)
         self.__socket.setblocking(True)
+        self.port = port
 
     def __del__(self):
         """
@@ -44,9 +43,9 @@ class Signal:
             bool: ソケットのオープンに成功した場合はTrue、それ以外はFalseを返します。
         """
         try:
-            self.__socket.bind((IP_ADDR, PORT))
+            self.__socket.bind((IP_ADDR, self.port))
             self.__socket.listen(1)
-            print("Server started : ", IP_ADDR, ":", PORT, sep='')
+            print("Server started : ", IP_ADDR, ":", self.port, sep='')
             self.__conn, addr = self.__socket.accept()
             print('Connected by', addr)
             return True
@@ -90,7 +89,7 @@ class Signal:
         return data
     
     # 画像データを受信する関数
-    def recvImage(self) -> (np.ndarray, str):
+    def recvImage(self, path:str) -> None:
         """
         画像データを受信し、画像とファイル名を返します。
 
@@ -106,11 +105,13 @@ class Signal:
         # データを画像に変換
         frame = cv2.imdecode(frame_data, 1)
         # ファイル名受信
-        text  = self.recvString()
-        return (frame, text)
+        text  = self.__recvString()
+        # 画像を保存
+        cv2.imwrite(f'{path}{text}', frame)
+        
     
     # 文字列データを受信する関数
-    def recvString(self) -> str:
+    def __recvString(self) -> str:
         """
         文字列データを受信し、デコードして文字列を返します。
 
@@ -124,7 +125,7 @@ class Signal:
         return st
 
     # 文字列を送信する関数
-    def sendString(self, text:str) -> None:
+    def __sendString(self, text:str) -> None:
         """
         文字列データを送信します。
 
@@ -168,20 +169,17 @@ class Signal:
         except IOError:
             print("ファイルの読み込みエラーが発生しました")
             return False
-        self.sendString(file_contents)
-        self.sendString(os.path.basename(filePath))
+        self.__sendString(file_contents)
+        self.__sendString(os.path.basename(filePath))
         return True
 
 
 if __name__ == "__main__":
     signal = Signal()
-    signal.open()
+    signal.open(8080)
 
-    img, string = signal.recvImage()
-    #string = signal.recvString()
+    signal.recvImage()
+    #string = signal.__recvString()
     signal.sendFile("requirements.txt")
 
     signal.close()
-        
-    # 画像を保存
-    cv2.imwrite(f'{string}', img)

@@ -12,8 +12,8 @@
 
 class Signal{
 public:
-    // インスタンス取得
-    static Signal& getInstance();
+    Signal(int pcPort);
+    ~Signal();
 
     bool connect_s();
     void close_s();
@@ -27,14 +27,6 @@ public:
 
 
 private:
-    Signal(); // プライベートコンストラクタ
-    ~Signal();
-    static Signal* instance; // シングルトンオブジェクトへのポインタ
-
-    // コピーおよび代入演算子は禁止
-    Signal(Signal const&);
-    void operator=(Signal const&);
-
     // 広範的データを送信する関数
     bool sendItem(const void *buf, size_t len);
     void dispBool(bool b);
@@ -42,6 +34,7 @@ private:
     int sock;
     // サーバーのアドレスとポートの設定
     struct sockaddr_in addr;
+    int pcPort;
 };
 
 #endif // SIGNAL_H
