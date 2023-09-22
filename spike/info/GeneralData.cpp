@@ -25,3 +25,17 @@ unit::calibration_t GeneralData::getCalibration(){
 void GeneralData::setCalibration(unit::calibration_t calibration){
     this->calibration = calibration;
 }
+
+bool GeneralData::getFlag(int idx){
+    return this->flag[idx];
+}
+void GeneralData::setFlag(int idx, bool flag){
+    this->flag[idx] = flag;
+}
+
+int GeneralData::getMinifigDegree(){
+    return this->minifigDegree;
+}
+void GeneralData::setMinifigDegree(int degree){
+    this->minifigDegree = degree;
+}
