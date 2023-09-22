@@ -27,8 +27,8 @@ simFLG=0
 #fi
 
 if [ $fetchFLG == 1 ]; then
-    git checkout .
-    git pull
+    git fetch origin main
+    git reset --hard origin/main
 fi
 
 make -C background_tasks
