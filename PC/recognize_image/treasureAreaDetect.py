@@ -26,9 +26,8 @@ class TreasureAreaDetect(ParallelProcessing):
         # asterプログラムの初期化
         self.__treasureBlockDataPath = "./treasureBlockData.txt"
         outputPath = "../search_route/route.txt"
-        asterArgs = [os.path.abspath(self.__treasureBlockDataPath), os.path.abspath(outputPath)]
-        asterPath = ["../search_route/aster.exe"]
-        self.__asterEXE = subprocess.Popen(asterPath + asterArgs, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        self.__asterArgs = [os.path.abspath(self.__treasureBlockDataPath), os.path.abspath(outputPath)]
+        self.__asterPath = ["../search_route/aster.exe"]
 
         self.__areaPoints = [None]
         self.__decisionTime = 20
@@ -38,7 +37,7 @@ class TreasureAreaDetect(ParallelProcessing):
         self.__type = 'camera'
         
         if self.__type == 'video':
-            self.__videoPath = './test2.mp4'
+            self.__videoPath = './4.mp4'
             self.__cap = cv2.VideoCapture(self.__videoPath)
         elif self.__type == 'camera':
             self.__webCamera.capture()
@@ -104,7 +103,7 @@ class TreasureAreaDetect(ParallelProcessing):
             self.__time += 1
             if self.__decisionTime <= self.__time:
                 self.__decision(taBlock)
-                time.sleep(10)
+                # ルート計算プログラム呼び出し
                 self.__searchRoute()
                 self.stopThread()
         else:
@@ -118,7 +117,8 @@ class TreasureAreaDetect(ParallelProcessing):
         taBlock.output('./')
 
     def __searchRoute(self):
-        stdout, stderr = self.__asterEXE.communicate()
+        asterEXE = subprocess.Popen(self.__asterPath + self.__asterArgs, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        stdout, stderr = asterEXE.communicate()
         if stderr == '':
             print("[ TreasureAreaDetect ]走行体のルート生成完了")
         else:

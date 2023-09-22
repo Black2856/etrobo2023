@@ -1,35 +1,37 @@
 #include "app.h"
 
 #include "setting.h"
-#include "Motor.h"
 #include "Clock.h"
-#include "arg_info.h"
 #include "manage_scenario.h"
 #include "manage_scene.h"
-#include "Judge.h"
 #include "Record.h"
+#include "GeneralData.h"
 #include "unit.h"
-
-#include "functional"
 
 using namespace ev3api;
 
-class Walker {
+class Main {
 public:
-  void run();
+    void run();
 private:
-  Clock clock;
+    Clock clock;
+
+    Record& record = Record::getInstance();
+    GeneralData& generalData = GeneralData::getInstance();
+
+    Manage_scenario* manage_scenario;
 };
 
-void Walker::run() {
-  Record& record = Record::getInstance();
+void Main::run() {
+    bool result;
 
-  bool result;
-  Manage_scenario manage_scenario;
+    Manage_scenario manage_scenario;
 
-  //#<make_scenario>
+    //#<make_scenario>
 Manage_scene main("main");
-main.makeCALL_SCENARIO("test");
+main.makeCALL_SCENARIO("calibration");
+main.makeCALL_SCENARIO("ready");
+main.makeCALL_SCENARIO("run");
 manage_scenario.add(main);
 
 Manage_scene calibration("calibration");
@@ -61,25 +63,23 @@ test.makeSTOP(13, 0.0);
 test.makeMANUAL_PID(14, 1.0, 90.0, 4000.0);
 manage_scenario.add(test);
 
-  //#</make_scenario>
+    //#</make_scenario>
 
-  manage_scenario.update();
+    this->manage_scenario = &manage_scenario;
+    this->manage_scenario->update();
 
-  while(1) {
-    result = manage_scenario.execute();
-
-    record.appendSensorData();
-
-    clock.sleep(CYCLE);
-
-    if (result == true) {
-      break;
+    while(1) {
+        result = this->manage_scenario->execute();
+        this->record.appendSensorData();
+        this->clock.sleep(CYCLE);
+        if (result == true) {
+            break;
+        }
     }
-  }
 }
 
 void main_task(intptr_t unused) {
-  Walker walker;
-  walker.run();
-  ext_tsk();
+    Main main;
+    main.run();
+    ext_tsk();
 }

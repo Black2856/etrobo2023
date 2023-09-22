@@ -51,15 +51,6 @@ APPL_LIBS += -lm
 
 #<mk_dirs1>
 APPL_DIRS += \
-    $(mkfile_path)PC \
-    $(mkfile_path)PC/install \
-    $(mkfile_path)PC/manage_signal \
-    $(mkfile_path)PC/manage_train \
-    $(mkfile_path)PC/recognize_image \
-    $(mkfile_path)PC/recognize_image/__pycache__ \
-    $(mkfile_path)PC/recognize_image/minifig_data \
-    $(mkfile_path)PC/recognize_image/minifig_processed_data \
-    $(mkfile_path)PC/search_route \
     $(mkfile_path)spike \
     $(mkfile_path)spike/calc \
     $(mkfile_path)spike/device \
@@ -71,15 +62,6 @@ APPL_DIRS += \
 
 #<mk_dirs2>
 INCLUDES += \
-    -I$(mkfile_path)PC \
-    -I$(mkfile_path)PC/install \
-    -I$(mkfile_path)PC/manage_signal \
-    -I$(mkfile_path)PC/manage_train \
-    -I$(mkfile_path)PC/recognize_image \
-    -I$(mkfile_path)PC/recognize_image/__pycache__ \
-    -I$(mkfile_path)PC/recognize_image/minifig_data \
-    -I$(mkfile_path)PC/recognize_image/minifig_processed_data \
-    -I$(mkfile_path)PC/search_route \
     -I$(mkfile_path)spike \
     -I$(mkfile_path)spike/calc \
     -I$(mkfile_path)spike/device \
