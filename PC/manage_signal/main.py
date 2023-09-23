@@ -61,7 +61,7 @@ if __name__ == "__main__":
                         if (filename != ".gitkeep"):
                             file_list.append(filename)
                         # exit.txtが存在した場合処理を終了する
-                        if (filename == "exit.txt"):
+                        if (filename == ".exit"):
                             os.remove(file_path)
                             self.stopThread()
                             return
