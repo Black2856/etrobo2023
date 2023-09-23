@@ -20,13 +20,13 @@
     #define LEFT_WHEEL_POWER 1.0  //左車輪の出力量
     #define RIGHT_WHEEL_POWER 1.0 //右車輪の出力量
     #define TIRE_DIAMETER 100.0 // タイヤ直径（mm）
-    #define FRICTIONAL 1.25 //摩擦倍率
+#define FRICTIONAL 1.25 //摩擦倍率
 #else  //SPIKE
     #define TREAD 125.0
     #define LEFT_WHEEL_POWER 1.0
     #define RIGHT_WHEEL_POWER 1.0
     #define TIRE_DIAMETER 100.0 // タイヤ直径（mm）
-    #define FRICTIONAL 0.915
+#define FRICTIONAL 0.915
 #endif // MAKE_SIM
 
 #define CAMERA_NUMBER 0 // カメラデバイス番号（通常は0）を指定
@@ -43,10 +43,11 @@
 #define RECORD_LIMIT 1000  // センサーデータの最大記録数  記録秒数 = CYCLE * RECORD_LIMIT
 
 // 通信設定
-#define PC_IP_ADDRESS "10.17.7.111" // 受信時アドレス
+#define PC_IP_ADDRESS "192.168.10.8" // 受信時アドレス
 #define RECV_PORT 8081 // 受信用port番号
 #define SEND_PORT 8080 // 送信用port番号
-#define RECV_PATH "" // 受信ファイル保存先path
+#define RECV_PATH "/home/robo/work/RasPike/sdk/workspace/etrobo2023/spike/recvFile/" // 受信ファイル保存先path
+//#define RECV_PATH "/home/iwasaki/etrobo/" // 受信ファイル保存先path
 #define RECV_CYCLE 500 // 受信周期（ミリ秒単位）
 #define SEND_CYCLE 500 // 送信周期（ミリ秒単位）
 
