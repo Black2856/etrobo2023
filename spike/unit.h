@@ -13,6 +13,7 @@ namespace unit {
         GREEN,
         WHITE,
         BLACK,
+        COLOR
     };
 
     // h, 色相, 0 ~ 360
