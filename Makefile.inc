@@ -57,6 +57,7 @@ APPL_DIRS += \
     $(mkfile_path)spike/info \
     $(mkfile_path)spike/judge \
     $(mkfile_path)spike/move \
+    $(mkfile_path)spike/recvFile \
     $(mkfile_path)spike/scenario \
 #</mk_dirs1>
 
@@ -68,6 +69,7 @@ INCLUDES += \
     -I$(mkfile_path)spike/info \
     -I$(mkfile_path)spike/judge \
     -I$(mkfile_path)spike/move \
+    -I$(mkfile_path)spike/recvFile \
     -I$(mkfile_path)spike/scenario \
 #</mk_dirs2>
 
