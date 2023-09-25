@@ -11,6 +11,7 @@
 #include "DeviceInOut.h"
 #include "GeneralData.h"
 #include "Calc.h"
+#include "Record.h"
 
 class LineTrace {
 public:
@@ -23,6 +24,7 @@ private:
     DeviceInOut& device;
     Calc& calc = Calc::getInstance();
     GeneralData& generalData = GeneralData::getInstance();
+    Record& record = Record::getInstance();
     PIDControl pidControl;
     unit::calibration_t calibration;
     
