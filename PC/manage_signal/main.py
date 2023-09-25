@@ -4,8 +4,8 @@ from parallelProcessing import ParallelProcessing
 
 RECV_PORT = 8080 # 受信用PORT番号
 SEND_PORT = 8081 # 送信用PORT番号
-IMG_PATH    = os.path.dirname(os.path.abspath(__file__)) + "/../recv_image/" # 画像保存先path
-FOLDER_PATH = os.path.dirname(os.path.abspath(__file__)) + "/../send_folder/" # 送信file保存先path
+IMG_PATH    = os.path.dirname(os.path.abspath(__file__)) + "/recv_image/" # 画像保存先path
+FOLDER_PATH = os.path.dirname(os.path.abspath(__file__)) + "/send_folder/" # 送信file保存先path
 
 if __name__ == "__main__":
     class Recv(ParallelProcessing):
