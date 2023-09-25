@@ -1,0 +1,1 @@
+g++ -o ./search_route/aster ./search_route/aster.cpp

@@ -15,15 +15,17 @@ import random
 
 from parallelProcessing import ParallelProcessing
 
+base = os.path.dirname(os.path.abspath(__file__))
+
 class Minifig(ParallelProcessing):
     def __init__(self, cycle):
         super().__init__()
         self.__cycle = cycle
-        self.__model = keras.models.load_model("./best_model_50epoch.h5")
+        self.__model = keras.models.load_model(f'{base}/best_model_50epoch.h5')
         self.__label_name = ['0d', '135d', '180d', '225d', '270d', '315d', '45d', '90d']
-        self.__minifigDataPath = './minifig_data/'
-        self.__saveImagePath = './minifig_processed_data/'
-        self.__savelabelPath = './'
+        self.__minifigDataPath = f'{base}/../recv_image/'
+        self.__saveImagePath = f'{base}/minifig_processed_data/'
+        self.__savelabelPath = f'{base}/../send_folder/'
         self.__processCount = 0
         pass
 
@@ -40,6 +42,9 @@ class Minifig(ParallelProcessing):
 
     def __loadImage(self):
         contents = os.listdir(self.__minifigDataPath)
+        if '.gitkeep' in contents:
+            contents.remove('.gitkeep')
+
         if len(contents) == 0:
             return False, None, None
         loadFile = contents[0]

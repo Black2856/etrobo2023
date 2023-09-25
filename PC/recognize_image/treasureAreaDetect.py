@@ -25,7 +25,7 @@ class TreasureAreaDetect(ParallelProcessing):
 
         # asterプログラムの初期化
         self.__treasureBlockDataPath = "./treasureBlockData.txt"
-        outputPath = "../search_route/route.txt"
+        outputPath = "../send_folder/route.txt"
         self.__asterArgs = [os.path.abspath(self.__treasureBlockDataPath), os.path.abspath(outputPath)]
         self.__asterPath = ["../search_route/aster.exe"]
 

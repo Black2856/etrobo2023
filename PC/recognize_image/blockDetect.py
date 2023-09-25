@@ -12,10 +12,10 @@ from treasureArea import BlockType
 class BlockDetect:
     def __init__(self):
         #閾値 (360°100°100°)
-        self.__decoyRange = [((167, 30, 20), (247, 100, 100))]
+        self.__decoyRange = [((167, 30, 15), (247, 100, 100))]
         self.__treasureRange = [
-            ((330, 50, 25), (360, 100, 100)),
-            ((0, 50, 25), (30, 100, 100))
+            ((330, 50, 15), (360, 100, 100)),
+            ((0, 50, 15), (30, 100, 100))
         ]
         self.__imageSize = 300
         pass
