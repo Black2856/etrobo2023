@@ -23,9 +23,9 @@ class Minifig(ParallelProcessing):
         self.__cycle = cycle
         self.__model = keras.models.load_model(f'{base}/best_model_50epoch.h5')
         self.__label_name = ['0d', '135d', '180d', '225d', '270d', '315d', '45d', '90d']
-        self.__minifigDataPath = f'{base}/../recv_image/'
+        self.__minifigDataPath = f'{base}/../manage_signal/recv_image/'
         self.__saveImagePath = f'{base}/minifig_processed_data/'
-        self.__savelabelPath = f'{base}/../send_folder/'
+        self.__savelabelPath = f'{base}/../manage_signal/send_folder/'
         self.__processCount = 0
         pass
 
