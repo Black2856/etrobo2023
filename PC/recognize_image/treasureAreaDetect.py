@@ -1,6 +1,6 @@
 import os
-from re import A
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
+base = os.path.dirname(os.path.abspath(__file__))
 
 from webCamera import WebCamera
 
@@ -24,10 +24,10 @@ class TreasureAreaDetect(ParallelProcessing):
         self.__blockDetect = BlockDetect()
 
         # asterプログラムの初期化
-        self.__treasureBlockDataPath = "./treasureBlockData.txt"
-        outputPath = "../manage_signal/send_folder/route.txt"
+        self.__treasureBlockDataPath = f"{base}/treasureBlockData.txt"
+        outputPath = f"{base}/../manage_signal/send_folder/route.txt"
         self.__asterArgs = [os.path.abspath(self.__treasureBlockDataPath), os.path.abspath(outputPath)]
-        self.__asterPath = ["../search_route/aster.exe"]
+        self.__asterPath = [f"{base}/../search_route/aster.exe"]
 
         self.__areaPoints = [None]
         self.__decisionTime = 20
@@ -37,7 +37,7 @@ class TreasureAreaDetect(ParallelProcessing):
         self.__type = 'camera'
         
         if self.__type == 'video':
-            self.__videoPath = './4.mp4'
+            self.__videoPath = f'{base}/1.mp4'
             self.__cap = cv2.VideoCapture(self.__videoPath)
         elif self.__type == 'camera':
             self.__webCamera.capture()
