@@ -1,7 +1,7 @@
 import os
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 from Signal import Signal
-from parallelProcessing import ParallelProcessing
+from ..install.parallelProcessing import ParallelProcessing
 
 RECV_PORT = 8080 # 受信用PORT番号
 SEND_PORT = 8081 # 送信用PORT番号
@@ -13,6 +13,7 @@ class Recv(ParallelProcessing):
         super().__init__()
         self.cycle = 500 #500msの周期で動作
         self.a = -1
+        self.b = 4 # 受信最大枚数
         print("受信用サーバ起動")
         self.signal = Signal(RECV_PORT)
         
@@ -29,8 +30,8 @@ class Recv(ParallelProcessing):
             self.a += 1
         self.a += 1
         self.signal.recvImage(IMG_PATH)
-        # 10枚画像を受信したら終了
-        if self.a >= 10:
+        # 指定枚数画像を受信したら終了
+        if self.a >= self.b:
             self.stopThread()
             
 class Send(ParallelProcessing):
