@@ -8,6 +8,7 @@
 LineTrace::LineTrace():
     device(DeviceInOut::getInstance()){
         this->calibration = {0, 0, 0};
+        this->color = {60, 5, 35};
     }
 
 void LineTrace::setPWM(float pwm, float pwmTransitionTime){
@@ -23,6 +24,8 @@ void LineTrace::first(float pwm, float kp, float ki, float kd, float pwmTransiti
 void LineTrace::trace(){
     int correctionPWM = this->calc.pwmCalc.changePWM();
     //printf("%d\n", correctionPWM);
+    bool isExist = false;
+    
     float gain = this->pidControl.calc(float(device.color_getBrightness()), this->calibration.avg);
     this->device.LWheel_setPWM(correctionPWM - int(gain + 0.5));
     this->device.RWheel_setPWM(correctionPWM + int(gain + 0.5));

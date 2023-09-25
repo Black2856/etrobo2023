@@ -101,7 +101,7 @@ int32_t DeviceInOut::LWheel_getCount() {
     int32_t value = record.sensorData.getLeftWheelCount(isExist);
     if(isExist == false){
         int32_t newValue = leftWheel.getCount();
-        newValue = int32_t(newValue * FRICTIONAL);
+        newValue = int32_t(newValue);
         this->record.sensorData.setLeftWheelCount(newValue);
         return newValue;
     }
@@ -121,7 +121,7 @@ int32_t DeviceInOut::RWheel_getCount() {
     int32_t value = record.sensorData.getRightWheelCount(isExist);
     if(isExist == false){
         int32_t newValue = rightWheel.getCount();
-        newValue = int32_t(newValue * FRICTIONAL);
+        newValue = int32_t(newValue);
         this->record.sensorData.setRightWheelCount(newValue);
         return newValue;
     }

@@ -12,6 +12,7 @@
 #include "GeneralData.h"
 #include "Calc.h"
 #include "Record.h"
+#include "RGBtoHSV.h"
 
 class LineTrace {
 public:
@@ -27,6 +28,7 @@ private:
     Record& record = Record::getInstance();
     PIDControl pidControl;
     unit::calibration_t calibration;
+    unit::calibration_t color;
     
 };
 
