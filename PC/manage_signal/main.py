@@ -1,12 +1,15 @@
-import os
+import os, sys
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
+base = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(f"{base}../install")
+
 from Signal import Signal
-from ..install.parallelProcessing import ParallelProcessing
+from parallelProcessing import ParallelProcessing
 
 RECV_PORT = 8080 # 受信用PORT番号
 SEND_PORT = 8081 # 送信用PORT番号
-IMG_PATH    = os.path.dirname(os.path.abspath(__file__)) + "/recv_image/" # 画像保存先path
-FOLDER_PATH = os.path.dirname(os.path.abspath(__file__)) + "/send_folder/" # 送信file保存先path
+IMG_PATH    = base + "/recv_image/" # 画像保存先path
+FOLDER_PATH = base + "/send_folder/" # 送信file保存先path
 
 class Recv(ParallelProcessing):
     def __init__(self):
