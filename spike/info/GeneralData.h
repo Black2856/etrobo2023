@@ -14,8 +14,11 @@ public:
     // インスタンス取得
     static GeneralData& getInstance();
 
-    unit::calibration_t getCalibration();
-    void setCalibration(unit::calibration_t calibration);
+    unit::calibration_t getBrightness();
+    void setBrightness(unit::calibration_t brightness);
+
+    unit::calibration_t getColor();
+    void setColor(unit::calibration_t color);
 
     bool getFlag(int idx);
     void setFlag(int idx, bool flag);
@@ -24,7 +27,8 @@ public:
     void setMinifigDegree(int degree);
 
 private:
-    unit::calibration_t calibration;
+    unit::calibration_t brightness;
+    unit::calibration_t color;
     std::list<int> runRoute; //　恐らく型を変更する
 
     // フラグ管理 {

@@ -17,7 +17,7 @@ void ManualPID::first(manualPID::RunType runType, float maxPWM, float transition
     this->runType = runType;
     this->maxPWM = std::abs(maxPWM);
     this->rotation = rotation;
-    this->calibration = this->generalData.getCalibration();
+    this->calibration = this->generalData.getBrightness();
 
     this->transitionValue = transitionValue;
     this->standardDistance = calc.localization.getDistance();

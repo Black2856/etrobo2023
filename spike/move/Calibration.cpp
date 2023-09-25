@@ -10,35 +10,54 @@ Calibration::Calibration():
     }
 
 void Calibration::first(const char* command){
-    if(std::strcmp(command, "record") == 0){
+    if(std::strcmp(command, "record:brightness") == 0){
         this->state = true;
+        this->recordType = 1;
+    }else if(std::strcmp(command, "record:color") == 0){
+        this->state = true;
+        this->recordType = 2;
     }else if(std::strcmp(command, "stop") == 0){
         this->stop();
         this->state = false;
+        this->recordType = 0;
     }else{
         printf("error : unknown command at calibration::first()\n");
     }
 }
 
 void Calibration::execute(){
-    this->device.color_getBrightness();
+    if(this->recordType == 1){
+        this->device.color_getBrightness();
+    }else{ //recordType == 2
+        this->device.color_getRawColor();
+    }
 }
 
 void Calibration::stop(){
-    std::list<int> brightnessList;
+    std::list<int> valueList;
     //レコードの取得
     for(int i = 0; i < this->record.getRecordLimit(); i++){
         bool isExist;
         SensorData sensorData = this->record.getSensorData(i);
-        int value = int(sensorData.getBrightness(isExist));
+
+        int value;
+        if(this->recordType == 1){ // 反射光
+            value = int(sensorData.getBrightness(isExist));
+        }else{ //recordType = 2       カラーセンサ
+            rgb_raw_t rgb = sensorData.getRGB(isExist);
+            this->rgb2hsv.update(rgb);
+            unit::hsv_t hsv = this->rgb2hsv.getHSV();
+            value = int(hsv.v);
+        }
+
         if(isExist == true){
-            brightnessList.push_back(value);
+            valueList.push_back(value);
         }
     }
 
     //統計量の計算
     unit::calibration_t calibration = {-32767, 32767, 0};
-    for (const auto& x : brightnessList) {
+    for (const auto& x : valueList) {
         if(calibration.max < x){
             calibration.max = x;
         }
@@ -48,8 +67,13 @@ void Calibration::stop(){
     }
     calibration.avg = int((calibration.max + calibration.min) / 2.0);
     //格納
-    printf("平均:%d, 最大:%d, 最小:%d\n", calibration.avg, calibration.max, calibration.min);
-    this->generalData.setCalibration(calibration);
+    if(this->recordType == 1){ // 反射光
+        printf("[Brightness] 平均:%d, 最大:%d, 最小:%d\n", calibration.avg, calibration.max, calibration.min);
+        this->generalData.setBrightness(calibration);
+    }else{ //recordType = 2       カラーセンサ
+        printf("[Color] 平均:%d, 最大:%d, 最小:%d\n", calibration.avg, calibration.max, calibration.min);
+        this->generalData.setColor(calibration);
+    }
 }
 
 bool Calibration::getState(){

@@ -37,41 +37,45 @@ manage_scenario.add(main);
 
 Manage_scene calibration("calibration");
 calibration.makeSTOP(0, 0);
-calibration.makeCALIBRATION("record");
+calibration.makeCALIBRATION("record:brightness");
 calibration.makeMANUAL_PID(1, 2, 70.0, 450.0);
 calibration.makeCALIBRATION("stop");
 calibration.makeSTOP(2, 0);
-calibration.makeMANUAL_PID(3, 5, 70.0, 1.0);
+calibration.makeCALIBRATION("record:color");
+calibration.makeMANUAL_PID(3, 2, 70.0, 360.0);
+calibration.makeCALIBRATION("stop");
 calibration.makeSTOP(4, 0);
+calibration.makeMANUAL_PID(5, 5, 70.0, 1.0);
+calibration.makeSTOP(6, 0);
 manage_scenario.add(calibration);
 
 Manage_scene ready("ready");
-ready.makeSTOP(5, 0.0);
+ready.makeSTOP(7, 0.0);
 manage_scenario.add(ready);
 
 Manage_scene run("run");
-run.makeTRACE(6, 85.0, -0.055, 0.0, -0.07, 0.5);
-run.makeTRACE(7, 65.0, -0.9, 0.0, -0.3, 0.4);
 run.makeTRACE(8, 85.0, -0.055, 0.0, -0.07, 0.5);
-run.makeTRACE(9, 65.0, -0.8, 0.0, -0.3, 0.4);
-run.makeSTOP(10, 1.0);
-run.makeMANUAL(11, 3.0, 60.0, 1.0);
+run.makeTRACE(9, 65.0, -0.9, 0.0, -0.3, 0.4);
+run.makeTRACE(10, 85.0, -0.055, 0.0, -0.07, 0.5);
+run.makeTRACE(11, 65.0, -0.8, 0.0, -0.3, 0.4);
+run.makeSTOP(12, 1.0);
+run.makeMANUAL(13, 3.0, 60.0, 1.0);
 manage_scenario.add(run);
 
 Manage_scene zero4("zero4");
-zero4.makeSTOP(12, 0.0);
-zero4.makeMANUAL_PID(13, 1.0, 90.0, 4000.0);
 zero4.makeSTOP(14, 0.0);
+zero4.makeMANUAL_PID(15, 1.0, 90.0, 4000.0);
+zero4.makeSTOP(16, 0.0);
 manage_scenario.add(zero4);
 
 Manage_scene test("test");
-test.makeSTOP(15, 0.0);
+test.makeSTOP(17, 0.0);
 manage_scenario.add(test);
 
 Manage_scene turn("turn");
-turn.makeMANUAL_PID(16, 2.0, 60.0, -90.0);
-turn.makeMANUAL(17, 1.0, 60.0, 0.0);
-turn.makeSTOP(18, 0.0);
+turn.makeMANUAL_PID(18, 2.0, 60.0, -90.0);
+turn.makeMANUAL(19, 1.0, 60.0, 0.0);
+turn.makeSTOP(20, 0.0);
 manage_scenario.add(turn);
 
     //#</make_scenario>

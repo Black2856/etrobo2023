@@ -11,7 +11,6 @@
 #include "DeviceInOut.h"
 #include "GeneralData.h"
 #include "Calc.h"
-#include "Record.h"
 #include "RGBtoHSV.h"
 
 class LineTrace {
@@ -24,10 +23,11 @@ public:
 private:
     DeviceInOut& device;
     Calc& calc = Calc::getInstance();
-    GeneralData& generalData = GeneralData::getInstance();
     Record& record = Record::getInstance();
+    GeneralData& generalData = GeneralData::getInstance();
     PIDControl pidControl;
-    unit::calibration_t calibration;
+    RGBtoHSV rgb2hsv;
+    unit::calibration_t brightness;
     unit::calibration_t color;
     
 };

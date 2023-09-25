@@ -7,8 +7,8 @@
 
 LineTrace::LineTrace():
     device(DeviceInOut::getInstance()){
-        this->calibration = {0, 0, 0};
-        this->color = {60, 5, 35};
+        this->brightness = {0, 0, 0};
+        this->color = {0, 0, 0};
     }
 
 void LineTrace::setPWM(float pwm, float pwmTransitionTime){
@@ -18,15 +18,28 @@ void LineTrace::setPWM(float pwm, float pwmTransitionTime){
 void LineTrace::first(float pwm, float kp, float ki, float kd, float pwmTransitionTime){
     this->setPWM(pwm, pwmTransitionTime);
     this->pidControl.setPID({kp, ki, kd});
-    this->calibration = this->generalData.getCalibration();
+    this->brightness = this->generalData.getBrightness();
+    this->color = this->generalData.getColor();
 }
 
 void LineTrace::trace(){
     int correctionPWM = this->calc.pwmCalc.changePWM();
     //printf("%d\n", correctionPWM);
+
+    // カラーセンサが前回で取得されている場合はカラーセンサでトレースをする
     bool isExist = false;
+    SensorData sensorData = this->record.getSensorData(0);
+    rgb_raw_t rgb1 = sensorData.getRGB(isExist);
     
-    float gain = this->pidControl.calc(float(device.color_getBrightness()), this->calibration.avg);
+    float gain;
+    if(isExist == true){ //カラーセンサ
+        this->rgb2hsv.update();
+        unit::hsv_t hsv = this->rgb2hsv.getHSV();
+        gain = this->pidControl.calc(float(hsv.v), this->color.avg);
+    }else{ //反射光
+        gain = this->pidControl.calc(float(device.color_getBrightness()), this->brightness.avg);
+    }
+
     this->device.LWheel_setPWM(correctionPWM - int(gain + 0.5));
-    this->device.RWheel_setPWM(correctionPWM + int(gain + 0.5));
+    this->device.RWheel_setPWM(correctionPWM + int(gain + 0.5));  
 }

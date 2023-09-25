@@ -18,12 +18,20 @@ GeneralData& GeneralData::getInstance() {
     return *instance;
 }
 
-unit::calibration_t GeneralData::getCalibration(){
-    return this->calibration;
+unit::calibration_t GeneralData::getBrightness(){
+    return this->brightness;
 }
 
-void GeneralData::setCalibration(unit::calibration_t calibration){
-    this->calibration = calibration;
+void GeneralData::setBrightness(unit::calibration_t brightness){
+    this->brightness = brightness;
+}
+
+unit::calibration_t GeneralData::getColor(){
+    return this->color;
+}
+
+void GeneralData::setColor(unit::calibration_t color){
+    this->color = color;
 }
 
 bool GeneralData::getFlag(int idx){

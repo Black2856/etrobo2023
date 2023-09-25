@@ -17,7 +17,7 @@ unit::color_t JudgeColor::getColor(){
     unit::hsv_t hsv = this->rgb2hsv.getHSV();
 
     // テスト表示
-    printf("<%d, %d, %d>", hsv.h, hsv.s, hsv.v);
+    // printf("<%d, %d, %d>", hsv.h, hsv.s, hsv.v);
     
     int blackS = 100;
         // vが0~10の場合、bの変動なし
