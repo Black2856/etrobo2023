@@ -33,7 +33,7 @@ main.makeCALL_SCENARIO("ready");
 main.makeCALL_SCENARIO("calibration");
 main.makeCALL_SCENARIO("ready");
 main.makeCALL_SCENARIO("run");
-main.makeCALL_SCENARIO("double");
+main.makeCALL_SCENARIO("doubleloop");
 manage_scenario.add(main);
 
 Manage_scene calibration("calibration");
@@ -78,20 +78,20 @@ turn.makeMANUAL(18, 1.0, 60.0, 0.0);
 turn.makeSTOP(19, 0.0);
 manage_scenario.add(turn);
 
-Manage_scene double("double");
-double.makeMANUAL_PID(20, 2.0, 60.0, -15.0);
-double.makeTRACE(21, 55.0, 0.4, 0.0, 0.15, 0.5);
-double.makeTRACE(22, 55.0, 0.4, 0.0, 0.15, 0.5);
-double.makeMANUAL_PID(23, 2.0, 60.0, 15.0);
-double.makeMANUAL_PID(24, 1.0, 60.0, 50.0);
-double.makeMANUAL_PID(25, 2.0, 60.0, 10.0);
-double.makeTRACE(26, 55.0, -0.4, 0.0, -0.15, 0.5);
-double.makeMANUAL_PID(27, 2.0, 60.0, -15.0);
-double.makeTRACE(28, 55.0, 0.4, 0.0, 0.15, 0.5);
-double.makeMANUAL_PID(29, 2.0, 60.0, 15.0);
-double.makeTRACE(30, 55.0, -0.4, 0.0, -0.15, 0.5);
-double.makeSTOP(31, 0.0);
-manage_scenario.add(double);
+Manage_scene doubleloop("doubleloop");
+doubleloop.makeMANUAL_PID(20, 2.0, 60.0, -15.0);
+doubleloop.makeTRACE(21, 55.0, 0.4, 0.0, 0.15, 0.5);
+doubleloop.makeTRACE(22, 55.0, 0.4, 0.0, 0.15, 0.5);
+doubleloop.makeMANUAL_PID(23, 2.0, 60.0, 15.0);
+doubleloop.makeMANUAL_PID(24, 1.0, 60.0, 50.0);
+doubleloop.makeMANUAL_PID(25, 2.0, 60.0, 10.0);
+doubleloop.makeTRACE(26, 55.0, -0.4, 0.0, -0.15, 0.5);
+doubleloop.makeMANUAL_PID(27, 2.0, 60.0, -15.0);
+doubleloop.makeTRACE(28, 55.0, 0.4, 0.0, 0.15, 0.5);
+doubleloop.makeMANUAL_PID(29, 2.0, 60.0, 15.0);
+doubleloop.makeTRACE(30, 55.0, -0.4, 0.0, -0.15, 0.5);
+doubleloop.makeSTOP(31, 0.0);
+manage_scenario.add(doubleloop);
 
     //#</make_scenario>
 
