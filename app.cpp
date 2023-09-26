@@ -58,8 +58,8 @@ run.makeTRACE(8, 85.0, -0.055, 0.0, -0.07, 0.5);
 run.makeTRACE(9, 65.0, -0.9, 0.0, -0.3, 0.4);
 run.makeTRACE(10, 85.0, -0.055, 0.0, -0.07, 0.5);
 run.makeTRACE(11, 65.0, -0.8, 0.0, -0.3, 0.3);
-run.makeMANUAL_PID(12, 3.0, 60.0, 2.0);
-run.makeMANUAL_PID(13, 1.0, 60.0, 1.0);
+run.makeMANUAL_PID(12, 3.0, 70.0, 2.0);
+run.makeMANUAL_PID(13, 1.0, 70.0, 1.0);
 run.makeSTOP(14, 0.0);
 manage_scenario.add(run);
 
