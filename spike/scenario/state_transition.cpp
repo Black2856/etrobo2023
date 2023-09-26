@@ -29,7 +29,7 @@ bool StateTransition::judge(int idx){
         case 9: func = [](Judge& j) {return j.mileage.j(600);}; break;
         case 10: func = [](Judge& j) {return j.mileage.j(1600);}; break;
         case 11: func = [](Judge& j) {return j.mileage.j(550);}; break;
-        case 12: func = [](Judge& j) {return j.mileage.j(2000);}; break;
+        case 12: func = [](Judge& j) {return j.mileage.j(4000);}; break;
         case 13: func = [](Judge& j) {return j.time.j(3000 * 1000);}; break;
         case 14: func = [](Judge& j) {return j.button.j(4, true) or j.touch.j(true);}; break;
         case 15: func = [](Judge& j) {return j.ret.j(true) and j.time.j(10000 * 1000);}; break;
