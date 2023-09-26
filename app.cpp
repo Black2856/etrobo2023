@@ -33,6 +33,7 @@ main.makeCALL_SCENARIO("ready");
 main.makeCALL_SCENARIO("calibration");
 main.makeCALL_SCENARIO("ready");
 main.makeCALL_SCENARIO("run");
+main.makeCALL_SCENARIO("double");
 manage_scenario.add(main);
 
 Manage_scene calibration("calibration");
@@ -58,32 +59,39 @@ run.makeTRACE(8, 85.0, -0.055, 0.0, -0.07, 0.5);
 run.makeTRACE(9, 65.0, -0.9, 0.0, -0.3, 0.4);
 run.makeTRACE(10, 85.0, -0.055, 0.0, -0.07, 0.5);
 run.makeTRACE(11, 60.0, -0.84, 0.0, -0.3, 0.3);
-run.makeMANUAL_PID(12, 2.0, 60.0, -15.0);
-run.makeTRACE(13, 55.0, 0.4, 0.0, 0.15, 0.5);
-run.makeTRACE(14, 55.0, 0.4, 0.0, 0.15, 0.5);
-run.makeMANUAL_PID(15, 2.0, 60.0, 15.0);
-run.makeMANUAL_PID(16, 1.0, 60.0, 50.0);
-run.makeTRACE(17, 55.0, -0.4, 0.0, -0.15, 0.5);
-run.makeMANUAL_PID(18, 2.0, 60.0, -15.0);
-run.makeTRACE(19, 55.0, 0.4, 0.0, 0.15, 0.5);
-run.makeSTOP(20, 0.0);
+run.makeSTOP(12, 0.0);
 manage_scenario.add(run);
 
 Manage_scene zero4("zero4");
-zero4.makeSTOP(21, 0.0);
-zero4.makeMANUAL_PID(22, 1.0, 90.0, 4000.0);
-zero4.makeSTOP(23, 0.0);
+zero4.makeSTOP(13, 0.0);
+zero4.makeMANUAL_PID(14, 1.0, 90.0, 4000.0);
+zero4.makeSTOP(15, 0.0);
 manage_scenario.add(zero4);
 
 Manage_scene test("test");
-test.makeSTOP(24, 0.0);
+test.makeSTOP(16, 0.0);
 manage_scenario.add(test);
 
 Manage_scene turn("turn");
-turn.makeMANUAL_PID(25, 2.0, 60.0, -90.0);
-turn.makeMANUAL(26, 1.0, 60.0, 0.0);
-turn.makeSTOP(27, 0.0);
+turn.makeMANUAL_PID(17, 2.0, 60.0, -90.0);
+turn.makeMANUAL(18, 1.0, 60.0, 0.0);
+turn.makeSTOP(19, 0.0);
 manage_scenario.add(turn);
+
+Manage_scene run("run");
+run.makeMANUAL_PID(20, 2.0, 60.0, -15.0);
+run.makeTRACE(21, 55.0, 0.4, 0.0, 0.15, 0.5);
+run.makeTRACE(22, 55.0, 0.4, 0.0, 0.15, 0.5);
+run.makeMANUAL_PID(23, 2.0, 60.0, 15.0);
+run.makeMANUAL_PID(24, 1.0, 60.0, 50.0);
+run.makeMANUAL_PID(25, 2.0, 60.0, 10.0);
+run.makeTRACE(26, 55.0, -0.4, 0.0, -0.15, 0.5);
+run.makeMANUAL_PID(27, 2.0, 60.0, -15.0);
+run.makeTRACE(28, 55.0, 0.4, 0.0, 0.15, 0.5);
+run.makeMANUAL_PID(29, 2.0, 60.0, 15.0);
+run.makeTRACE(30, 55.0, -0.4, 0.0, -0.15, 0.5);
+run.makeSTOP(31, 0.0);
+manage_scenario.add(run);
 
     //#</make_scenario>
 
