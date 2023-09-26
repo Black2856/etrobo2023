@@ -58,24 +58,25 @@ run.makeTRACE(8, 85.0, -0.055, 0.0, -0.07, 0.5);
 run.makeTRACE(9, 65.0, -0.9, 0.0, -0.3, 0.4);
 run.makeTRACE(10, 85.0, -0.055, 0.0, -0.07, 0.5);
 run.makeTRACE(11, 60.0, -0.84, 0.0, -0.3, 0.3);
-run.makeTRACE(12, 55.0, 0.4, 0.0, 0.15, 0.5);
-run.makeSTOP(13, 0.0);
+run.makeMANUAL_PID(12, 2.0, 60.0, 15.0);
+run.makeTRACE(13, 55.0, 0.4, 0.0, 0.15, 0.5);
+run.makeSTOP(14, 0.0);
 manage_scenario.add(run);
 
 Manage_scene zero4("zero4");
-zero4.makeSTOP(14, 0.0);
-zero4.makeMANUAL_PID(15, 1.0, 90.0, 4000.0);
-zero4.makeSTOP(16, 0.0);
+zero4.makeSTOP(15, 0.0);
+zero4.makeMANUAL_PID(16, 1.0, 90.0, 4000.0);
+zero4.makeSTOP(17, 0.0);
 manage_scenario.add(zero4);
 
 Manage_scene test("test");
-test.makeSTOP(17, 0.0);
+test.makeSTOP(18, 0.0);
 manage_scenario.add(test);
 
 Manage_scene turn("turn");
-turn.makeMANUAL_PID(18, 2.0, 60.0, -90.0);
-turn.makeMANUAL(19, 1.0, 60.0, 0.0);
-turn.makeSTOP(20, 0.0);
+turn.makeMANUAL_PID(19, 2.0, 60.0, -90.0);
+turn.makeMANUAL(20, 1.0, 60.0, 0.0);
+turn.makeSTOP(21, 0.0);
 manage_scenario.add(turn);
 
     //#</make_scenario>
