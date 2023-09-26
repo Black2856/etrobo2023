@@ -62,26 +62,27 @@ run.makeMANUAL_PID(12, 2.0, 60.0, -15.0);
 run.makeTRACE(13, 55.0, 0.4, 0.0, 0.15, 0.5);
 run.makeTRACE(14, 55.0, 0.4, 0.0, 0.15, 0.5);
 run.makeMANUAL_PID(15, 2.0, 60.0, 15.0);
-run.makeTRACE(16, 55.0, -0.4, 0.0, -0.15, 0.5);
-run.makeMANUAL_PID(17, 2.0, 60.0, -15.0);
-run.makeTRACE(18, 55.0, 0.4, 0.0, 0.15, 0.5);
-run.makeSTOP(19, 0.0);
+run.makeMANUAL_PID(16, 1.0, 60.0, 50.0);
+run.makeTRACE(17, 55.0, -0.4, 0.0, -0.15, 0.5);
+run.makeMANUAL_PID(18, 2.0, 60.0, -15.0);
+run.makeTRACE(19, 55.0, 0.4, 0.0, 0.15, 0.5);
+run.makeSTOP(20, 0.0);
 manage_scenario.add(run);
 
 Manage_scene zero4("zero4");
-zero4.makeSTOP(20, 0.0);
-zero4.makeMANUAL_PID(21, 1.0, 90.0, 4000.0);
-zero4.makeSTOP(22, 0.0);
+zero4.makeSTOP(21, 0.0);
+zero4.makeMANUAL_PID(22, 1.0, 90.0, 4000.0);
+zero4.makeSTOP(23, 0.0);
 manage_scenario.add(zero4);
 
 Manage_scene test("test");
-test.makeSTOP(23, 0.0);
+test.makeSTOP(24, 0.0);
 manage_scenario.add(test);
 
 Manage_scene turn("turn");
-turn.makeMANUAL_PID(24, 2.0, 60.0, -90.0);
-turn.makeMANUAL(25, 1.0, 60.0, 0.0);
-turn.makeSTOP(26, 0.0);
+turn.makeMANUAL_PID(25, 2.0, 60.0, -90.0);
+turn.makeMANUAL(26, 1.0, 60.0, 0.0);
+turn.makeSTOP(27, 0.0);
 manage_scenario.add(turn);
 
     //#</make_scenario>
