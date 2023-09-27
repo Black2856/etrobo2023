@@ -43,7 +43,7 @@
 #define RECORD_LIMIT 1000  // センサーデータの最大記録数  記録秒数 = CYCLE * RECORD_LIMIT
 
 // 通信設定
-#define PC_IP_ADDRESS "10.17.8.181" // 受信時アドレス
+#define PC_IP_ADDRESS "10.17.7.206" // 受信時アドレス
 #define RECV_PORT 8081 // 受信用port番号
 #define SEND_PORT 8080 // 送信用port番号
 #define RECV_PATH "/home/robo/work/RasPike/sdk/workspace/etrobo2023/spike/recvFile/" // 受信ファイル保存先path
