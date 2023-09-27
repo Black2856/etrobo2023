@@ -38,6 +38,7 @@ manage_scenario.add(main);
 
 Manage_scene calibration("calibration");
 calibration.makeSTOP(0, 0);
+calibration.makeTAKE_PHOTO(1);
 calibration.makeCALIBRATION("record:brightness");
 calibration.makeMANUAL_PID(1, 2, 70.0, 450.0);
 calibration.makeCALIBRATION("stop");
@@ -56,9 +57,9 @@ manage_scenario.add(ready);
 
 Manage_scene run("run");
 run.makeTRACE(8, 85.0, -0.055, 0.0, -0.07, 0.5);
-run.makeTRACE(9, 65.0, -1.35, 0.0, -0.42, 0.4);
+run.makeTRACE(9, 65.0, -0.85, 0.0, -0.42, 0.4);
 run.makeTRACE(10, 85.0, -0.055, 0.0, -0.07, 0.5);
-run.makeTRACE(11, 60.0, -1.35, 0.0, -0.42, 0.3);
+run.makeTRACE(11, 60.0, -0.85, 0.0, -0.42, 0.3);
 run.makeSTOP(12, 0.0);
 manage_scenario.add(run);
 
