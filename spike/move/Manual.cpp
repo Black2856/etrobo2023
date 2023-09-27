@@ -66,7 +66,6 @@ void Manual::straight(){
     //int gain = int(differenceDirection * 2.3 + 0.5);
 
     int gain = int(fix);
-    printf("%f, ",this->Xmove);
 
     this->device.LWheel_setPWM(correctionPWM + gain);
     this->device.RWheel_setPWM(correctionPWM - gain);

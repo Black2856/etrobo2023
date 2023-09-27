@@ -17,22 +17,14 @@ unit::color_t JudgeColor::getColor(){
     unit::hsv_t hsv = this->rgb2hsv.getHSV();
 
     // テスト表示
-    printf("<%d, %d, %d>", hsv.h, hsv.s, hsv.v);
-    
-    int blackS = 100;
-        // vが0~10の場合、bの変動なし
-    if (hsv.v >= 11 && hsv.v <= 20) {
-        // vが11~20の場合、blackSが1辺り-8される
-        blackS = blackS - (hsv.v - 10) * 8;
-    } else {
-        // vが20より大きい場合、blackSは-85
-        blackS = blackS - 85;
-    }
+    //printf("<%d, %d, %d>", hsv.h, hsv.s, hsv.v);
 
-    if((0 <= hsv.h && hsv.h <= 360) && (0 <= hsv.s && hsv.s <= blackS) && (0 <= hsv.v && hsv.v <= 40)){
+    unit::calibration_t color = this->generalData.getColor()
+
+    if((0 <= hsv.s && hsv.s <= 50) && (0 <= hsv.v && hsv.v <= color.avg)){
         return unit::color_t::BLACK;
 
-    }else if((0 <= hsv.h && hsv.h <= 360) && (0 <= hsv.s && hsv.s <= 15) && (40 <= hsv.v && hsv.v <= 100)){
+    }else if((0 <= hsv.s && hsv.s <= 50) && (color.avg <= hsv.v && hsv.v <= 100)){
         return unit::color_t::WHITE;
 
     }else {
