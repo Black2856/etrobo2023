@@ -19,7 +19,7 @@ unit::color_t JudgeColor::getColor(){
     // テスト表示
     //printf("<%d, %d, %d>", hsv.h, hsv.s, hsv.v);
 
-    unit::calibration_t color = this->generalData.getColor()
+    unit::calibration_t color = this->generalData.getColor();
 
     if((0 <= hsv.s && hsv.s <= 50) && (0 <= hsv.v && hsv.v <= color.avg)){
         return unit::color_t::BLACK;

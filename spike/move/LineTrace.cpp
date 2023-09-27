@@ -45,7 +45,7 @@ void LineTrace::trace(){
     // カラーセンサのみでトレース
     this->rgb2hsv.update();
     unit::hsv_t hsv = this->rgb2hsv.getHSV();
-    gain = this->pidControl.calc(float(hsv.v), this->color.avg);
+    float gain = this->pidControl.calc(float(hsv.v), this->color.avg);
 
     this->device.LWheel_setPWM(correctionPWM - int(gain + 0.5));
     this->device.RWheel_setPWM(correctionPWM + int(gain + 0.5));  
