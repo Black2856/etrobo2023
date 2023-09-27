@@ -4,7 +4,7 @@ base = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(f"{base}../install")
 
 from Signal import Signal
-from parallelProcessing import ParallelProcessing
+from ..install.parallelProcessing import ParallelProcessing
 
 RECV_PORT = 8080 # 受信用PORT番号
 SEND_PORT = 8081 # 送信用PORT番号

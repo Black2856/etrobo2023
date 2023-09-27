@@ -150,7 +150,8 @@ class CompetitionSystem:
     
 import time
 if __name__ == "__main__":
-    competitionSystem = CompetitionSystem('r')
+    competitionSystem = CompetitionSystem()
+    competitionSystem.setCourse()
     t = 1000
     #competitionSystem.snap('vga.png')
     competitionSystem.IoT_SET(50)
