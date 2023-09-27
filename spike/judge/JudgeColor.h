@@ -9,7 +9,6 @@
 #include "RGBtoHSV.h"
 #include "DeviceInOut.h"
 #include "unit.h"
-#include "GeneralData.h"
 
 class JudgeColor{
 public:
@@ -17,7 +16,6 @@ public:
     bool j(unit::color_t color);
 
 private:
-    GeneralData& generalData = GeneralData::getInstance();
     DeviceInOut& device;
     RGBtoHSV rgb2hsv;
 

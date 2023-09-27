@@ -27,7 +27,6 @@ void LineTrace::trace(){
     //printf("%d\n", correctionPWM);
 
     // カラーセンサが前回で取得されている場合はカラーセンサでトレースをする
-    /*
     bool isExist = false;
     SensorData sensorData = this->record.getSensorData(0);
     rgb_raw_t rgb1 = sensorData.getRGB(isExist);
@@ -40,12 +39,6 @@ void LineTrace::trace(){
     }else{ //反射光
         gain = this->pidControl.calc(float(device.color_getBrightness()), this->brightness.avg);
     }
-    */
-
-    // カラーセンサのみでトレース
-    this->rgb2hsv.update();
-    unit::hsv_t hsv = this->rgb2hsv.getHSV();
-    gain = this->pidControl.calc(float(hsv.v), this->color.avg);
 
     this->device.LWheel_setPWM(correctionPWM - int(gain + 0.5));
     this->device.RWheel_setPWM(correctionPWM + int(gain + 0.5));  
