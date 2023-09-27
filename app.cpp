@@ -95,6 +95,12 @@ doubleloop.makeTRACE(32, 85.0, -0.055, 0.0, -0.07, 0.5);
 doubleloop.makeSTOP(33, 0.0);
 manage_scenario.add(doubleloop);
 
+Manage_scene block("block");
+block.makeMANUAL_PID(34, 2.0, 60.0, -90.0);
+block.makeMANUAL_PID(35, 1.0, 50.0, 50.0);
+block.makeSTOP(36, 0.0);
+manage_scenario.add(block);
+
     //#</make_scenario>
 
     this->manage_scenario = &manage_scenario;
