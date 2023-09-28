@@ -47,12 +47,11 @@ void Calibration::stop(){
             rgb_raw_t rgb = sensorData.getRGB(isExist);
             this->rgb2hsv.update(rgb);
             unit::hsv_t hsv = this->rgb2hsv.getHSV();
-            value = int(hsv.v);
         }
 
         if(isExist == true){
             valueList.push_back(value);
-            printf("%d, ", value);
+            //printf("%d, ", value);
         }
     }
 
