@@ -46,7 +46,7 @@ calibration.makeCALIBRATION("record:color");
 calibration.makeMANUAL_PID(3, 2, 70.0, 360.0);
 calibration.makeCALIBRATION("stop");
 calibration.makeSTOP(4, 0);
-calibration.makeMANUAL_PID(5, 5, 70.0, 1.0);
+calibration.makeMANUAL_PID(5, 5, 80.0, 1.0);
 calibration.makeSTOP(6, 0);
 manage_scenario.add(calibration);
 
@@ -56,9 +56,9 @@ manage_scenario.add(ready);
 
 Manage_scene run("run");
 run.makeTRACE(8, 85.0, -0.12, 0.0, -0.1, 0.5);
-run.makeTRACE(9, 65.0, -2.0, 0.0, -0.5, 0.4);
+run.makeTRACE(9, 65.0, -3.0, 0.0, -1.0, 0.4);
 run.makeTRACE(10, 85.0, -0.12, 0.0, -0.1, 0.5);
-run.makeTRACE(11, 60.0, -2.0, 0.0, -0.5, 0.3);
+run.makeTRACE(11, 60.0, -2.0, 0.0, -1.0, 0.3);
 run.makeSTOP(12, 0.0);
 manage_scenario.add(run);
 
