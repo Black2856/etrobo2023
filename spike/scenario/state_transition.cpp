@@ -25,7 +25,7 @@ bool StateTransition::judge(int idx){
         case 5: func = [](Judge& j) {return j.button.j(4, true) or j.touch.j(true);}; break;
         case 6: func = [](Judge& j) {return j.mileage.j(600);}; break;
         case 7: func = [](Judge& j) {return j.mileage.j(1600);}; break;
-        case 8: func = [](Judge& j) {return j.mileage.j(500);}; break;
+        case 8: func = [](Judge& j) {return j.mileage.j(550);}; break;
         case 9: func = [](Judge& j) {return j.time.j(100 * 1000);}; break;
         case 10: func = [](Judge& j) {return j.ret.j(true);}; break;
         case 11: func = [](Judge& j) {return j.mileage.j(2000);}; break;
@@ -34,8 +34,8 @@ bool StateTransition::judge(int idx){
         case 14: func = [](Judge& j) {return j.mileage.j(50);}; break;
         case 15: func = [](Judge& j) {return j.ret.j(true);}; break;
         case 16: func = [](Judge& j) {return j.mileage.j(2400);}; break;
-        case 17: func = [](Judge& j) {return j.ret.j(true);}; break;
-        case 18: func = [](Judge& j) {return j.time.j(100 * 1000);}; break;
+        case 17: func = [](Judge& j) {return j.time.j(100 * 1000);}; break;
+        case 18: func = [](Judge& j) {return j.ret.j(true);}; break;
         case 19: func = [](Judge& j) {return j.mileage.j(2000);}; break;
         case 20: func = [](Judge& j) {return j.mileage.j(600);}; break;
         case 21: func = [](Judge& j) {return j.mileage.j(600);}; break;
