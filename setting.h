@@ -29,7 +29,7 @@
 #define FRICTIONAL 1.10 //zero4は0.8845 0.915 本番:0.9455
 #endif // MAKE_SIM
 
-#define CAMERA_NUMBER 1 // カメラデバイス番号（通常は0）を指定
+#define CAMERA_NUMBER 0 // カメラデバイス番号（通常は0）を指定
 #define CYCLE 1000 * 10 // 処理周期(usec)
 #define IMG_QUEUE "Queue.txt" // 撮影待機リストファイル名
 #ifdef MAKE_SIM
