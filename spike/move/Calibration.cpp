@@ -52,6 +52,7 @@ void Calibration::stop(){
 
         if(isExist == true){
             valueList.push_back(value);
+            printf("%d, ", value);
         }
     }
 

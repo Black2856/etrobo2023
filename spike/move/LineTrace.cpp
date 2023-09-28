@@ -46,7 +46,7 @@ void LineTrace::trace(){
     this->rgb2hsv.update();
     unit::hsv_t hsv = this->rgb2hsv.getHSV();
     float gain = this->pidControl.calc(float(hsv.v), this->color.avg);
-    printf("%d, ",hsv.v);
+    //printf("%d, ",hsv.v);
 
     this->device.LWheel_setPWM(correctionPWM - int(gain + 0.5));
     this->device.RWheel_setPWM(correctionPWM + int(gain + 0.5));  
