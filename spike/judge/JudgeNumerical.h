@@ -17,6 +17,7 @@ protected:
     // 派生クラス毎に計測に使用する値を返却する
     virtual float getValue() const = 0;
     virtual bool  isTargetReached() const;
+    virtual float targetConvert(float target) const;
 
     float getTarget() const;
     float getStartNumerical() const;

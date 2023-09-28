@@ -27,9 +27,12 @@ public:
     void setMinifigDegree(int degree);
 
 private:
+    //キャリブレーションデータ
     unit::calibration_t brightness;
     unit::calibration_t color;
-    std::list<int> runRoute; //　恐らく型を変更する
+    
+    //ブロックdeトレジャー走行ルート
+    std::list<int> runRoute;
 
     // フラグ管理 {
     //      ﾄﾚｼﾞｬｰｴﾘｱのｼﾅﾘｵ更新の終了, 

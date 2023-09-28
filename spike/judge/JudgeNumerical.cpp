@@ -13,6 +13,8 @@ JudgeNumerical::JudgeNumerical():
 }
 
 bool JudgeNumerical::j(float target) {
+    // 特殊変換
+    target = targetConvert(target);
     // 間隔がセットされていない場合
     if (!isStarted()) {
         setTarget(target);
@@ -24,6 +26,10 @@ bool JudgeNumerical::j(float target) {
         return true;
     }
     return false;
+}
+
+float JudgeNumerical::targetConvert(float target) const{
+    return target;
 }
 
 /**

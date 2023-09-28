@@ -6,7 +6,9 @@
 #ifndef JUDGE_H
 #define JUDGE_H
 
+#include "JudgeBrightness.h"
 #include "JudgeAngle.h"
+#include "JudgeAngleMinifig.h"
 #include "JudgeMileage.h"
 #include "JudgeSonar.h"
 #include "JudgeTime.h"
@@ -22,7 +24,9 @@ public:
     void allReset(); //全ての計測をstopする
 
     // 各種インスタンス
+    JudgeBrightness   brightness;
     JudgeAngle   angle;
+    JudgeAngleMinifig   angleMinifig;
     JudgeMileage mileage;
     JudgeSonar   sonar;
     JudgeTime    time;

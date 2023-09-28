@@ -19,6 +19,8 @@ Judge& Judge::getInstance() {
 
 void Judge::allReset(){
     this->angle.stop();
+    this->angleMinifig.stop();
+    this->brightness.stop();
     this->mileage.stop();
     this->sonar.stop();
     this->time.stop();

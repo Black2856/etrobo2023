@@ -11,6 +11,8 @@ APPL_CXXOBJS += \
     GeneralData.o \
     Judge.o \
     JudgeAngle.o \
+    JudgeAngleMinifig.o \
+    JudgeBrightness.o \
     JudgeButton.o \
     JudgeColor.o \
     JudgeMileage.o \
