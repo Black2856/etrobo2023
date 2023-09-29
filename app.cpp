@@ -7,7 +7,7 @@
 #include "Record.h"
 #include "GeneralData.h"
 #include "unit.h"
-
+#include "ReadSignal.h"
 using namespace ev3api;
 
 class Main {
@@ -15,6 +15,7 @@ public:
     void run();
 private:
     Clock clock;
+    ReadSignal readSignal;
 
     Record& record = Record::getInstance();
     GeneralData& generalData = GeneralData::getInstance();
@@ -23,6 +24,7 @@ private:
 };
 
 void Main::run() {
+    readSignal.main();
     bool result;
 
     Manage_scenario manage_scenario;
