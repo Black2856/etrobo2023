@@ -21,10 +21,6 @@ bool takePhoto(RearCamera& camera, Signal& signal) {
     if (!file) {
         return false;
     }
-    // カメラの起動に失敗した場合
-    if (!camera.start()) {
-        return false;
-    }
 
     std::string line;
     // ファイルから一行ずつ読み込む
@@ -34,7 +30,6 @@ bool takePhoto(RearCamera& camera, Signal& signal) {
         // PCへ送信
         signal.sendImage(img, line.c_str());
     }
-    camera.stop();
     // ファイルを閉じる
     file.close();
     // ファイルを削除する
@@ -64,6 +59,12 @@ void send_m() {
 }
 
 int main() {
+    // カメラを起動
+    // カメラの起動に失敗した場合
+    while (!camera.start()) {
+        // 1秒待機
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    }
     // 接続開始
     printf("Connect recv\n");
     recvSignal.connect_s();
@@ -78,5 +79,7 @@ int main() {
 
     recvSignal.close_s();
     sendSignal.close_s();
+
+    camera.stop();
     return 0;
 }
