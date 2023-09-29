@@ -49,6 +49,10 @@ void RearCamera::stop() {
 cv::Mat RearCamera::takePhoto(const char* fileName) {
     cv::Mat img;
     capture.read(img); // カメラからフレームを読み取る
+    if (img.empty()) {
+        printf("フレームをキャプチャできませんでした。\n");
+        return img;
+    }
 
     // 画像を保存する
     char path[150];
