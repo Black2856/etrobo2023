@@ -214,7 +214,7 @@ int DeviceInOut::camera_getQueueSize() {
     FILE *fp = fopen(IMG_QUEUE, "r");
     if (fp == NULL) {
 		printf("撮影待機リストファイルを開けませんでした。\n");
-        return 0;
+        return -1;
 	}
 
     int lineCount = 0;

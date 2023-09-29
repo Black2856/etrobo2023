@@ -22,7 +22,7 @@ void TakePhoto::first(int num) {
 }
 
 bool TakePhoto::execute(){
-    if (device.camera_getQueueSize() > 0) {
+    if (device.camera_getQueueSize() != 0) {
         return false;
     }
     return true;
