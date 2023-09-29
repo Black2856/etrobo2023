@@ -1,12 +1,12 @@
 /*
- * クラス名:readSignal
+ * クラス名:readSig
  * 作成日:2023/09/28
  * 作成者:船田
  */
 
-#include "ReadSignal.h"
+#include "ReadSig.h"
 
-void ReadSignal::processAndDeleteFile(const char* filename) {
+void ReadSig::processAndDeleteFile(const char* filename) {
     // ファイルが存在するかどうかを確認
     FILE* file = fopen(filename, "r");
     if (file) {
@@ -39,7 +39,7 @@ void ReadSignal::processAndDeleteFile(const char* filename) {
 }
 
 // 2つの文字列を結合する関数
-void ReadSignal::concatenateStrings(char *result, const char *str1, const char *str2) {
+void ReadSig::concatenateStrings(char *result, const char *str1, const char *str2) {
     int i, j;
 
     // str1をresultにコピー
@@ -55,7 +55,7 @@ void ReadSignal::concatenateStrings(char *result, const char *str1, const char *
     result[i+j] = '\0'; // 結合された文字列をヌル終端
 }
 
-void ReadSignal::main() {
+void ReadSig::main() {
     char fullpath[256];
     this->concatenateStrings(fullpath, RECV_PATH, "test.txt");
     this->processAndDeleteFile(fullpath);

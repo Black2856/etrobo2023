@@ -1,11 +1,11 @@
 /*
- * クラス名:ReadSignal
+ * クラス名:ReadSig
  * 作成日:2023/09/28
  * 作成者:船田
  */
 
-#ifndef READSIGNAL_H
-#define READSIGNAL_H
+#ifndef READSIG_H
+#define READSIG_H
 
 #include <cstdio>
 #include <fstream>
@@ -15,7 +15,7 @@
 #include "setting.h"
 
 //受信したファイルを解析してgeneralDataクラスに格納します
-class ReadSignal{
+class ReadSig{
 public:
     void main();
 
