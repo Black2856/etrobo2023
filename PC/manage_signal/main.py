@@ -16,7 +16,7 @@ class Recv(ParallelProcessing):
         super().__init__()
         self.cycle = 500 #500msの周期で動作
         self.a = -1
-        self.b = 4 # 受信最大枚数
+        self.b = 10 # 受信最大枚数
         print("受信用サーバ起動")
         self.signal = Signal(RECV_PORT)
         

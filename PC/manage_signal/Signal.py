@@ -23,7 +23,6 @@ class Signal:
         """
         self.__socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0)
         self.__conn = None
-        self.__socket.settimeout(120)
         self.__socket.setblocking(True)
         self.port = port
 

@@ -39,7 +39,6 @@ bool Signal::connect_s() {
         ) == -1
     ) {
         perror("connect");
-        close(this->sock);
         printf("connect error\n");
         return false;
     }

@@ -67,9 +67,15 @@ int main() {
     }
     // 接続開始
     printf("Connect recv\n");
-    recvSignal.connect_s();
+    while (!recvSignal.connect_s()) {
+        // 一定時間停止する
+        std::this_thread::sleep_for(std::chrono::milliseconds(RECV_CYCLE));
+    }
     printf("Connect send\n");
-    sendSignal.connect_s();
+    while (!sendSignal.connect_s()) {
+        // 一定時間停止する
+        std::this_thread::sleep_for(std::chrono::milliseconds(SEND_CYCLE));
+    }
 
     std::thread recvThread(recv_m);
     std::thread sendThread(send_m);
