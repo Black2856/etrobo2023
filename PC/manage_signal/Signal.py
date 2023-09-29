@@ -6,7 +6,7 @@ import struct
 
 IP_ADDR = "0.0.0.0"
 # 環境差調整用定数
-SIZE_LEN = 8
+SIZE_LEN = 4
 if(SIZE_LEN == 4):
     FORMAT = "I"
 elif(SIZE_LEN == 8):
