@@ -1,8 +1,7 @@
 import os, sys
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 base = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(f"{base}../manage_signal")
-
+sys.path.append(f"{base}/../manage_signal")
 
 import numpy as np
 import tensorflow as tf

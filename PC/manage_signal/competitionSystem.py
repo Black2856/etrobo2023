@@ -1,4 +1,5 @@
 import requests
+import threading
 
 #192.168.11.12 Lコース
 #192.168.11.13 Rコース
@@ -8,11 +9,14 @@ class CompetitionSystem:
     競技システム用の送受信シングルトンクラス
     """
     _instance = None
+    _lock = threading.Lock()
 
     def __new__(cls, *args, **kwargs):
-        if not cls._instance:
-            cls._instance = super(CompetitionSystem, cls).__new__(cls, *args, **kwargs)
-            #cls.setCourse('test')
+        with cls._lock:
+            if not cls._instance:
+                cls._instance = super(CompetitionSystem, cls).__new__(cls)
+                print("[ 競技システム ]競技システム初回起動")
+                #cls.setCourse('test')
         return cls._instance
 
     def setCourse(self, course = 'test'):
