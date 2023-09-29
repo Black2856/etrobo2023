@@ -1,5 +1,8 @@
-import os
+import os, sys
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
+base = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(f"{base}../manage_signal")
+
 
 import numpy as np
 import tensorflow as tf
@@ -14,8 +17,7 @@ from hashids import Hashids
 import random
 
 from parallelProcessing import ParallelProcessing
-
-base = os.path.dirname(os.path.abspath(__file__))
+from competitionSystem import CompetitionSystem
 
 class Minifig(ParallelProcessing):
     def __init__(self, cycle):
@@ -27,18 +29,26 @@ class Minifig(ParallelProcessing):
         self.__saveImagePath = f'{base}/minifig_processed_data/'
         self.__savelabelPath = f'{base}/../manage_signal/send_folder/'
         self.__processCount = 0
-        pass
+        
+        self.__competitionSystem = CompetitionSystem()
 
     def execute(self):
         ret, image, name = self.__loadImage()
         if ret != False:
-            print(f'[ minifig ]find minifig image')
-            label = self.__predictImage(name)
-            self.__saveLabel(label)
-            self.__saveImage(image, name)
             self.__processCount += 1
-            print(end=f'[ minifig ]predictLabel = ')
-            print(f'\'{label}\'')
+            print(f'[ minifig ]find minifig image')
+            # 受信枚数が奇数の場合は判別する。偶数の場合は競技システムに送信する。
+            if (self.__processCount % 2) == 1:
+                label = self.__predictImage(name)
+                self.__saveLabel(label)
+                self.__saveImage(image, name)
+                print(end=f'[ minifig ]predictLabel = ')
+                print(f'\'{label}\'')
+            else: # (self.__processCount % 2) == 0
+                print(end=f'[ minifig ]image send to competitionSystem :)')
+                filename = self.__saveImage(image, name)
+                self.__competitionSystem.snap(f'{self.__saveImagePath}{filename}')
+
 
     def __loadImage(self):
         contents = os.listdir(self.__minifigDataPath)
@@ -61,6 +71,7 @@ class Minifig(ParallelProcessing):
         # 処理したファイルの削除
         file_to_delete = f'{self.__minifigDataPath}{name}'
         os.remove(file_to_delete)
+        return fileName
 
     def __saveLabel(self, label):
         name = 'minifigLabel.txt'
