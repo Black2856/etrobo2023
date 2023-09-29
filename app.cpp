@@ -63,7 +63,7 @@ manage_scenario.add(run);
 
 Manage_scene doubleloop("doubleloop");
 doubleloop.makeMANUAL_PID(12, 2.0, 60.0, -15.0);
-doubleloop.makeTRACE(13, 75.0, 0.57, 0.0, 0.32, 0.5);
+doubleloop.makeTRACE(13, 70.0, 0.57, 0.0, 0.32, 0.5);
 doubleloop.makeTRACE(14, 75.0, 0.5, 0.0, 0.3, 0.5);
 doubleloop.makeMANUAL_PID(15, 2.0, 60.0, 15.0);
 doubleloop.makeTRACE(16, 50.0, -0.7, 0.0, -0.4, 0.5);
