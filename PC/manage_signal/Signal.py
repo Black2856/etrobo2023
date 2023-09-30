@@ -5,8 +5,10 @@ import socket
 import struct
 
 IP_ADDR = "0.0.0.0"
+# 環境差調整用定数
+SIZE_LEN = 4
+FORMAT = "I"
 
-class Signal:
     """
     Signalクラスは、ソケット通信を使用して画像、文字列、ファイルの送受信を行うためのクラスです。
     """
@@ -37,7 +39,7 @@ class Signal:
         """
         try:
             self.__socket.bind((IP_ADDR, self.port))
-            self.__socket.listen(1)
+            self.__socket.listen(5)
             print("Server started : ", IP_ADDR, ":", self.port, sep='')
             self.__conn, addr = self.__socket.accept()
             print('Connected by', addr)
@@ -64,19 +66,16 @@ class Signal:
             bytes: 受信したバイナリデータを返します。
         """
         # データのサイズを受信
-        buffer_size = self.__conn.recv(8)
+        buffer_size = self.__conn.recv(SIZE_LEN)
         print("  data size :", buffer_size)
+        print(len(buffer_size))
         
-        if(len(buffer_size) == 4):
-            pack_format = "I"
-        elif(len(buffer_size) == 8):
-            pack_format = "Q"
-        else:
+        if(len(buffer_size) != SIZE_LEN):
             print("受信に失敗しました")
             return 0
         
         # バイナリデータを数値に変換
-        buffer_size = struct.unpack(pack_format, buffer_size)[0]
+        buffer_size = struct.unpack(FORMAT, buffer_size)[0]
         print("  len       :", buffer_size)
 
         # データを受信
@@ -86,7 +85,8 @@ class Signal:
             if not packet:
                 break
             data += packet
-        print("  data      :", data[:20])
+        print("  data top  :", data[:10])
+        print("  data end  :", data[-10:])
         print("  Succeed")
         return data
     
@@ -142,7 +142,7 @@ class Signal:
         """
         print("Send String")
         data = text.encode('utf-8')
-        size = struct.pack("Q", len(data))
+        size = struct.pack(FORMAT, len(data))
         print("  len       :", len(data))
         print("  data      :", data[:20])
         
@@ -183,8 +183,8 @@ class Signal:
 
 
 if __name__ == "__main__":
-    signal = Signal()
-    signal.open(8080)
+    signal = Signal(8080)
+    signal.open()
 
     signal.recvImage()
     #string = signal.__recvString()

@@ -59,8 +59,9 @@ void Signal::dispBool(bool b) {
     }
 }
 
-bool Signal::sendItem(const void *buf, size_t len) {
-    printf("  len  : %ld\n", len);
+bool Signal::sendItem(const void *buf, uint32_t len) {
+    printf("  len  : %u\n", len);
+    printf("  len size : %lu\n", sizeof(len));
 
     // データのサイズ、実体を送信
     if (
@@ -102,7 +103,7 @@ std::string Signal::recvString() {
     // データのサイズを受信
     int buffer_size;
     int bytesRead;
-    bytesRead = recv(this->sock, &buffer_size, 8, 0);
+    bytesRead = recv(this->sock, &buffer_size, 4, 0);
     if (bytesRead == -1) {
         printf("Failed to recv string size\n");
         dispBool(false);

@@ -28,7 +28,7 @@ public:
 
 private:
     // 広範的データを送信する関数
-    bool sendItem(const void *buf, size_t len);
+    bool sendItem(const void *buf, uint32_t len);
     void dispBool(bool b);
     // ソケット情報
     int sock;
