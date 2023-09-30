@@ -27,6 +27,11 @@ bool takePhoto(RearCamera& camera, Signal& signal) {
     while (std::getline(file, line)) {
         // 撮影
         cv::Mat img = camera.takePhoto(line.c_str());
+        // 画像が撮影できていない場合
+        while (img.empty()) {
+            printf("Retry\n");
+            img = camera.takePhoto(line.c_str());
+        }
         // PCへ送信
         signal.sendImage(img, line.c_str());
     }
@@ -69,12 +74,12 @@ int main() {
     printf("Connect recv\n");
     while (!recvSignal.connect_s()) {
         // 一定時間停止する
-        std::this_thread::sleep_for(std::chrono::milliseconds(RECV_CYCLE));
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
     printf("Connect send\n");
     while (!sendSignal.connect_s()) {
         // 一定時間停止する
-        std::this_thread::sleep_for(std::chrono::milliseconds(SEND_CYCLE));
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
 
     std::thread recvThread(recv_m);

@@ -5,12 +5,6 @@ import socket
 import struct
 
 IP_ADDR = "0.0.0.0"
-# 環境差調整用定数
-SIZE_LEN = 4
-if(SIZE_LEN == 4):
-    FORMAT = "I"
-elif(SIZE_LEN == 8):
-    FORMAT = "Q"
 
 class Signal:
     """
@@ -70,10 +64,19 @@ class Signal:
             bytes: 受信したバイナリデータを返します。
         """
         # データのサイズを受信
-        buffer_size = self.__conn.recv(SIZE_LEN)
+        buffer_size = self.__conn.recv(8)
         print("  data size :", buffer_size)
+        
+        if(len(buffer_size) == 4):
+            pack_format = "I"
+        elif(len(buffer_size) == 8):
+            pack_format = "Q"
+        else:
+            print("受信に失敗しました")
+            return 0
+        
         # バイナリデータを数値に変換
-        buffer_size = struct.unpack(FORMAT, buffer_size)[0]
+        buffer_size = struct.unpack(pack_format, buffer_size)[0]
         print("  len       :", buffer_size)
 
         # データを受信
@@ -98,6 +101,8 @@ class Signal:
         print("Recv Image")
         # バイナリデータを受信
         binary_data = self.__recvItem()
+        if binary_data == 0:
+            return
         # 受信したデータをデコード
         frame_data = np.frombuffer(binary_data, dtype=np.uint8)
 
@@ -105,6 +110,8 @@ class Signal:
         frame = cv2.imdecode(frame_data, 1)
         # ファイル名受信
         text  = self.__recvString()
+        if text == "":
+            return
         # 画像を保存
         cv2.imwrite(f'{path}{text}', frame)
         
@@ -119,6 +126,8 @@ class Signal:
         """
         print("Recv String")
         data = self.__recvItem()
+        if data == 0:
+            return ""
         # 受信したデータをデコード
         st = data.decode('utf-8')
         return st
@@ -133,7 +142,7 @@ class Signal:
         """
         print("Send String")
         data = text.encode('utf-8')
-        size = struct.pack(FORMAT, len(data))
+        size = struct.pack("Q", len(data))
         print("  len       :", len(data))
         print("  data      :", data[:20])
         

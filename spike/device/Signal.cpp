@@ -109,6 +109,10 @@ std::string Signal::recvString() {
         return "";
     }
     printf("  len  : %d\n", buffer_size);
+    // データの受信に失敗した場合
+    if (buffer_size <= 0) {
+        return "";
+    }
     // データを受信
     char buffer[buffer_size];
     bytesRead = recv(this->sock, buffer, sizeof(buffer), 0);
@@ -131,8 +135,14 @@ bool Signal::recvFile() {
     printf("Recv File\n");
     // ファイルを受信
     std::string content = recvString();
+    if(content.length() == 0) {
+        return false;
+    }
     // ファイル名を受信
     std::string fileName = recvString();
+    if(fileName.length() == 0) {
+        return false;
+    }
     char path[150];
     sprintf(path, RECV_PATH "%s", fileName.c_str());
     // ファイルを保存
