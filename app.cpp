@@ -86,14 +86,15 @@ doubleloop.makeMANUAL_PID(32, 2.0, 60.0, -90.0);
 doubleloop.makeSTOP(33, 0.0);
 doubleloop.makeMANUAL_PID(34, 2.0, 60.0, 95.0);
 doubleloop.makeTRACE(35, 60.0, -0.57, 0.0, -0.32, 0.5);
-doubleloop.makeTRACE(36, 75.0, -0.57, 0.0, -0.32, 0.5);
-doubleloop.makeSTOP(37, 0.0);
+doubleloop.makeMANUAL_PID(36, 1.0, 60.0, 1000.0);
+doubleloop.makeTRACE(37, 75.0, -0.57, 0.0, -0.32, 0.5);
+doubleloop.makeSTOP(38, 0.0);
 manage_scenario.add(doubleloop);
 
 Manage_scene block("block");
-block.makeMANUAL_PID(38, 2.0, 60.0, -90.0);
-block.makeMANUAL_PID(39, 1.0, 50.0, 50.0);
-block.makeSTOP(40, 0.0);
+block.makeMANUAL_PID(39, 2.0, 60.0, -90.0);
+block.makeMANUAL_PID(40, 1.0, 50.0, 50.0);
+block.makeSTOP(41, 0.0);
 manage_scenario.add(block);
 
     //#</make_scenario>
