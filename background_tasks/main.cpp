@@ -55,21 +55,22 @@ void send_m() {
     // 10枚撮影したら終了
     int i = 0;
     while(i < 10) {
+        // カメラを起動
+        // カメラの起動に失敗した場合
+        while (!camera.start()) {
+            // 1秒待機
+            std::this_thread::sleep_for(std::chrono::milliseconds(SEND_CYCLE));
+        }
         if(takePhoto(camera, sendSignal)) {
             i += 1;
         }
+        camera.stop();
         // 一定時間停止する
         std::this_thread::sleep_for(std::chrono::milliseconds(SEND_CYCLE));
     }
 }
 
 int main() {
-    // カメラを起動
-    // カメラの起動に失敗した場合
-    while (!camera.start()) {
-        // 1秒待機
-        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    }
     // 接続開始
     printf("Connect recv\n");
     while (!recvSignal.connect_s()) {
@@ -91,6 +92,5 @@ int main() {
     recvSignal.close_s();
     sendSignal.close_s();
 
-    camera.stop();
     return 0;
 }
