@@ -79,20 +79,20 @@ doubleloop.makeTRACE(25, 75.0, 0.57, 0.0, 0.32, 0.5);
 doubleloop.makeTRACE(26, 75.0, 0.57, 0.0, 0.32, 0.5);
 doubleloop.makeMANUAL_PID(27, 2.0, 60.0, 15.0);
 doubleloop.makeTRACE(28, 60.0, -0.85, 0.0, -0.8, 0.5);
-doubleloop.makeMANUAL_PID(2.0, 60.0, 15.0);
-doubleloop.makeTRACE(29, 75.0, -0.57, 0.0, -0.32, 0.5);
-doubleloop.makeMANUAL_PID(30, 2.0, 60.0, -90.0);
-doubleloop.makeSTOP(31, 0.0);
-doubleloop.makeMANUAL_PID(32, 2.0, 60.0, 95.0);
-doubleloop.makeTRACE(33, 60.0, -0.57, 0.0, -0.32, 0.5);
-doubleloop.makeTRACE(34, 75.0, -0.57, 0.0, -0.32, 0.5);
-doubleloop.makeSTOP(35, 0.0);
+doubleloop.makeMANUAL_PID(29, 2.0, 60.0, 15.0);
+doubleloop.makeTRACE(30, 75.0, -0.57, 0.0, -0.32, 0.5);
+doubleloop.makeMANUAL_PID(31, 2.0, 60.0, -90.0);
+doubleloop.makeSTOP(32, 0.0);
+doubleloop.makeMANUAL_PID(33, 2.0, 60.0, 95.0);
+doubleloop.makeTRACE(34, 60.0, -0.57, 0.0, -0.32, 0.5);
+doubleloop.makeTRACE(35, 75.0, -0.57, 0.0, -0.32, 0.5);
+doubleloop.makeSTOP(36, 0.0);
 manage_scenario.add(doubleloop);
 
 Manage_scene block("block");
-block.makeMANUAL_PID(36, 2.0, 60.0, -90.0);
-block.makeMANUAL_PID(37, 1.0, 50.0, 50.0);
-block.makeSTOP(38, 0.0);
+block.makeMANUAL_PID(37, 2.0, 60.0, -90.0);
+block.makeMANUAL_PID(38, 1.0, 50.0, 50.0);
+block.makeSTOP(39, 0.0);
 manage_scenario.add(block);
 
     //#</make_scenario>
