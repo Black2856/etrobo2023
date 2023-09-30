@@ -43,21 +43,18 @@ bool StateTransition::judge(int idx){
         case 23: func = [](Judge& j) {return j.ret.j(true);}; break;
         case 24: func = [](Judge& j) {return j.mileage.j(50);}; break;
         case 25: func = [](Judge& j) {return j.mileage.j(1000);}; break;
-        case 26: func = [](Judge& j) {return j.mileage.j(450);}; break;
+        case 26: func = [](Judge& j) {return j.mileage.j(850);}; break;
         case 27: func = [](Judge& j) {return j.ret.j(true);}; break;
-        case 28: func = [](Judge& j) {return j.mileage.j(450);}; break;
-        case 29: func = [](Judge& j) {return j.time.j(1500*1000);}; break;
-        case 30: func = [](Judge& j) {return j.ret.j(true);}; break;
-        case 31: func = [](Judge& j) {return j.mileage.j(300);}; break;
-        case 32: func = [](Judge& j) {return j.ret.j(true);}; break;
-        case 33: func = [](Judge& j) {return j.time.j(1000*1000);}; break;
-        case 34: func = [](Judge& j) {return j.ret.j(true);}; break;
-        case 35: func = [](Judge& j) {return j.mileage.j(50);}; break;
-        case 36: func = [](Judge& j) {return j.mileage.j(1500);}; break;
+        case 28: func = [](Judge& j) {return j.mileage.j(100);}; break;
+        case 29: func = [](Judge& j) {return j.ret.j(true);}; break;
+        case 30: func = [](Judge& j) {return j.time.j(1000*1000);}; break;
+        case 31: func = [](Judge& j) {return j.ret.j(true);}; break;
+        case 32: func = [](Judge& j) {return j.mileage.j(50);}; break;
+        case 33: func = [](Judge& j) {return j.mileage.j(1500);}; break;
+        case 34: func = [](Judge& j) {return j.time.j(100 * 1000);}; break;
+        case 35: func = [](Judge& j) {return j.ret.j(true);}; break;
+        case 36: func = [](Judge& j) {return j.ret.j(true);}; break;
         case 37: func = [](Judge& j) {return j.time.j(100 * 1000);}; break;
-        case 38: func = [](Judge& j) {return j.ret.j(true);}; break;
-        case 39: func = [](Judge& j) {return j.ret.j(true);}; break;
-        case 40: func = [](Judge& j) {return j.time.j(100 * 1000);}; break;
     //#</func_list>
         default: return true;
     }
