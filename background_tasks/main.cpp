@@ -22,6 +22,13 @@ bool takePhoto(RearCamera& camera, Signal& signal) {
         return false;
     }
 
+    // カメラを起動
+    // カメラの起動に失敗した場合
+    while (!camera.start()) {
+        // 1秒待機
+        std::this_thread::sleep_for(std::chrono::milliseconds(SEND_CYCLE));
+    }
+
     std::string line;
     // ファイルから一行ずつ読み込む
     while (std::getline(file, line)) {
@@ -37,6 +44,7 @@ bool takePhoto(RearCamera& camera, Signal& signal) {
     }
     // ファイルを閉じる
     file.close();
+    camera.stop();
     // ファイルを削除する
     std::remove(IMG_QUEUE_PATH);
     return true;
@@ -55,16 +63,9 @@ void send_m() {
     // 10枚撮影したら終了
     int i = 0;
     while(i < 10) {
-        // カメラを起動
-        // カメラの起動に失敗した場合
-        while (!camera.start()) {
-            // 1秒待機
-            std::this_thread::sleep_for(std::chrono::milliseconds(SEND_CYCLE));
-        }
         if(takePhoto(camera, sendSignal)) {
             i += 1;
         }
-        camera.stop();
         // 一定時間停止する
         std::this_thread::sleep_for(std::chrono::milliseconds(SEND_CYCLE));
     }
