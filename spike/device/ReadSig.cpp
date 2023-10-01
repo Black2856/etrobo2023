@@ -5,6 +5,7 @@
  */
 
 #include "ReadSig.h"
+
 void ReadSig::storeRoute(const char* filename) {
     // ファイルが存在するかどうかを確認
     FILE* file = fopen(filename, "r");
@@ -47,10 +48,14 @@ void ReadSig::storeRoute(const char* filename) {
 
         //　ファイル後処理(削除)
         fclose(fileToProcess);
-        remove(filename);
+
+        #ifdef MAKE_SIM //シミュレータ環境では動作しない
+            remove(filename);
+        #endif
+
         // 格納
         this->generalData.setRunRoute(runRoute);
-        printf("[ ファイル読み込み ]走行ルートの取得に成功");
+        printf("[ ファイル読み込み ]走行ルートの取得に成功\n");
 
     } else {
         //printf("%s does not exist.\n", filename);
@@ -109,11 +114,14 @@ void ReadSig::storeMinifigLabel(const char* filename) {
 
         // ファイル後処理(削除)
         fclose(fileToProcess);
-        remove(filename);
+
+        #ifdef MAKE_SIM //シミュレータ環境では動作しない
+            remove(filename);
+        #endif
 
         // 格納
         this->generalData.setMinifigDegree(degree);
-        printf("[ ファイル読み込み ]ミニフィグの角度の取得に成功");
+        printf("[ ファイル読み込み ]ミニフィグの角度の取得に成功\n");
 
     } else {
         //printf("%s does not exist.\n", filename);

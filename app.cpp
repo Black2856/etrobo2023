@@ -25,8 +25,11 @@ private:
 };
 
 void Main::run() {
-    bool result;
+    #ifdef MAKE_SIM
+        printf("シミュレータ環境での起動\n");
+    #endif
 
+    bool result;
     Manage_scenario manage_scenario;
 
     //#<make_scenario>
@@ -36,7 +39,7 @@ main.makeCALL_SCENARIO("calibration");
 main.makeCALL_SCENARIO("ready");
 main.makeCALL_SCENARIO("run");
 main.makeCALL_SCENARIO("doubleloop");
-main.makeCALL_SCENARIO("while");
+main.makeCALL_SCENARIO("whileRun");
 main.makeCALL_SCENARIO("block");
 manage_scenario.add(main);
 
@@ -125,12 +128,12 @@ left.makeMANUAL_PID(57, 2.0, 60.0, 90.0);
 left.makeSTOP(58, 0.0);
 manage_scenario.add(left);
 
-Manage_scene while("while");
-while.makeMANUAL_PID(59, 1.0, 40.0, 100.0);
-while.makeMANUAL_PID(60, 2.0, 40.0, -90.0);
-while.makeMANUAL_PID(61, 1.0, 40.0, 1000.0);
-while.makeSTOP(62, 0.0);
-manage_scenario.add(while);
+Manage_scene whileRun("whileRun");
+whileRun.makeMANUAL_PID(59, 1.0, 40.0, 100.0);
+whileRun.makeMANUAL_PID(60, 2.0, 40.0, -90.0);
+whileRun.makeMANUAL_PID(61, 1.0, 40.0, 1000.0);
+whileRun.makeSTOP(62, 0.0);
+manage_scenario.add(whileRun);
 
     //#</make_scenario>
 

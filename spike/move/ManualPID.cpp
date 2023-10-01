@@ -27,23 +27,23 @@ void ManualPID::first(manualPID::RunType runType, float maxPWM, float transition
     manual::RunType manualType = manual::RunType::STRAIGHT;
     switch (runType){
     case manualPID::RunType::STRAIGHT:
-        this->pidControl.setPID({4.5, 0.001, 0.2});
+        this->pidControl.setPID({4.5, 0.01, 0.2});
         manualType = manual::RunType::STRAIGHT;
         break;
     case manualPID::RunType::CENTER_ROTATION:
-        this->pidControl.setPID({4.5, 0.001, 0.2});
+        this->pidControl.setPID({4.5, 0.01, 0.2});
         manualType = manual::RunType::CENTER_ROTATION;
         break;
     case manualPID::RunType::LEFT_WHEEL_ROTATION:
-        this->pidControl.setPID({4.5, 0.001, 0.2});
+        this->pidControl.setPID({4.5, 0.01, 0.2});
         manualType = manual::RunType::LEFT_WHEEL_ROTATION;
         break;
     case manualPID::RunType::RIGHT_WHEEL_ROTATION:
-        this->pidControl.setPID({4.5, 0.001, 0.2});
+        this->pidControl.setPID({4.5, 0.01, 0.2});
         manualType = manual::RunType::RIGHT_WHEEL_ROTATION;
         break;
     case manualPID::RunType::ON_LINE_MOVE:
-        this->pidControl.setPID({1.2, 0.001, 0.2});
+        this->pidControl.setPID({1.5, 0.01, 0.2});
         manualType = manual::RunType::CENTER_ROTATION;
         break;
     default:
@@ -71,7 +71,11 @@ bool ManualPID::execute(){
         operation = this->direction();
         break;
     case manualPID::RunType::ON_LINE_MOVE:
-        operation = this->onLineMove();
+        if (this->maxPWM < 0){
+            operation = -this->onLineMove();
+        }else{
+            operation = this->onLineMove();
+        }
         break;
     default:
         printf("error : incorrect type at ManualPID::execute");
