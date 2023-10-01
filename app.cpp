@@ -84,7 +84,7 @@ doubleloop.makeMANUAL_PID(30, 2.0, 60.0, 15.0);
 doubleloop.makeTRACE(31, 60.0, -0.85, 0.0, -0.8, 0.5);
 doubleloop.makeMANUAL_PID(32, 2.0, 60.0, -90.0);
 doubleloop.makeSTOP(33, 0.0);
-doubleloop.makeMANUAL_PID(34, 2.0, 60.0, 95.0);
+doubleloop.makeMANUAL_PID(34, 2.0, 60.0, 90.0);
 doubleloop.makeTRACE(35, 60.0, -0.57, 0.0, -0.32, 0.5);
 doubleloop.makeMANUAL_PID(36, 1.0, 60.0, 1000.0);
 doubleloop.makeTRACE(37, 75.0, -0.57, 0.0, -0.32, 0.5);
