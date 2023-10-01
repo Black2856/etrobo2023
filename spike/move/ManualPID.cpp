@@ -15,7 +15,7 @@ ManualPID::ManualPID():
 //transitionValue : 遷移条件値
 void ManualPID::first(manualPID::RunType runType, float maxPWM, float transitionValue){
     this->runType = runType;
-    this->maxPWM = std::abs(maxPWM);
+    this->maxPWM = maxPWM;
     this->rotation = rotation;
     this->calibration = this->generalData.getBrightness();
 
@@ -83,7 +83,7 @@ bool ManualPID::execute(){
     }
     
     //操作
-    operation = this->max(operation, this->maxPWM);
+    operation = this->max(operation, std::abs(this->maxPWM));
 
     this->manual.setPWM(operation, 0);
     this->manual.execute();

@@ -31,6 +31,9 @@ class Minifig(ParallelProcessing):
         
         self.__competitionSystem = CompetitionSystem()
 
+        # predictを予め一回行い、キャッシュする。
+        self.__predictImage(f'../test.png')
+
     def execute(self):
         ret, image, name = self.__loadImage()
         if ret != False:
