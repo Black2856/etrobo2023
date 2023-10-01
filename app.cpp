@@ -89,12 +89,12 @@ doubleloop.makeSTOP(35, 0.0);
 doubleloop.makeMANUAL_PID(36, 2.0, 60.0, 103.0);
 doubleloop.makeTRACE(37, 60.0, -0.57, 0.0, -0.32, 1.0);
 doubleloop.makeSTOP(38, 0.0);
-doubleloop.makeMANUAL_PID(39, 2.0, 60.0, -90.0);
+doubleloop.makeMANUAL_PID(39, 2.0, 60.0, -100.0);
 doubleloop.makeSTOP(40, 0.0);
 doubleloop.makeTAKE_PHOTO(41, 1.0);
 doubleloop.makeSTOP(42, 0.0);
-doubleloop.makeMANUAL_PID(43, 2.0, 60.0, 93.0);
-doubleloop.makeTRACE(44, 75.0, 0.57, 0.0, 0.32, 1.0);
+doubleloop.makeMANUAL_PID(43, 2.0, 60.0, 100.0);
+doubleloop.makeTRACE(44, 75.0, -0.57, 0.0, -0.32, 1.0);
 doubleloop.makeSTOP(45, 0.0);
 manage_scenario.add(doubleloop);
 
