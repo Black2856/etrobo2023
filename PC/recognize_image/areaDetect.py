@@ -267,7 +267,7 @@ class AreaDetect:
     def __init__(self):
         self.__treasureArea = ta.TreasureArea()
         self.__draw = draw()
-        self.__degPermissibleError = 1.0
+        self.__degPermissibleError = 1.5
         self.__count = 3
         self.__processSize = (768, 432)
 

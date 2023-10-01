@@ -83,21 +83,21 @@ void ReadSig::storeMinifigLabel(const char* filename) {
             line[i] = '\0';  // 終端文字を追加
 
             // ここで line に格納されたデータを処理します
-            if (strcmp(line, "0d\n") == 0) {
+            if (strcmp(line, "0d") == 0) {
                 degree = 0;
-            } else if (strcmp(line, "45d\n") == 0) {
+            } else if (strcmp(line, "45d") == 0) {
                 degree = 45;
-            } else if (strcmp(line, "90d\n") == 0) {
+            } else if (strcmp(line, "90d") == 0) {
                 degree = 90;
-            } else if (strcmp(line, "135d\n") == 0) {
+            } else if (strcmp(line, "135d") == 0) {
                 degree = 135;
-            } else if (strcmp(line, "180d\n") == 0) {
+            } else if (strcmp(line, "180d") == 0) {
                 degree = 180;
-            } else if (strcmp(line, "225d\n") == 0) {
+            } else if (strcmp(line, "225d") == 0) {
                 degree = 225;
-            } else if (strcmp(line, "270d\n") == 0) {
+            } else if (strcmp(line, "270d") == 0) {
                 degree = 270;
-            } else if (strcmp(line, "315d\n") == 0) {
+            } else if (strcmp(line, "315d") == 0) {
                 degree = 315;
             }
 
