@@ -44,7 +44,7 @@ calibration.makeCALIBRATION("record:brightness");
 calibration.makeMANUAL_PID(1, 2, 70.0, 450.0);
 calibration.makeCALIBRATION("stop");
 calibration.makeSTOP(2, 0);
-calibration.makeMANUAL_PID(3, 5, 80.0, 1.0);
+calibration.makeMANUAL_PID(3, 5, -80.0, 1.0);
 calibration.makeSTOP(4, 0);
 manage_scenario.add(calibration);
 
