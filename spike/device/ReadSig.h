@@ -10,9 +10,11 @@
 #include <cstdio>
 #include <fstream>
 #include <stdio.h>
+#include <string.h>
 
 #include "GeneralData.h"
 #include "setting.h"
+#include "unit.h"
 
 //受信したファイルを解析してgeneralDataクラスに格納します
 class ReadSig{
@@ -22,8 +24,11 @@ public:
 private:
     GeneralData& generalData = GeneralData::getInstance();
 
-    void processAndDeleteFile(const char* filePath);
-    void concatenateStrings(char *result, const char *str1, const char *str2);
+    //route.txt
+    void storeRoute(const char* filePath);
+
+    //minifigLabel.txt
+    void storeMinifigLabel(const char* filePath);
 };
 
 #endif

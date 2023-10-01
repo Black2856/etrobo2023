@@ -35,6 +35,7 @@ APPL_CXXOBJS += \
     Stop.o \
     TakePhoto.o \
     arg_info.o \
+    custom_scenario.o \
     manage_scenario.o \
     manage_scene.o \
     scene.o \

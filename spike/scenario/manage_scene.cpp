@@ -72,7 +72,7 @@ void Manage_scene::makeTAKE_PHOTO(int stateTransition, float arg1){
     this->scenario.push_back(scene);
 }
 
-const char* Manage_scene::getName(){
+const char* Manage_scene::getName() const{
     return this->scenarioName;
 }
 

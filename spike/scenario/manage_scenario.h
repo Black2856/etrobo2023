@@ -25,7 +25,8 @@
 
 class Manage_scenario{
 public:
-    void add(Manage_scene manageScene); //scene管理クラスを追加する
+    void add(Manage_scene manageScene); //scene管理クラスを追加する　※同じシナリオ名が存在する場合は上書き
+    void remove(const char* name); //特定のScenarioを削除する
     void update(); //scene管理クラス(シナリオデータ)から各シーンへのコンパイル
     bool execute(); //return : sceneのIdxが最後かどうか
 

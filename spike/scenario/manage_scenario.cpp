@@ -6,7 +6,16 @@
 #include "manage_scenario.h"
 
 void Manage_scenario::add(Manage_scene manageScene){
+    // 重複するシナリオは上書き
+    const char* removeName = manageScene.getName();
+    this->remove(removeName);
     this->scenarioList.push_back(manageScene);
+}
+
+void Manage_scenario::remove(const char* name){
+    this->scenarioList.remove_if([&](const Manage_scene& manageScene) {
+        return std::strcmp(manageScene.getName(), name) == 0;
+    });
 }
 
 void Manage_scenario::update(){

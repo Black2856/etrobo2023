@@ -14,6 +14,15 @@
 //汎用
 #define PI 3.1415926535
 
+// 通信設定
+#define PC_IP_ADDRESS "10.17.7.242" // 受信時アドレス
+#define RECV_PORT 8081 // 受信用port番号
+#define SEND_PORT 8080 // 送信用port番号
+#define RECV_PATH "/home/robo/work/RasPike/sdk/workspace/etrobo2023/spike/recvFile/" // 受信ファイル保存先path
+//#define RECV_PATH "/home/iwasaki/etrobo/" // 受信ファイル保存先path
+#define RECV_CYCLE 500 // 受信周期（ミリ秒単位）
+#define SEND_CYCLE 1000 // 送信周期（ミリ秒単位）
+
 // 走行体設定
 #ifdef MAKE_SIM
     #define TREAD 150.0         // 車体トレッド幅（mm） spike = 126 EV3 = 150.0
@@ -32,7 +41,11 @@
 #define CAMERA_NUMBER 0 // カメラデバイス番号（通常は0）を指定
 #define CYCLE 1000 * 10 // 処理周期(usec)
 #define IMG_QUEUE "Queue.txt" // 撮影待機リストファイル名
-#ifdef MAKE_SIM
+#define MINIFIG_LABEL "minifigLabel.txt" // ミニフィグラベルのファイル名
+#define ROUTE "route.txt" // 走行ルートのファイル名
+#define MINIFIG_LABEL_PATH RECV_PATH MINIFIG_LABEL // ミニフィグラベルのファイルパス
+#define ROUTE_PATH RECV_PATH ROUTE // 走行ルートのファイルパス
+#ifdef MAKE_SIM 
     #define IMG_PATH "/home/iwasaki/etrobo/workspace/img/" // 画像保存先path
     #define IMG_QUEUE_PATH "/home/iwasaki/etrobo/workspace/simdist/etrobo2023/__ev3rtfs/" IMG_QUEUE // 撮影待機リストファイル名
 #else
@@ -41,14 +54,5 @@
 #endif
 #define IMG_FILENAME_LEN 5 // ファイルネームの最大長
 #define RECORD_LIMIT 1000  // センサーデータの最大記録数  記録秒数 = CYCLE * RECORD_LIMIT
-
-// 通信設定
-#define PC_IP_ADDRESS "10.17.7.242" // 受信時アドレス
-#define RECV_PORT 8081 // 受信用port番号
-#define SEND_PORT 8080 // 送信用port番号
-#define RECV_PATH "/home/robo/work/RasPike/sdk/workspace/etrobo2023/spike/recvFile/" // 受信ファイル保存先path
-//#define RECV_PATH "/home/iwasaki/etrobo/" // 受信ファイル保存先path
-#define RECV_CYCLE 500 // 受信周期（ミリ秒単位）
-#define SEND_CYCLE 1000 // 送信周期（ミリ秒単位）
 
 #endif  // SETTINGS_H

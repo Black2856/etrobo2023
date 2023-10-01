@@ -25,7 +25,7 @@ public:
     void makeCALIBRATION(const char* arg1);
     void makeTAKE_PHOTO(int stateTransition, float arg1);
 
-    const char* getName();
+    const char* getName() const;
     std::list<Scene> getScenes();
 private:
     const char* scenarioName;

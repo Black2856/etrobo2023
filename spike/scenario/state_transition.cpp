@@ -56,9 +56,16 @@ bool StateTransition::judge(int idx){
         case 36: func = [](Judge& j) {return j.ret.j(true);}; break;
         case 37: func = [](Judge& j) {return j.mileage.j(1600);}; break;
         case 38: func = [](Judge& j) {return j.time.j(100 * 1000);}; break;
-        case 39: func = [](Judge& j) {return j.ret.j(true);}; break;
+        case 39: func = [](Judge& j) {return j.time.j(1000*1000);}; break;
         case 40: func = [](Judge& j) {return j.ret.j(true);}; break;
-        case 41: func = [](Judge& j) {return j.time.j(100 * 1000);}; break;
+        case 41: func = [](Judge& j) {return j.ret.j(true);}; break;
+        case 42: func = [](Judge& j) {return j.time.j(100 * 1000);}; break;
+        case 43: func = [](Judge& j) {return j.ret.j(true);}; break;
+        case 44: func = [](Judge& j) {return j.ret.j(true);}; break;
+        case 45: func = [](Judge& j) {return j.time.j(100 * 1000);}; break;
+        case 46: func = [](Judge& j) {return j.ret.j(true);}; break;
+        case 47: func = [](Judge& j) {return j.ret.j(true);}; break;
+        case 48: func = [](Judge& j) {return j.time.j(100 * 1000);}; break;
     //#</func_list>
         default: return true;
     }

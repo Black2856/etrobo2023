@@ -34,16 +34,22 @@ void GeneralData::setColor(unit::calibration_t color){
     this->color = color;
 }
 
-bool GeneralData::getFlag(int idx){
-    return this->flag[idx];
-}
-void GeneralData::setFlag(int idx, bool flag){
-    this->flag[idx] = flag;
+bool GeneralData::getIsData(int idx){
+    return this->isData[idx];
 }
 
 int GeneralData::getMinifigDegree(){
     return this->minifigDegree;
 }
 void GeneralData::setMinifigDegree(int degree){
+    this->isData[1] = true;
     this->minifigDegree = degree;
+}
+
+std::list<int> GeneralData::getRunRoute(){
+    return this->runRoute;
+}
+void GeneralData::setRunRoute(std::list<int> runRoute){
+    this->isData[0] = true;
+    this->runRoute = runRoute;
 }

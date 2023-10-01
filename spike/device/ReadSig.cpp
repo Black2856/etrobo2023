@@ -1,62 +1,124 @@
 /*
- * クラス名:readSig
+ * クラス名:ReadSig
  * 作成日:2023/09/28
  * 作成者:船田
  */
 
 #include "ReadSig.h"
-
-void ReadSig::processAndDeleteFile(const char* filename) {
+void ReadSig::storeRoute(const char* filename) {
     // ファイルが存在するかどうかを確認
     FILE* file = fopen(filename, "r");
     if (file) {
         fclose(file);
 
-        // ファイルの内容を処理
+        // ファイルオープン
         FILE* fileToProcess = fopen(filename, "r");
         if (fileToProcess == NULL) {
             printf("Failed to open the file %s\n", filename);
             return;
         }
 
-        char ch;
-        printf("Content of %s:\n", filename);
-        while ((ch = fgetc(fileToProcess)) != EOF) {
-            putchar(ch);
+        // ファイルメイン処理
+        std::list<int> runRoute;
+        char line[256];
+        while (!feof(fileToProcess)) {
+            int ch, i = 0;
+
+            // 1行分のデータを読み取り
+            while ((ch = fgetc(fileToProcess)) != EOF && ch != '\n') {
+                line[i++] = ch;
+            }
+            line[i] = '\0';  // 終端文字を追加
+
+            // ここで line に格納されたデータを処理します
+            if (strcmp(line, "0\n") == 0) {
+                runRoute.push_back(0);
+            } else if (strcmp(line, "1\n") == 0) {
+                runRoute.push_back(1);
+            } else if (strcmp(line, "2\n") == 0) {
+                runRoute.push_back(2);
+            }
+
+            // 最後の読み取りが EOF だった場合、ループを終了
+            if (ch == EOF) {
+                break;
+            }
         }
 
+        //　ファイル後処理(削除)
         fclose(fileToProcess);
+        // 格納
+        this->generalData.setRunRoute(runRoute);
+        printf("[ ファイル読み込み ]走行ルートの取得に成功");
 
-        // ファイルを削除
-        if (remove(filename) != 0) {
-            perror("Error deleting the file");
-        } else {
-            //printf("\n%s has been deleted successfully.\n", filename);
-        }
     } else {
-        printf("%s does not exist.\n", filename);
+        //printf("%s does not exist.\n", filename);
     }
 }
 
-// 2つの文字列を結合する関数
-void ReadSig::concatenateStrings(char *result, const char *str1, const char *str2) {
-    int i, j;
+void ReadSig::storeMinifigLabel(const char* filename) {
+    // ファイルが存在するかどうかを確認
+    FILE* file = fopen(filename, "r");
+    if (file) {
+        fclose(file);
 
-    // str1をresultにコピー
-    for (i = 0; str1[i] != '\0'; i++) {
-        result[i] = str1[i];
+        // ファイルオープン
+        FILE* fileToProcess = fopen(filename, "r");
+        if (fileToProcess == NULL) {
+            printf("Failed to open the file %s\n", filename);
+            return;
+        }
+
+        // ファイルメイン処理
+        int degree = 0;
+        char line[256];
+        while (!feof(fileToProcess)) {
+            int ch, i = 0;
+
+            // 1行分のデータを読み取り
+            while ((ch = fgetc(fileToProcess)) != EOF && ch != '\n') {
+                line[i++] = ch;
+            }
+            line[i] = '\0';  // 終端文字を追加
+
+            // ここで line に格納されたデータを処理します
+            if (strcmp(line, "0d\n") == 0) {
+                degree = 0;
+            } else if (strcmp(line, "45d\n") == 0) {
+                degree = 45;
+            } else if (strcmp(line, "90d\n") == 0) {
+                degree = 90;
+            } else if (strcmp(line, "135d\n") == 0) {
+                degree = 135;
+            } else if (strcmp(line, "180d\n") == 0) {
+                degree = 180;
+            } else if (strcmp(line, "225d\n") == 0) {
+                degree = 225;
+            } else if (strcmp(line, "270d\n") == 0) {
+                degree = 270;
+            } else if (strcmp(line, "315d\n") == 0) {
+                degree = 315;
+            }
+
+            // 最後の読み取りが EOF だった場合、ループを終了
+            if (ch == EOF) {
+                break;
+            }
+        }
+
+        // ファイル後処理(削除)
+        fclose(fileToProcess);
+
+        // 格納
+        this->generalData.setMinifigDegree(degree);
+        printf("[ ファイル読み込み ]ミニフィグの角度の取得に成功");
+
+    } else {
+        //printf("%s does not exist.\n", filename);
     }
-
-    // str2をresultの終わりに追加
-    for (j = 0; str2[j] != '\0'; j++) {
-        result[i+j] = str2[j];
-    }
-
-    result[i+j] = '\0'; // 結合された文字列をヌル終端
 }
 
 void ReadSig::main() {
-    char fullpath[256];
-    this->concatenateStrings(fullpath, RECV_PATH, "test.txt");
-    this->processAndDeleteFile(fullpath);
+    this->storeRoute(ROUTE_PATH);
+    this->storeMinifigLabel(MINIFIG_LABEL_PATH);
 }

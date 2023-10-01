@@ -2,12 +2,13 @@
 
 #include "setting.h"
 #include "Clock.h"
+#include "custom_scenario.h"
 #include "manage_scenario.h"
 #include "manage_scene.h"
 #include "Record.h"
 #include "GeneralData.h"
 #include "unit.h"
-#include "ReadSig.h"
+
 using namespace ev3api;
 
 class Main {
@@ -15,7 +16,7 @@ public:
     void run();
 private:
     Clock clock;
-    ReadSig readSig;
+    Custom_scenario custom_scenario;
 
     Record& record = Record::getInstance();
     GeneralData& generalData = GeneralData::getInstance();
@@ -24,7 +25,6 @@ private:
 };
 
 void Main::run() {
-    readSig.main();
     bool result;
 
     Manage_scenario manage_scenario;
@@ -92,10 +92,26 @@ doubleloop.makeSTOP(38, 0.0);
 manage_scenario.add(doubleloop);
 
 Manage_scene block("block");
-block.makeMANUAL_PID(39, 2.0, 60.0, -90.0);
-block.makeMANUAL_PID(40, 1.0, 50.0, 50.0);
-block.makeSTOP(41, 0.0);
+block.makeSTOP(39, 0.0);
 manage_scenario.add(block);
+
+Manage_scene straight("straight");
+straight.makeMANUAL_PID(40, 2.0, 60.0, -90.0);
+straight.makeMANUAL_PID(41, 1.0, 50.0, 50.0);
+straight.makeSTOP(42, 0.0);
+manage_scenario.add(straight);
+
+Manage_scene right("right");
+right.makeMANUAL_PID(43, 2.0, 60.0, -90.0);
+right.makeMANUAL_PID(44, 1.0, 50.0, 50.0);
+right.makeSTOP(45, 0.0);
+manage_scenario.add(right);
+
+Manage_scene left("left");
+left.makeMANUAL_PID(46, 2.0, 60.0, -90.0);
+left.makeMANUAL_PID(47, 1.0, 50.0, 50.0);
+left.makeSTOP(48, 0.0);
+manage_scenario.add(left);
 
     //#</make_scenario>
 
@@ -104,6 +120,8 @@ manage_scenario.add(block);
 
     while(1) {
         result = this->manage_scenario->execute();
+        this->custom_scenario.mainProcess(this->manage_scenario);
+
         this->record.appendSensorData();
         this->clock.sleep(CYCLE);
         if (result == true) {
