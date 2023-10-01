@@ -47,6 +47,7 @@ void ReadSig::storeRoute(const char* filename) {
 
         //　ファイル後処理(削除)
         fclose(fileToProcess);
+        std::filesystem::remove(filename);
         // 格納
         this->generalData.setRunRoute(runRoute);
         printf("[ ファイル読み込み ]走行ルートの取得に成功");
@@ -108,6 +109,7 @@ void ReadSig::storeMinifigLabel(const char* filename) {
 
         // ファイル後処理(削除)
         fclose(fileToProcess);
+        std::filesystem::remove(filename);
 
         // 格納
         this->generalData.setMinifigDegree(degree);
