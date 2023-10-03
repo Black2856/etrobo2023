@@ -26,15 +26,16 @@ if [ "${1:0:1}" == "-" ]; then
     # 文字列の長さを取得
     length=${#1}
     # 文字列の一文字ずつ処理
-    for ((i = 1; i < length; i++)); do
+    for i in `seq 1 $length`
+    do
         # i番目の文字を取得
         char="${1:i:1}"
         
-        if [ "$char" == "r" ]; then
+        if [ "$char" = "r" ]; then
             fetchFLG=0
         fi
 
-        if [ "$char" == "s" ]; then
+        if [ "$char" = "s" ]; then
             simFLG=1
         fi
     done
