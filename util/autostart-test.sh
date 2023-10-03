@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 set -e  # エラーチェックを有効化
 
 # バックグラウンドで実行しているプロセスをプロセスグループとして指定
@@ -23,14 +23,13 @@ CFILE=$(basename $(pwd))
 # コマンドライン引数の処理
 fetchFLG=1
 simFLG=0
-if [ "${1:0:1}" == "-" ]; then
+if [ "${1#-}" != "$1" ]; then
     # 文字列の長さを取得
-    length=${#1}
+    length=$(expr length "$1")
     # 文字列の一文字ずつ処理
-    for i in `seq 1 $length`
-    do
+    for i in $(seq 1 $length); do
         # i番目の文字を取得
-        char="${1:i:1}"
+        char=$(expr substr "$1" $i 1)
         
         if [ "$char" = "r" ]; then
             fetchFLG=0
@@ -42,7 +41,7 @@ if [ "${1:0:1}" == "-" ]; then
     done
 fi
 
-if [ $fetchFLG == 1 ]; then
+if [ $fetchFLG = 1 ]; then
     git fetch origin main
     git reset --hard origin/main
 fi
@@ -57,7 +56,7 @@ mkdir -m 755 img || true
 
 chmod -R 755 ./$CFILE
 
-if [ $simFLG == 1 ]; then
+if [ $simFLG = 1 ]; then
     cd ../
     make app=$CFILE sim up
 else
