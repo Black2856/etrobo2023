@@ -25,10 +25,6 @@ private:
 };
 
 void Main::run() {
-    #ifdef MAKE_SIM
-        printf("シミュレータ環境での起動\n");
-    #endif
-
     bool result;
     Manage_scenario manage_scenario;
 
