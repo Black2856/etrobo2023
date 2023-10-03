@@ -83,7 +83,7 @@ bool StateTransition::judge(int idx){
         case 63: func = [](Judge& j) {return j.ret.j(true);}; break;
         case 64: func = [](Judge& j) {return j.mileage.j(1000);}; break;
         case 65: func = [](Judge& j) {return j.mileage.j(1000);}; break;
-        case 66: func = [](Judge& j) {return j.mileage.j(500) and j.brightness.j(90);}; break;
+        case 66: func = [](Judge& j) {return j.mileage.j(500) and j.brightness.j(17);}; break;
         case 67: func = [](Judge& j) {return j.ret.j(true);}; break;
         case 68: func = [](Judge& j) {return j.ret.j(true);}; break;
         case 69: func = [](Judge& j) {return j.ret.j(true) and j.brightness.j(90);}; break;
