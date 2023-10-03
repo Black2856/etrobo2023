@@ -20,9 +20,15 @@ cd $(dirname "$0")
 cd ../
 
 CFILE=$(basename $(pwd))
+
+# 初期値設定
+# 0 == false
+# 1 == true
+fetchFLG=1 # fetchを行うか 
+simFLG=0   # simulator環境か
+makeFLG=1  # makeを行うか
+
 # コマンドライン引数の処理
-fetchFLG=1
-simFLG=0
 if [ "${1#-}" != "$1" ]; then
     # 文字列の長さを取得
     length=$(expr length "$1")
@@ -38,30 +44,42 @@ if [ "${1#-}" != "$1" ]; then
         if [ "$char" = "s" ]; then
             simFLG=1
         fi
+
+        if [ "$char" = "m" ]; then
+            makeFLG=0
+        fi
     done
 fi
+# makeする場合
+if [ $makeFLG = 1 ]; then
+    # fetchする場合
+    if [ $fetchFLG = 1 ]; then
+        git fetch origin main
+        git reset --hard origin/main
+    fi
 
-if [ $fetchFLG = 1 ]; then
-    git fetch origin main
-    git reset --hard origin/main
+    make -C background_tasks
 fi
 
-make -C background_tasks
-
 cd ../ 
-
+# img保存用ディレクトリの作成
 mkdir -m 755 img || true
 # background_tasksをバックグラウンドで実行
 ./$CFILE/background_tasks/background_tasks & 
 
 chmod -R 755 ./$CFILE
 
+# simulator環境の場合
 if [ $simFLG = 1 ]; then
     cd ../
     make app=$CFILE sim up
+
 else
-    rm asp || true
-    make img=$CFILE
+    # makeする場合
+    if [ $makeFLG = 1 ]; then
+        rm asp || true
+        make img=$CFILE
+    fi
     # メインタスクを実行
     make start
 fi
