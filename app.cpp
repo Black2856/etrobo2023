@@ -109,7 +109,7 @@ doubleloop.makeTRACE(54, 60.0, 0.6, 0.0, -0.7, 0.5);
 doubleloop.makeMANUAL_PID(55, 2.0, 60.0, 15.0);
 doubleloop.makeTRACE(56, 65.0, -1.0, 0.0, -1.0, 0.4);
 doubleloop.makeTRACE(57, 80.0, -0.12, 0.0, -0.1, 0.5);
-doubleloop.makeTRACE(58, 40.0, -0.12, 0.0, -0.1, 0.5);
+doubleloop.makeTRACE(58, 55.0, -0.12, 0.0, -0.1, 0.5);
 doubleloop.makeSTOP(59, 0.0);
 manage_scenario.add(doubleloop);
 
@@ -133,9 +133,9 @@ left.makeSTOP(66, 0.0);
 manage_scenario.add(left);
 
 Manage_scene whileRun("whileRun");
-whileRun.makeMANUAL_PID(67, 1.0, 40.0, 100.0);
+whileRun.makeMANUAL_PID(67, 1.0, 55.0, 100.0);
 whileRun.makeMANUAL_PID(68, 2.0, 70.0, -90.0);
-whileRun.makeMANUAL_PID(69, 1.0, 40.0, 550.0);
+whileRun.makeMANUAL_PID(69, 1.0, 55.0, 550.0);
 whileRun.makeSTOP(70, 0.0);
 manage_scenario.add(whileRun);
 
