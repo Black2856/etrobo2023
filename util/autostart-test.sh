@@ -3,16 +3,24 @@ set -e  # エラーチェックを有効化
 # バックグラウンドで実行しているプロセスをプロセスグループとして指定
 pgid=$(ps -o pgid= $$ | awk '{print $1}')
 
-# Ctrl+Cが押下時、またはエラー時のハンドラーを定義
-trap 'kill -- -$pgid' INT ERR
+# Ctrl+Cが押下時、またはエラー時にバックグラウンドプロセスを強制終了
+trap 'kill -- -$pgid' INT
+trap catch EXIT
 
+catch(){
+    if [ "$?" != 0 ]; then
+        kill -- -$pgid
+    fi
+}
+
+# shファイルの存在するディレクトリにcd
 cd $(dirname "$0")
 
 cd ../
 
 CFILE=$(basename $(pwd))
 # コマンドライン引数の処理
-fetchFLG=0
+fetchFLG=1
 simFLG=0
 if [ "${1:0:1}" == "-" ]; then
     # 文字列の長さを取得
@@ -49,14 +57,10 @@ chmod -R 755 ./$CFILE
 
 if [ $simFLG == 1 ]; then
     cd ../
-    make app=$CFILE sim up &
+    make app=$CFILE sim up
 else
     rm asp || true
     make img=$CFILE
-    # etrobo2023をバックグラウンドで実行
-    make start &
+    # メインタスクを実行
+    make start
 fi
-
-# バックグラウンドで実行しているプロセスが終了するまで待機
-echo "wait ctrl+c"
-wait
