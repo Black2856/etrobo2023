@@ -10,7 +10,7 @@ JudgeBrightness::JudgeBrightness():
     device(DeviceInOut::getInstance()){}
 
 float JudgeBrightness::getValue() const {
-    printf("%f, ", this->device.color_getBrightness());
+    printf("%d, ", this->device.color_getBrightness());
     return this->device.color_getBrightness();
 }
 
