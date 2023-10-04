@@ -134,9 +134,10 @@ whileRun.makeTRACE(64, 65.0, -1.0, 0.0, -1.0, 0.4);
 whileRun.makeTRACE(65, 80.0, -0.12, 0.0, -0.1, 0.5);
 whileRun.makeTRACE(66, 55.0, -0.12, 0.0, -0.1, 0.5);
 whileRun.makeMANUAL_PID(67, 1.0, 55.0, 100.0);
-whileRun.makeMANUAL_PID(68, 2.0, 70.0, -90.0);
-whileRun.makeMANUAL_PID(69, 1.0, 55.0, 550.0);
-whileRun.makeSTOP(70, 0.0);
+whileRun.makeSTOP(68, 0.0);
+whileRun.makeMANUAL_PID(69, 2.0, 70.0, -90.0);
+whileRun.makeMANUAL_PID(70, 1.0, 55.0, 550.0);
+whileRun.makeSTOP(71, 0.0);
 manage_scenario.add(whileRun);
 
     //#</make_scenario>
