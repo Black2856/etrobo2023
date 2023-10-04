@@ -15,7 +15,9 @@ void Manage_scenario::add(Manage_scene manageScene){
 void Manage_scenario::remove(const char* name){
     this->scenarioList.remove_if([&](const Manage_scene& manageScene) {
         return std::strcmp(manageScene.getName(), name) == 0;
+        printf("削除ーーーーーーーーーーー");
     });
+    printf("削除コース入ってた");
 }
 
 void Manage_scenario::update(){

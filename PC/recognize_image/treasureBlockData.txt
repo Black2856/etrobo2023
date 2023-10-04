@@ -1,10 +1,10 @@
 decoy
-treasure
+none
 none
 none
 none
 decoy
-none
+treasure
 none
 none
 none
