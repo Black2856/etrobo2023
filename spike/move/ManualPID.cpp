@@ -43,7 +43,7 @@ void ManualPID::first(manualPID::RunType runType, float maxPWM, float transition
         manualType = manual::RunType::RIGHT_WHEEL_ROTATION;
         break;
     case manualPID::RunType::ON_LINE_MOVE:
-        this->pidControl.setPID({1.5, 0.01, 0.2});
+        this->pidControl.setPID({1.4, 0.01, 0.10});
         manualType = manual::RunType::CENTER_ROTATION;
         break;
     default:
