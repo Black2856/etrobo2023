@@ -4,15 +4,8 @@ set -e  # エラーチェックを有効化
 # バックグラウンドで実行しているプロセスをプロセスグループとして指定
 pgid=$(ps -o pgid= $$ | awk '{print $1}')
 
-# Ctrl+Cが押下時、またはエラー時にバックグラウンドプロセスを強制終了
-trap 'kill -- -$pgid' INT
-trap catch EXIT
-
-catch(){
-    if [ "$?" != 0 ]; then
-        kill -- -$pgid
-    fi
-}
+# プログラム終了時にバックグラウンドプロセスを強制終了
+trap 'kill -- -$pgid' EXIT
 
 # shファイルの存在するディレクトリにcd
 cd $(dirname "$0")
