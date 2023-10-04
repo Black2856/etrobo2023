@@ -138,11 +138,11 @@ whileRun.makeCALL_SCENARIO("RtoL");
 whileRun.makeTRACE(63, 65, -1.0, 0.0, -1.0, 0.4);
 whileRun.makeTRACE(64, 80, -0.12, 0.0, -0.1, 0.5);
 whileRun.makeTRACE(65, 60, -0.12, 0.0, -0.1, 0.5);
-whileRun.makeMANUAL_PID(66, 1, 65.0, 50.0);
+whileRun.makeMANUAL_PID(66, 1, 65.0, 42.0);
 whileRun.makeSTOP(67, 0);
 whileRun.makeMANUAL_PID(68, 2, 80.0, -90.0);
 whileRun.makeSTOP(69, 0);
-whileRun.makeMANUAL_PID(70, 1, 65.0, 580.0);
+whileRun.makeMANUAL_PID(70, 1, 65.0, 565.0);
 whileRun.makeSTOP(71, 0);
 manage_scenario.add(whileRun);
 
