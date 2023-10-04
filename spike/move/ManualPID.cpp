@@ -103,6 +103,7 @@ bool ManualPID::execute(){
     //遷移条件値:車体角度(angle)
     float ManualPID::direction(){
         float diffDirection = this->standardDirection - calc.localization.getDirection();
+        printf("%f, ", diffDirection);
         return this->pidControl.calc(diffDirection, this->transitionValue * FRICTIONAL);
     }
     //遷移条件値:操作向き
