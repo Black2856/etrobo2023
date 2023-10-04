@@ -1,5 +1,11 @@
 import requests
 import time
+import os, sys
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+base = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(f"{base}../install")
+sys.path.append(f"{base}../manage_signal")
+
 from competitionSystem import CompetitionSystem
 from parallelProcessing import ParallelProcessing
 
