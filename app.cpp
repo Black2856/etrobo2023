@@ -133,7 +133,7 @@ whileRun.makeCALL_SCENARIO("RtoL");
 whileRun.makeTRACE(59, 65, -1.0, 0.0, -1.0, 0.4);
 whileRun.makeTRACE(60, 80, -0.12, 0.0, -0.1, 0.5);
 whileRun.makeTRACE(61, 60, -0.12, 0.0, -0.1, 0.5);
-whileRun.makeMANUAL_PID(62, 1, 65.0, 10.0);
+whileRun.makeMANUAL_PID(62, 1, 65.0, 35.0);
 whileRun.makeSTOP(63, 0);
 whileRun.makeMANUAL_PID(64, 2, 80.0, -90.0);
 whileRun.makeSTOP(65, 0);
@@ -142,21 +142,23 @@ whileRun.makeSTOP(67, 0);
 manage_scenario.add(whileRun);
 
 Manage_scene LtoR("LtoR");
-LtoR.makeMANUAL_PID(68, 4.0, 80.0, -40.0);
-LtoR.makeSTOP(69, 0.0);
-LtoR.makeMANUAL_PID(70, 3.0, 80.0, 40.0);
-LtoR.makeSTOP(71, 0.0);
-LtoR.makeMANUAL_PID(72, 5.0, -65.0, 1.0);
-LtoR.makeSTOP(73, 0.0);
+LtoR.makeSTOP(68, 0.0);
+LtoR.makeMANUAL_PID(69, 4.0, 80.0, -40.0);
+LtoR.makeSTOP(70, 0.0);
+LtoR.makeMANUAL_PID(71, 3.0, 80.0, 40.0);
+LtoR.makeSTOP(72, 0.0);
+LtoR.makeMANUAL_PID(73, 5.0, -65.0, 1.0);
+LtoR.makeSTOP(74, 0.0);
 manage_scenario.add(LtoR);
 
 Manage_scene RtoL("RtoL");
-RtoL.makeMANUAL_PID(74, 3.0, 80.0, 40.0);
 RtoL.makeSTOP(75, 0.0);
-RtoL.makeMANUAL_PID(76, 4.0, 80.0, -40.0);
+RtoL.makeMANUAL_PID(76, 3.0, 80.0, 40.0);
 RtoL.makeSTOP(77, 0.0);
-RtoL.makeMANUAL_PID(78, 5.0, 65.0, 1.0);
+RtoL.makeMANUAL_PID(78, 4.0, 80.0, -40.0);
 RtoL.makeSTOP(79, 0.0);
+RtoL.makeMANUAL_PID(80, 5.0, 65.0, 1.0);
+RtoL.makeSTOP(81, 0.0);
 manage_scenario.add(RtoL);
 
     //#</make_scenario>
