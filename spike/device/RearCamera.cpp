@@ -39,11 +39,9 @@ bool RearCamera::start() {
 }
 
 void RearCamera::stop() {
-    if (capture.isOpened()) {
-        // カメラを解放する
-        capture.release();
-        printf("カメラを正常終了しました。。\n");
-    }
+    // カメラを解放する
+    capture.release();
+    printf("カメラを正常終了しました。。\n");
 }
 
 cv::Mat RearCamera::takePhoto(const char* fileName) {
