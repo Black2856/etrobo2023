@@ -67,7 +67,7 @@ doubleloop.makeTRACE(11, 75, 0.6, 0.0, 0.4, 0.5);
 doubleloop.makeCALL_SCENARIO("RtoL");
 doubleloop.makeTRACE(12, 70, -0.6, 0.0, -0.4, 1.0);
 doubleloop.makeCALL_SCENARIO("LtoR");
-doubleloop.makeTRACE(13, 70, -0.6, 0.0, -0.4, 1.0);
+doubleloop.makeTRACE(13, 70, 0.6, 0.0, 0.4, 1.0);
 doubleloop.makeSTOP(14, 0);
 doubleloop.makeMANUAL_PID(15, 2, 80.0, 90.0);
 doubleloop.makeSTOP(16, 0);
