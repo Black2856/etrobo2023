@@ -13,7 +13,9 @@ void Manage_scenario::add(Manage_scene manageScene){
 }
 
 void Manage_scenario::remove(const char* name){
+
     for (auto it = scenarioList.begin(); it != scenarioList.end(); ) {
+        printf("%s, %s\n", it->getName(), name);
         if (std::strcmp(it->getName(), name) == 0) {
             it = scenarioList.erase(it);
         } else {
