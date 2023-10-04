@@ -114,7 +114,7 @@ class TreasureAreaDetect(ParallelProcessing):
     def __decision(self, taBlock:TreasureArea):
         print("[ TreasureAreaDetect ]以下のブロック配置の決定がされました。")
         taBlock.display()
-        taBlock.output('./')
+        taBlock.output(f'{base}/')
 
     def __searchRoute(self):
         asterEXE = subprocess.Popen(self.__asterPath + self.__asterArgs, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
