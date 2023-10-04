@@ -1,10 +1,10 @@
 decoy
-none
-none
-none
-none
 decoy
+none
+none
+none
 treasure
+none
 none
 none
 none
