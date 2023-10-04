@@ -13,7 +13,6 @@ RearCamera::RearCamera() {
 }
 
 RearCamera::~RearCamera() {
-    stop();
 }
 
 RearCamera& RearCamera::getInstance() {
@@ -23,34 +22,26 @@ RearCamera& RearCamera::getInstance() {
     return *instance;
 }
 
-bool RearCamera::start() {
-    if (!capture.isOpened()) {
-        // カメラをオープンする
-        capture.open(CAMERA_NUMBER); 
-
-        // カメラがオープンできなかった場合
-        if (!capture.isOpened()) {
-            printf("カメラの起動に失敗しました。\n");
-            return false;
-        }
-    }
-    printf("カメラの起動に成功しました。\n");
-    return true;
-}
-
-void RearCamera::stop() {
-    // カメラを解放する
-    capture.release();
-    printf("カメラを正常終了しました。。\n");
-}
-
 cv::Mat RearCamera::takePhoto(const char* fileName) {
+    // カメラの起動
+    cv::VideoCapture capture(CAMERA_NUMBER);
     cv::Mat img;
-    capture.read(img); // カメラからフレームを読み取る
+    if (capture.isOpened()) {
+        printf("カメラの起動に成功しました。\n");
+    } else {
+        printf("カメラの起動に失敗しました。\n");
+        return img;
+    }
+    // カメラからフレームを読み取る
+    capture.read(img);
     if (img.empty()) {
         printf("フレームをキャプチャできませんでした。\n");
         return img;
     }
+
+    // カメラを解放する
+    capture.release();
+    printf("カメラを正常終了しました。。\n");
 
     // 画像を保存する
     char path[150];

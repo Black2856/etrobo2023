@@ -13,13 +13,6 @@ public:
     // インスタンス取得
     static RearCamera& getInstance();
 
-    /**
-     * カメラを起動する
-     * @retval true  起動成功 or 起動済み
-     * @retval false 起動失敗
-     */
-    bool start();
-    void stop();
     // 写真を撮影
     cv::Mat takePhoto(const char* fileName);
 
@@ -32,9 +25,6 @@ private:
     // コピーおよび代入演算子は禁止
     RearCamera(RearCamera const&);
     void operator=(RearCamera const&);
-
-    // カメラオブジェクト
-    cv::VideoCapture capture;
 };
 
 #endif  // REARCAMERA_H

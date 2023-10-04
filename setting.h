@@ -21,7 +21,7 @@
 #define RECV_PATH "/home/robo/work/RasPike/sdk/workspace/etrobo2023/spike/recvFile/" // 受信ファイル保存先path
 //#define RECV_PATH "/home/iwasaki/etrobo/" // 受信ファイル保存先path
 #define RECV_CYCLE 500 // 受信周期（ミリ秒単位）
-#define SEND_CYCLE 1000 // 送信周期（ミリ秒単位）
+#define SEND_CYCLE 500 // 送信周期（ミリ秒単位）
 
 // 走行体設定
 #ifdef MAKE_SIM

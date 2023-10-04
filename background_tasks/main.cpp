@@ -22,13 +22,6 @@ bool takePhoto(RearCamera& camera, Signal& signal) {
         return false;
     }
 
-    // カメラを起動
-    // カメラの起動に失敗した場合
-    while (!camera.start()) {
-        // 1秒待機
-        std::this_thread::sleep_for(std::chrono::milliseconds(SEND_CYCLE));
-    }
-
     std::string line;
     // ファイルから一行ずつ読み込む
     while (std::getline(file, line)) {
@@ -36,6 +29,7 @@ bool takePhoto(RearCamera& camera, Signal& signal) {
         cv::Mat img = camera.takePhoto(line.c_str());
         // 画像が撮影できていない場合
         while (img.empty()) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(SEND_CYCLE));
             printf("Retry\n");
             img = camera.takePhoto(line.c_str());
         }
@@ -44,7 +38,6 @@ bool takePhoto(RearCamera& camera, Signal& signal) {
     }
     // ファイルを閉じる
     file.close();
-    camera.stop();
     // ファイルを削除する
     std::remove(IMG_QUEUE_PATH);
     return true;
