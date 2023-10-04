@@ -103,7 +103,7 @@ doubleloop.makeSTOP(44, 0);
 doubleloop.makeMANUAL_PID(45, 2, 80.0, 130.0);
 doubleloop.makeMANUAL_PID(46, 5, 80.0, 1.0);
 doubleloop.makeTRACE(47, 70, -0.85, 0.0, -0.8, 1.0);
-doubleloop.makeMANUAL_PID(48, 2, 65.0, -45.0);
+doubleloop.makeMANUAL_PID(48, 2, 80.0, -55.0);
 doubleloop.makeTRACE(49, 55, -0.12, 0.0, -0.1, 0.5);
 doubleloop.makeTRACE(50, 65, -1.0, 0.0, -1.0, 0.4);
 doubleloop.makeSTOP(51, 0);
@@ -130,7 +130,7 @@ manage_scenario.add(left);
 
 Manage_scene whileRun("whileRun");
 whileRun.makeCALL_SCENARIO("LtoR");
-whileRun.makeTRACE(59, 60, 0.6, 0.0, -0.7, 0.5);
+whileRun.makeTRACE(59, 60, 0.6, 0.0, 0.7, 0.5);
 whileRun.makeCALL_SCENARIO("RtoL");
 whileRun.makeTRACE(60, 65, -1.0, 0.0, -1.0, 0.4);
 whileRun.makeTRACE(61, 80, -0.12, 0.0, -0.1, 0.5);
