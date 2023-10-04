@@ -10,6 +10,7 @@ JudgeBrightness::JudgeBrightness():
     device(DeviceInOut::getInstance()){}
 
 float JudgeBrightness::getValue() const {
+    print("%f, ", this->device.color_getBrightness());
     return this->device.color_getBrightness();
 }
 

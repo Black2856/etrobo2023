@@ -11,6 +11,7 @@
 #include "DeviceInOut.h"
 #include "Localization.h"
 #include "GeneralData.h"
+#include "setting.h"
 
 class JudgeAngleMinifig : public JudgeNumerical{
 public:
