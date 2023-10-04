@@ -49,9 +49,9 @@ void ReadSig::storeRoute(const char* filename) {
         //　ファイル後処理(削除)
         fclose(fileToProcess);
 
-        #ifdef MAKE_SIM //シミュレータ環境では動作しない
+        //#ifdef MAKE_SIM //シミュレータ環境では動作しない
             remove(filename);
-        #endif
+        //#endif
 
         // 格納
         this->generalData.setRunRoute(runRoute);
@@ -115,9 +115,9 @@ void ReadSig::storeMinifigLabel(const char* filename) {
         // ファイル後処理(削除)
         fclose(fileToProcess);
 
-        #ifdef MAKE_SIM //シミュレータ環境では動作しない
+        //#ifdef MAKE_SIM //シミュレータ環境では動作しない
             remove(filename);
-        #endif
+        //#endif
 
         // 格納
         this->generalData.setMinifigDegree(degree);
