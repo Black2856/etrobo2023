@@ -143,7 +143,7 @@ whileRun.makeSTOP(69, 0);
 manage_scenario.add(whileRun);
 
 Manage_scene LtoR("LtoR");
-LtoR.makeMANUAL_PID(70, 4.0, 80.0, -35.0);
+LtoR.makeMANUAL_PID(70, 4.0, 80.0, 35.0);
 LtoR.makeMANUAL_PID(71, 3.0, 80.0, 35.0);
 LtoR.makeMANUAL_PID(72, 5.0, 65.0, 1.0);
 LtoR.makeSTOP(73, 0.0);
@@ -151,7 +151,7 @@ manage_scenario.add(LtoR);
 
 Manage_scene RtoL("RtoL");
 RtoL.makeMANUAL_PID(74, 3.0, 80.0, 35.0);
-RtoL.makeMANUAL_PID(75, 4.0, 80.0, -35.0);
+RtoL.makeMANUAL_PID(75, 4.0, 80.0, 35.0);
 RtoL.makeMANUAL_PID(76, 5.0, -65.0, 1.0);
 RtoL.makeSTOP(77, 0.0);
 manage_scenario.add(RtoL);
