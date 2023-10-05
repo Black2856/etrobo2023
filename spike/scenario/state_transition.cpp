@@ -38,7 +38,7 @@ bool StateTransition::judge(int idx){
         case 18: func = [](Judge& j) {return j.ret.j(true) and j.time.j(500*1000);}; break;
         case 19: func = [](Judge& j) {return j.time.j(500*1000);}; break;
         case 20: func = [](Judge& j) {return j.ret.j(true);}; break;
-        case 21: func = [](Judge& j) {return j.time.j(4000*1000);}; break;
+        case 21: func = [](Judge& j) {return j.time.j(2000*1000);}; break;
         case 22: func = [](Judge& j) {return j.ret.j(true);}; break;
         case 23: func = [](Judge& j) {return j.ret.j(true) and j.time.j(500*1000);}; break;
         case 24: func = [](Judge& j) {return j.angleMinifig.j(1);}; break;
@@ -46,7 +46,7 @@ bool StateTransition::judge(int idx){
         case 26: func = [](Judge& j) {return j.ret.j(true) and j.time.j(500*1000);}; break;
         case 27: func = [](Judge& j) {return j.time.j(1000*1000);}; break;
         case 28: func = [](Judge& j) {return j.ret.j(true);}; break;
-        case 29: func = [](Judge& j) {return j.time.j(4000*1000);}; break;
+        case 29: func = [](Judge& j) {return j.time.j(2000*1000);}; break;
         case 30: func = [](Judge& j) {return j.ret.j(true);}; break;
         case 31: func = [](Judge& j) {return j.ret.j(true) and j.time.j(500*1000);}; break;
         case 32: func = [](Judge& j) {return j.angleMinifig.j(2);}; break;
@@ -56,7 +56,7 @@ bool StateTransition::judge(int idx){
         case 36: func = [](Judge& j) {return j.ret.j(true) and j.time.j(500*1000);}; break;
         case 37: func = [](Judge& j) {return j.time.j(1000*1000);}; break;
         case 38: func = [](Judge& j) {return j.ret.j(true);}; break;
-        case 39: func = [](Judge& j) {return j.time.j(4000*1000);}; break;
+        case 39: func = [](Judge& j) {return j.time.j(2000*1000);}; break;
         case 40: func = [](Judge& j) {return j.ret.j(true);}; break;
         case 41: func = [](Judge& j) {return j.ret.j(true) and j.time.j(500*1000);}; break;
         case 42: func = [](Judge& j) {return j.angleMinifig.j(-1);}; break;
@@ -64,7 +64,7 @@ bool StateTransition::judge(int idx){
         case 44: func = [](Judge& j) {return j.ret.j(true) and j.time.j(500*1000);}; break;
         case 45: func = [](Judge& j) {return j.time.j(1000*1000);}; break;
         case 46: func = [](Judge& j) {return j.ret.j(true);}; break;
-        case 47: func = [](Judge& j) {return j.time.j(4000*1000);}; break;
+        case 47: func = [](Judge& j) {return j.time.j(2000*1000);}; break;
         case 48: func = [](Judge& j) {return j.ret.j(true);}; break;
         case 49: func = [](Judge& j) {return j.ret.j(true) and j.time.j(500*1000);}; break;
         case 50: func = [](Judge& j) {return j.angleMinifig.j(-2);}; break;
@@ -82,8 +82,8 @@ bool StateTransition::judge(int idx){
         case 62: func = [](Judge& j) {return j.ret.j(true) and j.time.j(400 * 1000);}; break;
         case 63: func = [](Judge& j) {return j.time.j(50 * 1000);}; break;
         case 64: func = [](Judge& j) {return j.mileage.j(600);}; break;
-        case 65: func = [](Judge& j) {return j.mileage.j(900);}; break;
-        case 66: func = [](Judge& j) {return j.mileage.j(1050);}; break;
+        case 65: func = [](Judge& j) {return j.mileage.j(500);}; break;
+        case 66: func = [](Judge& j) {return j.mileage.j(1450);}; break;
         case 67: func = [](Judge& j) {return j.brightness.j(90) and j.time.j(200 * 1000);}; break;
         case 68: func = [](Judge& j) {return j.ret.j(true) and j.time.j(200*1000);}; break;
         case 69: func = [](Judge& j) {return j.time.j(700*1000);}; break;
@@ -105,7 +105,7 @@ bool StateTransition::judge(int idx){
         case 85: func = [](Judge& j) {return j.time.j(100 * 1000);}; break;
         case 86: func = [](Judge& j) {return j.ret.j(true) and j.time.j(300*1000);}; break;
         case 87: func = [](Judge& j) {return j.time.j(100 * 1000);}; break;
-        case 88: func = [](Judge& j) {return j.brightness.j(15) and j.mileage.j(547);}; break;
+        case 88: func = [](Judge& j) {return j.brightness.j(20) and j.mileage.j(547);}; break;
         case 89: func = [](Judge& j) {return j.ret.j(true);}; break;
         case 90: func = [](Judge& j) {return j.time.j(500 * 1000);}; break;
         case 91: func = [](Judge& j) {return j.ret.j(true) and j.time.j(300*1000);}; break;
