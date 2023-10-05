@@ -167,10 +167,11 @@ Manage_scene goal("goal");
 goal.makeMANUAL(82, 1.0, 70.0, 0.5);
 goal.makeMANUAL_PID(83, 1.0, 70.0, 20.0);
 goal.makeSTOP(84, 0.0);
-goal.makeMANUAL_PID(85, 5.0, -80.0, 1.0);
-goal.makeSTOP(86, 0.0);
-goal.makeTRACE(87, 85.0, 0.09, 0.0, 0.12, 0.3);
-goal.makeSTOP(88, 0.0);
+goal.makeMANUAL_PID(85, 2.0, 80.0, 80.0);
+goal.makeMANUAL_PID(86, 5.0, -80.0, 1.0);
+goal.makeSTOP(87, 0.0);
+goal.makeTRACE(88, 55.0, 0.15, 0.0, 0.2, 0.3);
+goal.makeSTOP(89, 0.0);
 manage_scenario.add(goal);
 
     //#</make_scenario>
