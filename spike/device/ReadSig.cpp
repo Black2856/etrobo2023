@@ -32,11 +32,11 @@ void ReadSig::storeRoute(const char* filename) {
             line[i] = '\0';  // 終端文字を追加
 
             // ここで line に格納されたデータを処理します
-            if (strcmp(line, "0\n") == 0) {
+            if (strcmp(line, "0") == 0) {
                 runRoute.push_back(0);
-            } else if (strcmp(line, "1\n") == 0) {
+            } else if (strcmp(line, "1") == 0) {
                 runRoute.push_back(1);
-            } else if (strcmp(line, "2\n") == 0) {
+            } else if (strcmp(line, "2") == 0) {
                 runRoute.push_back(2);
             }
 
