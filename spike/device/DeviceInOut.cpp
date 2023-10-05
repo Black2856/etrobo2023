@@ -226,6 +226,5 @@ int DeviceInOut::camera_getQueueSize() {
     }
 
     fclose(fp);
-    printf("lineCount: %d\n", lineCount);
     return lineCount;
 }
