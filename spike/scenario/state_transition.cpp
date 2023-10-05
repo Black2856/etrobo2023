@@ -77,10 +77,10 @@ bool StateTransition::judge(int idx){
         case 57: func = [](Judge& j) {return j.mileage.j(200);}; break;
         case 58: func = [](Judge& j) {return j.ret.j(true);}; break;
         case 59: func = [](Judge& j) {return j.time.j(100 * 1000);}; break;
-        case 60: func = [](Judge& j) {return j.ret.j(true);}; break;
-        case 61: func = [](Judge& j) {return j.time.j(100 * 1000);}; break;
-        case 62: func = [](Judge& j) {return j.ret.j(true);}; break;
-        case 63: func = [](Judge& j) {return j.time.j(100 * 1000);}; break;
+        case 60: func = [](Judge& j) {return j.ret.j(true) and j.time.j(400 * 1000);}; break;
+        case 61: func = [](Judge& j) {return j.time.j(50 * 1000);}; break;
+        case 62: func = [](Judge& j) {return j.ret.j(true) and j.time.j(400 * 1000);}; break;
+        case 63: func = [](Judge& j) {return j.time.j(50 * 1000);}; break;
         case 64: func = [](Judge& j) {return j.mileage.j(600);}; break;
         case 65: func = [](Judge& j) {return j.mileage.j(900);}; break;
         case 66: func = [](Judge& j) {return j.mileage.j(1050);}; break;
@@ -105,6 +105,13 @@ bool StateTransition::judge(int idx){
         case 85: func = [](Judge& j) {return j.time.j(100 * 1000);}; break;
         case 86: func = [](Judge& j) {return j.ret.j(true) and j.time.j(300*1000);}; break;
         case 87: func = [](Judge& j) {return j.time.j(100 * 1000);}; break;
+        case 88: func = [](Judge& j) {return j.brightness.j(15) and j.mileage.j(547);}; break;
+        case 89: func = [](Judge& j) {return j.ret.j(true);}; break;
+        case 90: func = [](Judge& j) {return j.time.j(500 * 1000);}; break;
+        case 91: func = [](Judge& j) {return j.ret.j(true) and j.time.j(300*1000);}; break;
+        case 92: func = [](Judge& j) {return j.time.j(500 * 1000);}; break;
+        case 93: func = [](Judge& j) {return j.brightness.j(66);}; break;
+        case 94: func = [](Judge& j) {return j.time.j(100 * 1000);}; break;
     //#</func_list>
         default: return true;
     }

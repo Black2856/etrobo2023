@@ -37,6 +37,7 @@ main.makeCALL_SCENARIO("run");
 main.makeCALL_SCENARIO("doubleloop");
 main.makeCALL_SCENARIO("whileRun");
 main.makeCALL_SCENARIO("block");
+main.makeCALL_SCENARIO("goal");
 manage_scenario.add(main);
 
 Manage_scene calibration("calibration");
@@ -124,12 +125,12 @@ straight.makeSTOP(59, 0.0);
 manage_scenario.add(straight);
 
 Manage_scene right("right");
-right.makeMANUAL_PID(60, 2.0, 60.0, -90.0);
+right.makeMANUAL_PID(60, 2.0, 80.0, -90.0);
 right.makeSTOP(61, 0.0);
 manage_scenario.add(right);
 
 Manage_scene left("left");
-left.makeMANUAL_PID(62, 2.0, 60.0, 90.0);
+left.makeMANUAL_PID(62, 2.0, 80.0, 90.0);
 left.makeSTOP(63, 0.0);
 manage_scenario.add(left);
 
@@ -167,6 +168,16 @@ RtoL.makeSTOP(85, 0.0);
 RtoL.makeMANUAL_PID(86, 5.0, 65.0, 1.0);
 RtoL.makeSTOP(87, 0.0);
 manage_scenario.add(RtoL);
+
+Manage_scene goal("goal");
+goal.makeMANUAL(88, 1.0, 70.0, 0.5);
+goal.makeMANUAL_PID(89, 1.0, 70.0, 20.0);
+goal.makeSTOP(90, 0.0);
+goal.makeMANUAL_PID(91, 5.0, -80.0, 1.0);
+goal.makeSTOP(92, 0.0);
+goal.makeTRACE(93, 85.0, -0.09, 0.0, -0.12, 0.3);
+goal.makeSTOP(94, 0.0);
+manage_scenario.add(goal);
 
     //#</make_scenario>
 
