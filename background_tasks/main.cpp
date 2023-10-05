@@ -1,3 +1,4 @@
+#include "RearCamera.h"
 #include "Signal.h"
 #include "setting.h"
 #include <fstream>
@@ -7,43 +8,13 @@
 #include <string>
 #include <opencv2/opencv.hpp>
 
+// ../spike/device/RearCamera.h
+RearCamera& camera = RearCamera::getInstance();
 // ../spike/device/Signal.h
 Signal recvSignal(RECV_PORT);
 Signal sendSignal(SEND_PORT);
 
-cv::Mat take(const char* fileName) {
-    // カメラの起動
-    cv::VideoCapture capture(CAMERA_NUMBER);
-    cv::Mat img;
-    if (capture.isOpened()) {
-        printf("カメラの起動に成功しました。\n");
-    } else {
-        printf("カメラの起動に失敗しました。\n");
-        capture.release();
-        return img;
-    }
-    // カメラからフレームを読み取る
-    capture.read(img);
-    if (img.empty()) {
-        printf("フレームをキャプチャできませんでした。\n");
-        capture.release();
-        return img;
-    }
-
-    // カメラを解放する
-    capture.release();
-    printf("カメラを正常終了しました。。\n");
-
-    // 画像を保存する
-    char path[150];
-    sprintf(path, IMG_PATH "%s", fileName);
-    if(!cv::imwrite(path, img)) {
-        printf("画像の保存に失敗しました。\n");
-    }
-    return img;
-}
-
-bool takePhoto(Signal& signal) {
+bool takePhoto(RearCamera& camera, Signal& signal) {
     // ファイルを開く
     std::ifstream inputFile(IMG_QUEUE_PATH);
     // ファイルが存在しない場合
@@ -54,14 +25,7 @@ bool takePhoto(Signal& signal) {
     std::string line;
     while (inputFile >> line) {
         // 撮影
-        cv::Mat img = take(line.c_str());
-
-        // 画像が撮影できていない場合
-        while (img.empty()) {
-            std::this_thread::sleep_for(std::chrono::milliseconds(SEND_CYCLE));
-            printf("Retry\n");
-            img = take(line.c_str());
-        }
+        cv::Mat img = camera.takePhoto(line.c_str());
         // PCへ送信
         signal.sendImage(img, line.c_str());
     }
@@ -95,7 +59,7 @@ void send_m() {
     // 10枚撮影したら終了
     int i = 0;
     while(i < 10) {
-        if(takePhoto(sendSignal)) {
+        if(takePhoto(camera, sendSignal)) {
             i += 1;
         }
         // 一定時間停止する
