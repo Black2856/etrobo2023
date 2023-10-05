@@ -19,7 +19,8 @@ bool takePhoto(RearCamera& camera, Signal& signal) {
     std::ifstream file(IMG_QUEUE_PATH);
     // ファイルが存在しない場合
     if (!file) {
-        printf("撮影待機リストのopenに失敗しました。");
+        file.close();
+        return false;
     }
 
     std::string line;
