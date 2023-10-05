@@ -4,12 +4,12 @@ none
 none
 none
 none
+none
+none
 decoy
-none
-none
-none
 decoy
 treasure
+none
 none
 none
 none

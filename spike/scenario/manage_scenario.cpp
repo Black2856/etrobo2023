@@ -153,7 +153,6 @@ bool Manage_scenario::intermediate(Execution& execution, arg_info_t& argInfo){
             break;
         case Execution::TAKE_PHOTO:
             flag = this->takePhoto.execute();
-            printf("｛シーン動作 : %d｝", flag);
             break;
         default:
             break;
