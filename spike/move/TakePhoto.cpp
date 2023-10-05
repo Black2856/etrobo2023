@@ -23,7 +23,9 @@ void TakePhoto::first(int num) {
 
 bool TakePhoto::execute(){
     if (device.camera_getQueueSize() != 0) {
+        print("TakePhoto:false\n");
         return false;
     }
+    print("TakePhoto:true\n");
     return true;
 }
