@@ -156,11 +156,11 @@ import time
 if __name__ == "__main__":
     competitionSystem = CompetitionSystem()
     competitionSystem.setCourse()
-    t = 1000
+    t = 100
     #competitionSystem.snap('vga.png')
     competitionSystem.IoT_SET(50)
     for i in range(t):
-        competitionSystem.snap('vga.png')
+        #competitionSystem.snap('vga.png')
 
         competitionSystem.IoT_GET()
 

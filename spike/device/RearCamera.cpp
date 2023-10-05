@@ -51,6 +51,5 @@ cv::Mat RearCamera::takePhoto(const char* fileName) {
     if(!cv::imwrite(path, img)) {
         printf("画像の保存に失敗しました。\n");
     }
-
     return img;
 }
