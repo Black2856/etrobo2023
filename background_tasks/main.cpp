@@ -16,32 +16,26 @@ Signal sendSignal(SEND_PORT);
 
 bool takePhoto(RearCamera& camera, Signal& signal) {
     // ファイルを開く
-    std::ifstream inputFile(IMG_QUEUE_PATH);
+    std::ifstream file(IMG_QUEUE_PATH);
     // ファイルが存在しない場合
-    if (!inputFile) {
+    if (!file) {
         return false;
     }
 
     std::string line;
-    while (inputFile >> line) {
+    while (file >> line) {
         // 撮影
         cv::Mat img = camera.takePhoto(line.c_str());
         // PCへ送信
         signal.sendImage(img, line.c_str());
     }
+    file.close();
 
-    // 内容を破棄、新しい空のファイルを作成
-    std::ofstream outputFile(IMG_QUEUE_PATH, std::ios::trunc);
-
-    // ファイルが正しく開けたか確認
-    if (outputFile) {
-        printf("撮影待機リストを初期化しました。");
-    } else {
-        printf("撮影待機リストの初期化に失敗しました。");
-    }
-    // ファイルを閉じる
-    outputFile.close();
-    inputFile.close();
+    // ファイルを削除する
+    std::remove(IMG_QUEUE_PATH);
+    // ファイルを新規作成
+    std::ofstream newFile(IMG_QUEUE_PATH);
+    newFile.close();
 
     return true;
 }
