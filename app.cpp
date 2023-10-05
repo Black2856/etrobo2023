@@ -33,9 +33,6 @@ Manage_scene main("main");
 main.makeCALL_SCENARIO("ready");
 main.makeCALL_SCENARIO("calibration");
 main.makeCALL_SCENARIO("ready");
-main.makeCALL_SCENARIO("run");
-main.makeCALL_SCENARIO("doubleloop");
-main.makeCALL_SCENARIO("whileRun");
 main.makeCALL_SCENARIO("block");
 main.makeCALL_SCENARIO("goal");
 manage_scenario.add(main);
@@ -112,7 +109,7 @@ block.makeSTOP(49, 0.0);
 manage_scenario.add(block);
 
 Manage_scene straight("straight");
-straight.makeMANUAL_PID(50, 1.0, 75.0, 360.0);
+straight.makeMANUAL_PID(50, 1.0, 55.0, 360.0);
 straight.makeSTOP(51, 0.0);
 manage_scenario.add(straight);
 
