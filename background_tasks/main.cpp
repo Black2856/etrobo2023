@@ -1,4 +1,3 @@
-#include "RearCamera.h"
 #include "Signal.h"
 #include "setting.h"
 #include <fstream>
@@ -8,11 +7,41 @@
 #include <string>
 #include <opencv2/opencv.hpp>
 
-// ../spike/device/RearCamera.h
-RearCamera& camera = RearCamera::getInstance();
 // ../spike/device/Signal.h
 Signal recvSignal(RECV_PORT);
 Signal sendSignal(SEND_PORT);
+
+cv::Mat take(const char* fileName) {
+    // カメラの起動
+    cv::VideoCapture capture(CAMERA_NUMBER);
+    cv::Mat img;
+    if (capture.isOpened()) {
+        printf("カメラの起動に成功しました。\n");
+    } else {
+        printf("カメラの起動に失敗しました。\n");
+        capture.release();
+        return img;
+    }
+    // カメラからフレームを読み取る
+    capture.read(img);
+    if (img.empty()) {
+        printf("フレームをキャプチャできませんでした。\n");
+        capture.release();
+        return img;
+    }
+
+    // カメラを解放する
+    capture.release();
+    printf("カメラを正常終了しました。。\n");
+
+    // 画像を保存する
+    char path[150];
+    sprintf(path, IMG_PATH "%s", fileName);
+    if(!cv::imwrite(path, img)) {
+        printf("画像の保存に失敗しました。\n");
+    }
+    return img;
+}
 
 bool takePhoto(RearCamera& camera, Signal& signal) {
     // ファイルを開く
