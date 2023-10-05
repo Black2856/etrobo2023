@@ -220,9 +220,7 @@ int DeviceInOut::camera_getQueueSize() {
     int lineCount = 0;
     int ch;
     while ((ch = fgetc(fp)) != EOF) {
-        printf("%s", ch);
         if (ch == '\n') {
-            printf("\n");
             lineCount++;
         }
     }
