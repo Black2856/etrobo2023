@@ -35,7 +35,7 @@
     #define LEFT_WHEEL_POWER 1.0
     #define RIGHT_WHEEL_POWER 1.0
     #define TIRE_DIAMETER 100.0 // タイヤ直径（mm）
-    #define FRICTIONAL 1.102 //zero4は0.8845 0.915 本番:0.9455
+    #define FRICTIONAL 1.078 //zero4は0.8845 0.915 本番:0.9455
 #endif // MAKE_SIM
 
 #define CAMERA_NUMBER 0 // カメラデバイス番号（通常は0）を指定
@@ -44,7 +44,7 @@
 #define MINIFIG_LABEL "minifigLabel.txt" // ミニフィグラベルのファイル名
 #define ROUTE "route.txt" // 走行ルートのファイル名
 #define MINIFIG_LABEL_PATH RECV_PATH MINIFIG_LABEL // ミニフィグラベルのファイルパス
-#define ROUTE_PATH RECV_PATH ROUTE // 走行ルートのファイルパス
+#define ROUTE_PATH RECV_PAT ROUTE // 走行ルートのファイルパス
 #ifdef MAKE_SIM 
     #define IMG_PATH "/home/iwasaki/etrobo/workspace/img/" // 画像保存先path
     #define IMG_QUEUE_PATH "/home/iwasaki/etrobo/workspace/simdist/etrobo2023/__ev3rtfs/" IMG_QUEUE // 撮影待機リストファイル名
