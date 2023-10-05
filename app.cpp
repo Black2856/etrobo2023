@@ -105,7 +105,15 @@ doubleloop.makeSTOP(48, 0);
 manage_scenario.add(doubleloop);
 
 Manage_scene block("block");
-block.makeSTOP(49, 0.0);
+block.makeSTOP(49, 0);
+block.makeCALL_SCENARIO("straight");
+block.makeCALL_SCENARIO("left);
+block.makeCALL_SCENARIO("straight");
+block.makeCALL_SCENARIO("left);
+block.makeCALL_SCENARIO("straight");
+block.makeCALL_SCENARIO("left);
+block.makeCALL_SCENARIO("straight");
+block.makeCALL_SCENARIO("left);
 manage_scenario.add(block);
 
 Manage_scene straight("straight");
