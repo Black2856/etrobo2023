@@ -30,12 +30,14 @@ cv::Mat RearCamera::takePhoto(const char* fileName) {
         printf("カメラの起動に成功しました。\n");
     } else {
         printf("カメラの起動に失敗しました。\n");
+        capture.release();
         return img;
     }
     // カメラからフレームを読み取る
     capture.read(img);
     if (img.empty()) {
         printf("フレームをキャプチャできませんでした。\n");
+        capture.release();
         return img;
     }
 
