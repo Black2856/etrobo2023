@@ -124,59 +124,57 @@ manage_scenario.add(straight);
 
 Manage_scene right("right");
 right.makeMANUAL_PID(58, 2.0, 80.0, -90.0);
-right.makeMANUAL_PID(59, 5.0, -80.0, 1.0);
-right.makeSTOP(60, 0.0);
+right.makeSTOP(59, 0.0);
 manage_scenario.add(right);
 
 Manage_scene left("left");
-left.makeMANUAL_PID(61, 2.0, 80.0, 90.0);
-left.makeMANUAL_PID(62, 5.0, 80.0, 1.0);
-left.makeSTOP(63, 0.0);
+left.makeMANUAL_PID(60, 2.0, 80.0, 90.0);
+left.makeSTOP(61, 0.0);
 manage_scenario.add(left);
 
 Manage_scene whileRun("whileRun");
 whileRun.makeCALL_SCENARIO("LtoR");
-whileRun.makeTRACE(64, 60, 0.6, 0.0, 0.7, 0.5);
+whileRun.makeTRACE(62, 60, 0.6, 0.0, 0.7, 0.5);
 whileRun.makeCALL_SCENARIO("RtoL");
-whileRun.makeTRACE(65, 65, -1.0, 0.0, -1.0, 0.4);
-whileRun.makeTRACE(66, 80, -0.12, 0.0, -0.1, 0.5);
-whileRun.makeTRACE(67, 60, -0.12, 0.0, -0.1, 0.5);
-whileRun.makeMANUAL_PID(68, 1, 65.0, 35.0);
+whileRun.makeTRACE(63, 65, -1.0, 0.0, -1.0, 0.4);
+whileRun.makeTRACE(64, 80, -0.12, 0.0, -0.1, 0.5);
+whileRun.makeTRACE(65, 60, -0.12, 0.0, -0.1, 0.5);
+whileRun.makeMANUAL_PID(66, 1, 65.0, 35.0);
+whileRun.makeSTOP(67, 0);
+whileRun.makeMANUAL_PID(68, 2, 80.0, -90.0);
 whileRun.makeSTOP(69, 0);
-whileRun.makeMANUAL_PID(70, 2, 80.0, -90.0);
+whileRun.makeMANUAL_PID(70, 1, 65.0, 565.0);
 whileRun.makeSTOP(71, 0);
-whileRun.makeMANUAL_PID(72, 1, 65.0, 565.0);
-whileRun.makeSTOP(73, 0);
 manage_scenario.add(whileRun);
 
 Manage_scene LtoR("LtoR");
+LtoR.makeSTOP(72, 0.0);
+LtoR.makeMANUAL_PID(73, 4.0, 80.0, -45.0);
 LtoR.makeSTOP(74, 0.0);
-LtoR.makeMANUAL_PID(75, 4.0, 80.0, -45.0);
+LtoR.makeMANUAL_PID(75, 3.0, 80.0, 40.0);
 LtoR.makeSTOP(76, 0.0);
-LtoR.makeMANUAL_PID(77, 3.0, 80.0, 40.0);
+LtoR.makeMANUAL_PID(77, 5.0, -65.0, 1.0);
 LtoR.makeSTOP(78, 0.0);
-LtoR.makeMANUAL_PID(79, 5.0, -65.0, 1.0);
-LtoR.makeSTOP(80, 0.0);
 manage_scenario.add(LtoR);
 
 Manage_scene RtoL("RtoL");
+RtoL.makeSTOP(79, 0.0);
+RtoL.makeMANUAL_PID(80, 3.0, 80.0, 45.0);
 RtoL.makeSTOP(81, 0.0);
-RtoL.makeMANUAL_PID(82, 3.0, 80.0, 45.0);
+RtoL.makeMANUAL_PID(82, 4.0, 80.0, -40.0);
 RtoL.makeSTOP(83, 0.0);
-RtoL.makeMANUAL_PID(84, 4.0, 80.0, -40.0);
+RtoL.makeMANUAL_PID(84, 5.0, 65.0, 1.0);
 RtoL.makeSTOP(85, 0.0);
-RtoL.makeMANUAL_PID(86, 5.0, 65.0, 1.0);
-RtoL.makeSTOP(87, 0.0);
 manage_scenario.add(RtoL);
 
 Manage_scene goal("goal");
-goal.makeMANUAL(88, 1.0, 70.0, 0.5);
-goal.makeMANUAL_PID(89, 1.0, 70.0, 20.0);
+goal.makeMANUAL(86, 1.0, 70.0, 0.5);
+goal.makeMANUAL_PID(87, 1.0, 70.0, 20.0);
+goal.makeSTOP(88, 0.0);
+goal.makeMANUAL_PID(89, 5.0, -80.0, 1.0);
 goal.makeSTOP(90, 0.0);
-goal.makeMANUAL_PID(91, 5.0, -80.0, 1.0);
+goal.makeTRACE(91, 85.0, -0.09, 0.0, -0.12, 0.3);
 goal.makeSTOP(92, 0.0);
-goal.makeTRACE(93, 85.0, -0.09, 0.0, -0.12, 0.3);
-goal.makeSTOP(94, 0.0);
 manage_scenario.add(goal);
 
     //#</make_scenario>
