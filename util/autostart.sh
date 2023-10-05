@@ -58,7 +58,7 @@ cd ../
 # img保存用ディレクトリの作成
 mkdir -m 755 img || true
 # 撮影待機リストの初期化
-rm "Queue.txt" || true
+rm -f "Queue.txt" || true
 # background_tasksをバックグラウンドで実行
 ./$CFILE/background_tasks/background_tasks & 
 
