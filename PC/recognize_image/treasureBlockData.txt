@@ -7,8 +7,8 @@ none
 none
 none
 none
-decoy
 treasure
+decoy
 none
 none
 decoy
