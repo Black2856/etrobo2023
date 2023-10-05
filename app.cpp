@@ -52,13 +52,13 @@ manage_scenario.add(ready);
 
 Manage_scene run("run");
 run.makeCALL_SCENARIO("straight");
-run.makeCALL_SCENARIO("left);
+run.makeCALL_SCENARIO("left");
 run.makeCALL_SCENARIO("straight");
-run.makeCALL_SCENARIO("left);
+run.makeCALL_SCENARIO("left");
 run.makeCALL_SCENARIO("straight");
-run.makeCALL_SCENARIO("left);
+run.makeCALL_SCENARIO("left");
 run.makeCALL_SCENARIO("straight");
-run.makeCALL_SCENARIO("left);
+run.makeCALL_SCENARIO("left");
 manage_scenario.add(run);
 
 Manage_scene doubleloop("doubleloop");
