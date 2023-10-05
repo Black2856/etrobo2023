@@ -159,13 +159,15 @@ RtoL.makeSTOP(80, 0.0);
 manage_scenario.add(RtoL);
 
 Manage_scene goal("goal");
-goal.makeMANUAL(81, 1.0, 70.0, 0.5);
-goal.makeMANUAL_PID(82, 1.0, 70.0, 20.0);
+goal.makeMANUAL(81, 1.0, 60.0, 0.5);
+goal.makeMANUAL_PID(82, 1.0, 60.0, 20.0);
 goal.makeSTOP(83, 0.0);
-goal.makeMANUAL_PID(84, 5.0, -80.0, 1.0);
-goal.makeSTOP(85, 0.0);
-goal.makeTRACE(86, 85.0, 0.09, 0.0, 0.12, 0.3);
-goal.makeSTOP(87, 0.0);
+goal.makeMANUAL_PID(84, 2.0, 80.0, 50.0);
+goal.makeMANUAL_PID(85, 5.0, -80.0, 1.0);
+goal.makeSTOP(86, 0.0);
+goal.makeTRACE(87, 55.0, 0.09, 0.0, 0.12, 0.3);
+goal.makeTRACE(88, 60.0, 0.09, 0.0, 0.12, 0.3);
+goal.makeSTOP(89, 0.0);
 manage_scenario.add(goal);
 
     //#</make_scenario>
