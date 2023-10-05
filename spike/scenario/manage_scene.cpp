@@ -68,7 +68,7 @@ void Manage_scene::makeTAKE_PHOTO(int stateTransition, float arg1){
     arg_info_t argInfo;
     argInfo.addFloatArg(arg1);
 
-    Scene scene(Execution::TAKE_PHOTO, argInfo);
+    Scene scene(Execution::TAKE_PHOTO, argInfo, stateTransition);
     this->scenario.push_back(scene);
 }
 
