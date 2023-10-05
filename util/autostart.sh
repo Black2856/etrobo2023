@@ -58,7 +58,7 @@ cd ../
 # img保存用ディレクトリの作成
 mkdir -m 755 img || true
 # 撮影待機リストの初期化
-sudo rm "Queue.txt" || true
+echo 'iwasaki' | sudo -S rm "Queue.txt" || true
 # background_tasksをバックグラウンドで実行
 ./$CFILE/background_tasks/background_tasks & 
 
@@ -78,3 +78,5 @@ else
     # メインタスクを実行
     make start
 fi
+
+wait
