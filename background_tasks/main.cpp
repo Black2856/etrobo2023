@@ -19,17 +19,22 @@ bool takePhoto(RearCamera& camera, Signal& signal) {
     std::ifstream file(IMG_QUEUE_PATH);
     // ファイルが存在しない場合
     if (!file) {
-        return false;
+        printf("撮影待機リストのopenに失敗しました。");
     }
 
     std::string line;
+    int lineCount = 0;
     while (file >> line) {
+        lineCount++;
         // 撮影
         cv::Mat img = camera.takePhoto(line.c_str());
         // PCへ送信
         signal.sendImage(img, line.c_str());
     }
     file.close();
+    if(lineCount <= 0) {
+        return false;
+    }
 
     // ファイルを削除する
     std::remove(IMG_QUEUE_PATH);
