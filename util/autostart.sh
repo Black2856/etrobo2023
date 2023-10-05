@@ -5,7 +5,7 @@ set -e  # エラーチェックを有効化
 pgid=$(ps -o pgid= $$ | awk '{print $1}')
 
 # プログラム終了時にバックグラウンドプロセスを強制終了
-trap 'kill -- -$pgid' EXIT INT
+trap 'kill -- -$pgid' EXIT INT SIGSEGV SIGABRT SIGKILL
 
 # shファイルの存在するディレクトリにcd
 cd $(dirname "$0")

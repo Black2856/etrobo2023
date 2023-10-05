@@ -43,7 +43,7 @@ cv::Mat take(const char* fileName) {
     return img;
 }
 
-bool takePhoto(RearCamera& camera, Signal& signal) {
+bool takePhoto(Signal& signal) {
     // ファイルを開く
     std::ifstream inputFile(IMG_QUEUE_PATH);
     // ファイルが存在しない場合
@@ -54,13 +54,13 @@ bool takePhoto(RearCamera& camera, Signal& signal) {
     std::string line;
     while (inputFile >> line) {
         // 撮影
-        cv::Mat img = camera.takePhoto(line.c_str());
+        cv::Mat img = take(line.c_str());
 
         // 画像が撮影できていない場合
         while (img.empty()) {
             std::this_thread::sleep_for(std::chrono::milliseconds(SEND_CYCLE));
             printf("Retry\n");
-            img = camera.takePhoto(line.c_str());
+            img = take(line.c_str());
         }
         // PCへ送信
         signal.sendImage(img, line.c_str());
@@ -95,7 +95,7 @@ void send_m() {
     // 10枚撮影したら終了
     int i = 0;
     while(i < 10) {
-        if(takePhoto(camera, sendSignal)) {
+        if(takePhoto(sendSignal)) {
             i += 1;
         }
         // 一定時間停止する
