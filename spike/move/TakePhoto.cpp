@@ -23,9 +23,7 @@ void TakePhoto::first(int num) {
 
 bool TakePhoto::execute(){
     if (device.camera_getQueueSize() != 0) {
-        printf("TakePhoto:false\n");
         return false;
     }
-    printf("TakePhoto:true\n");
     return true;
 }
