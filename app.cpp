@@ -118,19 +118,19 @@ block.makeSTOP(55, 0.0);
 manage_scenario.add(block);
 
 Manage_scene straight("straight");
-straight.makeMANUAL_PID(56, 1.0, 60.0, 75.0);
-straight.makeTRACE(57, 50.0, -0.09, 0.0, -0.12, 0.3);
-straight.makeMANUAL_PID(58, 1.0, 60.0, 75.0);
-straight.makeSTOP(59, 0.0);
+straight.makeTRACE(56, 50.0, -0.09, 0.0, -0.12, 0.3);
+straight.makeSTOP(57, 0.0);
 manage_scenario.add(straight);
 
 Manage_scene right("right");
-right.makeMANUAL_PID(60, 2.0, 80.0, -90.0);
-right.makeSTOP(61, 0.0);
+right.makeMANUAL_PID(58, 2.0, 80.0, -100.0);
+right.makeMANUAL_PID(59, 5.0, -80.0, 1.0);
+right.makeSTOP(60, 0.0);
 manage_scenario.add(right);
 
 Manage_scene left("left");
-left.makeMANUAL_PID(62, 2.0, 80.0, 90.0);
+left.makeMANUAL_PID(61, 2.0, 80.0, 100.0);
+left.makeMANUAL_PID(62, 5.0, 80.0, 1.0);
 left.makeSTOP(63, 0.0);
 manage_scenario.add(left);
 
