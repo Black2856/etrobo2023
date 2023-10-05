@@ -44,7 +44,7 @@
 #define MINIFIG_LABEL "minifigLabel.txt" // ミニフィグラベルのファイル名
 #define ROUTE "route.txt" // 走行ルートのファイル名
 #define MINIFIG_LABEL_PATH RECV_PATH MINIFIG_LABEL // ミニフィグラベルのファイルパス
-#define ROUTE_PATH RECV_PAT ROUTE // 走行ルートのファイルパス
+#define ROUTE_PATH RECV_PATH ROUTE // 走行ルートのファイルパス
 #ifdef MAKE_SIM 
     #define IMG_PATH "/home/iwasaki/etrobo/workspace/img/" // 画像保存先path
     #define IMG_QUEUE_PATH "/home/iwasaki/etrobo/workspace/simdist/etrobo2023/__ev3rtfs/" IMG_QUEUE // 撮影待機リストファイル名
