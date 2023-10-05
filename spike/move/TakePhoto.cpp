@@ -11,6 +11,7 @@ TakePhoto::TakePhoto():
     }
 
 void TakePhoto::first(int num) {
+    /*
     this->num = num;
     for(int i=1; i<=this->num; i++) {
         char fileName[5];
@@ -19,10 +20,12 @@ void TakePhoto::first(int num) {
         device.camera_addToQueue(fileName);
     }
     device.camera_takePhoto();
+    */
 }
 
 bool TakePhoto::execute(){
-    if (device.camera_getQueueSize() != 0) {
+    //if (device.camera_getQueueSize() != 0) {
+    if (2 != 0) {
         printf("TakePhoto:false\n");
         return false;
     }

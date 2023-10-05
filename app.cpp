@@ -108,7 +108,7 @@ doubleloop.makeMANUAL_PID(48, 2, 80.0, 130.0);
 doubleloop.makeMANUAL_PID(49, 5, 80.0, 1.0);
 doubleloop.makeTRACE(50, 70, -0.85, 0.0, -0.8, 1.0);
 doubleloop.makeMANUAL_PID(51, 2, 80.0, -55.0);
-doubleloop.makeTRACE(52, 55, -0.37, 0.0, -0.55, 0.5);
+doubleloop.makeTRACE(52, 55, -0.47, 0.0, -0.55, 0.5);
 doubleloop.makeTRACE(53, 65, -1.0, 0.0, -1.0, 0.4);
 doubleloop.makeSTOP(54, 0);
 manage_scenario.add(doubleloop);
@@ -173,7 +173,7 @@ goal.makeMANUAL_PID(87, 1.0, 70.0, 20.0);
 goal.makeSTOP(88, 0.0);
 goal.makeMANUAL_PID(89, 5.0, -80.0, 1.0);
 goal.makeSTOP(90, 0.0);
-goal.makeTRACE(91, 85.0, -0.09, 0.0, -0.12, 0.3);
+goal.makeTRACE(91, 85.0, 0.09, 0.0, 0.12, 0.3);
 goal.makeSTOP(92, 0.0);
 manage_scenario.add(goal);
 
