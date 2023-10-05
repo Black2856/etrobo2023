@@ -79,4 +79,6 @@ else
     make start
 fi
 
+kill -- -$pgid
+
 wait
