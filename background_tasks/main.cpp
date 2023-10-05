@@ -38,8 +38,17 @@ bool takePhoto(RearCamera& camera, Signal& signal) {
     }
     // ファイルを閉じる
     file.close();
-    // ファイルを削除する
-    std::remove(IMG_QUEUE_PATH);
+    // ファイルを開いて、中身を空にする
+    std::ofstream deleteFile(IMG_QUEUE_PATH, std::ios::trunc);
+
+    // ファイルが正しく開けたかどうかを確認
+    if (deleteFile.is_open()) {
+        // ファイルを閉じる
+        deleteFile.close();
+        printf("撮影待機リストを初期化しました。");
+    } else {
+        printf("撮影待機リストの初期化に失敗しました。");
+    }
     return true;
 }
 
