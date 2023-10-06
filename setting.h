@@ -15,7 +15,7 @@
 #define PI 3.1415926535
 
 // 通信設定
-#define PC_IP_ADDRESS "10.17.11.102" // 受信時アドレス
+#define PC_IP_ADDRESS "192.168.133.128" // 受信時アドレス
 #define RECV_PORT 8081 // 受信用port番号
 #define SEND_PORT 8080 // 送信用port番号
 #define RECV_PATH "/home/robo/work/RasPike/sdk/workspace/etrobo2023/spike/recvFile/" // 受信ファイル保存先path
