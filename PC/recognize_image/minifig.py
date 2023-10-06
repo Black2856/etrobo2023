@@ -22,17 +22,23 @@ class Minifig(ParallelProcessing):
     def __init__(self, cycle):
         super().__init__()
         self.__cycle = cycle
-        self.__model = keras.models.load_model(f'{base}/best_model_50epoch.h5')
+        #self.__model = keras.models.load_model(f'{base}/best_model_50epoch.h5')
+        self.__model_man = keras.models.load_model(f'{base}/best_model_m1.h5')
+        self.__model_woman = keras.models.load_model(f'{base}/best_model_w1.h5')
         self.__label_name = ['0d', '135d', '180d', '225d', '270d', '315d', '45d', '90d']
         self.__minifigDataPath = f'{base}/../manage_signal/recv_image/'
         self.__saveImagePath = f'{base}/minifig_processed_data/'
         self.__savelabelPath = f'{base}/../manage_signal/send_folder/'
         self.__processCount = 0
+
+        # 大円が男=0, 女=1
+        self.__predictType = 0
         
         self.__competitionSystem = CompetitionSystem()
 
         # predictを予め一回行い、キャッシュする。
-        self.__predictImage(f'../test.png')
+        self.__predictImage(f'../test.png', 0)
+        self.__predictImage(f'../test.png', 1)
 
     def execute(self):
         ret, image, name = self.__loadImage()
@@ -41,16 +47,33 @@ class Minifig(ParallelProcessing):
             print(f'[ minifig ]find minifig image')
             # 受信枚数が奇数の場合は判別する。偶数の場合は競技システムに送信する。
             if (self.__processCount % 2) == 1:
-                label = self.__predictImage(name)
+                
+                if self.__processCount <= 2:
+                    if self.__predictType == 0:
+                        label = self.__predictImage(name, 0)
+                    else: # == 1
+                        label = self.__predictImage(name, 1)
+                else: # >= 3
+                    if self.__predictType == 1:
+                        label = self.__predictImage(name, 1)
+                    else: # == 1
+                        label = self.__predictImage(name, 0)
+
                 self.__saveLabel(label)
                 self.__saveImage(image, name)
                 print(end=f'[ minifig ]predictLabel = ')
                 print(f'\'{label}\'')
+
             else: # (self.__processCount % 2) == 0
-                print(end=f'[ minifig ]image send to competitionSystem :)')
+                print(end=f'[ minifig ]image send to competitionSystem :)\n')
                 filename = self.__saveImage(image, name)
                 self.__competitionSystem.snap(f'{self.__saveImagePath}{filename}')
 
+    def setPredictType(self, Type:int):
+        """
+        大円が男=0, 女=1の推測
+        """
+        self.__predictType = Type
 
     def __loadImage(self):
         contents = os.listdir(self.__minifigDataPath)
@@ -80,7 +103,7 @@ class Minifig(ParallelProcessing):
         with open(f'{self.__savelabelPath}{name}', 'w') as file:
             file.write(label)
 
-    def __predictImage(self, name):
+    def __predictImage(self, name, modelType:int):
         image = tf.io.read_file(f'{self.__minifigDataPath}{name}')
         images = []
 
@@ -92,7 +115,11 @@ class Minifig(ParallelProcessing):
         images = tf.stack(images)
 
         ## 推定
-        predictions = self.__model.predict(images)
+        if modelType == 0:
+            predictions = self.__model_man.predict(images)
+        else: # == 1
+            predictions = self.__model_woman.predict(images)
+
         predLabels = np.argmax(predictions, axis=1)
         label = self.__label_name[predLabels[0]]
         return label
