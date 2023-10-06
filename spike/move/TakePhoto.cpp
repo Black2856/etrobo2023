@@ -4,6 +4,7 @@
 作成者:杉本
 */
 #include "TakePhoto.h"
+#include "setting.h"
 #include <stdio.h>
 
 TakePhoto::TakePhoto():
@@ -19,9 +20,14 @@ void TakePhoto::first(int num) {
         device.camera_addToQueue(fileName);
     }
     device.camera_takePhoto();
+    time = device.clock_now();
 }
 
 bool TakePhoto::execute(){
+    // 撮影失敗時走行再開
+    if ((device.clock_now() - time) >= PHOTO_FAILED_TIME) {
+        return true;
+    }
     if (device.camera_getQueueSize() != 0) {
         return false;
     }
