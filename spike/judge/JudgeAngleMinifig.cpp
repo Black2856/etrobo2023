@@ -13,7 +13,8 @@ JudgeAngleMinifig::JudgeAngleMinifig():
 
 float JudgeAngleMinifig::getValue() const {
     //return device.gyro_getAngle();
-    return this->localization.getDirection() / FRICTIONAL;
+    //return this->localization.getDirection() / FRICTIONAL;
+    return this->localization.getDirection();
 }
 
 float JudgeAngleMinifig::targetConvert(float target) const {
