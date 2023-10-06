@@ -1,5 +1,6 @@
 import requests
 import threading
+import json
 
 #192.168.11.12 Lコース
 #192.168.11.13 Rコース
@@ -27,16 +28,23 @@ class CompetitionSystem:
         self.__Lipv4 = '192.168.11.12'
         self.__Ripv4 = '192.168.11.13'
         self.__Testipv4 = '192.168.100.1'
+        self.__offline = '0,0,0,0'
+
+        self.__IoTdata = []
         # base url
         if(self.__course in ['L', 'l']):
             ipv4 = self.__Lipv4
         elif(self.__course in ['R', 'r']):
             ipv4 = self.__Ripv4
+        elif(self.__course in ['offline', 'r']):
+            ipv4 = self.__offline
         else:
             ipv4 = self.__Testipv4
-        self.__snap_url = f'http://{ipv4}/snap'
-        self.__IoT_url = f'http://{ipv4}/train'
-        print(f"[ 競技システム ] {course}コース用のipv4 \"{ipv4}\"を設定しました。")
+
+        self.__ipv4 = ipv4
+        self.__snap_url = f'http://{self.__ipv4}/snap'
+        self.__IoT_url = f'http://{self.__ipv4}/train'
+        print(f"[ 競技システム ] {course}コース用のipv4 \"{self.__ipv4}\"を設定しました。")
 
         #teamID 任意のIDを設定します
         self.__id_parameter = 4 
@@ -48,6 +56,9 @@ class CompetitionSystem:
             成功 -> True\n
             失敗 -> False
         """
+        if(self.__ipv4 == self.__offline):
+            return True        
+
         # リクエストヘッダー
         headers = {'Content-Type': 'image/png'}
         
@@ -76,6 +87,9 @@ class CompetitionSystem:
             成功 -> True\n
             失敗 -> False
         """
+        if(self.__ipv4 == self.__offline):
+            return True
+
         payload = {"pwm": pwm_value}
         response = requests.put(self.__IoT_url, params=payload)
 
@@ -94,6 +108,10 @@ class CompetitionSystem:
         except ValueError:
             raise ValueError(f":{data}をFloat型に解決できません")
 
+    def loadData(self, path):
+        with open(path, "r") as f:
+            self.__IoTdata = json.load(f)
+
     def IoT_GET(self):
         """
         IoT列車の情報を取得する。\n
@@ -102,6 +120,14 @@ class CompetitionSystem:
             成功 -> センサデータ(辞書型)\n
             失敗 -> False
         """
+        if(self.__ipv4 == self.__offline):
+            try:
+                ret_data = self.__IoTdata.pop(0)
+                return ret_data
+            except:
+                print("データ終了")
+                return False
+
         # GETリクエストを送信
         response = requests.get(self.__IoT_url)
 
@@ -151,18 +177,23 @@ class CompetitionSystem:
         else:
             print(f"[ IoT_GET ]リクエストが失敗しました。ステータスコード: {response.status_code}")
         return False
-    
+
+
 import time
 if __name__ == "__main__":
     competitionSystem = CompetitionSystem()
-    competitionSystem.setCourse()
-    t = 100
+    competitionSystem.setCourse('test')
+
+    #competitionSystem.loadData('./IoT.json')
+
     #competitionSystem.snap('vga.png')
-    competitionSystem.IoT_SET(50)
+    competitionSystem.IoT_SET(30)
+    li = []
+    t = 100
     for i in range(t):
-        #competitionSystem.snap('vga.png')
-
-        competitionSystem.IoT_GET()
-
+        li.append(competitionSystem.IoT_GET())
         time.sleep(50/1000)
     competitionSystem.IoT_SET(0)
+
+    with open("IoT.json", "w") as f:
+        json.dump(li, f, indent=4)
