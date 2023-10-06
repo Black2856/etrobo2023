@@ -170,8 +170,7 @@ goal.makeMANUAL_PID(88, 2.0, 80.0, 50.0);
 goal.makeMANUAL_PID(89, 5.0, -80.0, 1.0);
 goal.makeSTOP(90, 0.0);
 goal.makeTRACE(91, 55.0, 0.09, 0.0, 0.12, 0.3);
-goal.makeTRACE(92, 60.0, 0.09, 0.0, 0.12, 0.3);
-goal.makeSTOP(93, 0.0);
+goal.makeSTOP(92, 0.0);
 manage_scenario.add(goal);
 
     //#</make_scenario>
