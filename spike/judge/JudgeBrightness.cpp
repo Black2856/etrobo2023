@@ -14,7 +14,6 @@ float JudgeBrightness::getValue() const {
 }
 
 bool  JudgeBrightness::isTargetReached() const {
-    printf("%f:%f, ", getValue(), getStartNumerical());
     // 計測開始時より近い距離が目標の場合
     if (getStartNumerical() > getTarget()) {
         return (getValue() <= getTarget()) ? true : false;
