@@ -55,4 +55,6 @@
 #define IMG_FILENAME_LEN 5 // ファイルネームの最大長
 #define RECORD_LIMIT 1000  // センサーデータの最大記録数  記録秒数 = CYCLE * RECORD_LIMIT
 
+#define PHOTO_FAILED_TIME 7 * 1000 * 1000 // 撮影失敗時走行再開時間（usec）
+
 #endif  // SETTINGS_H

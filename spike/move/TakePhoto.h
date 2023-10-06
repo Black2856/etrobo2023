@@ -19,6 +19,7 @@ public:
 private:
     DeviceInOut& device;
     int num;
+    uint64_t time;
 };
 
 #endif  // TAKE_PHOTO_H
