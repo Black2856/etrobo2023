@@ -15,6 +15,10 @@ Signal recvSignal(RECV_PORT);
 Signal sendSignal(SEND_PORT);
 
 bool takePhoto(RearCamera& camera, Signal& signal) {
+    // 静的変数定義（関数初回呼び出し時に一度だけ初期化される）
+    static std::string name_prev = "exe.png";
+    static cv::Mat img_prev = cv::imread("/home/robo/work/RasPike/sdk/workspace/" + name_prev);
+
     // ファイルを開く
     std::ifstream file(IMG_QUEUE_PATH);
     // ファイルが存在しない場合
@@ -29,8 +33,15 @@ bool takePhoto(RearCamera& camera, Signal& signal) {
         lineCount++;
         // 撮影
         cv::Mat img = camera.takePhoto(line.c_str());
-        // PCへ送信
-        signal.sendImage(img, line.c_str());
+        // 撮影失敗時
+        if (img.empty()) {
+            // 直前に撮影したものを送信
+            signal.sendImage(img_prev, name_prev.c_str());
+        } else { // 撮影成功時
+            signal.sendImage(img, line.c_str());
+            img_prev = img;
+            name_prev = line;
+        }
     }
     file.close();
     if(lineCount <= 0) {
