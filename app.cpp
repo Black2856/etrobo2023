@@ -147,7 +147,7 @@ whileRun.makeTRACE(70, 80, -0.12, 0.0, -0.1, 0.5);
 whileRun.makeTRACE(71, 60, -0.12, 0.0, -0.1, 0.5);
 whileRun.makeMANUAL_PID(72, 1, 65.0, 35.0);
 whileRun.makeSTOP(73, 0);
-whileRun.makeMANUAL_PID(74, 2, 80.0, -90.0);
+whileRun.makeMANUAL_PID(74, 2, 80.0, -80.0);
 whileRun.makeSTOP(75, 0);
 whileRun.makeMANUAL_PID(76, 1, 65.0, 565.0);
 whileRun.makeSTOP(77, 0);
