@@ -1,4 +1,0 @@
-sudo apt update
-sudo apt install libopencv-dev
-sudo apt install libpthread-dev
-sudo apt install gstreamer1.0-tools

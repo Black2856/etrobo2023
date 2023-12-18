@@ -64,14 +64,10 @@ zero4.makeMANUAL_PID(14, 1.0, 90.0, 4800.0);
 zero4.makeSTOP(15, 0.0);
 manage_scenario.add(zero4);
 
-Manage_scene test("test");
-test.makeSTOP(16, 0.0);
-manage_scenario.add(test);
-
 Manage_scene turn("turn");
-turn.makeMANUAL_PID(17, 2.0, 60.0, -90.0);
-turn.makeMANUAL(18, 1.0, 60.0, 0.0);
-turn.makeSTOP(19, 0.0);
+turn.makeMANUAL_PID(16, 2.0, 60.0, -90.0);
+turn.makeMANUAL(17, 1.0, 60.0, 0.0);
+turn.makeSTOP(18, 0.0);
 manage_scenario.add(turn);
 
     //#</make_scenario>
