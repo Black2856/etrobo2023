@@ -14,7 +14,7 @@ git clone https://github.com/Black2856/etrobo2023
 ~~commit権限が欲しい方は以下の手順を行ってください。~~
 
 1. 申請  
-~~Slack等の連絡ツールでcommit権限が欲しい旨をご連絡ください。  ~~
+~~Slack等の連絡ツールでcommit権限が欲しい旨をご連絡ください。~~
 ~~権限が付与され次第招待メールが届きますので、承認を行ってください。~~
 
 2. git設定  
@@ -24,6 +24,18 @@ git clone https://github.com/Black2856/etrobo2023
 git config --global user.email "メールアドレス"
 git config --global user.name "ユーザー名"
 ```
+
+## 環境構築
+spike側とPC側で両方必要になります。
+- spike側
+    etrobo環境の構築
+    ./background_tasks/requirements.txtの実行
+
+- PC側
+    python環境の構築 (PC/install/のrequirements.txtまたはetrobo.ymlのインポート)
+    c++環境の構築 (PC/serch_route/c++環境構築.txt)
+    xlwingsのインストール (必須ではない util/scenario/scenario.xlsmのシート内)
+
 
 ## 便利機能
 
@@ -52,21 +64,11 @@ makefileとapp.cfgの修正には
 を用いることでタグ内のテキストをディレクトリ構成に合わせて修正します
 ※編集する前にpullを忘れずに
 
-### 環境構築
-spike側とPC側で両方必要になります。
-- spike側
-    etrobo環境の構築
-    ./background_tasks/requirements.txtの実行
-
-- PC側
-    python環境の構築 (PC/install/のrequirements.txtまたはetrobo.ymlのインポート)
-    c++環境の構築 (PC/serch_route/c++環境構築.txt)
-    xlwingsのインストール (必須ではない util/scenario/scenario.xlsmのシート内)
-
 ### 実行
 raspberrypiで以下のコマンドを実行すると自動でmakefileとcfgの修正,pull,build,startを実行する
 ```bash
 sh autostart.sh
+
 ```
 raspberrypi側でも編集できますが、基本的にデバッグ用です
 
