@@ -28,12 +28,12 @@ git config --global user.name "ユーザー名"
 
 ## 環境構築
 spike側とPC側で両方必要になります。
-- spike側<br>
+- spike側
 
     etrobo環境の構築<br>
     ./background_tasks/requirements.txtの実行<br>
 
-- PC側<br>
+- PC側
 
     python環境の構築 (PC/install/のrequirements.txtまたはetrobo.ymlのインポート)<br>
     c++環境の構築 (PC/serch_route/c++環境構築.txt)<br>
@@ -76,6 +76,13 @@ sh autostart.sh
 raspberrypi側でも編集できますが、基本的にデバッグ用です
 
 PC側の実行には./PC/main.ipynb　から実行できます。
+
+### excelからのspike動作定義を決めるツール
+./util/scenario/scenario.xlsm から起動できます。
+
+デプロイにはxlwingsのインストールが必要です。
+
+詳細についてはシート内の説明を参照してください。
 
 ## 各ファイルの簡易説明
 
