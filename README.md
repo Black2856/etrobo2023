@@ -10,12 +10,12 @@ git clone https://github.com/Black2856/etrobo2023
 ```
 
 ### ユーザー設定
-~~許可されたユーザーしかcommitできません。~~<br>
-~~commit権限が欲しい方は以下の手順を行ってください。~~<br>
+許可されたユーザーしかcommitできません。
+commit権限が欲しい方は以下の手順を行ってください。
 
 1. 申請  
-~~Slack等の連絡ツールでcommit権限が欲しい旨をご連絡ください。~~<br>
-~~権限が付与され次第招待メールが届きますので、承認を行ってください。~~<br>
+Slack等の連絡ツールでcommit権限が欲しい旨をご連絡ください。
+権限が付与され次第招待メールが届きますので、承認を行ってください。
 
 2. git設定  
 以下のユーザー設定を行ってください。
@@ -24,6 +24,7 @@ git clone https://github.com/Black2856/etrobo2023
 git config --global user.email "メールアドレス"
 git config --global user.name "ユーザー名"
 ```
+もしくはforkして自身のリポジトリを作成してください。
 
 ## 環境構築
 spike側とPC側で両方必要になります。
@@ -92,7 +93,7 @@ etrobo2023<br>
 ※説明するファイルのみ記述  
 
 - `app.cfg`, `app.cpp`, `app.h`: spikeを動かす主要のソースコード。
-- `spike/`: spikeを高度な制御を行うための各種ファイルがある。
+- `spike/`: spikeを高度な制御を行うための各種ソースコードがある。
 - `background_tasks/`: spike側のTOPPERSプラットフォーム下で制御を行わないソースコード類、撮影や送受信等。
 - `PC/`: PCで動作させるソースコード類、主な機能は送受信、画像処理や経路探索。
 - `setting.h`: spike制御用の設定ファイル。
