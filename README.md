@@ -28,11 +28,11 @@ git config --global user.name "ユーザー名"
 
 ## 環境構築
 spike側とPC側で両方必要になります。
-- spike側
+- spike側<br>
     etrobo環境の構築<br>
     ./background_tasks/requirements.txtの実行<br>
 
-- PC側
+- PC側<br>
     python環境の構築 (PC/install/のrequirements.txtまたはetrobo.ymlのインポート)<br>
     c++環境の構築 (PC/serch_route/c++環境構築.txt)<br>
     xlwingsのインストール (必須ではない util/scenario/scenario.xlsmのシート内)<br>
