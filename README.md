@@ -10,12 +10,12 @@ git clone https://github.com/Black2856/etrobo2023
 ```
 
 ### ユーザー設定
-~~許可されたユーザーしかcommitできません。~~
-~~commit権限が欲しい方は以下の手順を行ってください。~~
+~~許可されたユーザーしかcommitできません。~~  
+~~commit権限が欲しい方は以下の手順を行ってください。~~  
 
 1. 申請  
-~~Slack等の連絡ツールでcommit権限が欲しい旨をご連絡ください。~~
-~~権限が付与され次第招待メールが届きますので、承認を行ってください。~~
+~~Slack等の連絡ツールでcommit権限が欲しい旨をご連絡ください。~~  
+~~権限が付与され次第招待メールが届きますので、承認を行ってください。~~  
 
 2. git設定  
 以下のユーザー設定を行ってください。
@@ -76,20 +76,20 @@ PC側の実行には./PC/main.ipynb　から実行できます。
 
 ## 各ファイルの簡易説明
 
-etrobo2023
-├── app.cfg
-├── app.cpp
-├── app.h
-├── background_tasks
-├── PC
-├── setting.h
-├── spike
-├── util
-│      └── scenario
-│               └── scenario.xlsm
-└── 設計
-        └── ADV_004_ろぼ魂.pdf
-※説明するファイルのみ記述
+etrobo2023  
+├── app.cfg  
+├── app.cpp  
+├── app.h  
+├── background_tasks  
+├── PC  
+├── setting.h  
+├── spike  
+├── util  
+│      └── scenario  
+│               └── scenario.xlsm  
+└── 設計  
+        └── ADV_004_ろぼ魂.pdf  
+※説明するファイルのみ記述  
 
 - `app.cfg`, `app.cpp`, `app.h`: spikeを動かす主要のソースコード。
 - `spike/`: spikeを高度な制御を行うための各種ファイルがある。
